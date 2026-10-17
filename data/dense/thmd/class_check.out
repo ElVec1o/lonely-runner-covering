@@ -1,0 +1,7 @@
+controls ML(1..5)=1/6, ML(1,3,4,7)=1/5, ML(1)=1/2, ML(1,2)=1/3 OK
+m=2 N=5 subsets(size<=m)=10 with_pair=2 missed_class_absent=0 witness_fail=0 | control(no pair, all classes met): sets=4 having_c=0
+m=3 N=7 subsets(size<=m)=41 with_pair=15 missed_class_absent=0 witness_fail=0 | control(no pair, all classes met): sets=8 having_c=0
+m=5 N=11 subsets(size<=m)=637 with_pair=395 missed_class_absent=0 witness_fail=0 | control(no pair, all classes met): sets=32 having_c=0
+m=6 N=13 subsets(size<=m)=2509 with_pair=1781 missed_class_absent=0 witness_fail=0 | control(no pair, all classes met): sets=64 having_c=0
+m=8 N=17 subsets(size<=m)=39202 with_pair=32642 missed_class_absent=0 witness_fail=0 | control(no pair, all classes met): sets=256 having_c=0
+m=9 N=19 subsets(size<=m)=155381 with_pair=135699 missed_class_absent=0 witness_fail=0 | control(no pair, all classes met): sets=512 having_c=0

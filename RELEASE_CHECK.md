@@ -96,6 +96,10 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `code/dense/src/pool/tocnf.rs` | dense-window tool or script (dense-window,lrc_covering) |
 | `code/dense/src/pool/xc_zero_rc.rs` | dense-window tool or script (dense-window,lrc_covering) |
 | `code/dense/src/st89/main.rs` | dense-window tool or script (dense-window) |
+| `code/dense/src/thmd/case_recount.rs` | dense-window tool or script (dense-window) |
+| `code/dense/src/thmd/class_check.rs` | dense-window tool or script (dense-window) |
+| `code/dense/src/thmd/cross_check.py` | dense-window tool or script (dense-window) |
+| `code/dense/src/thmd/dense_check.rs` | dense-window tool or script (dense-window) |
 | `code/dense/src/v1/main.rs` | dense-window tool or script (dense-window,lrc_covering) |
 | `code/dense/src/xc/blocks.rs` | dense-window tool or script (dense-window,lrc_covering) |
 | `code/dense/src/xc/common.rs` | dense-window tool or script (dense-window,lrc_covering) |
@@ -393,6 +397,12 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `data/dense/regen_lean.out` | dense-window result record (dense-window) |
 | `data/dense/results.tsv` | dense-window result record (dense-window) |
 | `data/dense/st89_check.out` | dense-window data (dense-window) |
+| `data/dense/thmd/case_recount.out` | dense-window data (dense-window) |
+| `data/dense/thmd/class_check.out` | dense-window data (dense-window) |
+| `data/dense/thmd/cross_check.out` | dense-window data (dense-window) |
+| `data/dense/thmd/steps.out` | dense-window data (dense-window) |
+| `data/dense/thmd/window_2m.out` | dense-window data (dense-window) |
+| `data/dense/thmd/window_higher.out` | dense-window data (dense-window) |
 | `data/dense/yind_2_62.out` | dense-window result record (dense-window) |
 | `data/dense/yind_control.out` | dense-window result record (dense-window) |
 | `data/obstructions/census/adversarial_147.txt` | census or adversarial family list (obstructions) |
@@ -745,3 +755,11 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 * Both manuscripts compile with latexmk, no undefined references or citations; build files (`aux`, `log`, `out`, `fls`, `fdb_latexmk`, `blg`, `toc`) deleted afterwards; `paper/obstructions/main.bbl` kept, no `main.bbl` in `paper/dense-window`.
 * Pattern scan (`grep -rIil`, `.git`, `MANIFEST.tsv` and this file excluded) for `/Users/`, `anvilstack`, `Claude`, `Anthropic`, `ChatGPT`, `HANDOFF`, `Co-Authored`, `Generated with`, `ghp_`, `gho_`, `github_pat`: 0 hits for every pattern.
 * 692 files in the tree; `MANIFEST.tsv` hashes all except itself (691 rows), each file once, regenerated after the last edit of this file.
+
+## Scan for version 1.0.2 (draft, unreleased, 18 October 2026)
+
+* 702 files in the tree excluding `.DS_Store` (ignored by `.gitignore`, not tracked); `MANIFEST.tsv` hashes all except itself (701 rows), each file once, regenerated after the last edit of this file. Added: `code/dense/src/thmd/{dense_check.rs,cross_check.py,class_check.rs,case_recount.rs}`, `data/dense/thmd/{window_2m,window_higher,steps,cross_check,class_check,case_recount}.out`. Changed: `README.md`, `CLAIMS.tsv`, `MANIFEST.tsv`, this file, `code/dense/README.md`, `paper/dense-window/{main.tex,main.pdf,refs.bib,LEAN_MAP.md}`. No Lean file changed, no Lean build run, nothing committed or pushed.
+* Sync coupling walked for the changed Theorem 3 material: README (version line, changes, results, file map, reproduction row, Lean table), `CLAIMS.tsv` (rows for Lemmas 1 to 4, Theorem 3, the new checks), `LEAN_MAP.md` (module names corrected, status carried over, not rebuilt), `code/dense/README.md`, section 4 of this file. Numbers of all later items of the dense-window paper (Proposition 4, Theorem 5, Statements 6 to 9, Theorem 10, Remark 11, Tables 1 to 3) are unchanged.
+* The dense-window manuscript compiles with latexmk, no undefined references or citations; build files (`aux`, `log`, `out`, `fls`, `fdb_latexmk`, `blg`, `toc`, `bbl`) deleted afterwards.
+* Pattern scan (`grep -rIil`, `.git`, `MANIFEST.tsv` and this file excluded) for `/Users/`, `anvilstack`, `Claude`, `Anthropic`, `ChatGPT`, `HANDOFF`, `Co-Authored`, `Generated with`, `ghp_`, `gho_`, `github_pat`: 0 hits for every pattern. No file above 5 MB; no LaTeX build files.
+* Open before release: `.zenodo.json` says version 1.0.1 and must be set to 1.0.2; `CITATION.cff` has no version field and `date-released: 2026-10-18` must be updated; no DOI exists for 1.0.2; the README version line says draft, unreleased and must be changed at release; the repository identity must be ElVec1o <vicobonfioli@gmail.com> before the commit; no Lean rebuild or axiom print was made for `dense_floor_of_prime`, and the fresh-session reader test of the conceptual abstract of Theorem 3 has not been run.

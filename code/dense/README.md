@@ -13,6 +13,7 @@ only) except `src/cg/lp.py` (master LP of the column generation, Python with HiG
 | `src/pool` | the early pool-based pipeline (rows m = 10..28) |
 | `src/fb` | exact checker for the fractional blocking certificates of Table 1 (m = 4, 7, 12, 13); reads them from `lean/LRSpectrumFull/Delta2FracBlocking.lean`; `fb check FILE`, `fb selftest FILE` |
 | `src/yind` | independent exact enumeration of all bad sets; checks that Y = {m+2,...,2m} contains no bad set (Proposition on Y), `yind M1 M2`, `yind control M` |
+| `src/thmd` | exact checks for Theorem 3 of the paper (prime `2m+1`): `dense_check.rs` (`controls`, `window M H`, `steps M`), `cross_check.py` (independent Python recheck, `2 <= m <= 8`), `class_check.rs` (class form of Lemma 4, primes `2m+1` with `m <= 9`), `case_recount.rs` (case counts, `4 <= m <= 12`); each is compiled with `rustc -O` and run from its directory; outputs in `data/dense/thmd` |
 | `src/m94` | the driver of the three-hour search at m = 94 (ended UNDECIDED); log in `data/dense/m94`; not re-run |
 
 Scripts: `build.sh` (builds `v1`, `g1`, `lg2`, `cg`, `xc`, `fb`, `yind`, `m94`), `check_rows.py` (regenerates parts/max/times of all
@@ -38,3 +39,5 @@ modules listed in the paper are VERIFIED.
 
 Added in 1.0.1: `st89` (`src/st89/main.rs`), an independent brute-force check of Statements 8 and 9 of the paper: `st89 control`, `st89 run M K` (all pairs `(T,L)` with `|T| <= K`, `M <= 31`), `st89 s0 M` (`M <= 64`).
 Output for `M = 2..17`, `K = 4`: `data/dense/st89_check.out` (`M = 16, 17` take about 3 and 8 minutes, under 1 GB).
+
+Added in 1.0.2: `src/thmd` (see the table). Outputs: `data/dense/thmd/*.out`. Seconds of runtime in total.

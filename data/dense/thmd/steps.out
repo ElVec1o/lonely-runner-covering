@@ -1,0 +1,14 @@
+m=2 N=5 prime=true case1=6 case2=4 case3=0 (pair present 0, absent 0) case3 families with NO witness c/N: 0
+m=3 N=7 prime=true case1=25 case2=14 case3=2 (pair present 2, absent 0) case3 families with NO witness c/N: 0
+m=4 N=9 prime=false case1=98 case2=60 case3=4 (pair present 4, absent 0) case3 families with NO witness c/N: 0
+m=5 N=11 prime=true case1=381 case2=232 case3=24 (pair present 24, absent 0) case3 families with NO witness c/N: 0
+m=6 N=13 prime=true case1=1485 case2=934 case3=90 (pair present 90, absent 0) case3 families with NO witness c/N: 0
+m=7 N=15 prime=false case1=5811 case2=3830 case3=266 (pair present 266, absent 0) case3 families with NO witness c/N: 32
+  smallest case-3 family without a witness at modulus N: [1, 2, 4, 5, 6, 7, 8]
+m=8 N=17 prime=true case1=22818 case2=15578 case3=806 (pair present 806, absent 0) case3 families with NO witness c/N: 0
+m=9 N=19 prime=true case1=89845 case2=61050 case3=4486 (pair present 4486, absent 0) case3 families with NO witness c/N: 0
+m=10 N=21 prime=false case1=354521 case2=251554 case3=10590 (pair present 10590, absent 0) case3 families with NO witness c/N: 544
+  smallest case-3 family without a witness at modulus N: [1, 2, 4, 5, 7, 8, 10, 11, 18]
+m=11 N=23 prime=true case1=1401291 case2=1007773 case3=40803 (pair present 40803, absent 0) case3 families with NO witness c/N: 0
+m=12 N=25 prime=false case1=5546381 case2=4046534 case3=147770 (pair present 147770, absent 0) case3 families with NO witness c/N: 368
+  smallest case-3 family without a witness at modulus N: [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13]

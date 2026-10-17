@@ -1,6 +1,6 @@
 # Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners
 
-Version 1.0.1. Archived at Zenodo: version 1.0.1 [10.5281/zenodo.23436538](https://doi.org/10.5281/zenodo.23436538); version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
+Version 1.0.2. Archived at Zenodo: version 1.0.1 [10.5281/zenodo.23436538](https://doi.org/10.5281/zenodo.23436538); version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
 Author: Vico Bonfioli (vicobonfioli@gmail.com). License: CC-BY-4.0 (`LICENSE.md`). Snapshot of 18 October 2026, matching the
 `\date` line of the manuscripts. The manuscripts are preprints and have not been peer reviewed.
 
@@ -24,6 +24,12 @@ whole window is a finite hitting-set statement: no `m` velocities hit all bad se
 fractional weighting of times (weak LP duality), by a cover of the window by parts with capacities, or by exhaustive search. The
 Lean files check the certificates with the kernel. The other manuscripts study the limits of this method (barrier theorem, level drift),
 a measure argument for single and multiple modifications of `[1,n-1]`, the reduction to one crux, and the case of eight runners.
+
+## Changes since version 1.0.1 (draft, unreleased)
+
+* Dense-window paper, Theorem 3 (prime case): the section is rewritten with a conceptual abstract, a zoom map and Lemmas 1 to 4 (witnesses, speeds avoiding 1, forced pair, pair summing to a prime). The proof of Lemma 4 is given in class form (the `m` classes `{s, 2m+1-s}`; the speeds meet at most `m-1` of them; the inverse of a missed class is the multiplier); the Lean declaration `floor_of_pairsum_prime` counts multipliers instead, and the two counts correspond under `c <-> c^{-1}`. Statement of Theorem 3 and all numbers of later items are unchanged. The Lean module names in the paper and in `LEAN_MAP.md` are corrected (`floor_of_not_dvd_le` is called by `dense_floor_of_prime`; `tao_5_1_i` is a separate declaration). The convention (`m` speeds = `m+1` runners) is stated. Attribution to Bohman and Peng is reworded (they select `c` from a pair of non-speeds `s, t` with `c = s^{-1}`; Lemma 4 obtains such a pair by counting classes). The case `m = 14` is stated to rest on Allikvere, arXiv:2609.02604 v2 (unrefereed, computer-assisted). Zhang, arXiv:2608.13599, is added as related work.
+* New exact checks for the prime case: `code/dense/src/thmd` (four programs), outputs in `data/dense/thmd`: window `[1,2m]` for `m <= 12` (12 independent values of `m`, RESOLVED-TRUE), class form of Lemma 4 for the primes `2m+1` with `m <= 9`, case counts, controls.
+* The Lean build was not run for 1.0.2; no Lean file changed. `.zenodo.json` still says version 1.0.1 and must be changed before the release.
 
 ## Changes since version 1.0.0 (draft)
 
@@ -60,7 +66,9 @@ The effective label is the weakest label in the dependency chain.
 
 ### `paper/dense-window` (Lean-verified instances for integer speeds in `[1,2m]`)
 
-* Theorem 3, VERIFIED. If `m >= 2`, `2m+1` is prime and `v_1,...,v_m` are integers in `[1,2m]`, then `ML(v) >= 1/(m+1)`.
+* Theorem 3, Lean declaration VERIFIED (carried over from the development repository, not rebuilt for this archive); the written proof in the paper is PROVED. If `m >= 2`, `2m+1` is prime and `v_1,...,v_m` are integers in `[1,2m]`, then `ML(v) >= 1/(m+1)`. A short consequence of known ingredients (Tao Lemma 5.1(i), the Bohman-Peng witness device, one forcing step); it gives the window `[1,2m]` for all `m` with `2m+1` prime and does not settle Problem 6 of the Perarnau-Serra survey. The case `m <= 13` is contained in published computer-assisted proofs of LRC for at most 13 speeds, and `m = 14` in an unrefereed preprint (arXiv:2609.02604 v2).
+* Conceptual abstract of Theorem 3: speeds avoiding 1 are beaten by the time `1/(2m+2)`; if 1 is a speed and no time `1/q` wins, every integer in `[2,m+1]` divides a speed, which forces `m+1` and one of `m`, `2m`, hence two speeds summing to the prime `N = 2m+1`; at times `c/N` a speed spoils the time only if it lies in the class `{s,N-s}` of `s = c^{-1}`; the `m` classes partition `[1,2m]` and the pair lies in one class, so a class is missed and its inverse is a good multiplier. A search over real times becomes a count of classes.
+* Exact checks for Theorem 3 (COMPUTED, `code/dense/src/thmd`, `data/dense/thmd`): every subset of `[1,2m]` of size at most `m` has a witness time for `m <= 12` (13,015,070 sets, 12 independent values of `m`, 8 with `2m+1` prime and 4 composite; RESOLVED-TRUE; HEURISTIC beyond `m = 12`); the class form of Lemma 4 holds for the primes `2m+1` with `m <= 9` (6 independent values, 0 exceptions). For composite `2m+1` the proof of Lemma 4 fails (smallest case `m = 7`, `V = {1,2,4,5,6,7,8}`, `ML = 2/13`, no time `c/15`); the statement for composite `2m+1` is covered only by the rows of Tables 1 and 2.
 * Proposition (fractional blocking), VERIFIED. If weights `y_j` on times `p_j/q_j` give every `x in [1,2m]` load at most `D` and `sum y_j > mD`,
   then every `v` with `0 < v_i <= 2m` satisfies `ML(v) >= 1/(m+1)`. Instances `m = 4, 7, 12, 13`, regenerated by `code/dense/src/fb`.
 * Theorem (cover capacity), VERIFIED. If parts `U_i` cover `[1,2m]` and every `T` in `U_i` with `|T| > c_i` contains a bad set and `sum c_i < m`, then
@@ -128,14 +136,14 @@ All HEURISTIC and CONJECTURE statements are those marked as such above and in `C
 | `paper/eight/` | `main.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
 | `lean/` | Lean sources (196 modules), `lakefile.toml`, `lean-toolchain`, `lake-manifest.json`, `README.md` (modules containing `sorry` or `axiom`) |
 | `code/reproduce.sh` | entry point regenerating the finite computations that have a program here |
-| `code/dense/` | `v1` (independent certificate checker), `g1`, `lg`, `cg`, `xc`, `pool` (searches), `fb` (fractional blocking checker), `yind` (Y-independence), `st89` (brute-force check of Statements 8, 9), `m94` (search driver), `build.sh`, `check_rows.py`, `regen_lean.sh`, `run_glp.sh` |
+| `code/dense/` | `thmd` (exact checks for Theorem 3: `dense_check.rs`, `cross_check.py`, `class_check.rs`, `case_recount.rs`), `v1` (independent certificate checker), `g1`, `lg`, `cg`, `xc`, `pool` (searches), `fb` (fractional blocking checker), `yind` (Y-independence), `st89` (brute-force check of Statements 8, 9), `m94` (search driver), `build.sh`, `check_rows.py`, `regen_lean.sh`, `run_glp.sh` |
 | `code/obstructions/` | `repro_O4.sh`, `mlcheck.rs` (exact `ML`), `shift_grid.py` (exact rational scan of the shifted gap), `mlexact.py`, `gwcheck.py`, `tightscan.py`, `t2box.py`, `chainparity.py`, `cornercheck.py` (check of the tight-corner proposition), `README.md` |
 | `code/perturbation/` | 33 Rust programs and `README.md` (commands and observed outputs) |
 | `code/reduction/` | cargo projects `mdr`, `levelfit`, `fcuspec`, `gdn`, `ecalc`, `t2hunt`, `t2sweep`, `rmj`, `modchk`; `axioms/` |
 | `code/covering/` | Rust programs for the covering paper and `README.md` |
 | `code/eight/` | generator, per-prime records, checkers, scripts |
 | `code/lean_build/` | sequential single-module Lean build script |
-| `data/dense/` | certificates `certs/`, `results.tsv`, `check_rows.out`, `regen_lean.out`, `fb_check.out`, `yind_2_62.out`, `st89_check.out`, `dev_logs/` (raw development logs), `m94/` |
+| `data/dense/` | `thmd/` (outputs of the Theorem 3 checks: `window_2m.out`, `window_higher.out`, `steps.out`, `cross_check.out`, `class_check.out`, `case_recount.out`), certificates `certs/`, `results.tsv`, `check_rows.out`, `regen_lean.out`, `fb_check.out`, `yind_2_62.out`, `st89_check.out`, `dev_logs/` (raw development logs), `m94/` |
 | `data/obstructions/` | `seeds/` and `census/` input lists, outputs of the reruns, `cornercheck.out`, `chainparity.out` |
 | `data/repro_logs/` | outputs of reproduction runs |
 | `MANIFEST.tsv`, `CLAIMS.tsv`, `RELEASE_CHECK.md`, `CITATION.cff`, `LICENSE.md` | file list with SHA-256, claim-to-evidence map, release check, citation metadata, license |
@@ -155,6 +163,7 @@ Individual steps (run from the archive root; outputs of the runs made for this s
 |---|---|---|
 | dense rows | `bash code/dense/build.sh build/dense; python3 -I code/dense/check_rows.py build/dense/v1` | 63 rows, 0 failures; composite lists and exceptions `{94,97,103,109,115,122}` |
 | fractional blocking | `build/dense/fb check lean/LRSpectrumFull/Delta2FracBlocking.lean`; `fb selftest` | 4 certificates ACCEPT (`5/1`, `15/2`, `25/2`, `145/11`); selftest failures 0 |
+| Theorem 3 checks | `cd code/dense/src/thmd; rustc -O dense_check.rs; ./dense_check controls; ./dense_check window M 2M` for `M = 1..12`; `./dense_check steps M` for `M = 2..12`; `rustc -O class_check.rs && ./class_check`; `rustc -O case_recount.rs && ./case_recount`; `python3 -I cross_check.py` (not in `reproduce.sh`; seconds) | `failures=0` for each `M`; case counts of the unnumbered table in Section 2 of the paper (`5811 3830 266 32` at `M = 7`); `class_check`: 0 exceptions for the six primes, controls OK; `cross_check`: no set without witness for `M = 2..8`. Outputs `data/dense/thmd/` |
 | Statements 8, 9 | `build/dense/st89 control`; `st89 run M 4` for `M = 2..17` (`M = 16, 17` take 3 and 8 minutes); `st89 s0 M` | 0 undominated valid blocks, covers of `F_4` and `R_4` agree, negative control fires; singleton bad sets `{1}`, `{m+1}` only; full output `data/dense/st89_check.out` |
 | Y-independence | `build/dense/yind 2 62`; `yind control 13` | `Y_independent true` for 61 values; control finds a bad set inside `{m+1,...,2m}` |
 | tight corner, chain parity | `python3 -I code/obstructions/cornercheck.py`; `python3 -I code/obstructions/chainparity.py 20001` | 0 failures on 10,642 maximisers; control `L == b` fails on 4,264; no mismatch for odd `q <= 20001` |
@@ -174,7 +183,7 @@ The complete tables (paper item, label, Lean declaration, module) are `paper/den
 
 | Paper item | Lean declaration (module) | State |
 |---|---|---|
-| dense, Theorem 3 | `dense_floor_of_prime` (`Delta2DenseWindow`) | VERIFIED; axiom print recorded, raw output in `data/dense/dev_logs` |
+| dense, Theorem 3 | `dense_floor_of_prime` (`Delta2DenseWindow`); case 2 `floor_of_not_dvd_le` (`Delta2DigitGreedy`); pair lemma `floor_of_pairsum_prime` (`Delta2Pigeonhole`); class form `floor_of_missed_class` (`Delta2DenseWindow`) | Lean declaration VERIFIED, carried over, not rebuilt; axiom print recorded, raw output in `data/dense/dev_logs`; written proof PROVED |
 | dense, fractional blocking | `floor_of_frac_blocking` (`Delta2FracBlocking`), `dense_floor_m4,7,12,13` | VERIFIED; prints in `dev_logs` |
 | dense, cover capacity | `floor_of_cover_capacity` (`Delta2CoverCapacity`) | VERIFIED |
 | dense, rows | `dense_floor_m<m>`, `dense_floor_m<m>_split` (`Delta2CoverRange*`) | VERIFIED; 47 rows with archived prints, 16 rows (L) with records only |

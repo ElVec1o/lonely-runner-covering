@@ -7,7 +7,7 @@
 \usepackage[pdftitle={Lean-verified instances of the lonely runner conjecture for integer speeds in [1,2m]},pdfauthor={Vico Bonfioli}]{hyperref}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newcommand{\norm}[1]{\lVert #1\rVert}
@@ -24,18 +24,18 @@
 \maketitle
 
 \begin{abstract}
-For a positive integer $m$ let $V\subset[1,2m]$ be a set of $m$ distinct positive integers. We consider the inequality $\ML(V)\ge 1/(m+1)$, the lonely runner conjecture for $m$ speeds restricted to speeds of size at most $2m$. We give a formalization in Lean~4 of this inequality for every $m\ge2$ such that $2m+1$ is prime, for each of the 33 values $m\le62$ with $2m+1$ composite, and for 34 further values $64\le m\le126$ with $2m+1$ composite (listed in Tables~\ref{tab:frac} and~\ref{tab:cc}). Consequently the statement is verified for every $m$ with $2\le m\le126$ except $m\in\{94,97,103,109,115,122\}$, for which no Lean module has been built; nothing is claimed for $m\ge127$ except when $2m+1$ is prime. The prime case is a short consequence of a divisibility lemma of Tao and a coprime-pair witness of Bohman and Peng, used at modulus $2m+1$. The composite cases are certified by finite objects of two kinds: weights on witness times (a fractional blocking certificate) and covers of $[1,2m]$ by parts with capacities (a cover-capacity certificate). The certificates for $m\le62$ were found by integer programming; those for $m\ge64$ by a local search in Rust and were accepted by a second, independent Rust checker before the Lean build. All are checked by the Lean kernel. The window has height $2m$, whereas the known reductions of the conjecture require exponential height, so nothing here bears on the conjecture for all $m$.
+For a positive integer $m$ let $V\subset[1,2m]$ be a set of $m$ distinct positive integers. We consider the inequality $\ML(V)\ge 1/(m+1)$, the lonely runner conjecture for $m$ speeds restricted to speeds of size at most $2m$. We give a formalization in Lean~4 (carried over from the author's development repository, not rebuilt for this archive) of this inequality for every $m\ge2$ such that $2m+1$ is prime, for each of the 33 values $m\le62$ with $2m+1$ composite, and for 34 further values $64\le m\le126$ with $2m+1$ composite (listed in Tables~\ref{tab:frac} and~\ref{tab:cc}). Consequently the statement is verified for every $m$ with $2\le m\le126$ except $m\in\{94,97,103,109,115,122\}$, for which no Lean module has been built; nothing is claimed for $m\ge127$ except when $2m+1$ is prime. The prime case is a short consequence of a divisibility lemma of Tao, a witness device of Bohman and Peng used at modulus $2m+1$, and one forcing step; it gives the window $[1,2m]$ for all $m$ with $2m+1$ prime and does not settle Problem~6 of the survey. The composite cases are certified by finite objects of two kinds: weights on witness times (a fractional blocking certificate) and covers of $[1,2m]$ by parts with capacities (a cover-capacity certificate). The certificates for $m\le62$ were found by integer programming; those for $m\ge64$ by a local search in Rust and were accepted by a second, independent Rust checker before the Lean build. All are checked by the Lean kernel. The window has height $2m$, whereas the known reductions of the conjecture require exponential height, so nothing here bears on the conjecture for all $m$.
 \end{abstract}
 
 \section{Setting, labels and results}\label{sec:setting}
 
-Write $\norm{x}=\operatorname{dist}(x,\Z)$. For $v=(v_1,\dots,v_m)\in\Z_{>0}^m$ put $\gap_v(t)=\min_i\norm{v_it}$ and $\ML(v)=\sup_{t\in\R}\gap_v(t)$. The lonely runner conjecture (LRC) for $m$ speeds is $\ML(v)\ge 1/(m+1)$ for all $v$; there are $m+1$ runners, one of them stationary. The \emph{floor} is the value $1/(m+1)$. The \emph{dense window} statement for $m$ is: $\ML(v)\ge1/(m+1)$ whenever the $v_i$ are distinct and lie in $[1,2m]$. Tao names the window $[1,2m]$ as a natural target \cite{Tao17}; it is Problem~6 of the survey \cite{PS25}. In Lean, \texttt{gap} and \texttt{ML} are as above for \texttt{Fin (k+1) $\to$ $\Z$} with $m=k+1$ (module \texttt{MaxLoneliness}).
+Write $\norm{x}=\operatorname{dist}(x,\Z)$. For $v=(v_1,\dots,v_m)\in\Z_{>0}^m$ put $\gap_v(t)=\min_i\norm{v_it}$ and $\ML(v)=\sup_{t\in\R}\gap_v(t)$. The lonely runner conjecture (LRC) for $m$ speeds is $\ML(v)\ge 1/(m+1)$ for all $v$; there are $m+1$ runners, one of them stationary; a title of the form ``$n$ runners'' in the cited literature means $n-1$ speeds. The \emph{floor} is the value $1/(m+1)$. The \emph{dense window} statement for $m$ is: $\ML(v)\ge1/(m+1)$ whenever the $v_i$ are distinct and lie in $[1,2m]$. Tao names the window $[1,2m]$ as a natural target \cite{Tao17}; it is Problem~6 of the survey \cite{PS25}. In Lean, \texttt{gap} and \texttt{ML} are as above for \texttt{Fin (k+1) $\to$ $\Z$} with $m=k+1$ (module \texttt{MaxLoneliness}).
 
 \paragraph{Labels.} VERIFIED: formalized in Lean~4 with Mathlib, build clean, no \texttt{sorry}, axioms among \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. PROVED: a complete written proof, not formalized. HEURISTIC: computation or plausibility only. CONJECTURE: no proof. A result has the weakest label in its dependency chain. Where the project record contains no axiom print for a declaration, this is stated.
 
 \paragraph{Results.}
 \begin{itemize}
-\item Theorem~\ref{thm:D}: dense window for $2m+1$ prime. VERIFIED.
+\item Theorem~\ref{thm:D}: dense window for $2m+1$ prime, with a written proof (Lemmas~\ref{lem:wit}--\ref{lem:pair}) and the exact checks of Section~\ref{sec:prime}. Lean declaration VERIFIED (carried over, not rebuilt); the written proof, after an adversarial review, is PROVED; the exact checks cover $m\le12$ only.
 \item Proposition~\ref{prop:frac}: fractional blocking criterion; instances $m=4,7,12,13$. VERIFIED.
 \item Theorem~\ref{thm:cc}: cover-capacity criterion. VERIFIED.
 \item Theorem~\ref{thm:table}: dense window for the composite values of $2m+1$ listed in Table~\ref{tab:cc}. VERIFIED per row. For the rows marked S in the table the raw build and axiom output is archived; for the rows marked L the build and the axiom print are recorded in \texttt{LEAN\_MAP.md} and in development notes only, and were not re-observed when the archive was assembled.
@@ -45,28 +45,96 @@ Section~\ref{sec:notclaimed} lists what is not claimed. In particular Theorem~\r
 
 \section{The prime case}\label{sec:prime}
 
-Let $N=2m+1$, $m\ge2$, with $N$ prime, and let $V$ be a multiset of $m$ integers in $[1,2m]$. No distinctness is needed.
+Let $N=2m+1$ with $N$ prime. No distinctness is needed in this section: $V=(v_1,\dots,v_m)$ is a multiset of integers in $[1,2m]$.
+
+\setcounter{theorem}{2}% keeps the numbers Theorem 3, Proposition 4, ... of version 1.0.1
+\begin{theorem}[VERIFIED as a Lean declaration; written proof PROVED]\label{thm:D}
+Let $m\ge2$ with $2m+1$ prime, and $v_1,\dots,v_m$ integers in $[1,2m]$. Then $\ML(v)\ge1/(m+1)$.
+\end{theorem}
+\noindent Lean: \texttt{dense\_floor\_of\_prime} (module \texttt{Delta2DenseWindow}), with $m=k+1$, hypotheses $k\ge1$, $0<v_i\le 2(k+1)$, $2k+3$ prime. The case $m=1$ is trivial ($t=1/2$) and excluded only for uniformity. The statement was matched against the Lean statement by reading; the module was not rebuilt for this archive and the axiom print was not repeated.
+
+\paragraph{Idea of the proof.} Speeds that avoid $1$ are beaten by the small time $1/(2m+2)$. If $1$ is a speed and no time $1/q$ with $q\le m+1$ wins, every integer from $2$ to $m+1$ divides some speed; as all speeds are at most $2m$, this forces $m+1$ and one of $m$, $2m$, hence two distinct speeds summing to the prime $N=2m+1$. The move is to test only times $c/N$. A speed $v$ spoils such a time only if $c$ is congruent to plus or minus the inverse of $v$ modulo $N$, that is, only if $v$ lies in the class $\{s,N-s\}$ of $s=c^{-1}$. These $m$ classes partition $[1,2m]$, and two speeds summing to $N$ lie in one class, so the speeds meet at most $m-1$ classes. The inverse of a missed class is a good multiplier. A search over real times becomes a count of classes.
+
+\paragraph{Zoom map.}
+\begin{enumerate}
+\item[L1.1] A time $c/q$ whose residues keep every speed at distance at least $1/(m+1)$ proves the bound (Lemma~\ref{lem:wit}).
+\item[L1.2] If $1$ is not a speed, $t=1/(2m+2)$ is such a time (Lemma~\ref{lem:one}).
+\item[L1.3] If some $q\in[2,m+1]$ divides no speed, $t=1/q$ is such a time (Lemma~\ref{lem:wit}).
+\item[L1.4] Otherwise $1$ is a speed and the speeds contain a pair summing to $2m+1$ (Lemma~\ref{lem:force}).
+\item[L1.5] A pair summing to a prime $2m+1$ leaves some class $\{s,2m+1-s\}$ free of speeds, and $t=c/(2m+1)$ with $c=s^{-1}$ is such a witness time (Lemma~\ref{lem:pair}).
+\end{enumerate}
 
 \begin{lemma}[Witnesses, VERIFIED]\label{lem:wit}
 Let $p,q$ be positive integers. If $q\le (m+1)\min\bigl(v_ip\bmod q,\;q-(v_ip\bmod q)\bigr)$ for all $i$, then $\gap_v(p/q)\ge 1/(m+1)$. In particular, if some $q\in[2,m+1]$ divides no $v_i$, then $\ML(v)\ge1/(m+1)$ (take $p=1$).
 \end{lemma}
-\noindent Lean: \texttt{cube\_floor\_of\_witness}, \texttt{floor\_of\_not\_dvd\_le}. The second statement is the case used by Tao's Lemma~5.1(i) \cite{Tao17}: if $\ML(v)<1/(m+1)$ and $v_i\le 2m$, every $j\in[2,m+1]$ divides some $v_i$.
+\noindent Lean: \texttt{cube\_floor\_of\_witness}, \texttt{floor\_of\_not\_dvd\_le} (module \texttt{Delta2DigitGreedy}); the latter is the declaration called by \texttt{dense\_floor\_of\_prime} in case~2. The second statement is the case used by Tao's Lemma~5.1(i) \cite{Tao17}: if $\ML(v)<1/(m+1)$ and $v_i\le 2m$, every $j\in[2,m+1]$ divides some $v_i$; it is stated in Lean as \texttt{tao\_5\_1\_i} (module \texttt{Delta2DenseWindow}).
+\begin{proof}
+At $t=p/q$ one has $\norm{v_it}=\min(r_i,q-r_i)/q\ge1/(m+1)$ with $r_i=v_ip\bmod q$. For the second claim take $p=1$: if $q\nmid v_i$ then $1\le r_i\le q-1$, so $\min(r_i,q-r_i)\ge1$ and $m+1\ge q$.
+\end{proof}
 
-\begin{lemma}[Pair sum at a prime modulus, VERIFIED]\label{lem:pair}
-Let $N=2m+1$ be prime, $v_i\in[1,2m]$, and suppose $v_a+v_b=N$ for two indices $a\ne b$. Then $\ML(v)\ge1/(m+1)$.
+\begin{lemma}[Speeds avoiding $1$]\label{lem:one}
+If $1\le v_i\le 2m$ and no $v_i$ equals $1$, then $\ML(v)\ge 1/(m+1)$.
 \end{lemma}
 \begin{proof}
-No $v_i$ is divisible by $N$. For $c\in(\Z/N)^\times$ the time $c/N$ satisfies $\norm{v_ic/N}\ge 2/N>1/(m+1)$ unless $v_ic\equiv\pm1\pmod N$, that is unless $c\equiv\pm v_i^{-1}$. Each $v_i$ forbids at most two of the $2m$ nonzero residues $c$. Since $v_b\equiv-v_a$, the indices $a,b$ forbid the same two residues, so at most $2(m-1)$ residues are forbidden and some $c$ survives.
+Take $t=1/(2m+2)$. Since $2\le v_i\le 2m$, we have $v_i<2m+2$ and $\norm{v_it}=\min(v_i,2m+2-v_i)/(2m+2)\ge 2/(2m+2)=1/(m+1)$.
 \end{proof}
-\noindent Lean: \texttt{floor\_of\_pairsum\_prime} (module \texttt{Delta2Pigeonhole}), whose docstring describes this multiplier count. The text above is a rendering of that argument. For $N$ prime the argument is the witness of Bohman and Peng at sum $s+t=N$ (Section~\ref{sec:prior}).
+\noindent Lean: the branch $1\notin V$ of \texttt{dense\_floor\_of\_prime} (via \texttt{cube\_floor\_of\_witness}); status VERIFIED.
 
-\begin{theorem}[VERIFIED]\label{thm:D}
-Let $m\ge2$ with $2m+1$ prime, and $v_1,\dots,v_m$ integers in $[1,2m]$. Then $\ML(v)\ge1/(m+1)$.
-\end{theorem}
-\noindent Lean: \texttt{dense\_floor\_of\_prime} (module \texttt{Delta2DenseWindow}). The explicit axiom list for this declaration is not among the archived prints; it is obtained by \texttt{\#print axioms LRSpectrumFull.dense\_floor\_of\_prime}.
+\begin{lemma}[Forced pair]\label{lem:force}
+Let $m\ge2$ and $1\le v_i\le 2m$. Suppose that $1\in\{v_i\}$ and every $q\in[2,m+1]$ divides some $v_i$. Then there are indices $a\ne b$ with $v_a+v_b=2m+1$.
+\end{lemma}
 \begin{proof}
-If no $v_i$ equals $1$, then $v_i\in[2,2m]$ gives $\norm{v_i/(2m+2)}=\min(v_i,2m+2-v_i)/(2m+2)\ge 2/(2m+2)=1/(m+1)$, so $t=1/(2m+2)$ works. If some $q\in[2,m+1]$ divides no $v_i$, Lemma~\ref{lem:wit} applies. Otherwise $1$ occurs and every $q\in[2,m+1]$ divides some $v_i$. The only multiple of $m+1$ in $[1,2m]$ is $m+1$, so some $v_b=m+1$. The multiples of $m$ in $[1,2m]$ are $m$ and $2m$. If some $v_a=m$, then $v_a+v_b=2m+1$. Otherwise some $v_a=2m$ and $1+2m=2m+1$ with the index of the value $1$. In both cases the indices differ and Lemma~\ref{lem:pair} applies.
+The multiples of $m+1$ in $[1,2m]$ reduce to $m+1$, since $2(m+1)>2m$; so some $v_b=m+1$. The integer $m$ lies in $[2,m+1]$ because $m\ge2$, and its multiples in $[1,2m]$ are $m$ and $2m$. If some $v_a=m$, then $v_a+v_b=2m+1$ and $a\ne b$ since $m\ne m+1$. Otherwise some $v_a=2m$, and with $v_{i_1}=1$ we have $v_{i_1}+v_a=2m+1$, with $i_1\ne a$ because $1\ne 2m$.
 \end{proof}
+\noindent Lean: the branch of \texttt{dense\_floor\_of\_prime} with $1\in V$ and full resonance (the two forced divisibilities are \texttt{hb}, \texttt{ha} in the source); status VERIFIED.
+
+\begin{lemma}[Pair summing to a prime, VERIFIED statement]\label{lem:pair}
+Let $N=2m+1$ be prime, $1\le v_i\le 2m$, and suppose $v_a+v_b=N$ for some $a\ne b$. Then $\ML(v)\ge1/(m+1)$.
+\end{lemma}
+\begin{proof}
+For $1\le s\le m$ let $C_s=\{s,N-s\}$; these $m$ classes partition $[1,2m]$. Since $N$ is odd, $v_a\ne v_b$, and both lie in one class. The set of values of the $v_i$ has at most $m$ elements, so it meets at most $m-1$ classes. Choose $s$ with $C_s$ disjoint from $\{v_1,\dots,v_m\}$ and let $c\in\{1,\dots,N-1\}$ be the inverse of $s$ modulo $N$, which exists since $N$ is prime. Put $r_i=v_ic\bmod N$. Then $r_i\ne0$, because $1\le v_i<N$. If $r_i\equiv\pm1$, then $v_i\equiv\pm s$, hence $v_i\in C_s$, which is excluded. Therefore $2\le r_i\le N-2$, and at $t=c/N$ we get $\norm{v_it}=\min(r_i,N-r_i)/N\ge 2/N>1/(m+1)$, because $2m+2>2m+1$.
+\end{proof}
+\noindent Lean: \texttt{floor\_of\_pairsum\_prime} (module \texttt{Delta2Pigeonhole}), whose docstring describes the equivalent multiplier count: each $v_i$ forbids at most two of the $2m$ nonzero multipliers $c$, namely $\pm v_i^{-1}$, and $v_b\equiv-v_a$ gives the same two, so at most $2m-2$ are forbidden. The two counts correspond under $c\leftrightarrow c^{-1}$. The class form is the declaration \texttt{floor\_of\_missed\_class} (module \texttt{Delta2DenseWindow}). The written proof above was not formalized in this form. The device is that of Bohman and Peng at the sum $N$ (Section~\ref{sec:prior}).
+
+\begin{proof}[Proof of Theorem~\ref{thm:D}]
+If $1\notin\{v_i\}$, Lemma~\ref{lem:one} applies. If some $q\in[2,m+1]$ divides no $v_i$, Lemma~\ref{lem:wit} applies. Otherwise $1$ is a speed and every $q\in[2,m+1]$ divides a speed; Lemma~\ref{lem:force} gives a pair summing to $2m+1$ and Lemma~\ref{lem:pair} concludes.
+\end{proof}
+
+\paragraph{Where each hypothesis is used.} The bound $v_i\le 2m$ is used in Lemmas~\ref{lem:one}, \ref{lem:force} and \ref{lem:pair} (the distance $\ge2/(2m+2)$; uniqueness of the multiple $m+1$; $N\nmid v_i$). The bound $v_i\ge1$ is used in Lemmas~\ref{lem:one} and \ref{lem:pair}. Primality of $N$ is used only in Lemma~\ref{lem:pair}, where it gives an inverse of $s$ for every class $C_s$. Lemmas~\ref{lem:wit}, \ref{lem:one} and \ref{lem:force} hold for every $m\ge2$. Repeated speeds are harmless: every count is over values and only shrinks.
+
+\paragraph{Primality.} For composite $N=2m+1$ the conclusion of Lemma~\ref{lem:pair} remains true for every instance tested, but its proof fails: there exist sets with a pair summing to $N$ for which no time $c/N$ is a witness. The smallest is $m=7$, $N=15$, $V=\{1,2,4,5,6,7,8\}$; here $\ML(V)=2/13>1/8$, attained away from denominator $15$, and no $c$ in $1,\dots,14$ gives a witness $c/15$. Modulo $15$ the set meets the classes $\{1,14\}$, $\{2,13\}$, $\{4,11\}$, $\{5,10\}$, $\{6,9\}$, $\{7,8\}$ and misses only $\{3,12\}$, whose element $3$ is not invertible. There are $32$, $544$, $368$ such sets (of size at most $m$) for $m=7,10,12$ respectively, and none for $m=4$, $N=9$. These sets have witnesses at other denominators.
+
+\paragraph{Height.} At height $2m+1$ the exact search finds no set without a witness for $m\le12$, so the truth of the bound does not stop at $2m$ in this range. The proof does: Lemma~\ref{lem:one} fails for $v=2m+1$ (distance $1/(2m+2)$ at $t=1/(2m+2)$), and Lemma~\ref{lem:pair} fails because $N\mid v$ is possible. The searches at heights $2m+2$ and $3m$ likewise found no violating set.
+
+\paragraph{Exact checks.} All checks below enumerate sets of size at most $m$ in $[1,2m]$ (the supports of the multisets of $m$ speeds) and use exact integer arithmetic; the witness criterion of Lemma~\ref{lem:wit} is a sufficient condition, so a reported witness is never false. Programs and outputs: \texttt{code/dense/src/thmd}, \texttt{data/dense/thmd}.
+\begin{itemize}
+\item Window $[1,2m]$, $1\le m\le12$ (\texttt{dense\_check.rs}, times $c/s$ with $2\le s\le 4m$): every set has a witness; $13{,}015{,}070$ sets in total; status RESOLVED-TRUE for each $m$ (the search completed without a cap). The number of independent cases is $12$, namely the values of $m$, of which $8$ have $2m+1$ prime and $4$ have $2m+1\in\{9,15,21,25\}$. An independent Python program (\texttt{cross\_check.py}, fractions, all times $a/b$ with $b\le6m$) agrees for $2\le m\le8$.
+\item Class form of Lemma~\ref{lem:pair} (\texttt{class\_check.rs}), primes $2m+1$ with $m\le9$ ($m=2,3,5,6,8,9$; $10$, $41$, $637$, $2509$, $39202$, $155381$ subsets): every subset containing two elements with sum $N$ misses a class, and the time $c/N$ with $c=s^{-1}$ for the least missed $s$ is a witness; $0$ exceptions. Six independent cases; RESOLVED-TRUE. Negative control: the subsets with no such pair that meet all $m$ classes admit no $c$ with all residues outside $\{0,\pm1\}$.
+\item Case counts of the table below (\texttt{dense\_check.rs steps}; recounted by \texttt{case\_recount.rs} for $4\le m\le12$ with identical numbers): in every instance Lemma~\ref{lem:force} held, and each of the three witness times was verified on the sets of its case. For composite $N$ the counts of case-3 sets without a witness $c/N$ are those of the paragraph on primality.
+\item Controls: the programs return $\ML(1,2,3,4,5)=1/6$, $\ML(1,3,4,7)=1/5$, $\ML(1)=1/2$, $\ML(1,2)=1/3$, and at the floor $1/4$ no witness for $\{1,3,4,7\}$. The same search at heights $2m+1$ ($m\le12$), $2m+2$ ($4\le m\le11$) and $3m$ ($3\le m\le8$) finds a witness for every set.
+\end{itemize}
+The programs share the definition of a witness and so are independent in code only. No $m>12$ was checked; beyond $m\le12$ the statement rests on the proof, and for $m\le14$ it is also a consequence of the cited proofs of the conjecture. These computations are not part of the proof of Theorem~\ref{thm:D}.
+
+\begin{center}
+\begin{tabular}{rrrrrr}
+\toprule
+$m$ & $2m+1$ & case 1 & case 2 & case 3 & case 3 without witness $c/(2m+1)$\\
+\midrule
+5 & 11 & 381 & 232 & 24 & 0\\
+6 & 13 & 1485 & 934 & 90 & 0\\
+8 & 17 & 22818 & 15578 & 806 & 0\\
+9 & 19 & 89845 & 61050 & 4486 & 0\\
+11 & 23 & 1401291 & 1007773 & 40803 & 0\\
+\midrule
+4 & 9 & 98 & 60 & 4 & 0\\
+7 & 15 & 5811 & 3830 & 266 & 32\\
+10 & 21 & 354521 & 251554 & 10590 & 544\\
+12 & 25 & 5546381 & 4046534 & 147770 & 368\\
+\bottomrule
+\end{tabular}
+
+\smallskip\noindent\begin{minipage}{0.92\textwidth}\small Numbers of sets of size at most $m$ in $[1,2m]$ by case (unnumbered table): case 1, $1$ absent; case 2, $1$ present and some $q\in[2,m+1]$ divides no element; case 3, the remaining sets. The upper block has $2m+1$ prime, the lower block composite.\end{minipage}
+\end{center}
 
 \section{Certificates for composite $2m+1$}\label{sec:cert}
 
@@ -225,18 +293,18 @@ run from \texttt{data/dense}. Lean: one module at a time, \texttt{cd lean \&\& l
 \begin{itemize}
 \item No new number of runners for the lonely runner conjecture. The window has height $2m$; the known reductions of the conjecture to finite checking require speeds of exponential size, so a statement at height $2m$ is a necessary special case at most.
 \item Nothing for $m$ outside Theorem~\ref{thm:D} and Tables~\ref{tab:frac}, \ref{tab:cc}. No statement is made for $m\ge127$ unless $2m+1$ is prime (Theorem~\ref{thm:D}). For $m\le126$ the values $m\in\{94,97,103,109,115,122\}$ are not verified: no Lean module has been built (for $m=94$ the search ended UNRESOLVED at its node caps, which is evidence about the search only; for the other five a certificate accepted by the independent checker exists and has not been built in Lean), so the dense window statement for all $m\le126$ is not claimed. 
-\item Theorem~\ref{thm:D} is a routine corollary of Tao's Lemma~5.1(i), the Bohman--Peng witness at modulus $2m+1$, and a two-line forcing step. The set of $m$ with $2m+1$ prime has density zero, so it does not answer the question of \cite{Tao17} or Problem~6 of \cite{PS25} for all $m$.
+\item Theorem~\ref{thm:D} is a short consequence of known ingredients (Tao's Lemma~5.1(i), the Bohman--Peng witness device, and one forcing step). It gives the window $[1,2m]$ for all $m$ with $2m+1$ prime, a set of density zero, and does not settle Problem~6 of \cite{PS25}: nothing is proved here for composite $2m+1$ with $m\ge127$, and the question of \cite{Tao17} remains open for those $m$.
 \item A failed search is not evidence that no certificate exists (Section~\ref{sec:table}, notes (ii) and (iv)).
-\item For $m\le14$ the statement is subsumed by the lonely runner conjecture for up to $14$ speeds announced in preprints (Section~\ref{sec:prior}); for $m\ge16$ with $2m+1$ composite I found no earlier statement, which is a search result and not a proof of novelty.
+\item For $m\le13$ the statement is subsumed by the computer-assisted proofs of the lonely runner conjecture for up to $13$ speeds; for $m=14$ by the preprint \cite{All26} (version~2), which is not refereed (Section~\ref{sec:prior}). For $m\ge16$ with $2m+1$ composite I found no earlier statement, which is a search result and not a proof of novelty.
 \end{itemize}
 
 \section{Prior art}\label{sec:prior}
 
 Statements below were obtained by reading arXiv texts and abstract pages and by web searches; no Google Scholar or MathSciNet access was available.
 
-\paragraph{Window and prime case.} Tao \cite{Tao17} proves the floor for speeds in $[1,1.2m]$ and remarks that $[1,2m]$ is a natural target; Lemma~5.1(i) gives the divisibility statement used in Lemma~\ref{lem:wit}. Bohman and Peng \cite{BP22} prove, for $m$ large, the strict inequality $1/(m+1)<\{v_it\}<m/(m+1)$ for some $t$ when $m<v_m\le 2m-\exp(C(\log\log m)^2)$. In their proof, if $s,t$ are coprime non-speeds with $2m-2k<s+t\le 2m$ and $q=s^{-1}\bmod(s+t)$, then the time $q/(s+t)$ is a witness. The argument uses only that $s,t$ are not speeds, that $\gcd(s,s+t)=1$, and that $s+t$ exceeds the largest speed; it therefore applies verbatim at $s+t=2m+1$, where for $2m+1$ prime coprimality is automatic. Bohman and Peng do not state this case (their hypothesis is $s+t\le2m$). Pomerance \cite{Pomerance22} states in the introduction that the interval $[1,2m]$ remains a challenge; Pandey \cite{Pandey10} treats speeds in arithmetic progressions and excludes exactly the progression with first term and difference both equal to $1$. I read the arXiv version~1 of \cite{BP22}; the published Mathematika text could not be read (HTTP 403 on the publisher site), Crossref lists no erratum, and a later remark in the published text could change the verdict on novelty. Pomerance's ``Coprime matchings'' was not read.
+\paragraph{Window and prime case.} Tao \cite{Tao17} proves the floor for speeds in $[1,1.2m]$ and remarks that $[1,2m]$ is a natural target; Lemma~5.1(i) gives the divisibility statement used in Lemma~\ref{lem:wit}. Bohman and Peng \cite{BP22} prove, for $m$ large, the strict inequality $1/(m+1)<\{v_it\}<m/(m+1)$ for some $t$ when $m<v_m\le 2m-\exp(C(\log\log m)^2)$. In their proof, if $s,t$ are coprime non-speeds with $2m-2k<s+t\le 2m$ and $q=s^{-1}\bmod(s+t)$, then the time $q/(s+t)$ is a witness. The argument uses only that $s,t$ are not speeds, that $\gcd(s,s+t)=1$, and that $s+t$ exceeds the largest speed; it therefore applies verbatim at $s+t=2m+1$, where for $2m+1$ prime coprimality is automatic. Bohman and Peng do not state this case (their hypothesis is $s+t\le2m$) and do not count multipliers; Lemma~\ref{lem:pair} obtains the pair of non-speeds $s,N-s$ by counting classes modulo $N$ from the pair of speeds that Lemma~\ref{lem:force} supplies. Pomerance \cite{Pomerance22} states in the introduction that the interval $[1,2m]$ remains a challenge; Pandey \cite{Pandey10} treats speeds in arithmetic progressions and excludes exactly the progression with first term and difference both equal to $1$. I read the arXiv version~1 of \cite{BP22}; the published Mathematika text could not be read (HTTP 403 on the publisher site), Crossref lists no erratum, and a later remark in the published text could change the verdict on novelty. Pomerance's ``Coprime matchings'' was not read.
 
-\paragraph{Small $m$.} The conjecture for up to $14$ speeds is claimed in \cite{Ros25,Trak25,Ros25b,ST26,All26}; \cite{All26} (version~2) is an unrefereed preprint whose computation I have not reproduced. This subsumes $m\le14$.
+\paragraph{Small $m$.} The conjecture for up to $13$ speeds is claimed in \cite{Ros25,Trak25,Ros25b,ST26}, and for $14$ speeds (fifteen runners) in \cite{All26}, version~2 of 24 September 2026, a computer-assisted preprint that is not refereed and whose computation I have not reproduced. This subsumes $m\le13$, and $m=14$ conditionally on \cite{All26}. The first $m$ with $2m+1$ prime outside this range is $m=15$.\par Zhang \cite{Zha26} classifies the tight one-entry modifications of $\{1,\dots,m\}$; the paper is related work and is not used here.
 
 \paragraph{Method.} The integral covering formulation of witness times (a tuple has no witness iff every allowed time is ruled out by some speed) is used computationally in \cite{Ros25,Trak25,Ros25b,ST26,All26}. I found no use of LP duality or capacity cuts for the lonely runner problem; the duality itself is textbook, so the only possible novelty is the application. Status: HEURISTIC (absence of evidence from the searches recorded in the audit).
 

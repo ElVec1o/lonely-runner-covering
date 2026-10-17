@@ -1,11 +1,11 @@
 file	role	sha256	needed_by
 .gitignore	archive metadata	874cbba6bfcf26cc82c83adc2ff2bdbcc80b19143b07897afec77ac5be657f57	all
-.zenodo.json	archive metadata	9284ec356e5ffc2db26fc0190e974a4435bb240c47a26a840ec7540967711e42	all
-CITATION.cff	archive metadata	796f961c744bf46d6547be2a43f3cb910a9bf571b80ddfba8c2f3f4aab4bb1f6	all
-CLAIMS.tsv	archive metadata	e59d42ea1601357ec7c6dceb13be8abc38de0fc223e690988b00d8af6040f253	all
+.zenodo.json	archive metadata	a1104add4311b6f76e28ebdfe9c1f06e3594a6d9e10260618270161bc2ecccc4	all
+CITATION.cff	archive metadata	de3c4e5ffb7307674d85346cfd7a8a18a8943146ab8b98b154d71382a30958e7	all
+CLAIMS.tsv	archive metadata	a434401151b8380b335b5a573ba92eb91a302ad4de12667fe3189e65074a8c4b	all
 LICENSE.md	archive metadata	580f3e12d5eb0e2bced0d37849ab7e5feb300d61ace4602438ed8348eea1e809	all
-README.md	archive metadata	5448c8822cadfcb5178e1a718e1e36c942ea164e354a157b789ec5839ff91b82	all
-RELEASE_CHECK.md	archive metadata	f9b7fa5c4d367b04ae40ae1c139e13683bfacc65a44ad6207f218146615c545b	all
+README.md	archive metadata	eb132dc4155a37184692b2da82712e35d566051f1ca5978e7f39c4c6baaab885	all
+RELEASE_CHECK.md	archive metadata	63a919f64e616c8e7917bd192e074abab3fac674683148e66bf8f2e88961922d	all
 code/covering/README.md	covering-paper program	e94aabe38ff994e82df30aa02ed308fd7e5fd31fbfba2c6f6b286ef446ff2bab	lrc_covering
 code/covering/alphaex.rs	covering-paper program	0c146b10567d57f007c73035cf5f795ddbad7a30561db8a51b6809c79d202cd7	lrc_covering
 code/covering/bad_triple_classify.rs	covering-paper program	f46ec0b46c092d67ed47e099e867017c896025e47c2d622eb82cdd4064143ca2	lrc_covering
@@ -25,7 +25,7 @@ code/covering/kedecide.rs	covering-paper program	362b6b87417497f184c2d310a3b5137
 code/covering/paircls.rs	covering-paper program	60cba246184cba0440f240698c70560f0ed4febe40c3c986ab19c3be59a16589	lrc_covering
 code/covering/tmpl63.rs	covering-paper program	4f41483ea71d931fd9ed31f0725d88626ee0d5b49462669ca70e5f25f865b3f6	lrc_covering
 code/dense/ORIGINAL_SOURCE_SHA256.txt	dense-window tool or script	8d71425cda58b5807a481049717215f1ade9f6fe31571c7008ff128bc9e9f82a	dense-window,lrc_covering
-code/dense/README.md	dense-window tool or script	38ab7500b788d7279a09cc3809ea5886b6672d9495517c67eb66706e26970f88	dense-window,lrc_covering
+code/dense/README.md	dense-window tool or script	44a496005f15bdc0ede966ea8ff2412db95135a0e3779f5e78d42b0eabcbe2bf	dense-window,lrc_covering
 code/dense/build.sh	dense-window tool or script	2439c21d4decd375bf8e6e89bad8050fa31c1c2c38c261a245c8193d712ca23c	dense-window,lrc_covering
 code/dense/check_rows.py	dense-window tool or script	fee01e0c126c7b3b1e60b9a79bac690fcdcc97f1bbfdd63ae2ed2b777e5a6afa	dense-window,lrc_covering
 code/dense/regen_lean.sh	dense-window tool or script	aa983688fcd08a156494b567df41370443fb6bf52481012b1f220bb743bbf19a	dense-window,lrc_covering
@@ -50,6 +50,10 @@ code/dense/src/pool/solve.py	dense-window tool or script	9f4367d45fdf9d90d11acbb
 code/dense/src/pool/tocnf.rs	dense-window tool or script	bc75a09c31f8d7461015ba08c117497fd67115bfe53483a7a70381215d9e504b	dense-window,lrc_covering
 code/dense/src/pool/xc_zero_rc.rs	dense-window tool or script	dec1b2d5e95f26de7a6f84976c97e59bcc8894b53bbe52e85f01129f420600c9	dense-window,lrc_covering
 code/dense/src/st89/main.rs	dense-window tool or script	f047e80dfc6027bedd03aba2f81cfc2e53ae81ecdf4a3046f8e2486da5912301	dense-window
+code/dense/src/thmd/case_recount.rs	dense-window tool or script (added 1.0.2)	f26841f01e81440ae89a64a51e2f2464cda19e33f2ce33f10fc9621867a75fa4	dense-window
+code/dense/src/thmd/class_check.rs	dense-window tool or script (added 1.0.2)	4535da4710883eb1039830a104e1958ac82c183eca780942f797d5e39755d21f	dense-window
+code/dense/src/thmd/cross_check.py	dense-window tool or script (added 1.0.2)	74859cd66982634a72f6f5a93cb50cd9f6af434c0a99964b594b8f2920393211	dense-window
+code/dense/src/thmd/dense_check.rs	dense-window tool or script (added 1.0.2)	17df89b4fe1a792f73adf51e322c251e2aecd9b4bf0cbc76896dd67ddb2090af	dense-window
 code/dense/src/v1/main.rs	dense-window tool or script	c1c8a35629ce97cbb477b1beef25ad11710eb1595e593e98ce5315b732debd7f	dense-window,lrc_covering
 code/dense/src/xc/blocks.rs	dense-window tool or script	813138ffc1fb3ee2a8a86a7cfc00c3250be02119eff5e8b8d8ef8bda0360563e	dense-window,lrc_covering
 code/dense/src/xc/common.rs	dense-window tool or script	1e842bc6e8bdd7f74b4935aebd5d3f4799e8313c8820507f1face0c8407f1200	dense-window,lrc_covering
@@ -357,6 +361,12 @@ data/dense/m94/selftest.log	added 2026-10-18 (revision/regeneration)	cb820996728
 data/dense/regen_lean.out	dense-window result record	df2e6a270bc1ea2fc99c7512806cc014c86fa4cac7966896063fec6e92e32e66	dense-window
 data/dense/results.tsv	dense-window result record	824c2028406db18580e26cf2ae65db8351be481c92327b504cce1baf1c4a10ff	dense-window
 data/dense/st89_check.out	dense-window data	a7e9569294bac2483c032343793b3e5d94199f917504e99abe7a87197b16286a	dense-window
+data/dense/thmd/case_recount.out	dense-window result record (added 1.0.2)	2797dbfa79c726210197343cb8214f7efdde6aa62027128a947767301502889b	dense-window
+data/dense/thmd/class_check.out	dense-window result record (added 1.0.2)	ee6f01883f7a4a0a4683c1fb73d0d6e3727e9aa4bf5f501f156d9275aaf21ad2	dense-window
+data/dense/thmd/cross_check.out	dense-window result record (added 1.0.2)	e3a0b049c91cea8fd54b59a7245144a402f68b6c3bceb722f66603a4e3b08366	dense-window
+data/dense/thmd/steps.out	dense-window result record (added 1.0.2)	7a7b6ff122b7316dbf119ab862af8b1fc395998c5739c1001143322b967c00cf	dense-window
+data/dense/thmd/window_2m.out	dense-window result record (added 1.0.2)	d0dfb5b43197ef56f47e6a87e97fdb8fbcd2a82530e4b35b7a141eb0e71188bd	dense-window
+data/dense/thmd/window_higher.out	dense-window result record (added 1.0.2)	c55fb738d4c8ddf52a743eb7b7d8cebf5b254d447d538cf520b423e1dcd4ed5a	dense-window
 data/dense/yind_2_62.out	dense-window result record	e17f44d80c8b582523e1739a0b7d6be4df4ea1a0f9a3d20441797695130e121e	dense-window
 data/dense/yind_control.out	dense-window result record	b4bffe4dab2aaa2893d0c67c96f8748b994eb69576c8bcd138005e9333623fc3	dense-window
 data/obstructions/census/adversarial_147.txt	census or adversarial family list	92a8318c646b463aa6779e4d6cdef89e7788340f3124029dcb258c2062e4d275	obstructions
@@ -667,10 +677,10 @@ lean/README.md	Lean project file	dbddb602ef9610df50145514c669a822abac6bf51a90089
 lean/lake-manifest.json	Lean project file	32759ebe905d55a24671e475ec98fca39dca76211b52255dc1059894b27d6b6a	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lakefile.toml	Lean project file	a5b3287075881d955e1f327a6fdbe9994f386c4a2d0272d144f29c22921cf834	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lean-toolchain	Lean project file	54727eec5cba149c18842e6deb5c41b369d66455c93ce135d7d5347c782b2325	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
-paper/dense-window/LEAN_MAP.md	Lean map (label to declaration)	70bbf26d1c58f1b42409529f8426cda62af57de4b8db45f7b0115fb9d4d8cb4c	dense-window
-paper/dense-window/main.pdf	manuscript PDF	0600d08aa7e0d672799fe0fc58e2ed20d2abe2f76b8e4488183e32320ab0cf82	dense-window
-paper/dense-window/main.tex	manuscript source	2402816c539acb632d4b0548260cccb9c8f3b71c0fc0daeb10c103a49f5ed839	dense-window
-paper/dense-window/refs.bib	bibliography	72fff83a444a1e87908457a112dc8a19fa579e878c25c9bc62cd0d6a674220c3	dense-window
+paper/dense-window/LEAN_MAP.md	Lean map (label to declaration)	d674f47477e78c9d18ca38082c1c6a22ad9f789e662ae2148b25062256b1fdc4	dense-window
+paper/dense-window/main.pdf	manuscript PDF	8c2952852039efc263a1b4b689dda6cbcda752da2da015cdeae2580e8ff3d3bb	dense-window
+paper/dense-window/main.tex	manuscript source	3668e20ff1af0971ac21860a448c3ee58ed209784d52188b96a5d5af3671b8f1	dense-window
+paper/dense-window/refs.bib	bibliography	23594a52edaeabc4af53f466aa61a44a532e4f0b66aff272de43fc00ea23f5a7	dense-window
 paper/dense-window/rows.tex	manuscript source	7bb04b440d83ebfa1acb44d4a6db0e56bdc57613e36904c55448b86bfd96e501	dense-window
 paper/dense-window/rows_ext.tex	manuscript source	c848b155f326db0dd0905e1e0e7dce7bd4a89e9786cec7df4158091cbd9020a1	dense-window
 paper/eight/LEAN_MAP.md	Lean map (label to declaration)	309d3fa45b3cfa1ae56644de053fd0d52a73de0f7c9cda0002c2e143c02bae3c	eight
