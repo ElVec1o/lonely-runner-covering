@@ -25,8 +25,8 @@ Axiom prints: S = `propext, Classical.choice, Quot.sound`, zero sorry, no native
 | NOT verified: m = 94, 97, 103, 109, 115, 122 (2m+1 = 189, 195, 207, 219, 231, 245) | m = 97, 103, 109, 115, 122: certificate accepted by `v1` (COMPUTED), no Lean module; m = 94: search UNRESOLVED (3 h, exact phases stopped at node caps; `data/dense/m94`) | none | none |
 | Statement 6 (Y independent, per m) | HEURISTIC | none; regenerated for 2 <= m <= 62 by `code/dense/src/yind` and, for 4 <= m <= 62, by `cg edges M` (test `y_independent`) | |
 | Statement 7 (packing of blocks) | HEURISTIC | none | |
-| Statement 8 (block family complete, \|T\|<=4) | PROVED + COMPUTED self-test | none | |
-| Statement 9 (irreducible reduction) | PROVED | none | |
+| Statement 8 (kept blocks dominate valid blocks; family complete) | PROVED (proof in paper; not formalized); finite check `code/dense/src/st89`, `data/dense/st89_check.out` | none | |
+| Statement 9 (irreducible reduction) | PROVED (proof in paper, uses Statement 8; not formalized); finite check `code/dense/src/st89` | none | |
 | Not in the table: m with 2m+1 prime | VERIFIED | dense_floor_of_prime (Thm 3) | Delta2DenseWindow |
 
 Notes.

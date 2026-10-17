@@ -5,19 +5,20 @@ Observed on 2026-10-18 in the live repository (not re-built): each module below 
 
 | Paper item | Label | Lean declaration(s) (module) |
 |---|---|---|
-| Thm 1 (barrier), Lemma level sets | VERIFIED, carried over | RoomA4_barrier: nearestIntDist_eq_mem, goodSet_countable, goodSet_null, integral_le_sum_badSet, lt_ML_of_integral_unionBound; RoomA4_compress: floor_of_integral_unionBound |
-| Cor 2 | VERIFIED, carried over | RoomA4_barrier: not_UDFires_of_tight, lt_ML_of_UDFires, not_UDFires_of_ML_le, not_UDFires_consec, ML_consec_le |
+| Thm 2 (barrier), Lemma 1 level sets | VERIFIED, carried over | RoomA4_barrier: nearestIntDist_eq_mem, goodSet_countable, goodSet_null, integral_le_sum_badSet, lt_ML_of_integral_unionBound; RoomA4_compress: floor_of_integral_unionBound |
+| Cor 3 | VERIFIED, carried over | RoomA4_barrier: not_UDFires_of_tight, lt_ML_of_UDFires, not_UDFires_of_ML_le, not_UDFires_consec, ML_consec_le |
 | Rem (scope) | HEURISTIC | none |
 | Prop (escape) | VERIFIED, carried over | RoomFCU_moderator: ML_ge_of_escape; RoomFCU_compress: lonely_iff_escape, rational_point_of_lt, window_via_escape, famF_via_escape, lemmaP_via_escape |
-| Prop (missing divisor) | VERIFIED, carried over (known) | RoomA4_rosenfeld: witness_of_missing_divisor |
-| Prop (denominators of lonely times) | PROVED | none |
+| Prop (missing divisor) | VERIFIED, carried over (known), weak form `1/(m+1)` as in the Lean signature; strict form `1/j` PROVED in the paper (one line), not in Lean | RoomA4_rosenfeld: witness_of_missing_divisor (rest of the Lean statement not re-read in this revision) |
+| Prop 7 (denominators of lonely times), parts (a), (b) | PROVED | none |
 | Obs (level drift), Table | HEURISTIC | none (code/reduction/mdr; code/obstructions/repro_O4.sh, mlexact.py) |
 | Thm (O6) | VERIFIED, carried over | RoomO6: not_dvd_speed, mul_sub_lt, exists_coprime_in_window (RoomFCU_hilbert) |
 | Cor (GW not DC) | VERIFIED, carried over (family); HEURISTIC (listed vectors) | RoomO6: not_divisorComplete; listed vectors: code/obstructions/gwcheck.py |
-| Prop (T') => (T) => no tight DC | PROVED | statements pinned in RoomFCU_f5 (TightNoDvd, TightMaximisersAtMp1); tightNoDvd_of_strong has sorry |
-| Conj (T), (T') | CONJECTURE | RoomFCU_f5 definitions, no proof |
+| Prop 13 (implications (T') => (T) => no tight primitive DC vector) | PROVED (implications only) | statements pinned in RoomFCU_f5 (TightNoDvd, TightMaximisersAtMp1); tightNoDvd_of_strong has sorry |
+| Prop 14 (tight corner) | PROVED (hand proof; check `code/obstructions/cornercheck.py`) | none |
+| Conj 12 (T), (T') | CONJECTURE | RoomFCU_f5 definitions, no proof |
 | E_m value, (2m+1)ML(E_m) > 2 | VERIFIED, carried over (known, Kravitz Thm 5.1) | RoomEm: ML_Em_m, thmB_gt |
-| Conj (T2) | CONJECTURE | RoomT2: T2OnD, T2Weak (one sorry) |
-| Prop (chain parity) | PROVED | none |
-| Prop (half-phase) | VERIFIED, carried over | RoomFCU_mss: halfShift_not_lonely |
+| Conj 15 (T2) | CONJECTURE | RoomT2: T2OnD, T2Weak (one sorry) |
+| Prop 16 (chain parity) | PROVED | none |
+| Prop 18 (half-phase) | VERIFIED, carried over | RoomFCU_mss: halfShift_not_lonely |
 | Rem (covering radius) | known / cited | none |

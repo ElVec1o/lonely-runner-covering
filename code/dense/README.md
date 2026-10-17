@@ -35,3 +35,6 @@ Outputs of the checks made when the archive was assembled, in `data/dense/`: `ch
 `check_mask_certs.out` (39 mask-form certificates including the alternative `.old.sol` and `.rust.sol` variants,
 all ACCEPT). Acceptance by `v1` is a COMPUTED statement; only the certificates that are embedded in the Lean
 modules listed in the paper are VERIFIED.
+
+Added in 1.0.1: `st89` (`src/st89/main.rs`), an independent brute-force check of Statements 8 and 9 of the paper: `st89 control`, `st89 run M K` (all pairs `(T,L)` with `|T| <= K`, `M <= 31`), `st89 s0 M` (`M <= 64`).
+Output for `M = 2..17`, `K = 4`: `data/dense/st89_check.out` (`M = 16, 17` take about 3 and 8 minutes, under 1 GB).

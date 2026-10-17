@@ -27,13 +27,13 @@
 \maketitle
 
 \begin{abstract}
-We study which standard methods cannot prove the lonely runner inequality $\ML(v)\ge 1/(m+1)$ for positive integer speed vectors, and why. (i) At the target level, no integrable weight certifies a vector with $\ML(v)\le1/(m+1)$, so first-moment and Riesz-product certificates are blind to tight vectors; this is a formalized restatement of a lemma of Bedert. (ii) Five explicit families with $12$ to $18$ speeds defeat bounded-level base-point certificates of the kinds tested, and without a leave-one-out hypothesis no bound on denominators of lonely times depending only on $m$ exists. (iii) For tight vectors of Goddyn--Wong type, $m+1$ divides no speed; a conjecture (T) extends this to all tight vectors. (iv) The doubling graph on the non-units modulo $2m+1$ has an odd chain whenever $2m+1$ is composite and exceeds $9$. (v) Covering-radius bounds at the target value are false. Each statement carries a label; attributions to prior work are listed in Section~\ref{sec:attr}. No progress on the conjecture is claimed.
+We study which standard methods cannot prove the lonely runner inequality $\ML(v)\ge 1/(m+1)$ for positive integer speed vectors, and why. (i) At the target level, no integrable weight certifies a vector with $\ML(v)\le1/(m+1)$, so first-moment and Riesz-product certificates are blind to tight vectors; this is a formalized restatement of a lemma of Bedert. (ii) Five explicit families with $12$ to $18$ speeds defeat bounded-level base-point certificates of the kinds tested, and without a leave-one-out hypothesis no bound on denominators of lonely times depending only on $m$ exists. (iii) For tight vectors of Goddyn--Wong type, $m+1$ divides no speed; a conjecture (T) extends this to all tight primitive vectors, and at a maximiser of a tight vector the denominator is $m+1$ times a divisor of the gcd of a corner pair. (iv) The doubling graph on the non-units in the window $[1,2m]$ has an isolated vertex whenever $2m+1$ is composite and exceeds $9$, hence no perfect matching. (v) Covering-radius bounds at the target value are false. Each statement carries a label; attributions to prior work are listed in Section~\ref{sec:attr}. No progress on the conjecture is claimed.
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
 
 \subsection{Setting}
-A speed vector is $v=(v_1,\dots,v_m)\in\Z_{>0}^m$; there are $m+1$ runners, one of them stationary. Write $\norm{x}=\operatorname{dist}(x,\Z)$, $\gap_v(t)=\min_i\norm{v_it}$ and $\ML(v)=\max_{t\in\R}\gap_v(t)$ (a maximum, since $\gap_v$ is continuous and $1$-periodic). The lonely runner conjecture (LRC) states $\ML(v)\ge1/(m+1)$ for all $v$. A vector is \emph{tight} if $\ML(v)=1/(m+1)$; $(1,\dots,m)$ is tight. The bad set of speed $i$ at level $\delta$ is $B_i=\{t:\norm{v_it}<\delta\}$ and the good set is $G_\delta=\{t:\forall i,\ \norm{v_it}\ge\delta\}$. A vector is \emph{divisor-complete} (DC) if every $j\in\{2,\dots,m+1\}$ divides some $v_i$. Throughout, $m$ is the number of speeds; the literature cited uses $n$ for $m$ or for $m+1$, and each citation below is translated.
+A speed vector is $v=(v_1,\dots,v_m)\in\Z_{>0}^m$; there are $m+1$ runners, one of them stationary. Write $\norm{x}=\operatorname{dist}(x,\Z)$, $\gap_v(t)=\min_i\norm{v_it}$ and $\ML(v)=\max_{t\in\R}\gap_v(t)$ (a maximum, since $\gap_v$ is continuous and $1$-periodic). The lonely runner conjecture (LRC) states $\ML(v)\ge1/(m+1)$ for all $v$. A vector is \emph{tight} if $\ML(v)=1/(m+1)$; $(1,\dots,m)$ is tight. The bad set of speed $i$ at level $\delta$ is $B_i=\{t:\norm{v_it}<\delta\}$ and the good set is $G_\delta=\{t:\forall i,\ \norm{v_it}\ge\delta\}$; a time $t$ is \emph{lonely at level $\delta$} if $t\in G_\delta$, that is if $\gap_v(t)\ge\delta$. A vector is \emph{divisor-complete} (DC) if every $j\in\{2,\dots,m+1\}$ divides some $v_i$. Throughout, $m$ is the number of speeds; the literature cited uses $n$ for $m$ or for $m+1$, and each citation below is translated.
 
 The inequality is known for $m\le 12$ (Rosenfeld for eight runners \cite{Rosenfeld25}; Trakulthongchai for nine and ten \cite{Trak26}, refereed; Sungkawichai and Trakulthongchai up to thirteen runners \cite{ST26}, unrefereed; Allikvere claims fourteen and fifteen runners \cite{Allik26}, unrefereed, computer-assisted). The generic bounds are $1/(2m)$ by a union bound (\cite[Prop.~1.1]{Tao18}, \cite[Section~5]{PS25}) and $1/(2m)+m^{-5/3-o(1)}$ \cite[Thm.~1.3]{Bedert25}.
 
@@ -51,13 +51,14 @@ Item & Section & Statement & Label\\
 Thm~\ref{thm:barrier} & \ref{sec:measure} & If $\ML(v)\le\delta$ the good set is countable; no integrable weight can satisfy the certificate inequality at a tight vector & VERIFIED, carried over\\
 Cor~\ref{cor:tight} & \ref{sec:measure} & No Riesz-product certificate fires on tight vectors & VERIFIED, carried over\\
 Rem~\ref{rem:scope} & \ref{sec:measure} & Scope: what the barrier does not cover & HEURISTIC\\
-Prop~\ref{prop:escape}, \ref{prop:dc} & \ref{sec:residue} & Escape lemma; missing divisor gives a lonely time & VERIFIED, carried over\\
-Prop~\ref{prop:growth} & \ref{sec:residue} & Without leave-one-out primitivity no bound $Q(m)$ on denominators of lonely times & PROVED\\
+Prop~\ref{prop:escape}, \ref{prop:dc} & \ref{sec:residue} & Escape lemma; missing divisor $j$ gives $\norm{v_i/j}\ge1/j$ and a lonely time & VERIFIED, carried over (escape; weak form of the missing-divisor bound); strict form PROVED\\
+Prop~\ref{prop:growth} & \ref{sec:residue} & (a) Times of positive gap of $v^{(Q)}$ have denominator $>Q$; (b) $\ML(v^{(Q)})\ge1/(m+1)$; so no bound $Q(m)$ on denominators of lonely times without leave-one-out primitivity & PROVED\\
 Obs~\ref{obs:O4} & \ref{sec:residue} & Five families defeat bounded-level certificates & HEURISTIC (exact, finite)\\
 Thm~\ref{thm:O6}, Cor~\ref{cor:GWDC} & \ref{sec:corner} & Goddyn--Wong type vectors: $m+1$ divides no speed & VERIFIED, carried over\\
-Prop~\ref{prop:T} & \ref{sec:corner} & (T$'$) $\Rightarrow$ (T) $\Rightarrow$ no tight DC vector & PROVED\\
+Prop~\ref{prop:T} & \ref{sec:corner} & The implications (T$'$) $\Rightarrow$ (T) and (T) $\Rightarrow$ no tight primitive vector is DC; neither (T) nor (T$'$) is proved & PROVED (implications)\\
+Prop~\ref{prop:corner} & \ref{sec:corner} & At a maximiser $k/L$ of $v$ with $\ML(v)=a/b<\frac12$: $b\mid L$ and $L/b$ divides the gcd of a corner pair & PROVED\\
 Conj~\ref{conj:T}, \ref{conj:T2} & \ref{sec:corner} & (T), (T$'$), (T2) & CONJECTURE\\
-Prop~\ref{prop:chain} & \ref{sec:doubling} & Odd doubling chain on non-units for composite $2m+1>9$ & PROVED\\
+Prop~\ref{prop:chain} & \ref{sec:doubling} & Isolated vertex in the doubling graph on the non-units of $[1,2m]$ for composite $2m+1>9$ & PROVED\\
 Prop~\ref{prop:phase}, Rem~\ref{rem:cr} & \ref{sec:phase} & Half-phase statement false; covering-radius target false & VERIFIED, carried over; cited computation\\
 \bottomrule
 \end{tabular}
@@ -65,7 +66,7 @@ Prop~\ref{prop:phase}, Rem~\ref{rem:cr} & \ref{sec:phase} & Half-phase statement
 Theorem~\ref{thm:barrier} and the escape lemma are known in substance (Tao, Bedert, Rosenfeld); Proposition~\ref{prop:dc} is known; Theorem~\ref{thm:O6} is, to the extent read, not stated in the literature, but its proof is a few lines. What is attributed and what is not is itemized in Section~\ref{sec:attr}.
 
 \subsection{Conceptual abstract}
-The central idea is to test every certificate method on the extremal vectors first. A proof of the floor by averaging a nonnegative weight over the circle needs the bad sets to cover the circle with room to spare. For a vector whose maximal loneliness equals the target, the lonely times form a finite set per period, so every integrable weight sees the bad sets cover the circle with no room at all; the hard existence statement is replaced by the countability of level sets of a minimum of finitely many piecewise linear tent functions. A proof must therefore either use an atomic measure, that is an explicit rational time with an arithmetic check, or classify the extremal vectors. The later sections show that arithmetic checks of bounded denominator, pairings by doubling, and local analysis at one corner each fail on explicit families.
+The note tests five standard routes to the floor on the vectors where it is sharp. Averaging a fixed weight over the circle cannot certify a tight vector at the target level: its good set is a finite union of tent-function level sets, hence countable and without mass. Certificates of bounded denominator fail without a leave-one-out hypothesis, because a speed divisible by $\operatorname{lcm}(1,\dots,Q)$ vanishes at every time of denominator at most $Q$. Pairing by doubling fails because, for odd composite $2m+1$ above $9$, the non-unit $2m+1-2p$, with $p$ the least prime factor, has no doubling or halving partner in the window. Local corner analysis fails because the maximum at a corner depends on the residues of all other speeds. Covering-radius bounds fail because the shifted statement they imply is false. What remains is an explicit rational time or a classification of the tight vectors.
 
 \subsection{Zoom map for Theorem~\ref{thm:barrier} and Corollary~\ref{cor:tight}}
 \begin{itemize}
@@ -90,7 +91,7 @@ Relation structure (Fourier on $\Z/q$, windows) & counterexample or tight $\Righ
 Finite checking, lattice width & counterexamples have bounded height; $n^{O(n^2)}$, $(n(n+1)/2)^{n-1}$ & bounds not usable for all $m$ & \cite{Tao18}, \cite{MSS25}, \cite{GK25}\\
 Covering radius & equals shifted loneliness (Henze--Malikiosis) & the shifted statement is false (Sec.~\ref{sec:phase}) & \cite{BCS26}\\
 Local analysis, Goddyn--Wong families & tight vectors of one-entry type are classified & transfers tightness, not a floor (Sec.~\ref{sec:corner}) & \cite{GW06}, \cite{Zhang26}\\
-Doubling pairings & (internal to the covering framework) & odd chains (Sec.~\ref{sec:doubling}) & this note\\
+Doubling pairings & (internal to the covering framework) & isolated vertices (Sec.~\ref{sec:doubling}) & this note\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -141,19 +142,24 @@ Let $q\ge1$, $a\in\Z$, $\varepsilon\in\R$, $\delta>0$. If for each $i$ there are
 Without a bound on $q$ the statement is empty: $\delta\le\ML(v)$ holds if and only if some $(q,a,\varepsilon)$ works, with $q=1$ (\texttt{lonely\_iff\_escape}, VERIFIED, carried over), and for $\delta<\ML(v)$ one can take $\varepsilon=0$ (\texttt{rational\_point\_of\_lt}, VERIFIED, carried over). The window lemma at levels $m+1<q\le2m+2$ and the certificates used in the archive are instances (\texttt{window\_via\_escape}, \texttt{famF\_via\_escape}, \texttt{lemmaP\_via\_escape}). All content lies in the bound on $q$.
 
 \begin{proposition}[Missing divisor]\label{prop:dc}
-If $2\le j\le m+1$ and $j$ divides no $v_i$, then $\norm{v_i/j}\ge1/j\ge1/(m+1)$ for all $i$, so $\ML(v)\ge1/(m+1)$ with witness $t=1/j$.
+If $2\le j\le m+1$ and $j$ divides no $v_i$, then $\norm{v_i/j}\ge1/j$ for all $i$, so $\ML(v)\ge1/j$ with witness $t=1/j$. In particular $\ML(v)>1/(m+1)$ if $j\le m$, and $\ML(v)\ge1/(m+1)$ if $j=m+1$.
 \end{proposition}
-\lab{VERIFIED, carried over (\texttt{witness\_of\_missing\_divisor}). Known: \cite[Lemma~5.1(i)]{Tao18}; also the survey \cite{PS25} proves that the conjecture holds when some $k\le n+1$ divides no speed, and \cite[Lemma~2.3]{Zhang26} is the case $t=1/r$ for one-entry modifications. Not claimed as new}
+\lab{The bound $\norm{v_i/j}\ge1/j$ is PROVED in one line: $v_i\bmod j\in[1,j-1]$. The Lean lemma \texttt{witness\_of\_missing\_divisor} (VERIFIED, carried over) has the signature $j\le(k+2)\min(r,j-r)$ with $r=v_i\bmod j$ for $k+1=m$ speeds, that is $\norm{v_i/j}\ge1/(m+1)$, the weak form; the strict form is not stated there, and no other part of that Lean statement was re-read in this revision. Known: \cite[Lemma~5.1(i)]{Tao18}; also the survey \cite{PS25} proves that the conjecture holds when some $k\le n+1$ divides no speed, and \cite[Lemma~2.3]{Zhang26} is the case $t=1/r$ for one-entry modifications. Not claimed as new}
 
-Consequently a tight vector satisfies: every $j\in[2,m]$ divides some speed. This is why the crux is restricted to DC vectors.
+Consequently a tight vector satisfies: every $j\in[2,m]$ divides some speed, since otherwise $\ML(v)\ge1/j>1/(m+1)$. This is why the crux is restricted to DC vectors.
 
 \begin{proposition}[Denominators of lonely times]\label{prop:growth}
-Let $m\ge2$, $Q\ge1$, $L=\operatorname{lcm}(1,\dots,Q)$ and $v^{(Q)}=(1,L,2L,\dots,(m-1)L)\in\Z_{>0}^m$. If $t=a/q\in\mathbb Q$ in lowest terms has $\gap_{v^{(Q)}}(t)>0$, then $q>Q$. Hence for $m\le12$ there is no function $Q(m)$ such that every vector has a rational lonely time of denominator at most $Q(m)$ (for $m\le12$, where the floor is known, $v^{(Q)}$ has a lonely time, attained at a rational).
+Let $m\ge2$, $Q\ge1$, $L=\operatorname{lcm}(1,\dots,Q)$ and $v^{(Q)}=(1,L,2L,\dots,(m-1)L)\in\Z_{>0}^m$. If $t=a/q\in\mathbb Q$ in lowest terms has $\gap_{v^{(Q)}}(t)>0$, then $q>Q$. (b) $\ML(v^{(Q)})\ge1/(m+1)$, witnessed by $t=c/(L(m+1))$ for any integer $c$ with $L\le c\le Lm$ and $c\equiv1\pmod{m+1}$; such $c$ exists. Consequently, for every function $Q(m)$ there is a vector with $m$ speeds that has lonely times at level $1/(m+1)$ but none of denominator at most $Q(m)$.
 \end{proposition}
 \begin{proof}
-If $q\le Q$ then $q\mid L$, so $L t\in\Z$ and $\norm{Lt}=0$; the speed $L$ occurs in $v^{(Q)}$, so $\gap(t)=0$. Hence $q>Q$. For the last assertion, $\ML$ is attained at a rational $k/D$ with $D\in\{2v_i,v_i+v_j,|v_i-v_j|\}$ (\cite[Section~2]{PS25}, \cite[Lemma~2.2]{Cordella26}), and any such maximiser has positive gap by the conjecture for $m\le12$ \cite{ST26}; take $Q$ larger than any prescribed bound.
+If $q\le Q$ then $q\mid L$, so $Lt\in\Z$ and $\norm{Lt}=0$. The speed $L$ occurs in $v^{(Q)}$ because $m\ge2$, so $\gap(t)=0$. Hence $q>Q$ whenever $\gap(t)>0$.
+
+(b) The interval $[L,Lm]$ contains $L(m-1)+1$ integers. For $L=1$ it contains $1\equiv1$. For $L\ge2$ it contains at least $m+1$ consecutive integers, hence one with $c\equiv1\pmod{m+1}$. Put $t=c/(L(m+1))$. Since $L\le c\le Lm$, $t\in[\frac1{m+1},\frac m{m+1}]$ and $\norm{t}\ge\frac1{m+1}$ (speed $1$). For $1\le j\le m-1$ the speed $jL$ gives $jLt=jc/(m+1)$; $\gcd(c,m+1)=1$ and $m+1\nmid j$, so $m+1\nmid jc$ and $\norm{jc/(m+1)}\ge\frac1{m+1}$. Hence $\gap(t)\ge\frac1{m+1}$, and by (a) its denominator is $>Q$. For the consequence take $Q=Q(m)$.
 \end{proof}
-\lab{PROVED. Idea: a speed divisible by every small denominator is invisible to every small-denominator test, because it sends all rational times of small denominator to $0$ mod $1$. Zoom map: L1.1 reduction of $q\le Q$ to $q\mid L$ (arithmetic, no lemma); L1.2 positivity of the gap forces $q>Q$. The vector has a leave-one-out subvector with $\gcd=L>1$, which is why the leave-one-out hypothesis of the crux is necessary for any bounded-level approach. No prior statement was located in the literature read}
+\lab{PROVED. Idea: a speed divisible by every small denominator is invisible to every small-denominator test, because it sends all rational times of small denominator to $0$ mod $1$. Zoom map: L1.1 reduction of $q\le Q$ to $q\mid L$ (arithmetic, no lemma); L1.2 positivity of the gap forces $q>Q$; L1.3 existence of $c$ and the bound $\gap(t)\ge\frac1{m+1}$ at $t=c/(L(m+1))$. For $Q\ge2$ the subvector $(L,2L,\dots,(m-1)L)$ obtained by deleting the speed $1$ has $\gcd=L>1$, so $v^{(Q)}$ is outside the class of the crux, whose members have primitive leave-one-out subvectors. No prior statement was located in the literature read}
+
+\paragraph{Rationality of maximizers.}
+The gap is piecewise linear with slopes $\pm v_i\ne0$, so it has no flat piece and each local maximum is a vertex of its graph; every vertex is the solution of a linear equation with integer coefficients, hence rational. So every maximiser of $\gap_v$ is rational, and for $v=v^{(Q)}$ every maximiser, which has positive gap, has denominator $>Q$ by the proposition. This is not needed for the proposition.
 
 \paragraph{Obstruction for residue-condition methods.} A test at denominator $q$ sees only the residues $v_i\bmod q$ of the speeds, and a speed with residue $0$ at every level up to $Q$ is invisible to all of them; Proposition~\ref{prop:growth} makes this exact, and the families of Table~\ref{tab:O4} realize it approximately inside the class of the crux by a few tall speeds (up to $4943$) whose residues complete a covering of the small levels. The mechanism is that the residues of a few free tall speeds can be chosen independently modulo each small $q$ while the maximal loneliness stays above the target; this explanation is consistent with the table and is not proved, label HEURISTIC.
 
@@ -188,7 +194,7 @@ Positive ground, regenerated by \texttt{mdr enumw}: the window-only first-order 
 
 \section{Local corners: the Goddyn--Wong mechanism and statement (T)}\label{sec:corner}
 
-\paragraph{Corners.} $\ML(v)$ is attained at a time $k/D$ with $D\in\{2v_i,v_i+v_j,|v_i-v_j|\}$ and $0\le k<D$ (\cite[Section~2]{PS25}; the numerators are not restricted to residues coprime to $D$). A local argument fixes such a pair and controls the maximum from it; the remaining $m-2$ speeds enter only through their residues modulo $D$.
+\paragraph{Corners.} $\ML(v)$ is attained at a time $k/D$ with $D\in\{2v_i,v_i+v_j,|v_i-v_j|\}$ and $0\le k<D$ (\cite[Section~2]{PS25}; the numerators are not restricted to residues coprime to $D$). A local argument fixes such a pair and controls the maximum from it; the remaining $m-2$ speeds enter only through their residues modulo $D$. For $\ML(v)<\frac12$ every maximizer is such a corner, of a rising and a falling tent (Proposition~\ref{prop:corner}).
 
 For multipliers $\mu=(\mu_1,\dots,\mu_{n-1})\in\mathbb N^{n-1}$ write $[n-1]_\mu=(\mu_1\cdot1,\dots,\mu_{n-1}(n-1))$, with $n=m+1$. The \emph{GCD condition} is: for each $r\in[n-1]$ with $\mu_r\ge2$ and each $b$ with $n-r\le b\le\mu_r(n-r)-1$, $\gcd(r,b)>1$. Goddyn and Wong prove $\ML([n-1]_\mu)=1/n$ under this condition \cite[Thm.~3.1]{GW06}, quoted as \cite[Thm.~5.1]{Zhang26}; for one accelerated entry it is also necessary \cite[Thm.~2.3]{GW06}, quoted as \cite[Thm.~1.1]{Zhang26}. Zhang classifies all one-entry modifications $[n-1]_{r\to w}$, $w>n-1$: tight if and only if $2r>n-1$, $r\mid w$ and the GCD condition holds with $\mu=w/r$, or $(n,r,w)\in\{(5,2,7),(6,2,9)\}$ \cite[Thm.~1.2]{Zhang26}.
 
@@ -213,17 +219,37 @@ A vector built by the Goddyn--Wong construction is excluded from the class of th
 
 \subsection{Statement (T)}
 \begin{conjecture}[(T), (T$'$)]\label{conj:T}
-If $v\in\Z_{>0}^m$, $\gcd(v)=1$ and $v$ is tight, then $m+1$ divides no $v_i$. Stronger, (T$'$): every $t$ with $\gap_v(t)=\ML(v)$ has the form $a/(m+1)$, $a\in\Z$.
+Let $v\in\Z_{>0}^m$ with $\gcd(v)=1$ and $\ML(v)=1/(m+1)$. Then
+(T) $m+1$ divides no $v_i$;
+(T$'$) every $t$ with $\gap_v(t)=\ML(v)$ has the form $a/(m+1)$, $a\in\Z$.
 \end{conjecture}
-\lab{CONJECTURE. Provenance: observation on the tight vectors of Goddyn--Wong type and on exhaustive small boxes. Evidence: Section~\ref{sec:evidence}, exhaustive primitive search for $m=3,\dots,8$ in boxes finds the tight vectors listed there, all satisfying (T) and (T$'$). Consequence: with Proposition~\ref{prop:dc}, no tight primitive vector is DC. Lean statements \texttt{TightNoDvd}, \texttt{TightMaximisersAtMp1} are defined without proof; \texttt{tightNoDvd\_of\_strong} has a \texttt{sorry}}
+\lab{CONJECTURE. Provenance: observation on the tight vectors of Goddyn--Wong type and on exhaustive small boxes. Evidence: Section~\ref{sec:evidence}, exhaustive primitive search for $m=3,\dots,8$ in boxes finds the tight vectors listed there, all satisfying (T) and (T$'$). Consequence: by Proposition~\ref{prop:dc} a tight vector has every $j\in[2,m]$ dividing a speed, so (T) is equivalent to the statement that no tight primitive vector is DC. Lean statements \texttt{TightNoDvd}, \texttt{TightMaximisersAtMp1} are defined without proof; \texttt{tightNoDvd\_of\_strong} has a \texttt{sorry}}
 
 \begin{proposition}\label{prop:T}
-(T$'$) implies (T), and (T) implies that no tight, primitive vector is DC.
+Let $v\in\Z_{>0}^m$ and suppose $m+1\mid v_i$ for some $i$. Then $\gap_v(a/(m+1))=0<\ML(v)$ for every $a\in\Z$. Consequently (T$'$) implies (T), and (T) implies that no tight primitive vector is DC.
 \end{proposition}
 \begin{proof}
-If $m+1\mid v_i$ and $t=a/(m+1)$ is a maximizer, then $v_it\in\Z$ and $\gap_v(t)=0\ne1/(m+1)$; a maximizer exists since $\gap_v$ is continuous and periodic. So (T$'$) forces $m+1\nmid v_i$. For the second claim: a DC vector has $m+1\mid v_i$ for some $i$, since $m+1\in[2,m+1]$, which (T) excludes for tight primitive $v$.
+Since $v_i/(m+1)\in\Z$, $v_i\cdot a/(m+1)\in\Z$ and $\gap_v(a/(m+1))\le\norm{v_it}=0$. Also $\ML(v)>0$, as $\gap_v(t)>0$ at any irrational $t$. Assume (T$'$) and let $v$ be primitive and tight with $m+1\mid v_i$. A maximizer $t$ exists, since $\gap_v$ is continuous and $1$-periodic; by (T$'$), $t=a/(m+1)$, so $\gap_v(t)=0\ne\ML(v)$, a contradiction. Hence (T) holds. A DC vector has $m+1\in\{2,\dots,m+1\}$ dividing some $v_i$, which (T) excludes for tight primitive $v$.
 \end{proof}
-\lab{PROVED. Idea: a speed divisible by $m+1$ vanishes at every candidate time of denominator $m+1$, so such a time cannot be lonely. Zoom map: L1.1 maximizers exist; L1.2 a divisible speed has gap $0$ at $a/(m+1)$; L1.3 divisor-completeness supplies the divisible speed. Not formalized}
+\lab{PROVED (the implications only; neither (T) nor (T$'$) is proved). Idea: a speed divisible by $m+1$ vanishes at every candidate time of denominator $m+1$, so such a time cannot be a maximizer. Zoom map: L1.1 a divisible speed has gap $0$ at $a/(m+1)$; L1.2 a maximizer exists and has positive gap; L1.3 divisor-completeness supplies the divisible speed. The proof does not use $\gcd(v)=1$; that hypothesis matters for the truth of (T$'$), since the vector $(2)$, $m=1$, is tight and non-primitive and its maximizer $1/4$ is not in $\frac12\Z$. Not formalized}
+
+\begin{proposition}[Tight corner]\label{prop:corner}
+Let $v\in\Z_{>0}^m$ with $\ML(v)=a/b<\frac12$ in lowest terms, and let $t^*$ be a maximizer of $\gap_v$. Then $t^*=k/L$ in lowest terms is rational, and there are indices $i,j$ with $v_it^*\equiv a/b$ and $v_jt^*\equiv-a/b\pmod 1$ such that
+\[
+b\mid L,\qquad L\mid b\gcd(v_i,v_j),\qquad L\mid v_i+v_j .
+\]
+In particular $L=bd$ with $d\mid\gcd(v_i,v_j)$. If $v$ is tight and $m\ge2$ then $b=m+1$, so (T$'$) holds at $t^*$ if and only if $d=1$.
+\end{proposition}
+\begin{proof}
+L1: (a) at a maximizer some speed sits at $+a/b$ and some at $-a/b$; (b) the two congruences give the divisibilities.
+
+(a) Put $\delta=a/b$ and $S=\{i:\norm{v_it^*}=\delta\}$, nonempty since $\gap_v(t^*)=\delta$. As $0<\delta<\frac12$, each $i\in S$ has $v_it^*\equiv\sigma_i\delta\pmod 1$ with a unique $\sigma_i\in\{+1,-1\}$. Suppose $\sigma_i=+1$ for all $i\in S$. For small $\varepsilon>0$, $\norm{v_i(t^*+\varepsilon)}=\delta+v_i\varepsilon$ for $i\in S$, and $\norm{v_i(t^*+\varepsilon)}>\delta$ for $i\notin S$ by continuity. Then $\gap_v(t^*+\varepsilon)>\delta=\ML(v)$, which is absurd. The case $\sigma_i=-1$ for all $i\in S$ is the same with $t^*-\varepsilon$. So there are $i,j\in S$ with $\sigma_i=+1$, $\sigma_j=-1$. Then $v_it^*=N_i+a/b$ and $v_jt^*=N_j-a/b$ with $N_i,N_j\in\Z$; in particular $t^*\in\mathbb Q$, say $t^*=k/L$ with $\gcd(k,L)=1$.
+
+(b) Adding, $(v_i+v_j)k/L=N_i+N_j\in\Z$, so $L\mid(v_i+v_j)k$ and $L\mid v_i+v_j$. Multiplying $v_ik/L=N_i+a/b$ by $bL$ gives $bv_ik=L(bN_i+a)$. Hence $L\mid bv_ik$, so $L\mid bv_i$; and reducing modulo $b$ gives $b\mid La$, so $b\mid L$ because $\gcd(a,b)=1$. In the same way $bv_jk=L(bN_j-a)$ gives $L\mid bv_j$. Thus $L\mid\gcd(bv_i,bv_j)=b\gcd(v_i,v_j)$, and $L=bd$ gives $d\mid\gcd(v_i,v_j)$.
+
+For tight $v$ and $m\ge2$, $\ML(v)=1/(m+1)\le\frac13<\frac12$, so $a=1$, $b=m+1$. (T$'$) at $t^*$ says $L\mid m+1$; with $m+1\mid L$ this is $L=m+1$, that is $d=1$.
+\end{proof}
+\lab{PROVED. Idea: at a maximizer one runner sits exactly at distance $+\ML$ ahead of an integer and another exactly $\ML$ behind (the two residues $\pm\ML$ are distinct because $\ML<\frac12$), otherwise the time could be moved to raise the gap; clearing the denominator of $\ML$ turns the two corner equations into congruences that bound the denominator of the maximizer by $b$ times a common divisor of the corner pair. Zoom map: L1.1 opposite signs at a maximizer; L1.2 divisibilities from the two corner equations. That a maximizer lies at a time $k/D$ with $D$ a sum of two speeds is the vertex lemma \cite[Lemma~2.2]{Cordella26}, \cite[Section~2]{PS25}; the divisibilities $b\mid L$ and $L\mid b\gcd(v_i,v_j)$ were not located in the sources read. For tight $v$ with $m+1\mid v_l$ and $d=1$ at a maximizer, $v_lt^*\in\Z$, which is impossible; so a tight primitive vector with a speed divisible by $m+1$ would have $d\ge2$ at every maximizer. Worked example: $v=(1,2,4,6)$, $\ML=1/4$, $t^*=3/8$, $L=8$, $b=4$, $d=2$, corner pair $(6,2)$ with $6t^*\equiv\frac14$, $2t^*\equiv-\frac14$, $L\mid v_i+v_j=8$, $L\mid b\gcd(6,2)=8$ (not tight: $\ML=1/4>1/5$). Tight non-primitive example: $v=(2,4)$, $m=2$, $\ML=1/3$, with maximizers $1/6,1/3,2/3,5/6$; at $t^*=1/6$ the corner pair is $(2,4)$, $L=6$, $b=3$, $d=2$. So $d>1$ occurs, and the hypothesis $\gcd(v)=1$ is needed for (T$'$). Not formalized}
 
 \subsection{The family $E_m$ and a related floor}
 For $E_m=(1,\dots,m-1,m(m+1))$, $m\ge3$, $\ML(E_m)=(m+1)/(m^2+m+1)$ (the case $s=m+1$ of \cite[Thm.~5.1]{Kravitz21}, reproved in Lean with a different argument, \texttt{ML\_Em\_m}, VERIFIED, carried over). Hence $(2m+1)\ML(E_m)>2$ for $m\ge3$ (\texttt{thmB\_gt}, VERIFIED, carried over).
@@ -235,21 +261,21 @@ If $v$ is primitive and $m+1$ divides some $v_i$, then $\ML(v)\ge 2/(2m+1)$.
 
 \section{Doubling pairings}\label{sec:doubling}
 
-In the covering formulation a lonely time is ruled out by exhibiting bad sets that cover the window of integers $[1,2m]$ for the modulus $q=2m+1$; the smallest such sets are pairs. For $q$ odd let $N=\{v\le 2m:\gcd(v,q)>1\}$ be the non-units. The doubling graph on $[1,2m]$ has edges $\{v,2v\}$ with $2v\le 2m$.
+In the covering formulation a lonely time is ruled out by exhibiting bad sets that cover the window of integers $[1,2m]$ for the modulus $q=2m+1$; the smallest such sets are pairs. For $q$ odd let $N=\{v\le 2m:\gcd(v,q)>1\}$ be the non-units in the window. The doubling graph on $[1,2m]$ has edges $\{v,2v\}$ with $2v\le 2m$; it lives on the integers of the window, not on residues modulo $q$.
 
 \begin{proposition}[Chain parity]\label{prop:chain}
-For odd $q=2m+1\ge3$ every connected component of the doubling graph restricted to $N$ is a path with an even number of vertices if and only if $q$ is prime ($N=\emptyset$) or $q=9$. In particular, for composite odd $q>9$ the doubling graph on $N$ has no perfect matching.
+Let $q=2m+1\ge3$ be odd, $N=\{v\in[1,2m]:\gcd(v,q)>1\}$, and let $\Gamma$ be the graph on $N$ with edges $\{v,2v\}$, $2v\le2m$. If $q$ is composite and $q\ne9$, then $s=q-2p$, with $p$ the least prime factor of $q$, is an isolated vertex of $\Gamma$; in particular $\Gamma$ has no perfect matching. If $q$ is prime then $N=\emptyset$, and if $q=9$ then $N=\{3,6\}$ is a single edge. Hence every component of $\Gamma$ has an even number of vertices if and only if $q$ is prime or $q=9$.
 \end{proposition}
 \begin{proof}
-Since $q$ is odd, $\gcd(2v,q)=\gcd(v,q)$, so $N$ is closed under $v\mapsto2v$ (within $[1,2m]$) and under $v\mapsto v/2$ for even $v$. Hence each component of the graph on $N$ is a full chain $\{s,2s,4s,\dots\}\cap[1,2m]$ with $s$ odd and $s\in N$. If $q$ is prime, $N=\emptyset$. Let $q$ be composite, $p$ its least prime factor, so $q\ge p^2$ and $q\ge3p>2p$. Put $s=q-2p$. Then $s$ is odd, $1\le s\le 2m$ and $\gcd(s,q)=\gcd(2p,q)=p>1$, so $s\in N$. The chain of $s$ has length $1$ if $2s>2m$, that is if $q\ge4p$, and length $1$ is odd. Otherwise $q\le4p-1$ and $p^2\le q\le 4p-1$ gives $p\le3$; since $q$ is odd, $p=3$ and $q\le11$, so $q=9$. For $q=9$, $N=\{3,6\}$ is one chain of length $2$. A graph that is a disjoint union of paths has a perfect matching if and only if every path has an even number of vertices.
+Let $q$ be composite and $p$ its least prime factor. Then $q=pr$ with $r\ge p\ge3$, so $q\ge3p$ and $q\ge p^2$. Put $s=q-2p$. Then $s$ is odd, $p\le s\le q-6\le2m$, and $\gcd(s,q)=\gcd(2p,q)=p>1$, so $s\in N$. Being odd, $s$ has no neighbour $s/2$. Its other possible neighbour $2s$ lies in $[1,2m]$ if and only if $2s\le q-1$, that is $q\le4p-1$. In that case $p^2\le q\le4p-1$ forces $p\le3$, hence $p=3$ and $q\le11$ is an odd composite multiple of $3$, so $q=9$. Thus for $q\ne9$ the vertex $s$ is isolated, a component with one vertex. If $q$ is prime no $v\in[1,2m]$ has $\gcd(v,q)>1$. If $q=9$, $N=\{3,6\}$ and $\Gamma$ is the edge $\{3,6\}$. An isolated vertex is a component of odd size and admits no perfect matching.
 \end{proof}
-\lab{PROVED. Idea: the largest non-unit below $q$ that is $q$ minus twice a prime factor is odd and has no doubling partner inside the window, so it forms a chain of length one. Zoom map: L1.1 non-units form full chains; L1.2 the element $q-2p$ is a non-unit starting a chain; L1.3 its chain is odd unless $q=9$. Independent check: brute-force chain lengths for odd $q\le 20001$, no mismatch (Section~\ref{sec:evidence}). Not formalized}
+\lab{PROVED. Idea: for composite $q>9$ the non-unit $q-2p$ is odd, so it has no halving partner, and its double exceeds the window, so it has no doubling partner; it is an isolated vertex of the doubling graph on the non-units of the window. Zoom map: L1.1 $q-2p$ is a non-unit ($\gcd=p$); L1.2 it is odd; L1.3 its double exceeds $2m$ unless $q=9$. Independent check: brute-force chain lengths (the components of $\Gamma$) for odd $q\le 20001$, no mismatch (Section~\ref{sec:evidence}). Not formalized}
 
 \begin{remark}
 The companion covering paper classifies every bad pair with non-unit endpoints as a doubling pair or a pair with $a+b\in\{2m+1,2m+2\}$ (Lean-verified for the dichotomy; carried over), and pairs with $a+b=2m+1$ and both endpoints non-units do not occur. For $q\in\{25,27,33,35,49\}$ no non-unit bad pair with $a+b=2m+2$ was found in earlier computations, which are not regenerated here (HEURISTIC). If the same holds for all composite $q$, Proposition~\ref{prop:chain} implies that a partition of the window into bad pairs cannot cover the non-units, so parts of size at least three are forced; this implication is conditional and carries the label HEURISTIC.
 \end{remark}
 
-\paragraph{Obstruction for doubling methods.} A pairing of the window by $\{j,2j\}$ treats the integers as a union of doubling chains, and a chain with an odd number of vertices leaves one vertex unmatched. For a composite modulus the vertex $q-2p$ is such a chain, because it is a non-unit whose double exceeds the window; this is the whole mechanism, and it does not depend on any property of the speeds. Passing to the cyclic group $\Z/q\Z$, where doubling is a permutation, does not repair it, since the bad sets of the covering formulation are multiples of $j$ at modulus $j$ and do not realize the wrap-around partner (earlier computations, not regenerated; HEURISTIC).
+\paragraph{Obstruction for doubling methods.} A pairing of the window by $\{j,2j\}$ treats the integers as a union of doubling chains, and a component with an odd number of vertices leaves one vertex unmatched. For a composite modulus $q>9$ the vertex $q-2p$ is an odd non-unit whose double exceeds the window, so it is an isolated vertex of the doubling graph on the non-units; this is the whole mechanism, and it does not depend on any property of the speeds. Passing to the cyclic group $\Z/q\Z$, where doubling is a permutation, does not repair it, since the bad sets of the covering formulation are multiples of $j$ at modulus $j$ and do not realize the wrap-around partner (earlier computations, not regenerated; HEURISTIC).
 
 \section{Covering radius and the zero phase}\label{sec:phase}
 
@@ -303,14 +329,14 @@ $m$ & $H$ & vectors enumerated & tight vectors found\\
 \bottomrule
 \end{tabular}
 \end{center}
-In every box, no tight vector has a speed divisible by $m+1$, and every maximizing time of every tight vector lies in $\frac1{m+1}\Z$. Each box is RESOLVED; the boxes are small (toy only), the heights for $m\ge6$ are at most $24$, and the boxes for different $m$ are independent instances (different numbers of speeds). The statements (T) and (T$'$) are therefore HEURISTIC on this ground and say nothing for $m\ge9$ or beyond these heights.
+In every box, no tight vector has a speed divisible by $m+1$, and every maximizing time of every tight vector lies in $\frac1{m+1}\Z$. Each box is RESOLVED; the boxes are small (toy only), the heights for $m\ge6$ are at most $24$, and the boxes for different $m$ are independent instances (different numbers of speeds). The evidence for (T) and (T$'$) is confined to this ground and says nothing for $m\ge9$ or beyond these heights; both remain CONJECTURE.
 
 \paragraph{Minimum on divisor-complete vectors.} In the same boxes (primitive, DC including $j=m+1$) the minimum of $\ML$ is $2/7$ ($m=3$, $H\le60$; $10\,946$ vectors), $2/9$ ($m=4$, $H\le40$; $27\,600$), $2/11$ ($m=5$, $H\le30$; $46\,316$), $2/13$ ($m=6$, $H\le24$; $28\,835$), $2/15$ ($m=7$, $H\le20$; $12\,673$), each equal to $2/(2m+1)$, and strictly below $\ML(E_m)=4/13,5/21,6/31,7/43,8/57$. Each box is RESOLVED; the boxes are small, and the evidence is HEURISTIC and toy only: no statement is made for $m\ge8$. The tight and DC counts in neighbouring boxes are not independent.
 
 \section{Open statements}\label{sec:open}
 
 \begin{itemize}
-\item (T) and (T$'$), Conjecture~\ref{conj:T}. Evidence: the exhaustive boxes above and every tight vector of Goddyn--Wong type (Corollary~\ref{cor:GWDC}). Consequence: no tight primitive vector is DC (Proposition~\ref{prop:T}).
+\item (T) and (T$'$), Conjecture~\ref{conj:T}. Evidence: the exhaustive boxes above and every tight vector of Goddyn--Wong type (Corollary~\ref{cor:GWDC}). Consequence: (T) is equivalent to the statement that no tight primitive vector is DC (Conjecture~\ref{conj:T} and Proposition~\ref{prop:dc}); (T$'$) implies (T) (Proposition~\ref{prop:T}).
 \item (T2), Conjecture~\ref{conj:T2}. Evidence: equality $2/(2m+1)$ is the minimum on DC vectors in the boxes for $m=3,\dots,7$. Consequence: strict floor for primitive vectors with $(m+1)\mid v_i$.
 \end{itemize}
 Whether the class of the crux contains a tight vector is open. Neither statement is used elsewhere in this note.

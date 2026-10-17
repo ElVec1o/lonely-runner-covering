@@ -1,6 +1,6 @@
 # Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners
 
-Archived at Zenodo: version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
+Version 1.0.1. Archived at Zenodo: version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
 Author: Vico Bonfioli (vicobonfioli@gmail.com). License: CC-BY-4.0 (`LICENSE.md`). Snapshot of 18 October 2026, matching the
 `\date` line of the manuscripts. The manuscripts are preprints and have not been peer reviewed.
 
@@ -25,7 +25,17 @@ fractional weighting of times (weak LP duality), by a cover of the window by par
 Lean files check the certificates with the kernel. The other manuscripts study the limits of this method (barrier theorem, level drift),
 a measure argument for single and multiple modifications of `[1,n-1]`, the reduction to one crux, and the case of eight runners.
 
-## Corrections and withdrawn claims (this snapshot)
+## Changes since version 1.0.0 (draft)
+
+* Dense-window paper, Statements 8 and 9 (extremal kept block; reduction to irreducible blocks): the proofs are now written out in the paper (they were previously
+  referred to development notes that are not archived). New checker `code/dense/src/st89` and its output `data/dense/st89_check.out`. New paragraph on the block with empty `T`.
+* Obstructions paper: the denominator proposition no longer carries the `m <= 12` clause or the dependence on the unrefereed preprint of Sungkawichai and Trakulthongchai; `lonely time` is defined;
+  the doubling-chain proposition is restated as an isolated-vertex statement on the window `[1,2m]` (not modulo `2m+1`); `(T)`, `(T')` are stated with explicit hypotheses and the proposition is
+  restated as implications; the conceptual abstract is rewritten; a new proposition (tight corner) with checker `code/obstructions/cornercheck.py`. Item numbers of this paper changed; the numbers
+  in version 1.0.0 of this README and of `CLAIMS.tsv` did not match the manuscript and are corrected here.
+* The Lean build was not run for 1.0.1; no Lean file changed.
+
+## Corrections and withdrawn claims (version 1.0.0 snapshot)
 
 * Reduction paper: the claim that `ML = 2/(2m+1)` is attained at `m = 12` by `(1,4,6,7,10,11,12,13,16,17,19,23)` is withdrawn. The value
   came from `mdr ml`, which skipped numerators not coprime to the denominator; the exact value is `ML = 1/9`. The function is corrected in
@@ -37,6 +47,10 @@ a measure argument for single and multiple modifications of `[1,n-1]`, the reduc
 * Perturbation paper: the localization step is cited to Zhang, arXiv:2608.13599v2, Section 2 (Lemmas 2.1, 2.2, proof of Lemma 2.4; Lemma 2.5 for `2r > n-1`).
 * Counts and tables without an archived generator are marked in the manuscripts and in `CLAIMS.tsv` ("generator not archived"; label HEURISTIC).
 * The Lean build of this archive was not run when it was assembled. `#print axioms` records in the `LEAN_MAP.md` files are records of earlier runs.
+
+## Idea in words, obstruction note
+
+The note tests five standard routes to the floor on the vectors where it is sharp. Averaging a fixed weight over the circle cannot certify a tight vector at the target level: its good set is a finite union of tent-function level sets, hence countable and without mass. Certificates of bounded denominator fail without a leave-one-out hypothesis, because a speed divisible by `lcm(1,...,Q)` vanishes at every time of denominator at most `Q`. Pairing by doubling fails because, for odd composite `2m+1` above 9, the non-unit `2m+1-2p`, with `p` the least prime factor, has no doubling or halving partner in the window. Local corner analysis fails because the maximum at a corner depends on the residues of all other speeds. Covering-radius bounds fail because the shifted statement they imply is false. What remains is an explicit rational time or a classification of the tight vectors.
 
 ## Main results
 
@@ -54,7 +68,10 @@ The effective label is the weakest label in the dependency chain.
 * Theorem (table), VERIFIED per row. For the 67 composite values `m` of Table 1 (`m = 4, 7, 12, 13`) and Table 2 (63 rows, `m <= 126`) the inequality holds for every `m` distinct integers in `[1,2m]`.
   Rows marked S have raw build and axiom output archived; 16 rows marked L (`m = 24, 25, 27, 28, 31, 32, 34, 37, 38, 40, 42, 43, 45, 46, 47, 55`) rest on records in `LEAN_MAP.md` without archived raw output.
   Consequently the statement is Lean-verified for all `2 <= m <= 126` except `m` in `{94, 97, 103, 109, 115, 122}`.
-* HEURISTIC: Propositions on the structure used by the search (`Y = {m+2,...,2m}` contains no minimal bad set, checked for `2 <= m <= 62`; packing of blocks; block families).
+* Statement 8, PROVED (not formalized). Call a block `(T,L)` (`T` in `Y`, `L` in `{2,...,m}`) valid if `tau(T u L) >= |L|`, kept if valid, no larger `L` and no smaller `T` is valid. Every valid block is dominated (`T` smaller or equal, `L` larger or equal) by a kept block. Proof: extremal block (largest `L`, then smallest `T`) among the valid blocks dominating it. Finite check: `code/dense/src/st89`, `2 <= m <= 17`.
+* Statement 9, PROVED (not formalized). Let `F_k` be the kept blocks with `|T| <= k` and `R_k` those that are not reducible (`T` and `L` split into two nonempty parts, both parts valid). Then `R_k` has a cover iff `F_k` has a cover (cover: pairwise disjoint `T` parts, `L` parts with union `{2,...,m}`). Proof: a cover of least `sum |T|^2` has no reducible block, by Statement 8. Finite check: `code/dense/src/st89`, `2 <= m <= 17`.
+* Conceptual abstract of Statements 8 and 9: replace a block by the extremal block it dominates; replace a reducible block by two kept blocks of smaller `T`, which lowers the squared weight of the cover.
+* HEURISTIC: Statement 6 (`Y = {m+2,...,2m}` contains no minimal bad set, checked for `2 <= m <= 62`) and Statement 7 (packing of blocks). Reported size reductions of the block families at `m = 49, 62` are logged runs, not re-run.
 
 ### `paper/lrc_covering` (covering framework)
 
@@ -68,11 +85,15 @@ The effective label is the weakest label in the dependency chain.
 
 ### `paper/obstructions`
 
-* Theorem 1 (barrier), VERIFIED. If `ML(v) <= delta` then the good set `G_delta` is countable, hence null; no integrable weight `F >= 0` gives a first-moment certificate `sum_i int_{B_i} F < int F` at a tight value. Corollary 2, VERIFIED: no Riesz-product certificate `U_D` fires on a tight family.
-* Propositions 4 and 5, VERIFIED. Escape lemma; a missing divisor `j` in `[2,m+1]` gives `ML >= 1/j`.
-* Theorem 7, VERIFIED. Under the Goddyn-Wong GCD condition `m+1` divides no speed of `[n-1]_mu`. Corollary 8: such vectors are not divisor-complete.
-* Proposition 11, VERIFIED. There is no `t` with the six shifted gap conditions for speeds `(1,2,3,4,6,9)` and phases `(0,1/2,1/2,1/2,1/2,0)`.
-* Observation 6 (level drift) HEURISTIC; Remark 3 HEURISTIC; Conjectures (T), (T') and T2 CONJECTURE.
+* Theorem 2 (barrier), VERIFIED. If `ML(v) <= delta` then the good set `G_delta` is countable, hence null; no integrable weight `F >= 0` gives a first-moment certificate `sum_i int_{B_i} F < int F` at a tight value. Corollary 3, VERIFIED: no Riesz-product certificate `U_D` fires on a tight family.
+* Propositions 5 and 6, VERIFIED. Escape lemma; a missing divisor `j` in `[2,m+1]` gives `||v_i/j|| >= 1/j`, hence `ML >= 1/j` (the Lean lemma states the weak bound `1/(m+1)`; the strict form is PROVED in one line).
+* Proposition 7, PROVED. For `m >= 2`, `Q >= 1`, `L = lcm(1,...,Q)`, `v = (1,L,2L,...,(m-1)L)`: a time `a/q` in lowest terms with positive gap has `q > Q`; `ML(v) >= 1/(m+1)` at `t = c/(L(m+1))`, `c = 1 mod (m+1)`, `L <= c <= Lm`; hence no function `Q(m)` bounds the denominators of lonely times for all vectors.
+* Theorem 9, VERIFIED. Under the Goddyn-Wong GCD condition `m+1` divides no speed of `[n-1]_mu`. Corollary 10: such vectors are not divisor-complete.
+* Proposition 13, PROVED (implications only). If `m+1` divides some `v_i` then `gap(a/(m+1)) = 0 < ML(v)` for all `a`; hence `(T')` implies `(T)`, and `(T)` implies that no tight primitive vector is divisor-complete.
+* Proposition 14 (tight corner), PROVED. If `ML(v) = a/b < 1/2` in lowest terms and `k/L` is a maximizer in lowest terms, then there are speeds `v_i`, `v_j` at `+a/b` and `-a/b` with `b | L`, `L | b gcd(v_i,v_j)`, `L | v_i + v_j`; for tight `v` (`b = m+1`), `(T')` holds at the maximizer iff `L = m+1`. Finite check: `code/obstructions/cornercheck.py`.
+* Proposition 16 (chain parity), PROVED. For odd composite `q = 2m+1 > 9` with least prime factor `p`, `q - 2p` is an isolated vertex of the doubling graph on the non-units of `[1,2m]`; all components are even iff `q` is prime or `q = 9`.
+* Proposition 18, VERIFIED. There is no `t` with the six shifted gap conditions for speeds `(1,2,3,4,6,9)` and phases `(0,1/2,1/2,1/2,1/2,0)`.
+* Observation 8 (level drift) HEURISTIC; Remark 4 HEURISTIC; Conjectures 12 `(T)`, `(T')` and 15 `(T2)` CONJECTURE.
 
 ### `paper/perturbation`
 
@@ -107,22 +128,22 @@ All HEURISTIC and CONJECTURE statements are those marked as such above and in `C
 | `paper/eight/` | `main.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
 | `lean/` | Lean sources (196 modules), `lakefile.toml`, `lean-toolchain`, `lake-manifest.json`, `README.md` (modules containing `sorry` or `axiom`) |
 | `code/reproduce.sh` | entry point regenerating the finite computations that have a program here |
-| `code/dense/` | `v1` (independent certificate checker), `g1`, `lg`, `cg`, `xc`, `pool` (searches), `fb` (fractional blocking checker), `yind` (Y-independence), `m94` (search driver), `build.sh`, `check_rows.py`, `regen_lean.sh`, `run_glp.sh` |
-| `code/obstructions/` | `repro_O4.sh`, `mlcheck.rs` (exact `ML`), `shift_grid.py` (exact rational scan of the shifted gap) |
+| `code/dense/` | `v1` (independent certificate checker), `g1`, `lg`, `cg`, `xc`, `pool` (searches), `fb` (fractional blocking checker), `yind` (Y-independence), `st89` (brute-force check of Statements 8, 9), `m94` (search driver), `build.sh`, `check_rows.py`, `regen_lean.sh`, `run_glp.sh` |
+| `code/obstructions/` | `repro_O4.sh`, `mlcheck.rs` (exact `ML`), `shift_grid.py` (exact rational scan of the shifted gap), `mlexact.py`, `gwcheck.py`, `tightscan.py`, `t2box.py`, `chainparity.py`, `cornercheck.py` (check of the tight-corner proposition), `README.md` |
 | `code/perturbation/` | 33 Rust programs and `README.md` (commands and observed outputs) |
 | `code/reduction/` | cargo projects `mdr`, `levelfit`, `fcuspec`, `gdn`, `ecalc`, `t2hunt`, `t2sweep`, `rmj`, `modchk`; `axioms/` |
 | `code/covering/` | Rust programs for the covering paper and `README.md` |
 | `code/eight/` | generator, per-prime records, checkers, scripts |
 | `code/lean_build/` | sequential single-module Lean build script |
-| `data/dense/` | certificates `certs/`, `results.tsv`, `check_rows.out`, `regen_lean.out`, `fb_check.out`, `yind_2_62.out`, `dev_logs/` (raw development logs), `m94/` |
-| `data/obstructions/` | `seeds/` and `census/` input lists, outputs of the reruns |
+| `data/dense/` | certificates `certs/`, `results.tsv`, `check_rows.out`, `regen_lean.out`, `fb_check.out`, `yind_2_62.out`, `st89_check.out`, `dev_logs/` (raw development logs), `m94/` |
+| `data/obstructions/` | `seeds/` and `census/` input lists, outputs of the reruns, `cornercheck.out`, `chainparity.out` |
 | `data/repro_logs/` | outputs of reproduction runs |
 | `MANIFEST.tsv`, `CLAIMS.tsv`, `RELEASE_CHECK.md`, `CITATION.cff`, `LICENSE.md` | file list with SHA-256, claim-to-evidence map, release check, citation metadata, license |
 
 ## Reproduction
 
 Toolchain: `rustc 1.96.0 (ac68faa20 2026-05-25)`, edition 2021; Python 3.12.8 (glue only: `code/dense/check_rows.py`, `code/dense/src/cg/lp.py`,
-`code/obstructions/shift_grid.py`, `code/eight/checks/bs_card4/falsify.py`); LaTeX: latexmk 4.88 with pdflatex (TinyTeX);
+`code/obstructions/shift_grid.py`, `code/obstructions/cornercheck.py`, `code/obstructions/chainparity.py`, `code/eight/checks/bs_card4/falsify.py`); LaTeX: latexmk 4.88 with pdflatex (TinyTeX);
 Lean `leanprover/lean4:v4.30.0`, Lake 5.0.0, Mathlib `v4.30.0` (revision `c5ea00351c28e24afc9f0f84379aa41082b1188f`). The cargo projects in
 `code/reduction` use `rayon`, `num-bigint`, `num-traits` (locked); all other Rust files use only the standard library. GLPK `glpsol`, `kissat` and HiGHS were used by the original searches only.
 
@@ -134,7 +155,9 @@ Individual steps (run from the archive root; outputs of the runs made for this s
 |---|---|---|
 | dense rows | `bash code/dense/build.sh build/dense; python3 -I code/dense/check_rows.py build/dense/v1` | 63 rows, 0 failures; composite lists and exceptions `{94,97,103,109,115,122}` |
 | fractional blocking | `build/dense/fb check lean/LRSpectrumFull/Delta2FracBlocking.lean`; `fb selftest` | 4 certificates ACCEPT (`5/1`, `15/2`, `25/2`, `145/11`); selftest failures 0 |
+| Statements 8, 9 | `build/dense/st89 control`; `st89 run M 4` for `M = 2..17` (`M = 16, 17` take 3 and 8 minutes); `st89 s0 M` | 0 undominated valid blocks, covers of `F_4` and `R_4` agree, negative control fires; singleton bad sets `{1}`, `{m+1}` only; full output `data/dense/st89_check.out` |
 | Y-independence | `build/dense/yind 2 62`; `yind control 13` | `Y_independent true` for 61 values; control finds a bad set inside `{m+1,...,2m}` |
+| tight corner, chain parity | `python3 -I code/obstructions/cornercheck.py`; `python3 -I code/obstructions/chainparity.py 20001` | 0 failures on 10,642 maximisers; control `L == b` fails on 4,264; no mismatch for odd `q <= 20001` |
 | obstruction table | `bash code/obstructions/repro_O4.sh build/obs` | ML `14/121, 11/84, 168/1697, 28/191, 30/203`; U1, U2 as in the table; levels 22, 13, 35, 38, 39 |
 | perturbation | see `code/perturbation/README.md` (`perturb_coverk 2 5 100` is not in `reproduce.sh`; about 2 hours) | e.g. `perturb_degen`: 65504 / 43849 / 62816; `perturb_cfire 2000 10`: 331291 at `k = 1`, 0 for `k = 2..10` |
 | covering | see `code/covering/README.md` | e.g. `identchk 4 90`: 11528 instances, control fires 3280 times; `tmpl63 19`: 969154513 nodes, template does not exist |
@@ -160,6 +183,7 @@ The complete tables (paper item, label, Lean declaration, module) are `paper/den
 | obstructions, barrier | `goodSet_countable`, `goodSet_null`, `integral_le_sum_badSet`, `lt_ML_of_integral_unionBound` (`RoomA4Barrier`) | VERIFIED |
 | obstructions, half shift | `halfShift_not_lonely` (`RoomFCUMss`) | VERIFIED |
 | obstructions, T statements | `tightNoDvd_of_strong` (`RoomFCU_f5`) | stated with `sorry`; CONJECTURE |
+| dense Statements 8, 9; obstructions Propositions 7, 13, 14, 16 | none | PROVED, not formalized |
 | perturbation | `exists_interval_uncovered`, `exists_lonely_time`, `lonely_of_criterion_c'`, `exists_deleted_fraction` | VERIFIED (declaration list in the paper) |
 | reduction | `universalFloor_of_four_atoms_U` (`RoomA4Compress`), `floorCruxU_iff_universalFloor` (`RoomFCUErdos`) | VERIFIED |
 | eight | `eight_runners_unconditional` (`EightRunners`) | VERIFIED modulo 27 axioms `lemma7Check_seven_p<p>_verified` (`EightCert27`) |

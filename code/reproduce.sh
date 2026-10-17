@@ -27,10 +27,15 @@ python3 -I code/dense/check_rows.py "$B/dense/v1" > "$B/out/check_rows.out"; tai
 "$B/dense/fb" selftest lean/LRSpectrumFull/Delta2FracBlocking.lean | tee "$B/out/fb_selftest.out"
 "$B/dense/yind" 2 62 > "$B/out/yind_2_62.out"; tail -2 "$B/out/yind_2_62.out"
 "$B/dense/yind" control 13 | tee "$B/out/yind_control.out"
+"$B/dense/st89" control | tee "$B/out/st89_control.out"
+for M in 2 3 4 5 6 7 8 9 10 11 12 13; do "$B/dense/st89" run $M 4; done > "$B/out/st89_run_2_13.out"; grep -c "undominated valid blocks: 0\|valid blocks not dominated by a kept block: 0" "$B/out/st89_run_2_13.out"
+for M in 2 10 40 64; do "$B/dense/st89" s0 $M; done | tee "$B/out/st89_s0.out"   # full range m <= 17 and s0 2..64: data/dense/st89_check.out
 
 say "obstructions: table, U1, U2, ML (mlcheck), shifted runner"
 bash code/obstructions/repro_O4.sh "$B/obs" > "$B/out/obstructions_O4.out"; tail -4 "$B/out/obstructions_O4.out"
 python3 -I code/obstructions/shift_grid.py | tee "$B/out/shift_grid.out"
+python3 -I code/obstructions/cornercheck.py > "$B/out/cornercheck.out"; tail -1 "$B/out/cornercheck.out"
+python3 -I code/obstructions/chainparity.py 2001 | tee "$B/out/chainparity.out"
 
 say "perturbation"
 for p in perturb_degen perturb_cfire perturb_ratio perturb_divis perturb_selfcheck perturb_thm perturb_window perturb_coverk g1_gap_criterion r1_fourier_criterion; do

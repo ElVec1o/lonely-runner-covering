@@ -1,0 +1,267 @@
+# st89 control
+ML(1,2,3,4,5) = 1/6
+ML(1,3,4,7) = 1/5
+ML(1,2,4,6) = 1/4
+m=3 edges=5 m-subsets=20 mismatches(edge-hit vs ML<1/(m+1))=0 ; control {1..m+1} transversal=true ML=1/5
+m=4 edges=7 m-subsets=70 mismatches(edge-hit vs ML<1/(m+1))=0 ; control {1..m+1} transversal=true ML=1/6
+m=5 edges=11 m-subsets=252 mismatches(edge-hit vs ML<1/(m+1))=0 ; control {1..m+1} transversal=true ML=1/7
+m=6 edges=14 m-subsets=924 mismatches(edge-hit vs ML<1/(m+1))=0 ; control {1..m+1} transversal=true ML=1/8
+m=7 edges=19 m-subsets=3432 mismatches(edge-hit vs ML<1/(m+1))=0 ; control {1..m+1} transversal=true ML=1/9
+m=8 edges=25 m-subsets=12870 mismatches(edge-hit vs ML<1/(m+1))=0 ; control {1..m+1} transversal=true ML=1/10
+# st89 run 2 4
+m=2 minimal bad sets=3 Y-contained edges=0 singleton edges at velocities [1, 3]
+pairs (T,L), |T|<=4: 4 ; valid (tau>=|L|): 3 ; of which tau>|L|: 0
+valid with T nonempty: 2  with T empty: 1
+pairs with T and L both nonempty: 1 ; valid among them: 1
+kept blocks: 2
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=2 |R|=2 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=1 |R|=1 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 3 4
+m=3 minimal bad sets=5 Y-contained edges=0 singleton edges at velocities [1, 4]
+pairs (T,L), |T|<=4: 16 ; valid (tau>=|L|): 10 ; of which tau>|L|: 0
+valid with T nonempty: 9  with T empty: 1
+pairs with T and L both nonempty: 9 ; valid among them: 6
+kept blocks: 5
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=5 |R|=4 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=4 |R|=3 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 4 4
+m=4 minimal bad sets=7 Y-contained edges=0 singleton edges at velocities [1, 5]
+pairs (T,L), |T|<=4: 64 ; valid (tau>=|L|): 30 ; of which tau>|L|: 0
+valid with T nonempty: 29  with T empty: 1
+pairs with T and L both nonempty: 49 ; valid among them: 22
+kept blocks: 10
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=10 |R|=5 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=9 |R|=4 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 5 4
+m=5 minimal bad sets=11 Y-contained edges=0 singleton edges at velocities [1, 6]
+pairs (T,L), |T|<=4: 256 ; valid (tau>=|L|): 112 ; of which tau>|L|: 0
+valid with T nonempty: 111  with T empty: 1
+pairs with T and L both nonempty: 225 ; valid among them: 96
+kept blocks: 23
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=23 |R|=9 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=22 |R|=8 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 6 4
+m=6 minimal bad sets=14 Y-contained edges=0 singleton edges at velocities [1, 7]
+pairs (T,L), |T|<=4: 992 ; valid (tau>=|L|): 340 ; of which tau>|L|: 0
+valid with T nonempty: 339  with T empty: 1
+pairs with T and L both nonempty: 930 ; valid among them: 309
+kept blocks: 64
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=64 |R|=12 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=63 |R|=11 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 7 4
+m=7 minimal bad sets=19 Y-contained edges=0 singleton edges at velocities [1, 8]
+pairs (T,L), |T|<=4: 3648 ; valid (tau>=|L|): 797 ; of which tau>|L|: 0
+valid with T nonempty: 796  with T empty: 1
+pairs with T and L both nonempty: 3528 ; valid among them: 740
+kept blocks: 114
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=114 |R|=20 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+variant 1 (T=empty excluded): |F|=113 |R|=19 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+# st89 run 8 4
+m=8 minimal bad sets=25 Y-contained edges=0 singleton edges at velocities [1, 9]
+pairs (T,L), |T|<=4: 12672 ; valid (tau>=|L|): 2236 ; of which tau>|L|: 0
+valid with T nonempty: 2235  with T empty: 1
+pairs with T and L both nonempty: 12446 ; valid among them: 2137
+kept blocks: 331
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 2 (must be >=1)
+variant 0 (T=empty allowed): |F|=331 |R|=36 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=330 |R|=35 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 9 4
+m=9 minimal bad sets=34 Y-contained edges=0 singleton edges at velocities [1, 10]
+pairs (T,L), |T|<=4: 41728 ; valid (tau>=|L|): 4695 ; of which tau>|L|: 0
+valid with T nonempty: 4694  with T empty: 1
+pairs with T and L both nonempty: 41310 ; valid among them: 4532
+kept blocks: 813
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=813 |R|=83 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=812 |R|=82 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 10 4
+m=10 minimal bad sets=38 Y-contained edges=0 singleton edges at velocities [1, 11]
+pairs (T,L), |T|<=4: 131072 ; valid (tau>=|L|): 6098 ; of which tau>|L|: 0
+valid with T nonempty: 6097  with T empty: 1
+pairs with T and L both nonempty: 130305 ; valid among them: 5842
+kept blocks: 848
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 4 (must be >=1)
+variant 0 (T=empty allowed): |F|=848 |R|=91 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+variant 1 (T=empty excluded): |F|=847 |R|=90 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+# st89 run 11 4
+m=11 minimal bad sets=52 Y-contained edges=0 singleton edges at velocities [1, 12]
+pairs (T,L), |T|<=4: 395264 ; valid (tau>=|L|): 14556 ; of which tau>|L|: 0
+valid with T nonempty: 14555  with T empty: 1
+pairs with T and L both nonempty: 393855 ; valid among them: 14170
+kept blocks: 2635
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 2 (must be >=1)
+variant 0 (T=empty allowed): |F|=2635 |R|=252 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=2634 |R|=251 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 12 4
+m=12 minimal bad sets=55 Y-contained edges=0 singleton edges at velocities [1, 13]
+pairs (T,L), |T|<=4: 1150976 ; valid (tau>=|L|): 20328 ; of which tau>|L|: 0
+valid with T nonempty: 20327  with T empty: 1
+pairs with T and L both nonempty: 1148367 ; valid among them: 19766
+kept blocks: 3752
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=3752 |R|=269 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+variant 1 (T=empty excluded): |F|=3751 |R|=268 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+# st89 run 13 4
+m=13 minimal bad sets=68 Y-contained edges=0 singleton edges at velocities [1, 14]
+pairs (T,L), |T|<=4: 3252224 ; valid (tau>=|L|): 25900 ; of which tau>|L|: 0
+valid with T nonempty: 25899  with T empty: 1
+pairs with T and L both nonempty: 3247335 ; valid among them: 25106
+kept blocks: 4478
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 2 (must be >=1)
+variant 0 (T=empty allowed): |F|=4478 |R|=322 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+variant 1 (T=empty excluded): |F|=4477 |R|=321 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+# st89 run 14 4
+m=14 minimal bad sets=79 Y-contained edges=0 singleton edges at velocities [1, 15]
+pairs (T,L), |T|<=4: 8953856 ; valid (tau>=|L|): 47538 ; of which tau>|L|: 0
+valid with T nonempty: 47537  with T empty: 1
+pairs with T and L both nonempty: 8944572 ; valid among them: 46445
+kept blocks: 9586
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=9586 |R|=508 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=9585 |R|=507 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 15 4
+m=15 minimal bad sets=91 Y-contained edges=0 singleton edges at velocities [1, 16]
+pairs (T,L), |T|<=4: 24100864 ; valid (tau>=|L|): 83633 ; of which tau>|L|: 0
+valid with T nonempty: 83632  with T empty: 1
+pairs with T and L both nonempty: 24083010 ; valid among them: 82162
+kept blocks: 17571
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 2 (must be >=1)
+variant 0 (T=empty allowed): |F|=17571 |R|=838 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+variant 1 (T=empty excluded): |F|=17570 |R|=837 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=true
+# st89 run 16 4
+m=16 minimal bad sets=100 Y-contained edges=0 singleton edges at velocities [1, 17]
+pairs (T,L), |T|<=4: 63602688 ; valid (tau>=|L|): 72353 ; of which tau>|L|: 0
+valid with T nonempty: 72352  with T empty: 1
+pairs with T and L both nonempty: 63567980 ; valid among them: 70412
+kept blocks: 13667
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 2 (must be >=1)
+variant 0 (T=empty allowed): |F|=13667 |R|=847 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+variant 1 (T=empty excluded): |F|=13666 |R|=846 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+# st89 run 17 4
+m=17 minimal bad sets=124 Y-contained edges=0 singleton edges at velocities [1, 18]
+pairs (T,L), |T|<=4: 164954112 ; valid (tau>=|L|): 89668 ; of which tau>|L|: 0
+valid with T nonempty: 89667  with T empty: 1
+pairs with T and L both nonempty: 164886060 ; valid among them: 87151
+kept blocks: 17370
+Statement 8: valid blocks not dominated by a kept block: 0
+control (one kept block deleted): undominated valid blocks = 1 (must be >=1)
+variant 0 (T=empty allowed): |F|=17370 |R|=1151 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+variant 1 (T=empty excluded): |F|=17369 |R|=1150 cover(F)=true cover(R)=true local-lemma failures=0
+   control (drop blocks with |T|>=2): cover=false
+# st89 s0 m=2..64
+m=2 velocities x in [1,2m] with a singleton bad set {x}: [1, 3]
+m=3 velocities x in [1,2m] with a singleton bad set {x}: [1, 4]
+m=4 velocities x in [1,2m] with a singleton bad set {x}: [1, 5]
+m=5 velocities x in [1,2m] with a singleton bad set {x}: [1, 6]
+m=6 velocities x in [1,2m] with a singleton bad set {x}: [1, 7]
+m=7 velocities x in [1,2m] with a singleton bad set {x}: [1, 8]
+m=8 velocities x in [1,2m] with a singleton bad set {x}: [1, 9]
+m=9 velocities x in [1,2m] with a singleton bad set {x}: [1, 10]
+m=10 velocities x in [1,2m] with a singleton bad set {x}: [1, 11]
+m=11 velocities x in [1,2m] with a singleton bad set {x}: [1, 12]
+m=12 velocities x in [1,2m] with a singleton bad set {x}: [1, 13]
+m=13 velocities x in [1,2m] with a singleton bad set {x}: [1, 14]
+m=14 velocities x in [1,2m] with a singleton bad set {x}: [1, 15]
+m=15 velocities x in [1,2m] with a singleton bad set {x}: [1, 16]
+m=16 velocities x in [1,2m] with a singleton bad set {x}: [1, 17]
+m=17 velocities x in [1,2m] with a singleton bad set {x}: [1, 18]
+m=18 velocities x in [1,2m] with a singleton bad set {x}: [1, 19]
+m=19 velocities x in [1,2m] with a singleton bad set {x}: [1, 20]
+m=20 velocities x in [1,2m] with a singleton bad set {x}: [1, 21]
+m=21 velocities x in [1,2m] with a singleton bad set {x}: [1, 22]
+m=22 velocities x in [1,2m] with a singleton bad set {x}: [1, 23]
+m=23 velocities x in [1,2m] with a singleton bad set {x}: [1, 24]
+m=24 velocities x in [1,2m] with a singleton bad set {x}: [1, 25]
+m=25 velocities x in [1,2m] with a singleton bad set {x}: [1, 26]
+m=26 velocities x in [1,2m] with a singleton bad set {x}: [1, 27]
+m=27 velocities x in [1,2m] with a singleton bad set {x}: [1, 28]
+m=28 velocities x in [1,2m] with a singleton bad set {x}: [1, 29]
+m=29 velocities x in [1,2m] with a singleton bad set {x}: [1, 30]
+m=30 velocities x in [1,2m] with a singleton bad set {x}: [1, 31]
+m=31 velocities x in [1,2m] with a singleton bad set {x}: [1, 32]
+m=32 velocities x in [1,2m] with a singleton bad set {x}: [1, 33]
+m=33 velocities x in [1,2m] with a singleton bad set {x}: [1, 34]
+m=34 velocities x in [1,2m] with a singleton bad set {x}: [1, 35]
+m=35 velocities x in [1,2m] with a singleton bad set {x}: [1, 36]
+m=36 velocities x in [1,2m] with a singleton bad set {x}: [1, 37]
+m=37 velocities x in [1,2m] with a singleton bad set {x}: [1, 38]
+m=38 velocities x in [1,2m] with a singleton bad set {x}: [1, 39]
+m=39 velocities x in [1,2m] with a singleton bad set {x}: [1, 40]
+m=40 velocities x in [1,2m] with a singleton bad set {x}: [1, 41]
+m=41 velocities x in [1,2m] with a singleton bad set {x}: [1, 42]
+m=42 velocities x in [1,2m] with a singleton bad set {x}: [1, 43]
+m=43 velocities x in [1,2m] with a singleton bad set {x}: [1, 44]
+m=44 velocities x in [1,2m] with a singleton bad set {x}: [1, 45]
+m=45 velocities x in [1,2m] with a singleton bad set {x}: [1, 46]
+m=46 velocities x in [1,2m] with a singleton bad set {x}: [1, 47]
+m=47 velocities x in [1,2m] with a singleton bad set {x}: [1, 48]
+m=48 velocities x in [1,2m] with a singleton bad set {x}: [1, 49]
+m=49 velocities x in [1,2m] with a singleton bad set {x}: [1, 50]
+m=50 velocities x in [1,2m] with a singleton bad set {x}: [1, 51]
+m=51 velocities x in [1,2m] with a singleton bad set {x}: [1, 52]
+m=52 velocities x in [1,2m] with a singleton bad set {x}: [1, 53]
+m=53 velocities x in [1,2m] with a singleton bad set {x}: [1, 54]
+m=54 velocities x in [1,2m] with a singleton bad set {x}: [1, 55]
+m=55 velocities x in [1,2m] with a singleton bad set {x}: [1, 56]
+m=56 velocities x in [1,2m] with a singleton bad set {x}: [1, 57]
+m=57 velocities x in [1,2m] with a singleton bad set {x}: [1, 58]
+m=58 velocities x in [1,2m] with a singleton bad set {x}: [1, 59]
+m=59 velocities x in [1,2m] with a singleton bad set {x}: [1, 60]
+m=60 velocities x in [1,2m] with a singleton bad set {x}: [1, 61]
+m=61 velocities x in [1,2m] with a singleton bad set {x}: [1, 62]
+m=62 velocities x in [1,2m] with a singleton bad set {x}: [1, 63]
+m=63 velocities x in [1,2m] with a singleton bad set {x}: [1, 64]
+m=64 velocities x in [1,2m] with a singleton bad set {x}: [1, 65]
+# done

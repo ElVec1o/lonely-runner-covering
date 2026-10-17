@@ -1,0 +1,12 @@
+control ML(1, 2, 3, 4, 5) = 1/6, maximisers ['1/6', '5/6']
+control ML(1, 3, 4, 7) = 1/5, maximisers ['1/5', '2/5', '3/5', '4/5']
+control ML(1, 2, 4, 6) = 1/4, maximisers ['3/8', '5/8']
+control ML(1, 2, 3) = 1/4, maximisers ['1/4', '3/4']
+worked example (1, 2, 4, 6) ML 1/4 maximisers ['3/8', '5/8']
+   t=3/8 L=8 b=4 d=2 lemma=True
+   t=5/8 L=8 b=4 d=2 lemma=True
+box m=2 H<=30 done {'vectors': 465, 'half': 170, 'maximisers': 1226, 'fails': 0, 'd_gt1': 664, 'broken': 664, 'tight': 15, 'tight_d_gt1': 220, 'tight_div': 0}
+box m=3 H<=20 done {'vectors': 2005, 'half': 437, 'maximisers': 4896, 'fails': 0, 'd_gt1': 2336, 'broken': 2336, 'tight': 21, 'tight_d_gt1': 256, 'tight_div': 0}
+box m=4 H<=12 done {'vectors': 3370, 'half': 584, 'maximisers': 7932, 'fails': 0, 'd_gt1': 3492, 'broken': 3492, 'tight': 25, 'tight_d_gt1': 268, 'tight_div': 0}
+box m=5 H<=9 done {'vectors': 4657, 'half': 718, 'maximisers': 10642, 'fails': 0, 'd_gt1': 4264, 'broken': 4264, 'tight': 27, 'tight_d_gt1': 268, 'tight_div': 0}
+FINAL {'vectors': 4657, 'half': 718, 'maximisers': 10642, 'fails': 0, 'd_gt1': 4264, 'broken': 4264, 'tight': 27, 'tight_d_gt1': 268, 'tight_div': 0}

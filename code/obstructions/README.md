@@ -23,3 +23,6 @@ of this snapshot (120 s per `m`, seed 1) and the recorded development run (480 s
 
 Correction of 2026-10-18: the function `ml` of `mdr` skipped numerators not coprime to the denominator (see `code/reduction/README.md`); the corrected source is archived,
 and `mlcheck` agrees with it on all quoted values.
+
+Added in 1.0.1: `python3 -I cornercheck.py` (exact check of the tight-corner proposition on boxes `m = 2..5`, output `data/obstructions/cornercheck.out`) and
+`python3 -I chainparity.py 20001` (output `data/obstructions/chainparity.out`).

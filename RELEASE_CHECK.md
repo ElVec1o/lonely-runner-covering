@@ -95,6 +95,7 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `code/dense/src/pool/solve.py` | dense-window tool or script (dense-window,lrc_covering) |
 | `code/dense/src/pool/tocnf.rs` | dense-window tool or script (dense-window,lrc_covering) |
 | `code/dense/src/pool/xc_zero_rc.rs` | dense-window tool or script (dense-window,lrc_covering) |
+| `code/dense/src/st89/main.rs` | dense-window tool or script (dense-window) |
 | `code/dense/src/v1/main.rs` | dense-window tool or script (dense-window,lrc_covering) |
 | `code/dense/src/xc/blocks.rs` | dense-window tool or script (dense-window,lrc_covering) |
 | `code/dense/src/xc/common.rs` | dense-window tool or script (dense-window,lrc_covering) |
@@ -195,6 +196,7 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `code/eight/stage/status.sh` | eight-runner tool, script or checker (eight) |
 | `code/lean_build/gbound_build.sh` | sequential Lean build script (all papers with Lean content) |
 | `code/obstructions/README.md` | obstruction reproduction (obstructions) |
+| `code/obstructions/cornercheck.py` | obstructions tool or script (obstructions) |
 | `code/obstructions/mlcheck.rs` | obstruction reproduction (obstructions) |
 | `code/obstructions/repro_O4.sh` | obstruction reproduction (obstructions) |
 | `code/obstructions/shift_grid.py` | obstruction reproduction (obstructions) |
@@ -390,6 +392,7 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `data/dense/m94/rounds.tsv` | m=94 search log (UNDECIDED) (dense-window) |
 | `data/dense/regen_lean.out` | dense-window result record (dense-window) |
 | `data/dense/results.tsv` | dense-window result record (dense-window) |
+| `data/dense/st89_check.out` | dense-window data (dense-window) |
 | `data/dense/yind_2_62.out` | dense-window result record (dense-window) |
 | `data/dense/yind_control.out` | dense-window result record (dense-window) |
 | `data/obstructions/census/adversarial_147.txt` | census or adversarial family list (obstructions) |
@@ -400,6 +403,8 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `data/obstructions/cert_resid_m12_h22.out` | output of a rerun (obstructions) |
 | `data/obstructions/cert_resid_m12_h26_gt24.out` | output of a rerun (obstructions) |
 | `data/obstructions/cert_resid_m14_h22.out` | output of a rerun (obstructions) |
+| `data/obstructions/chainparity.out` | obstructions data (obstructions) |
+| `data/obstructions/cornercheck.out` | obstructions data (obstructions) |
 | `data/obstructions/enumw_m10_h30.out` | output of a rerun (obstructions) |
 | `data/obstructions/enumw_m12_h26.out` | output of a rerun (obstructions) |
 | `data/obstructions/enumw_m14_h24.out` | output of a rerun (obstructions) |
@@ -723,3 +728,20 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 * 687 files in the tree (`MANIFEST.tsv` hashes all except itself). Pattern scan for `/Users/`, the author's work address, `Claude`, `Anthropic`, `ChatGPT`, `HANDOFF`, token and key patterns, `Co-Authored`, `Generated with`: 0 hits outside this file.
 * No `.DS_Store`, no LaTeX build files, no file above 5 MB.
 * Commit author for the publication commit: ElVec1o <vicobonfioli@gmail.com>.
+
+
+## Scan for version 1.0.1 (draft, 18 October 2026)
+
+* 692 files in the tree (`MANIFEST.tsv` hashes all except itself and this file: 690 rows). Added: `code/dense/src/st89/main.rs`, `code/obstructions/cornercheck.py`, `data/dense/st89_check.out`, `data/obstructions/cornercheck.out`, `data/obstructions/chainparity.out`. Changed: `README.md`, `CLAIMS.tsv`, `MANIFEST.tsv`, this file, `code/reproduce.sh`, `code/dense/build.sh`, `code/dense/README.md`, `code/obstructions/README.md`, `paper/dense-window/{main.tex,main.pdf,LEAN_MAP.md}`, `paper/obstructions/{main.tex,main.pdf,LEAN_MAP.md}`. No Lean file changed.
+* Pattern scan (`grep -rIil`, this file excluded) for `/Users/`, `Claude`, `Anthropic`, `ChatGPT`, `GPT`, `HANDOFF`, `RESEARCH_LOG`, `api_key`, `token`, `secret`, `password`, `Co-Authored`, `Generated with`, `anvilstack`, `sk-` keys, `ghp_`, `AKIA` keys: 0 hits. `TODO`: 5 (Rust variables, unchanged); `private/`: 29 (unchanged, hash-bearing, see section 2).
+* The two rebuilt manuscripts compile with latexmk without undefined references or citations; build files deleted afterwards (`paper/obstructions/main.bbl` is kept, as in 1.0.0).
+* No `.DS_Store`, no LaTeX build files, no file above 5 MB. Sync coupling table walked for every changed statement: README results and formalization sections, `CLAIMS.tsv`, both `LEAN_MAP.md`, file map and reproduction rows updated.
+* Not done: no Lean build; (the fresh-session review of the new PROVED statements was done afterwards, see the next section); Zenodo DOI lines of 1.0.0 kept in `README.md` and `CITATION.cff`; `CITATION.cff` and `.zenodo.json` still say version 1.0.0 and must be updated at release.
+* Identity: the last commit is by ElVec1o <vicobonfioli@gmail.com>; the repository's local `git config` says `elvec1o <elvec1o@users.noreply.github.com>`, which must be set to the Rule 11 identity before the next commit.
+
+## Scan after the review fixes (18 October 2026)
+
+* Fixes D1, D2, D3, N1, N2 and the Proposition 14 wording items K1 to K3 of `REVIEW_V101` applied to `paper/dense-window/main.tex` and `paper/obstructions/main.tex`; `CLAIMS.tsv` (rows 23, 24, 33, 39, 40, 133), `README.md` (Propositions 5, 6 and 7) and `paper/obstructions/LEAN_MAP.md` (missing divisor, Proposition 7) updated. No mathematical claim changed; the label of the missing-divisor bound is split into the weak form (VERIFIED, carried over, as stated in the Lean signature) and the strict form (PROVED, one line). No Lean file changed, no Lean build run.
+* Both manuscripts compile with latexmk, no undefined references or citations; build files (`aux`, `log`, `out`, `fls`, `fdb_latexmk`, `blg`, `toc`) deleted afterwards; `paper/obstructions/main.bbl` kept, no `main.bbl` in `paper/dense-window`.
+* Pattern scan (`grep -rIil`, `.git`, `MANIFEST.tsv` and this file excluded) for `/Users/`, `anvilstack`, `Claude`, `Anthropic`, `ChatGPT`, `HANDOFF`, `Co-Authored`, `Generated with`, `ghp_`, `gho_`, `github_pat`: 0 hits for every pattern.
+* 692 files in the tree; `MANIFEST.tsv` hashes all except itself (691 rows), each file once, regenerated after the last edit of this file.
