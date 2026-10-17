@@ -12,8 +12,11 @@ authors:
     given-names: Vico
     email: vicobonfioli@gmail.com
 license: CC-BY-4.0
-doi: 10.5281/zenodo.23435305
+doi: 10.5281/zenodo.23436538
 identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23436538
+    description: Version 1.0.1
   - type: doi
     value: 10.5281/zenodo.23435305
     description: Version 1.0.0
