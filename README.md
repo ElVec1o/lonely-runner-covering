@@ -1,5 +1,6 @@
 # Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners
 
+Archived at Zenodo: version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
 Author: Vico Bonfioli (vicobonfioli@gmail.com). License: CC-BY-4.0 (`LICENSE.md`). Snapshot of 18 October 2026, matching the
 `\date` line of the manuscripts. The manuscripts are preprints and have not been peer reviewed.
 
