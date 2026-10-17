@@ -1,0 +1,1 @@
+m=19 q0= 39 | ground=36 need 6 blocks | (6,3)-blocks found=4440 | nodes=969154513 | TEMPLATE: DOES NOT EXIST (search exhausted)

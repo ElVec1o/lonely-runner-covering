@@ -1,0 +1,15 @@
+m=2 s=1 Lemma10: 4082925 multisets fail=0 | NC(only ii.1) fail=539392
+m=2 s=3 Lemma10: 4082925 multisets fail=0 | NC(only ii.1) fail=539392
+m=2 Lemma11: 970200 (multiset,t) fail=0 | NC(+t only) fail=117600
+m=2 win9_i: 29400 fail=0 (NC width M-1 fail=25284); win9_ii: 14406 fail=0
+m=2 trick3: 19882681 configs fail=0 | NC(mu'=1 only) fail=576240
+m=2 L7(ii)-ext (z incl 0): 790272 (pair,X) fail=0 | NC(X∩(X+1) nonempty) unreachable=263424
+m=2 6.1: 2869685 fail=0 | NC(Lambda0 only) fail=504210
+m=2 6.2: 26531050 fail=0 | NC(Lambda0 only) fail=4067294
+m=2 6.4: 25510625 fail=0 | NC(Lambda0 only) fail=3663926
+m=3 s=1 Lemma10: 13412190 multisets fail=0 | NC(only ii.1) fail=1855958
+m=3 s=3 Lemma10: 13412190 multisets fail=0 | NC(only ii.1) fail=1855958
+m=3 Lemma11: 862956 (multiset,t) fail=0 | NC(+t only) fail=107106
+m=3 win9_i: 176472 fail=0 (NC width M-1 fail=24264); win9_ii: 88200 fail=0
+m=3 trick3: 90770148 configs fail=0 | NC(mu'=1 only) fail=2532222
+m=3 L7(ii)-ext (z incl 0): 1382976 (pair,X) fail=0 | NC(X∩(X+1) nonempty) unreachable=460992

@@ -1,0 +1,5 @@
+DECIDED: tested 8122425444 | counterexamples 0
+RESULT: every 13-element velocity set in [1,39] is lonely (threshold 1/14).
+real 149.30
+user 69.07
+sys 0.21

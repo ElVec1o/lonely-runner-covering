@@ -1,0 +1,29 @@
+m= 4 q0=  9 | minimal pairs=  5 | MUL=2 CMP(q=q0)=1 CMP(q>q0)=1 DBL=1 OTH=0
+m= 5 q0= 11 | minimal pairs=  7 | MUL=2 CMP(q=q0)=3 CMP(q>q0)=1 DBL=1 OTH=0
+m= 6 q0= 13 | minimal pairs= 11 | MUL=2 CMP(q=q0)=4 CMP(q>q0)=2 DBL=3 OTH=0
+m= 7 q0= 15 | minimal pairs= 10 | MUL=3 CMP(q=q0)=2 CMP(q>q0)=3 DBL=2 OTH=0
+m= 8 q0= 17 | minimal pairs= 15 | MUL=3 CMP(q=q0)=6 CMP(q>q0)=2 DBL=4 OTH=0
+m= 9 q0= 19 | minimal pairs= 16 | MUL=3 CMP(q=q0)=7 CMP(q>q0)=3 DBL=3 OTH=0
+m=10 q0= 21 | minimal pairs= 16 | MUL=4 CMP(q=q0)=4 CMP(q>q0)=4 DBL=4 OTH=0
+m=11 q0= 23 | minimal pairs= 20 | MUL=4 CMP(q=q0)=9 CMP(q>q0)=3 DBL=4 OTH=0
+m=12 q0= 25 | minimal pairs= 23 | MUL=4 CMP(q=q0)=8 CMP(q>q0)=5 DBL=6 OTH=0
+m=13 q0= 27 | minimal pairs= 22 | MUL=5 CMP(q=q0)=7 CMP(q>q0)=5 DBL=5 OTH=0
+m=14 q0= 29 | minimal pairs= 27 | MUL=5 CMP(q=q0)=12 CMP(q>q0)=3 DBL=7 OTH=0
+m=15 q0= 31 | minimal pairs= 31 | MUL=5 CMP(q=q0)=13 CMP(q>q0)=7 DBL=6 OTH=0
+m=16 q0= 33 | minimal pairs= 28 | MUL=6 CMP(q=q0)=8 CMP(q>q0)=7 DBL=7 OTH=0
+m=17 q0= 35 | minimal pairs= 28 | MUL=6 CMP(q=q0)=10 CMP(q>q0)=5 DBL=7 OTH=0
+m=18 q0= 37 | minimal pairs= 39 | MUL=6 CMP(q=q0)=16 CMP(q>q0)=8 DBL=9 OTH=0
+m=19 q0= 39 | minimal pairs= 32 | MUL=7 CMP(q=q0)=10 CMP(q>q0)=7 DBL=8 OTH=0
+m=20 q0= 41 | minimal pairs= 40 | MUL=7 CMP(q=q0)=18 CMP(q>q0)=5 DBL=10 OTH=0
+m=21 q0= 43 | minimal pairs= 44 | MUL=7 CMP(q=q0)=19 CMP(q>q0)=9 DBL=9 OTH=0
+m=22 q0= 45 | minimal pairs= 38 | MUL=8 CMP(q=q0)=10 CMP(q>q0)=10 DBL=10 OTH=0
+m=23 q0= 47 | minimal pairs= 46 | MUL=8 CMP(q=q0)=21 CMP(q>q0)=7 DBL=10 OTH=0
+m=24 q0= 49 | minimal pairs= 48 | MUL=8 CMP(q=q0)=19 CMP(q>q0)=9 DBL=12 OTH=0
+m=25 q0= 51 | minimal pairs= 45 | MUL=9 CMP(q=q0)=14 CMP(q>q0)=11 DBL=11 OTH=0
+m=26 q0= 53 | minimal pairs= 54 | MUL=9 CMP(q=q0)=24 CMP(q>q0)=8 DBL=13 OTH=0
+m=27 q0= 55 | minimal pairs= 50 | MUL=9 CMP(q=q0)=18 CMP(q>q0)=11 DBL=12 OTH=0
+m=28 q0= 57 | minimal pairs= 52 | MUL=10 CMP(q=q0)=16 CMP(q>q0)=13 DBL=13 OTH=0
+m=29 q0= 59 | minimal pairs= 57 | MUL=10 CMP(q=q0)=27 CMP(q>q0)=7 DBL=13 OTH=0
+m=30 q0= 61 | minimal pairs= 67 | MUL=10 CMP(q=q0)=28 CMP(q>q0)=14 DBL=15 OTH=0
+m=31 q0= 63 | minimal pairs= 56 | MUL=11 CMP(q=q0)=16 CMP(q>q0)=15 DBL=14 OTH=0
+m=32 q0= 65 | minimal pairs= 58 | MUL=11 CMP(q=q0)=22 CMP(q>q0)=9 DBL=16 OTH=0

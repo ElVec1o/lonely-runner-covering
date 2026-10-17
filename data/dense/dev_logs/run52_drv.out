@@ -1,0 +1,24 @@
+Thu Oct  1 05:36:30 +07 2026 pool m=52 S=8
+edge-unions: 55337314 saturated=true
+parts incl. extensions: 99799108
+Thu Oct  1 06:05:45 +07 2026 dumpkept
+Thu Oct  1 06:07:39 +07 2026 mip
+Thu Oct  1 06:07:39 +07 2026 done m=52
+     1868.24 real      1839.56 user        23.19 sys
+         12297666560  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+            17947023  page reclaims
+                  47  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                2085  voluntary context switches
+              271872  involuntary context switches
+            28045561  instructions retired
+            16023943  cycles elapsed
+             1376688  peak memory footprint

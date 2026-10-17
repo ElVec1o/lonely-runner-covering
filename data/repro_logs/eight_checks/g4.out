@@ -1,0 +1,8 @@
+NC drop [5, 0, 0]: 96 failures
+NC drop [4, 1, 0]: 480 failures
+NC drop [4, 0, 1]: 480 failures
+NC drop [3, 2, 0]: 960 failures
+NC drop [3, 0, 2]: 960 failures
+NC drop [3, 1, 1]: 1920 failures
+NC drop [2, 2, 1]: 2880 failures
+FULL: 7776 tuples, 0 failures

@@ -1,0 +1,4 @@
+  m     q  type    |  V    E   nu  def | KE? | check
+570  1141  compos.  | 1138 1243  532   74 | *NO* | -   [1/1 elapsed 5s eta -0s]
+
+Koenig-Egervary FAILS at: [570]

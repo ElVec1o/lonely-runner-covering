@@ -1,0 +1,2 @@
+NC drop [2, 2, 1]: 2880 failures
+FULL: 7776 tuples, 0 failures

@@ -1,0 +1,3 @@
+m in 2..300   small bad sets tested : 5882334
+  NOT in a predicted family : 0
+  => every small bad set is predicted; the Lean check is worth writing

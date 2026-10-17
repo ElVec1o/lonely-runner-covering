@@ -1,0 +1,348 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\ML}{\mathrm{ML}}
+\newcommand{\gap}{\mathrm{gap}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\lab}[1]{\par\smallskip\noindent\textit{Label: #1.}}
+\title{Barriers for measure, residue, corner and pairing methods in the lonely runner conjecture}
+\author{Vico Bonfioli}
+\date{18 October 2026. Preprint, not peer reviewed.}
+\sloppy\emergencystretch=4em
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study which standard methods cannot prove the lonely runner inequality $\ML(v)\ge 1/(m+1)$ for positive integer speed vectors, and why. (i) At the target level, no integrable weight certifies a vector with $\ML(v)\le1/(m+1)$, so first-moment and Riesz-product certificates are blind to tight vectors; this is a formalized restatement of a lemma of Bedert. (ii) Five explicit families with $12$ to $18$ speeds defeat bounded-level base-point certificates of the kinds tested, and without a leave-one-out hypothesis no bound on denominators of lonely times depending only on $m$ exists. (iii) For tight vectors of Goddyn--Wong type, $m+1$ divides no speed; a conjecture (T) extends this to all tight vectors. (iv) The doubling graph on the non-units modulo $2m+1$ has an odd chain whenever $2m+1$ is composite and exceeds $9$. (v) Covering-radius bounds at the target value are false. Each statement carries a label; attributions to prior work are listed in Section~\ref{sec:attr}. No progress on the conjecture is claimed.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+\subsection{Setting}
+A speed vector is $v=(v_1,\dots,v_m)\in\Z_{>0}^m$; there are $m+1$ runners, one of them stationary. Write $\norm{x}=\operatorname{dist}(x,\Z)$, $\gap_v(t)=\min_i\norm{v_it}$ and $\ML(v)=\max_{t\in\R}\gap_v(t)$ (a maximum, since $\gap_v$ is continuous and $1$-periodic). The lonely runner conjecture (LRC) states $\ML(v)\ge1/(m+1)$ for all $v$. A vector is \emph{tight} if $\ML(v)=1/(m+1)$; $(1,\dots,m)$ is tight. The bad set of speed $i$ at level $\delta$ is $B_i=\{t:\norm{v_it}<\delta\}$ and the good set is $G_\delta=\{t:\forall i,\ \norm{v_it}\ge\delta\}$. A vector is \emph{divisor-complete} (DC) if every $j\in\{2,\dots,m+1\}$ divides some $v_i$. Throughout, $m$ is the number of speeds; the literature cited uses $n$ for $m$ or for $m+1$, and each citation below is translated.
+
+The inequality is known for $m\le 12$ (Rosenfeld for eight runners \cite{Rosenfeld25}; Trakulthongchai for nine and ten \cite{Trak26}, refereed; Sungkawichai and Trakulthongchai up to thirteen runners \cite{ST26}, unrefereed; Allikvere claims fourteen and fifteen runners \cite{Allik26}, unrefereed, computer-assisted). The generic bounds are $1/(2m)$ by a union bound (\cite[Prop.~1.1]{Tao18}, \cite[Section~5]{PS25}) and $1/(2m)+m^{-5/3-o(1)}$ \cite[Thm.~1.3]{Bedert25}.
+
+The reduction studied in the accompanying archive reduces the conjecture for all $m$, given three finite statements, to the statement \texttt{FloorCruxU}: \emph{if the floor holds for all smaller numbers of speeds, then for $m\ge12$ every primitive $v$ such that every leave-one-out subvector is primitive, $v$ is DC, $v$ admits a relation $\sum c_iv_i=0$ with $c\in\{-1,0,1\}^m\setminus\{0\}$, and no Riesz-product certificate (Section~\ref{sec:measure}) fires, satisfies $\ML(v)\ge1/(m+1)$} (Lean: \texttt{FloorCruxU}, \texttt{universalFloor\_of\_four\_atoms\_U}). This statement is open. The methods below are those that were aimed at it.
+
+\subsection{Labels and provenance}
+VERIFIED: formalized in Lean 4 with Mathlib, zero \texttt{sorry}, axioms among \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}, in the repository making the claim. All VERIFIED statements in this note are \emph{carried over from the repository where they built; not rebuilt in this archive}: the build artefacts of the modules concerned are present there with timestamps matching their sources and contain no \texttt{sorry} (the modules holding the open statements (T), (T$'$), (T2) do contain \texttt{sorry}); the axiom prints of 1 October 2026 are recorded in \texttt{LEAN\_MAP.md} and were not re-run. PROVED: complete written proof, reviewed adversarially, with conceptual abstract and zoom map, not formalized. HEURISTIC: computation or plausibility only; searches state their ground and termination status (RESOLVED if completed, UNRESOLVED if capped). CONJECTURE: no proof. FALSE: counterexample in hand. The strength of a result is the weakest label in its dependency chain.
+
+\subsection{Results}\label{sec:results}
+\begin{center}\footnotesize
+\begin{tabular}{@{}llp{7.0cm}p{2.2cm}@{}}
+\toprule
+Item & Section & Statement & Label\\
+\midrule
+Thm~\ref{thm:barrier} & \ref{sec:measure} & If $\ML(v)\le\delta$ the good set is countable; no integrable weight can satisfy the certificate inequality at a tight vector & VERIFIED, carried over\\
+Cor~\ref{cor:tight} & \ref{sec:measure} & No Riesz-product certificate fires on tight vectors & VERIFIED, carried over\\
+Rem~\ref{rem:scope} & \ref{sec:measure} & Scope: what the barrier does not cover & HEURISTIC\\
+Prop~\ref{prop:escape}, \ref{prop:dc} & \ref{sec:residue} & Escape lemma; missing divisor gives a lonely time & VERIFIED, carried over\\
+Prop~\ref{prop:growth} & \ref{sec:residue} & Without leave-one-out primitivity no bound $Q(m)$ on denominators of lonely times & PROVED\\
+Obs~\ref{obs:O4} & \ref{sec:residue} & Five families defeat bounded-level certificates & HEURISTIC (exact, finite)\\
+Thm~\ref{thm:O6}, Cor~\ref{cor:GWDC} & \ref{sec:corner} & Goddyn--Wong type vectors: $m+1$ divides no speed & VERIFIED, carried over\\
+Prop~\ref{prop:T} & \ref{sec:corner} & (T$'$) $\Rightarrow$ (T) $\Rightarrow$ no tight DC vector & PROVED\\
+Conj~\ref{conj:T}, \ref{conj:T2} & \ref{sec:corner} & (T), (T$'$), (T2) & CONJECTURE\\
+Prop~\ref{prop:chain} & \ref{sec:doubling} & Odd doubling chain on non-units for composite $2m+1>9$ & PROVED\\
+Prop~\ref{prop:phase}, Rem~\ref{rem:cr} & \ref{sec:phase} & Half-phase statement false; covering-radius target false & VERIFIED, carried over; cited computation\\
+\bottomrule
+\end{tabular}
+\end{center}
+Theorem~\ref{thm:barrier} and the escape lemma are known in substance (Tao, Bedert, Rosenfeld); Proposition~\ref{prop:dc} is known; Theorem~\ref{thm:O6} is, to the extent read, not stated in the literature, but its proof is a few lines. What is attributed and what is not is itemized in Section~\ref{sec:attr}.
+
+\subsection{Conceptual abstract}
+The central idea is to test every certificate method on the extremal vectors first. A proof of the floor by averaging a nonnegative weight over the circle needs the bad sets to cover the circle with room to spare. For a vector whose maximal loneliness equals the target, the lonely times form a finite set per period, so every integrable weight sees the bad sets cover the circle with no room at all; the hard existence statement is replaced by the countability of level sets of a minimum of finitely many piecewise linear tent functions. A proof must therefore either use an atomic measure, that is an explicit rational time with an arithmetic check, or classify the extremal vectors. The later sections show that arithmetic checks of bounded denominator, pairings by doubling, and local analysis at one corner each fail on explicit families.
+
+\subsection{Zoom map for Theorem~\ref{thm:barrier} and Corollary~\ref{cor:tight}}
+\begin{itemize}
+\item[L1.1] A level set of $\norm{at}$ is countable (\texttt{nearestIntDist\_eq\_mem}).
+\item[L1.2] If $\ML(v)\le\delta$, then $G_\delta$ lies in the union of such level sets, hence is countable and null (\texttt{goodSet\_countable}, \texttt{goodSet\_null}).
+\item[L1.3] A nonnegative weight satisfies $\int F\le\sum_i\int_{B_i}F$ (\texttt{integral\_le\_sum\_badSet}).
+\item[L1.4] Contrapositive: a strict inequality $\sum_i\int_{B_i}F<\int F$ implies $\delta<\ML(v)$ (\texttt{lt\_ML\_of\_integral\_unionBound}).
+\item[L1.5] Specialization to Riesz-product weights at $\delta=1/(m+1)$ and non-vacuity on $(1,\dots,m)$ (\texttt{not\_UDFires\_of\_tight}, \texttt{ML\_consec\_le}).
+\end{itemize}
+
+\section{Methods against known theorems}\label{sec:pos}
+
+\begin{center}\footnotesize
+\begin{tabular}{@{}p{2.6cm}p{4.1cm}p{4.3cm}p{1.6cm}@{}}
+\toprule
+Method & Strongest known statement it supports & Where it stops & Source\\
+\midrule
+First moment on individual bad sets & $\ML\ge1/(2m)$ & ignores overlaps of bad sets; insensitive to phases, so cannot exceed the shifted infimum (Section~\ref{sec:phase}) & \cite{Tao18}, \cite{PS25}\\
+Weighted first moment, Riesz products & $\ML\ge 1/(2m)+m^{-5/3-o(1)}$; floor for dissociated sets & Thm~\ref{thm:barrier}: fixed integrable weights see no room at tight vectors & \cite{Bedert25}\\
+Atomic measures, rational witness times & floor when some $j\le m+1$ divides no speed; floor for $m\le12$ by sieved computation & Prop~\ref{prop:growth}, Obs~\ref{obs:O4}: fixed-level checks are defeated & \cite{Tao18}, \cite{Rosenfeld25}, \cite{Trak26}, \cite{ST26}\\
+Relation structure (Fourier on $\Z/q$, windows) & counterexample or tight $\Rightarrow$ integer relation of $\ell^1$ norm $\le2m+3$ & tight vectors near $(1,\dots,m)$ satisfy it vacuously & \cite{Cz12}, \cite{BE26}\\
+Finite checking, lattice width & counterexamples have bounded height; $n^{O(n^2)}$, $(n(n+1)/2)^{n-1}$ & bounds not usable for all $m$ & \cite{Tao18}, \cite{MSS25}, \cite{GK25}\\
+Covering radius & equals shifted loneliness (Henze--Malikiosis) & the shifted statement is false (Sec.~\ref{sec:phase}) & \cite{BCS26}\\
+Local analysis, Goddyn--Wong families & tight vectors of one-entry type are classified & transfers tightness, not a floor (Sec.~\ref{sec:corner}) & \cite{GW06}, \cite{Zhang26}\\
+Doubling pairings & (internal to the covering framework) & odd chains (Sec.~\ref{sec:doubling}) & this note\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Volume and smooth-weight certificates}\label{sec:measure}
+
+For a nonnegative $F\in L^1[0,1]$ and a level $\delta$ consider
+\begin{equation}\label{eq:cert}
+\sum_i\int_{[0,1]\cap B_i}F<\int_{[0,1]}F .
+\end{equation}
+If $\ML(v)<\delta$, every $t$ lies in some $B_i$, so $F\le\sum_i\mathbf 1_{B_i}F$ pointwise and \eqref{eq:cert} fails. The weights $F=P^D$, $P(t)=\prod_i(1-\cos2\pi v_it)$, are Riesz products; $U_D$ \emph{fires} if \eqref{eq:cert} holds for $F=P^D$ at $\delta=1/(m+1)$. The case $F\equiv1$ is the union bound of \cite[Prop.~1.1]{Tao18}. For an arbitrary probability measure $\mu$ and closed bad sets the inequality $\int\Phi\,d\mu\ge1$, $\Phi=\sum_i\mathbf 1_{\{\norm{v_i x}\le\delta\}}$, at $\delta=\ML(v)$ is \cite[Lemma~2.1]{Bedert25}.
+
+\begin{lemma}[Level sets]\label{lem:level}
+For $a\in\Z\setminus\{0\}$ and $\delta\in\R$, $\{t:\norm{at}=\delta\}\subset\{(n\pm\delta)/a:n\in\Z\}$ is countable.
+\end{lemma}
+
+\begin{theorem}\label{thm:barrier}
+Let $v\in(\Z\setminus\{0\})^m$, $\delta\in\R$ and $\ML(v)\le\delta$. Then $G_\delta$ is countable, hence Lebesgue-null. Consequently, for every measurable $F\ge0$ integrable on $[0,1]$,
+\[\int_{[0,1]}F\le\sum_i\int_{[0,1]\cap B_i}F,\]
+so \eqref{eq:cert} implies $\delta<\ML(v)$.
+\end{theorem}
+\begin{proof}
+Let $t\in G_\delta$. Then $\gap_v(t)\ge\delta\ge\ML(v)\ge\gap_v(t)$, so $\gap_v(t)=\delta$. As $\gap_v$ is a minimum over finitely many terms, some $i$ has $\norm{v_it}=\delta$. By Lemma~\ref{lem:level}, $G_\delta$ is a finite union of countable sets. Outside $G_\delta$ some $i$ has $t\in B_i$, hence $F(t)\le\sum_i\mathbf 1_{B_i}(t)F(t)$ for almost every $t$; integrate over $[0,1]$.
+\end{proof}
+\lab{VERIFIED, carried over (\texttt{goodSet\_countable}, \texttt{goodSet\_null}, \texttt{integral\_le\_sum\_badSet}, \texttt{lt\_ML\_of\_integral\_unionBound}). The inequality for absolutely continuous measures is Bedert's Lemma~2.1 read with $\mu=F\,dt$; the countability of $G_\delta$ is elementary}
+
+\begin{corollary}\label{cor:tight}
+If $\ML(v)\le1/(m+1)$, in particular if $v$ is tight, no $U_D$ fires, $D\ge0$. Conversely, if $U_D$ fires then $1/(m+1)<\ML(v)$.
+\end{corollary}
+\lab{VERIFIED, carried over (\texttt{not\_UDFires\_of\_tight}, \texttt{lt\_ML\_of\_UDFires}); the hypothesis is not vacuous, $\ML(1,\dots,m)\le1/(m+1)$ (\texttt{ML\_consec\_le}, \texttt{not\_UDFires\_consec}). The corollary is an immediate consequence of the cited lemma of Bedert}
+
+\begin{remark}[Scope]\label{rem:scope}
+Theorem~\ref{thm:barrier} concerns \eqref{eq:cert} at one fixed level and one fixed weight. It does not exclude a weight $F_{\delta'}$ chosen separately for each level $\delta'<\ML(v)$: the indicator of $\{\gap_v>\delta'\}$ satisfies \eqref{eq:cert} exactly for $\delta'<\ML(v)$, but constructing it requires knowing the lonely times. What is excluded is a weight given by a formula uniform in $v$, such as $P^D$, at the target level. Atomic measures are outside the theorem: a point mass at a rational time is the escape lemma (Proposition~\ref{prop:escape}), and the uniform measure on $\{j/p\}$ with $p$ a prime dividing no speed is \cite[Lemma~5.3, Cor.~5.4]{Bedert25}. Volume comparisons of geometry-of-numbers type (successive minima, covering radii bounded through volume) were not shown to reduce to \eqref{eq:cert}; the claim that they do is not made. Label: HEURISTIC for the scope statements, as they delimit methods and are not theorems.
+\end{remark}
+
+\paragraph{Obstruction for volume methods.} A first-moment argument that uses only the measures of the individual bad sets gives $1/(2m)$, because each $B_i$ has measure $2\delta$ and the sum must reach $1$; the factor two is the multiplicity with which bad sets overlap, which this argument discards. Sharper volume arguments must control the intersections $B_i\cap B_j$, and these depend on the starting phases of the runners, whereas the individual measures do not; since the shifted statement is false (Section~\ref{sec:phase}), a volume argument can pass the exponent only by using the zero phase through the intersection pattern. At the target value itself the pattern is rigid: by Theorem~\ref{thm:barrier} the bad sets of a tight vector cover the circle up to a null set, so a weight can gain nothing beyond equality.
+
+\paragraph{Obstruction for smooth-weight certificates.} A Riesz product or any other integrable weight turns the existence of a lonely time into a strict inequality between two Lebesgue integrals, and at a vector with $\ML(v)=1/(m+1)$ the two integrals are forced by Theorem~\ref{thm:barrier} to satisfy the opposite non-strict inequality, because the lonely set is countable and carries no mass. The mechanism is that $\gap_v$ is a minimum of finitely many tent functions, each of whose level sets is discrete; no choice of weight can see a set of measure zero. The obstruction persists off the tight set in the tested range: the five families of Table~\ref{tab:O4} have $\ML$ strictly above the target and $U_1,U_2\ge1$.
+
+\section{Residue and base-point certificates}\label{sec:residue}
+
+\begin{proposition}[Escape lemma]\label{prop:escape}
+Let $q\ge1$, $a\in\Z$, $\varepsilon\in\R$, $\delta>0$. If for each $i$ there are integers $N_i,r_i$ with $v_ia=qN_i+r_i$ and $\delta\le r_i/q+v_i\varepsilon\le1-\delta$, then $\delta\le\ML(v)$.
+\end{proposition}
+\begin{proof} At $t=a/q+\varepsilon$ we have $v_it=N_i+r_i/q+v_i\varepsilon$, so $\norm{v_it}\ge\delta$ for all $i$.\end{proof}
+\lab{VERIFIED, carried over (\texttt{ML\_ge\_of\_escape}). With $\varepsilon=0$ this is the definition of a proper tuple in \cite[Def.~3]{Trak26}, the witness-time ansatz of \cite{Rosenfeld25}; the extension to $\varepsilon\ne0$ is a routine generalization}
+
+Without a bound on $q$ the statement is empty: $\delta\le\ML(v)$ holds if and only if some $(q,a,\varepsilon)$ works, with $q=1$ (\texttt{lonely\_iff\_escape}, VERIFIED, carried over), and for $\delta<\ML(v)$ one can take $\varepsilon=0$ (\texttt{rational\_point\_of\_lt}, VERIFIED, carried over). The window lemma at levels $m+1<q\le2m+2$ and the certificates used in the archive are instances (\texttt{window\_via\_escape}, \texttt{famF\_via\_escape}, \texttt{lemmaP\_via\_escape}). All content lies in the bound on $q$.
+
+\begin{proposition}[Missing divisor]\label{prop:dc}
+If $2\le j\le m+1$ and $j$ divides no $v_i$, then $\norm{v_i/j}\ge1/j\ge1/(m+1)$ for all $i$, so $\ML(v)\ge1/(m+1)$ with witness $t=1/j$.
+\end{proposition}
+\lab{VERIFIED, carried over (\texttt{witness\_of\_missing\_divisor}). Known: \cite[Lemma~5.1(i)]{Tao18}; also the survey \cite{PS25} proves that the conjecture holds when some $k\le n+1$ divides no speed, and \cite[Lemma~2.3]{Zhang26} is the case $t=1/r$ for one-entry modifications. Not claimed as new}
+
+Consequently a tight vector satisfies: every $j\in[2,m]$ divides some speed. This is why the crux is restricted to DC vectors.
+
+\begin{proposition}[Denominators of lonely times]\label{prop:growth}
+Let $m\ge2$, $Q\ge1$, $L=\operatorname{lcm}(1,\dots,Q)$ and $v^{(Q)}=(1,L,2L,\dots,(m-1)L)\in\Z_{>0}^m$. If $t=a/q\in\mathbb Q$ in lowest terms has $\gap_{v^{(Q)}}(t)>0$, then $q>Q$. Hence for $m\le12$ there is no function $Q(m)$ such that every vector has a rational lonely time of denominator at most $Q(m)$ (for $m\le12$, where the floor is known, $v^{(Q)}$ has a lonely time, attained at a rational).
+\end{proposition}
+\begin{proof}
+If $q\le Q$ then $q\mid L$, so $L t\in\Z$ and $\norm{Lt}=0$; the speed $L$ occurs in $v^{(Q)}$, so $\gap(t)=0$. Hence $q>Q$. For the last assertion, $\ML$ is attained at a rational $k/D$ with $D\in\{2v_i,v_i+v_j,|v_i-v_j|\}$ (\cite[Section~2]{PS25}, \cite[Lemma~2.2]{Cordella26}), and any such maximiser has positive gap by the conjecture for $m\le12$ \cite{ST26}; take $Q$ larger than any prescribed bound.
+\end{proof}
+\lab{PROVED. Idea: a speed divisible by every small denominator is invisible to every small-denominator test, because it sends all rational times of small denominator to $0$ mod $1$. Zoom map: L1.1 reduction of $q\le Q$ to $q\mid L$ (arithmetic, no lemma); L1.2 positivity of the gap forces $q>Q$. The vector has a leave-one-out subvector with $\gcd=L>1$, which is why the leave-one-out hypothesis of the crux is necessary for any bounded-level approach. No prior statement was located in the literature read}
+
+\paragraph{Obstruction for residue-condition methods.} A test at denominator $q$ sees only the residues $v_i\bmod q$ of the speeds, and a speed with residue $0$ at every level up to $Q$ is invisible to all of them; Proposition~\ref{prop:growth} makes this exact, and the families of Table~\ref{tab:O4} realize it approximately inside the class of the crux by a few tall speeds (up to $4943$) whose residues complete a covering of the small levels. The mechanism is that the residues of a few free tall speeds can be chosen independently modulo each small $q$ while the maximal loneliness stays above the target; this explanation is consistent with the table and is not proved, label HEURISTIC.
+
+\subsection{Level drift}\label{sec:drift}
+Let $\mathrm{TL}(Q)$ denote the statement: for $m\ge12$ and every class member $v$ of the crux, there are $q\le Q(m)$, a unit $a$ modulo $q$, $\sigma=\pm1$ and $\varepsilon\ge0$ such that Proposition~\ref{prop:escape} applies at $t=\sigma a/q+\varepsilon$ with the first-order arc condition on the non-multiples of $q$ and a condition on the multiples of $q$ through $\varepsilon$. The certificate kinds named in the table (WC, window points, window levels, exact multiple scan, first order) are the variants implemented in \texttt{cert\_m} of \texttt{code/reduction/mdr}.
+
+\begin{observation}\label{obs:O4}
+For each certificate kind and level range in Table~\ref{tab:O4}, the stated class member has no certificate of that kind in that range.
+\end{observation}
+\lab{HEURISTIC. Each row is a finite exact computation (exact integer arithmetic; $\ML$ recomputed by two independent programs, see Section~\ref{sec:evidence}), not checked in Lean. Class membership used $U_1,U_2$ computed in double precision with an a posteriori bound of $10^{-12}$; the listed margins exceed it. Termination: rows 1 to 5 RESOLVED (exhaustive over the stated levels); row 6 UNRESOLVED}
+
+\begin{table}[h]
+\centering\scriptsize
+\begin{tabular}{@{}p{2.4cm}p{9.0cm}p{1.9cm}@{}}
+\toprule
+Certificate kind and range & Class member without certificate & $U_1,\ U_2$\\
+\midrule
+WC, $q\le m+1$ & $[1,4,5,6,7,9,11,13,40,60,238,2731]$, $m=12$, $\ML=14/121$ & $1.003918,\ 1.001345$\\
+Window points, $q\le2m+2$ & $[1,3,4,5,7,9,11,13,40,48,100,1079]$, $m=12$, $\ML=11/84$ (first certified at $q=13$ by WC) & $1.002573,\ 1.000429$\\
+Window levels, exact, $q\le 2m+2$ & $[1,5,6,7,8,9,11,13,17,19,23,25,29,31,366,1680]$, $m=16$, $\ML=168/1697$; first level $35$ & $1.483,\ 1.715$\\
+All levels, first order and exact, $q\le2m+1$ & $[1,3,4,5,7,11,13,17,19,23,31,70,74,116,180,272,3986,4943]$, $m=18$; $\ML=28/191$; first point at $q=38$ & $1.007002,\ 1.003326$\\
+All levels, first order, $q\le2m+2$ & $[1,3,4,5,7,11,13,17,19,23,31,38,70,74,116,180,272,4422]$, $m=18$; $\ML=30/203$; first level $39$ & $1.024583,\ 1.014631$\\
+Exact multiple scan, $q\le 2m+2$, $m=18,\dots,24$ & none found in time-limited hunts; UNRESOLVED (not exhaustive) & n/a\\
+\bottomrule
+\end{tabular}
+\caption{Families defeating bounded-level certificates (script \texttt{code/obstructions/repro\_O4.sh}). The window-levels row also has a first-order version, first level $41$, on $[1,3,4,5,7,8,9,11,12,13,17,19,23,29,31,37,224,1800]$, $m=18$. The $m=12$ vector in row 2 has least witness $(4,31)$.}\label{tab:O4}
+\end{table}
+
+Last row of the table: a time-limited hunt of 120 s per $m$ (one process, seed $1$) performed $14\,686$, $8\,962$, $4\,141$, $2\,859$ evaluations for $m=18,20,22,24$, reached best levels $29,37,34,37$ against the cutoffs $38,42,46,50$, and produced no family; an earlier run of 480 s per $m$ was reported with the same outcome and is not repeated here. Both are UNRESOLVED and support no statement about other budgets or seeds.
+
+Positive ground, regenerated by \texttt{mdr enumw}: the window-only first-order version had no failure on the exhaustive supersets (DC, leave-one-out primitive, not strongly free) for $m=6$, $H\le50$ ($15\,890\,700$ sets, $3\,202\,695$ in the class); $m=8$, $H\le24$ ($735\,471$; $119\,915$); $m=10$, $H\le30$ ($30\,045\,015$; $3\,327\,077$); $m=12$, $H\le26$ ($9\,657\,700$; $934\,023$); $m=14$, $H\le24$ ($1\,961\,256$; $107\,976$), each box RESOLVED; and none on the 1067 census families (lists in \texttt{data/obstructions/census}) and the $147$ adversarial families (\texttt{mdr cert}, certificate level at most $2m+2$ for all). The census families are residuals of boxes and are not independent of the boxes. The failures above thus appear only at larger $m$ or height. The role of the condition ``no $U_D$ fires'' in this ground is not understood.
+
+\section{Local corners: the Goddyn--Wong mechanism and statement (T)}\label{sec:corner}
+
+\paragraph{Corners.} $\ML(v)$ is attained at a time $k/D$ with $D\in\{2v_i,v_i+v_j,|v_i-v_j|\}$ and $0\le k<D$ (\cite[Section~2]{PS25}; the numerators are not restricted to residues coprime to $D$). A local argument fixes such a pair and controls the maximum from it; the remaining $m-2$ speeds enter only through their residues modulo $D$.
+
+For multipliers $\mu=(\mu_1,\dots,\mu_{n-1})\in\mathbb N^{n-1}$ write $[n-1]_\mu=(\mu_1\cdot1,\dots,\mu_{n-1}(n-1))$, with $n=m+1$. The \emph{GCD condition} is: for each $r\in[n-1]$ with $\mu_r\ge2$ and each $b$ with $n-r\le b\le\mu_r(n-r)-1$, $\gcd(r,b)>1$. Goddyn and Wong prove $\ML([n-1]_\mu)=1/n$ under this condition \cite[Thm.~3.1]{GW06}, quoted as \cite[Thm.~5.1]{Zhang26}; for one accelerated entry it is also necessary \cite[Thm.~2.3]{GW06}, quoted as \cite[Thm.~1.1]{Zhang26}. Zhang classifies all one-entry modifications $[n-1]_{r\to w}$, $w>n-1$: tight if and only if $2r>n-1$, $r\mid w$ and the GCD condition holds with $\mu=w/r$, or $(n,r,w)\in\{(5,2,7),(6,2,9)\}$ \cite[Thm.~1.2]{Zhang26}.
+
+\begin{theorem}\label{thm:O6}
+If $\mu$ satisfies the GCD condition, then $n$ divides no speed $\mu_rr$, $1\le r\le n-1$.
+\end{theorem}
+\begin{proof}
+If $\mu_r=1$ then $0<r<n$. Let $\mu_r\ge2$ and suppose $\mu_r(n-r)\ge n$. The interval $[n-r,\mu_r(n-r)-1]$ has length $\mu_r(n-r)-(n-r)\ge r$, so it contains $r$ consecutive integers, one of which is $\equiv1\pmod r$ and hence coprime to $r$; this contradicts the GCD condition. So $0<\mu_r(n-r)<n$. Now $\mu_rr+\mu_r(n-r)=\mu_rn$, so $n\mid\mu_rr$ would give $n\mid\mu_r(n-r)$, impossible for $0<\mu_r(n-r)<n$.
+\end{proof}
+\lab{VERIFIED, carried over (\texttt{not\_dvd\_speed}; axioms recorded as \texttt{propext}, \texttt{Quot.sound}). A statement of this form was not located in the sources read; the original proof of \cite[Thm.~3.1]{GW06} was not available for this audit and may contain the same step. The published argument obtains a sharper size bound; only the weaker one is used}
+
+\begin{corollary}\label{cor:GWDC}
+Under the GCD condition with $\mu_1=1$ (forced, since $\gcd(1,b)=1$), the vector $[n-1]_\mu$ is not DC: $j=n=m+1$ divides no speed. The same holds for the vectors $(1,3,4,7)$, $(1,3,4,5,9)$, $(1,4,5,6,7,11,13)$, $(1,2,3,4,5,7,12)$, $[1..11]\cup\{13,24\}$, $[1..17]\cup\{19,36\}$ and for the two-entry doubling instance $[1..73]\setminus\{70,72\}\cup\{140,144\}$ with $n=74$ \cite[Cor.~5.2 and the example following Thm.~5.1]{Zhang26}.
+\end{corollary}
+\lab{VERIFIED, carried over for $[n-1]_\mu$ under the GCD condition (\texttt{not\_divisorComplete}). For the listed vectors: HEURISTIC, an exact computation (script \texttt{code/obstructions/gwcheck.py}) of $\ML=1/n$ and of the non-divisibility, RESOLVED}
+
+\begin{remark}
+A vector built by the Goddyn--Wong construction is excluded from the class of the crux, since the proof of its tightness shows $m+1\nmid v_i$. The mechanism uses three inputs: the baseline $[n-1]$, the identity $\mu_rr\equiv-\mu_r(n-r)\pmod n$ valid because the new speed is an integer multiple of an existing entry, and the GCD hypothesis reused through a size bound. A general class member has no such decomposition, and the generalizations in the literature (Zhang's one-entry classification, the multi-swap theorem) keep the multiplicative form. The route therefore gives no lower bound for divisor-complete vectors. The converse of the multi-acceleration theorem is not true in general \cite[Question~9.3]{Zhang26}.
+\end{remark}
+
+\paragraph{Obstruction for local-corner methods.} The maximum of $\gap_v$ is a corner determined by two speeds, but whether the corner is a maximum depends on the residues of every other speed modulo the corner's denominator, and these residues carry no structure that a pair-local argument can use. In the Goddyn--Wong families the missing control is supplied by a global identity, namely that every speed is a multiple of an entry of $[n-1]$ and the sum $\mu_rr+\mu_r(n-r)$ is a multiple of $n$; for a vector without this decomposition the maximizer still sits at denominator $m+1$ in every tight case computed (Section~\ref{sec:evidence}), but no pair of speeds identifies which speed would carry the divisor $m+1$ if it existed. This is why a direct local proof of (T) below gets no purchase, label HEURISTIC.
+
+\subsection{Statement (T)}
+\begin{conjecture}[(T), (T$'$)]\label{conj:T}
+If $v\in\Z_{>0}^m$, $\gcd(v)=1$ and $v$ is tight, then $m+1$ divides no $v_i$. Stronger, (T$'$): every $t$ with $\gap_v(t)=\ML(v)$ has the form $a/(m+1)$, $a\in\Z$.
+\end{conjecture}
+\lab{CONJECTURE. Provenance: observation on the tight vectors of Goddyn--Wong type and on exhaustive small boxes. Evidence: Section~\ref{sec:evidence}, exhaustive primitive search for $m=3,\dots,8$ in boxes finds the tight vectors listed there, all satisfying (T) and (T$'$). Consequence: with Proposition~\ref{prop:dc}, no tight primitive vector is DC. Lean statements \texttt{TightNoDvd}, \texttt{TightMaximisersAtMp1} are defined without proof; \texttt{tightNoDvd\_of\_strong} has a \texttt{sorry}}
+
+\begin{proposition}\label{prop:T}
+(T$'$) implies (T), and (T) implies that no tight, primitive vector is DC.
+\end{proposition}
+\begin{proof}
+If $m+1\mid v_i$ and $t=a/(m+1)$ is a maximizer, then $v_it\in\Z$ and $\gap_v(t)=0\ne1/(m+1)$; a maximizer exists since $\gap_v$ is continuous and periodic. So (T$'$) forces $m+1\nmid v_i$. For the second claim: a DC vector has $m+1\mid v_i$ for some $i$, since $m+1\in[2,m+1]$, which (T) excludes for tight primitive $v$.
+\end{proof}
+\lab{PROVED. Idea: a speed divisible by $m+1$ vanishes at every candidate time of denominator $m+1$, so such a time cannot be lonely. Zoom map: L1.1 maximizers exist; L1.2 a divisible speed has gap $0$ at $a/(m+1)$; L1.3 divisor-completeness supplies the divisible speed. Not formalized}
+
+\subsection{The family $E_m$ and a related floor}
+For $E_m=(1,\dots,m-1,m(m+1))$, $m\ge3$, $\ML(E_m)=(m+1)/(m^2+m+1)$ (the case $s=m+1$ of \cite[Thm.~5.1]{Kravitz21}, reproved in Lean with a different argument, \texttt{ML\_Em\_m}, VERIFIED, carried over). Hence $(2m+1)\ML(E_m)>2$ for $m\ge3$ (\texttt{thmB\_gt}, VERIFIED, carried over).
+
+\begin{conjecture}[(T2)]\label{conj:T2}
+If $v$ is primitive and $m+1$ divides some $v_i$, then $\ML(v)\ge 2/(2m+1)$.
+\end{conjecture}
+\lab{CONJECTURE. Evidence: in the exhaustive boxes of Section~\ref{sec:evidence}, the minimum of $\ML$ over primitive DC vectors equals $2/(2m+1)$ for $m=3,\dots,7$, attained for example by $(1,3,4)$, and $E_m$ is not a minimizer. Consequence: every primitive vector in which $m+1$ divides a speed satisfies the floor with strict inequality. The vector $(1,5,6,11,16,17)$, $m=6$, has $\ML=5/33<2/13$, but no speed is divisible by $7$, so it lies outside the class. A statement that $E_m$ is the unique minimizer is false}
+
+\section{Doubling pairings}\label{sec:doubling}
+
+In the covering formulation a lonely time is ruled out by exhibiting bad sets that cover the window of integers $[1,2m]$ for the modulus $q=2m+1$; the smallest such sets are pairs. For $q$ odd let $N=\{v\le 2m:\gcd(v,q)>1\}$ be the non-units. The doubling graph on $[1,2m]$ has edges $\{v,2v\}$ with $2v\le 2m$.
+
+\begin{proposition}[Chain parity]\label{prop:chain}
+For odd $q=2m+1\ge3$ every connected component of the doubling graph restricted to $N$ is a path with an even number of vertices if and only if $q$ is prime ($N=\emptyset$) or $q=9$. In particular, for composite odd $q>9$ the doubling graph on $N$ has no perfect matching.
+\end{proposition}
+\begin{proof}
+Since $q$ is odd, $\gcd(2v,q)=\gcd(v,q)$, so $N$ is closed under $v\mapsto2v$ (within $[1,2m]$) and under $v\mapsto v/2$ for even $v$. Hence each component of the graph on $N$ is a full chain $\{s,2s,4s,\dots\}\cap[1,2m]$ with $s$ odd and $s\in N$. If $q$ is prime, $N=\emptyset$. Let $q$ be composite, $p$ its least prime factor, so $q\ge p^2$ and $q\ge3p>2p$. Put $s=q-2p$. Then $s$ is odd, $1\le s\le 2m$ and $\gcd(s,q)=\gcd(2p,q)=p>1$, so $s\in N$. The chain of $s$ has length $1$ if $2s>2m$, that is if $q\ge4p$, and length $1$ is odd. Otherwise $q\le4p-1$ and $p^2\le q\le 4p-1$ gives $p\le3$; since $q$ is odd, $p=3$ and $q\le11$, so $q=9$. For $q=9$, $N=\{3,6\}$ is one chain of length $2$. A graph that is a disjoint union of paths has a perfect matching if and only if every path has an even number of vertices.
+\end{proof}
+\lab{PROVED. Idea: the largest non-unit below $q$ that is $q$ minus twice a prime factor is odd and has no doubling partner inside the window, so it forms a chain of length one. Zoom map: L1.1 non-units form full chains; L1.2 the element $q-2p$ is a non-unit starting a chain; L1.3 its chain is odd unless $q=9$. Independent check: brute-force chain lengths for odd $q\le 20001$, no mismatch (Section~\ref{sec:evidence}). Not formalized}
+
+\begin{remark}
+The companion covering paper classifies every bad pair with non-unit endpoints as a doubling pair or a pair with $a+b\in\{2m+1,2m+2\}$ (Lean-verified for the dichotomy; carried over), and pairs with $a+b=2m+1$ and both endpoints non-units do not occur. For $q\in\{25,27,33,35,49\}$ no non-unit bad pair with $a+b=2m+2$ was found in earlier computations, which are not regenerated here (HEURISTIC). If the same holds for all composite $q$, Proposition~\ref{prop:chain} implies that a partition of the window into bad pairs cannot cover the non-units, so parts of size at least three are forced; this implication is conditional and carries the label HEURISTIC.
+\end{remark}
+
+\paragraph{Obstruction for doubling methods.} A pairing of the window by $\{j,2j\}$ treats the integers as a union of doubling chains, and a chain with an odd number of vertices leaves one vertex unmatched. For a composite modulus the vertex $q-2p$ is such a chain, because it is a non-unit whose double exceeds the window; this is the whole mechanism, and it does not depend on any property of the speeds. Passing to the cyclic group $\Z/q\Z$, where doubling is a permutation, does not repair it, since the bad sets of the covering formulation are multiples of $j$ at modulus $j$ and do not realize the wrap-around partner (earlier computations, not regenerated; HEURISTIC).
+
+\section{Covering radius and the zero phase}\label{sec:phase}
+
+For phases $s\in\R^m$ put $\gap_{v,s}(t)=\min_i\norm{s_i+v_it}$. Henze and Malikiosis identify $\ML(v)$ with $\frac12-\frac12\kappa(Z(v))$ and the shifted supremum $\sup_t\gap_{v,s}(t)$, minimized over $s$, with $\frac12-\frac12\mu(Z(v))$, where $\kappa$ is the first minimum and $\mu$ the covering radius of the lonely runner zonotope $Z(v)$ \cite[Prop.~1.7]{BCS26}. Blanco, Criado and Santos show by exact computation that the shifted infimum for $v=(1,\dots,n)$ is below $1/(n+1)$ for $5\le n\le17$ speeds, for instance $15/94<1/6$ for $(1,2,3,4,5)$ \cite[Prop.~5.11, 5.14, Thm.~1.8]{BCS26}; Poliakova shows that the defect grows linearly and is positive for $n\ge95$ \cite[Thm.~1, 2]{Poliak26}.
+
+\begin{proposition}\label{prop:phase}
+There is no $t\in\R$ with $\norm{t}\ge\frac17$, $\norm{2t-\frac12}\ge\frac17$, $\norm{3t-\frac12}\ge\frac17$, $\norm{4t-\frac12}\ge\frac17$, $\norm{6t-\frac12}\ge\frac17$ and $\norm{9t}\ge\frac17$. That is, for speeds $(1,2,3,4,6,9)$ and phases $(0,\frac12,\frac12,\frac12,\frac12,0)$ the shifted lonely runner bound for seven runners fails.
+\end{proposition}
+\lab{VERIFIED, carried over (\texttt{halfShift\_not\_lonely}). Computed value (HEURISTIC, exact): the supremum of the shifted gap is $3/22$, attained at $t=7/22$, while the zero-phase value for the same speeds is $\ML=1/5$ (\texttt{code/obstructions/shift\_grid.py}, exact rational scan of all $t=p/q$, $q\le 400$, and independent recomputation of $\ML$)}
+
+\begin{remark}\label{rem:cr}
+By the dictionary above, a bound $\mu(Z(v))\le (n-1)/(n+1)$ for all $v$ with $n$ speeds is false for $5\le n\le17$ (equivalent to the failure of the shifted bound, cited computation, label HEURISTIC as a computation by others, reproduced for one instance by the exact scan above). The covering-radius route of \cite{MSS25}, whose Proposition~2.7 bounds $\mu(C)\le\lambda_1(C-C)+\mu(\pi(C),\pi(\Z^d))$ for a convex body $C$, can therefore be used for the conjecture only through $\kappa$, never as a bound at the target value for $\mu$. \cite[Lemma~2.5]{MSS25} (if $|C\cap\Z^d|>\ell^d$ then $\lambda_1(C-C)\le1/\ell$) is a statement on an arbitrary convex body; its conclusion is unchanged by translating $C$, and the zero phase enters only through the lattice-point count \cite[Cor.~2.3]{MSS25}.
+\end{remark}
+
+\paragraph{Obstruction for covering-radius methods.} Any argument whose steps remain valid when the zero phase is replaced by a phase vector in $\{0,\frac12\}^m$ proves a false statement for $v=(1,2,3,4,6,9)$, so a proof of the conjecture must use the zero phase, that is the common starting point of all runners. The covering radius is a translation-invariant quantity and is the right invariant for the shifted problem only; the target quantity is the first minimum. The mechanism is the failure of the shifted statement, proved above for one explicit instance.
+
+\section{Evidence and regeneration}\label{sec:evidence}
+
+All commands are run from the archive root; searches report RESOLVED or UNRESOLVED. Cases counted are independent vectors in distinct boxes.
+
+\begin{center}\footnotesize
+\begin{tabular}{@{}p{3.3cm}p{5.2cm}p{2.7cm}@{}}
+\toprule
+Item & Regeneration command & Status\\
+\midrule
+$\ML$ of the five rows of Table~\ref{tab:O4}, of $E_{14}$ and of $(1,2,3,4,6,9)$ & \texttt{mlcheck} (Rust) via \texttt{code/obstructions/repro\_O4.sh}; \texttt{python3 code/obstructions/mlexact.py} (independent, Python, all numerators, exact integers) & RESOLVED; both programs agree on $14/121$, $11/84$, $168/1697$, $28/191$, $30/203$, $1/5$\\
+Certificate levels, $U_1,U_2$ & \texttt{code/obstructions/repro\_O4.sh} & RESOLVED\\
+Census and boxes & \texttt{mdr enumw M H}, \texttt{mdr cert 80 FILE} (see \texttt{code/obstructions/README.md}) & RESOLVED\\
+Last row of Table~\ref{tab:O4} & \texttt{MDR\_WX=1 mdr hunt2} (README) & UNRESOLVED\\
+Tight vectors, (T), (T$'$) & \texttt{python3 code/obstructions/tightscan.py} & see below\\
+Minimum of $\ML$ on DC vectors (T2) & \texttt{python3 code/obstructions/t2box.py} & see below\\
+Goddyn--Wong type vectors & \texttt{python3 code/obstructions/gwcheck.py} & RESOLVED\\
+Chain parity & \texttt{python3 code/obstructions/chainparity.py 20001} & RESOLVED, $q\le20001$\\
+Shifted supremum & \texttt{python3 code/obstructions/shift\_grid.py} & RESOLVED\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Tight vectors.} For each $m$ and bound $H$, all primitive $v\in[1,H]^m$ with distinct entries such that every $j\in[2,m]$ divides a speed (necessary for tightness by Proposition~\ref{prop:dc}) were enumerated and $\ML$ computed exactly, together with all maximizing times.
+\begin{center}\footnotesize
+\begin{tabular}{@{}rrrp{6.2cm}@{}}
+\toprule
+$m$ & $H$ & vectors enumerated & tight vectors found\\
+\midrule
+3 & 60 & 17\,432 & $(1,2,3)$\\
+4 & 40 & 47\,078 & $(1,2,3,4)$, $(1,3,4,7)$\\
+5 & 30 & 63\,880 & $(1,\dots,5)$, $(1,3,4,5,9)$\\
+6 & 24 & 57\,111 & $(1,\dots,6)$\\
+7 & 20 & 23\,212 & $(1,\dots,7)$, $(1,2,3,4,5,7,12)$, $(1,4,5,6,7,11,13)$\\
+8 & 16 & 4\,481 & $(1,\dots,8)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+In every box, no tight vector has a speed divisible by $m+1$, and every maximizing time of every tight vector lies in $\frac1{m+1}\Z$. Each box is RESOLVED; the boxes are small (toy only), the heights for $m\ge6$ are at most $24$, and the boxes for different $m$ are independent instances (different numbers of speeds). The statements (T) and (T$'$) are therefore HEURISTIC on this ground and say nothing for $m\ge9$ or beyond these heights.
+
+\paragraph{Minimum on divisor-complete vectors.} In the same boxes (primitive, DC including $j=m+1$) the minimum of $\ML$ is $2/7$ ($m=3$, $H\le60$; $10\,946$ vectors), $2/9$ ($m=4$, $H\le40$; $27\,600$), $2/11$ ($m=5$, $H\le30$; $46\,316$), $2/13$ ($m=6$, $H\le24$; $28\,835$), $2/15$ ($m=7$, $H\le20$; $12\,673$), each equal to $2/(2m+1)$, and strictly below $\ML(E_m)=4/13,5/21,6/31,7/43,8/57$. Each box is RESOLVED; the boxes are small, and the evidence is HEURISTIC and toy only: no statement is made for $m\ge8$. The tight and DC counts in neighbouring boxes are not independent.
+
+\section{Open statements}\label{sec:open}
+
+\begin{itemize}
+\item (T) and (T$'$), Conjecture~\ref{conj:T}. Evidence: the exhaustive boxes above and every tight vector of Goddyn--Wong type (Corollary~\ref{cor:GWDC}). Consequence: no tight primitive vector is DC (Proposition~\ref{prop:T}).
+\item (T2), Conjecture~\ref{conj:T2}. Evidence: equality $2/(2m+1)$ is the minimum on DC vectors in the boxes for $m=3,\dots,7$. Consequence: strict floor for primitive vectors with $(m+1)\mid v_i$.
+\end{itemize}
+Whether the class of the crux contains a tight vector is open. Neither statement is used elsewhere in this note.
+
+\section{Attribution and prior art}\label{sec:attr}
+
+Each item was compared with the sources cited; ``known'' means the statement or its proof is in the cited place.
+
+\begin{center}\footnotesize
+\begin{tabular}{@{}p{3.1cm}p{1.9cm}p{6.2cm}@{}}
+\toprule
+Item & Status & Reference location\\
+\midrule
+Thm~\ref{thm:barrier}, inequality for weights $F\ge0$ & known & \cite[Lemma~2.1]{Bedert25} with $\mu=F\,dt$ (closed bad sets, $\ML=\delta$); union bound \cite[Prop.~1.1]{Tao18}\\
+Thm~\ref{thm:barrier}, countability of $G_\delta$; formalization & ours & elementary; the Lean formalization is ours\\
+Cor~\ref{cor:tight} & known in substance & consequence of the same lemma; the vanishing $H\equiv0$ at tight instances is used in \cite[proof of Thm.~2.1]{BE26}\\
+Prop~\ref{prop:escape} & known in substance & \cite[Def.~3]{Trak26}, \cite{Rosenfeld25} for $\varepsilon=0$; $\varepsilon\ne0$ routine\\
+Prop~\ref{prop:dc} & known & \cite[Lemma~5.1(i)]{Tao18}; \cite[Lemma~2.3]{Zhang26}\\
+Prop~\ref{prop:growth} & ours & no statement located in the sources read\\
+Obs~\ref{obs:O4}, Table~\ref{tab:O4} & ours & computation; no comparable table located\\
+Thm~\ref{thm:O6}, Cor~\ref{cor:GWDC} & partially known & the tightness statements are \cite[Thm.~3.1, 2.3]{GW06}, \cite[Thm.~1.1, 1.2, 5.1]{Zhang26}; the non-divisibility corollary was not located (original proof of \cite{GW06} not read)\\
+Prop~\ref{prop:T} & ours & elementary; (T) is not stated in \cite{Kravitz21}, \cite{Zhang26}, \cite{Cordella26}, \cite{PS25} as read. \cite[Thm.~4.2]{Cordella26} uses the non-divisibility of the four tight instances with $n\le6$ as an observation\\
+Conj~\ref{conj:T}, \ref{conj:T2} & ours & see above; \cite[Cor.~2.3 for $E_m$]{Kravitz21} is \cite[Thm.~5.1]{Kravitz21}\\
+Prop~\ref{prop:chain} & ours & elementary; no prior statement located\\
+Prop~\ref{prop:phase} & ours (instance) & the shifted conjecture is false: \cite[Thm.~1.8]{BCS26}; the instance $(1,2,3,4,6,9)$ with half-phases is a second, independently checked counterexample, not claimed as new in kind\\
+Rem~\ref{rem:cr} & known & \cite[Prop.~1.7]{BCS26}, \cite[Prop.~2.7, Lemma~2.5]{MSS25}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The qualitative statement that counterexamples and tight vectors lie on finitely many explicit hyperplanes is \cite[Thm.~1.1, 2.1]{BE26} (norm $2m+3$), derivable with weaker bounds from \cite{GK25}; the random-speed precursor is \cite{Cz12}. Nothing in this note claims it.
+
+\bibliographystyle{plain}
+\bibliography{refs}
+\end{document}

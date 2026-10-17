@@ -1,0 +1,1314 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\Norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ML}{\operatorname{ML}}
+\newcommand{\cpt}{\operatorname{cap}}
+\newcommand{\srp}{\operatorname{srp}}
+
+\begin{document}
+
+\title[A verified covering framework for the lonely runner problem]
+{A verified covering framework for the lonely runner problem in bounded windows}
+
+\author{Vico Bonfioli}
+\email{vicobonfioli@gmail.com}
+
+\date{18 October 2026. Preprint, not peer reviewed.}
+
+\begin{abstract}
+We develop, and verify in Lean 4, a covering framework for the lonely runner conjecture restricted
+to bounded velocity windows. Everything labelled verified below is formalized with no axioms beyond
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. First, the window statement is
+equivalent to the assertion that a hitting number attains a Dirichlet ceiling; this recasting is
+known in substance and we prove both directions inside the proof assistant. Second, we introduce a
+surplus normalization of the cover-capacity certificate whose budget is the constant $2$,
+independent of the number of velocities, and prove it equivalent to the usual capacity condition.
+Third, we classify the bad sets of size at most three into two singleton families, four pair
+families and three triple families, and prove each of them; the singleton and pair families are
+exhaustive for every $m \le 260$, the triple families are not, and we exhibit minimal triples
+outside them. We also prove that the complementary pair family is confined to exactly two moduli.
+Fourth, we prove a dichotomy on residues: if two velocities are simultaneously close to an integer
+multiple of the period, then so is their difference or their sum. It yields two of the three shapes
+a bad pair can take, uniformly in $m$, and the third follows from an identity between the two
+residues which we prove by a lattice argument, so that the classification is complete: a bad pair is
+$\{a,2a\}$ or has $a+b \in \{2m+1,2m+2\}$ with $\gcd(a,a+b)=1$. It also shows that the top
+third of the window carries no bad set, so the bad-pair graph has an independent set of size $m-1$
+for every $m$.
+
+As an application of the associated decision procedure we decide the window $\{1,\dots,2m\}$ by
+exhaustive computation for every $m \le 63$, extending to that range the statement previously
+verified for $m \le 24$; the extension is computational and is not itself formalized. The same range
+is then obtained a second time from the nine families alone, with the exhaustive enumeration
+discarded, so that every set entering the search is one that we have proved to be a bad set. We
+emphasize that all results are restricted to velocities bounded by $2m$; the unrestricted conjecture
+is known for at most thirteen runners by different methods, and the two are not comparable. We also
+record five closed approaches to the uniform statement, including a counterexample at $m = 19$ to
+the block template suggested by the smaller cases, and counterexamples at $m = 150, 318, 486, 570$
+to a regularity of the bad-pair graph that holds at every one of the thirty-three composite moduli
+with $m \le 63$.
+\end{abstract}
+
+Statements are tagged with the status of their proof: \emph{Verified} means formalized in Lean~4
+against Mathlib with no \texttt{sorry} and no axioms beyond \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}; \emph{Computed} means established by a finite
+computation, with the generating script cited. An untagged theorem, lemma, proposition or corollary
+carries a complete proof in the text and no formalization. Conjectures are labelled as such and are
+proved nowhere here. Definitions carry no status.
+
+
+\maketitle
+
+\section{Introduction}
+
+Let $v_1,\dots,v_m$ be distinct positive integers and write $\Norm{x}$ for the distance from $x$ to
+the nearest integer. Put
+\[
+  \ML(v_1,\dots,v_m) \;=\; \sup_{t \in \mathbb{R}} \ \min_{1 \le i \le m} \Norm{v_i t}.
+\]
+The lonely runner conjecture, due to Wills and independently to Cusick in the language of view
+obstruction, asserts
+\begin{equation}\label{eq:lrc}
+  \ML(v_1,\dots,v_m) \;\ge\; \frac{1}{m+1}
+\end{equation}
+for every such tuple. In the runner formulation there are $m+1$ runners, $m$ velocities relative to
+the observer. The bound is sharp: $v_i = i$ gives equality, and Dirichlet's approximation theorem
+shows $\ML(1,\dots,m) \le 1/(m+1)$, so \eqref{eq:lrc} is the statement that a Dirichlet ceiling is
+attained. See Perarnau and Serra \cite{PS} for a survey.
+
+The conjecture is settled for small numbers of runners. At the time of writing it is known for at
+most thirteen runners, equivalently for $m \le 12$ velocities in the normalization above, by
+Rosenfeld \cite{Ros8,Ros9}, Trakulthongchai \cite{Tra}, and Sungkawichai and Trakulthongchai
+\cite{ST}; all of these are computer assisted and descend from a prime divisibility criterion. We
+state the convention explicitly because the literature is divided between counting runners and
+counting velocities.
+
+A separate line of work restricts the velocities to a window. Pomerance \cite{Pom} states that it
+remains a challenge to prove \eqref{eq:lrc} when $\{v_1,\dots,v_m\} \subseteq \{1,\dots,2m\}$, and
+the same restricted problem appears as Problem 6 of \cite{PS}. All results in this paper concern
+that restricted problem, and we state the restriction with every claim. The restricted and
+unrestricted problems are not comparable, and the method here is not competitive on the
+unrestricted one; see Remark~\ref{rem:regime}.
+
+Substantial parts of this window are already closed, and we state which, since our contribution is
+what remains. Tao \cite{Tao} proved that $v_m < 1.2m$ implies
+\eqref{eq:lrc}, uniformly in $m$ \cite[Theorem 22]{PS}; this closes the lower three fifths of the window outright and is
+the result that prompts the question of raising $1.2$ to $2$. Bohman and Peng \cite{BP}, via coprime
+mappings, proved that for sufficiently large $m$ the range $m < v_m \le 2m - \exp(c(\log\log m)^2)$
+is also closed, and Pomerance \cite{Pom} improved the error term to $c(\log m)^2$; both are
+ineffective in $m$ and so say nothing about any concrete $m$. Pandey \cite{Pan} proved
+\eqref{eq:lrc} for every $m$-subset of an arithmetic progression $\{a, a+d, \dots, a+(k-1)d\}$ of
+length $k \le 2m-3$ with $a$ and $d$ not both $1$; taking $d = 1$ this closes every velocity set
+inside the window whose least element exceeds $1$ and whose span $v_m - v_1 + 1$ is at most $2m-3$.
+
+What survives all of these at a given $m$ is the set of $V \subseteq [1,2m]$ with $v_m \ge 1.2m$ and
+with either $v_1 = 1$ or $v_m - v_1 + 1 \ge 2m-2$. That residual contains the extremal
+configurations: the tight instance $\{1,\dots,m\}$ has $v_1 = 1$, and the tight instances with
+$v_m = 2m - \Theta(\log m)$ noted in \cite[\S8.2]{PS} nearly span the window. The results above are
+all of the form ``\eqref{eq:lrc} holds for velocity sets satisfying a structural condition''. None
+of them decides the window at a fixed $m$, that is, settles \eqref{eq:lrc} for \emph{every}
+$m$-subset of $[1,2m]$ simultaneously, and it is that decision which the present method performs.
+
+\subsection{Results}
+
+Throughout, a claim is labelled \emph{verified} if it is formalized in Lean 4 with a clean build,
+no \texttt{sorry}, and no axioms beyond \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound}; \emph{proved} if a complete human proof is given but no formalization;
+\emph{computed} if it rests on an exhaustive machine enumeration that is not itself formalized;
+and \emph{conjectural} otherwise. Section~\ref{sec:lean} gives the correspondence between numbered
+statements and Lean declarations.
+
+Fix $m \ge 1$ and let $t = m+1$. For coprime integers $p,q$ with $q > 0$ define the \emph{bad set}
+of the time $p/q$ inside a window $[1,N]$ by
+\[
+  B_N(p,q) \;=\; \bigl\{\, x \in [1,N] \ :\ \Norm{x p / q} < 1/t \,\bigr\},
+\]
+and let $\tau(N)$ be the least cardinality of a subset of $[1,N]$ meeting every $B_N(p,q)$.
+
+\begin{theorem}[Verified; see Section~\ref{sec:hitting}]\label{thm:main-equiv}
+For $N \ge m+1$, inequality \eqref{eq:lrc} holds for every $m$-element velocity set contained in
+$[1,N]$ if and only if $\tau(N) > m$. Moreover $\tau(N) \le m+1$ for every $N$, so the window
+statement is equivalent to $\tau(N) = m+1$ exactly.
+\end{theorem}
+
+The content of Theorem~\ref{thm:main-equiv} is known. The covering formulation of \eqref{eq:lrc} is
+standard \cite{Tao}; that an optimal time may be taken of the form $\ell/(v_i+v_j)$ is elementary
+and is used throughout the literature without attribution \cite[eq.~(4)]{PS}, while the resulting
+replacement of the supremum by a finite maximum is credited to Haralambis \cite[Remark 1]{Har},
+with a proof in \cite[Theorem 6]{CG}; and Rosenfeld \cite[\S6, Lemma 7]{Ros8} already runs exactly
+the resulting finite set-cover search inside a velocity window. The upper bound $\tau(N) \le m+1$ is
+the classical Dirichlet observation recorded in \cite[\S4]{PS}. Our contribution to
+Theorem~\ref{thm:main-equiv} is the formalization and the naming of $\tau$, not the mathematics.
+
+The next statement is a normalization of the cover-capacity certificate of
+Section~\ref{sec:surplus}. It is a change of variables and we claim nothing for it beyond the
+bookkeeping: the point is that the threshold becomes the constant $2$ instead of the $m$-dependent
+$m-1$, which is what makes the parts reusable across $m$.
+
+\begin{theorem}[Verified; Lemma~\ref{thm:surplus}]\label{thm:main-surplus}
+Let $U_1,\dots,U_r$ cover $[1,2m]$, and suppose that for each $i$ every subset of $U_i$ with more
+than $c_i$ elements contains a bad set. If $\sum_i |U_i| = 2m$ and
+\[
+  \sum_{i=1}^{r} \srp_i \;\ge\; 2, \qquad \srp_i := |U_i| - 2c_i,
+\]
+then \eqref{eq:lrc} holds for every $m$-element velocity set contained in $[1,2m]$.
+\end{theorem}
+
+The point is the quantifier. The usual condition $\sum_i c_i < m$ has a budget depending on $m$, so
+a certificate must be rebuilt for each $m$; the surplus budget is the constant $2$ at every $m$. The
+two singleton bad sets supply exactly two units of surplus, and by Proposition~\ref{prop:surplus-one}
+they are the entire budget available.
+
+\begin{theorem}[Computed; Families verified, exhaustiveness computed; Section~\ref{sec:vocab}]\label{thm:main-vocab}
+Nine explicitly parameterized families of bad sets are proved: two of singletons, four of pairs and
+three of triples. The complementary pair family occurs at exactly two moduli, namely $q = 2m+1$ and
+$q = 2m+2$, and at no others. The pair families are exhaustive for \emph{every} $m$: an exact bad
+pair $a<b$ satisfies $b = 2a$ or $a+b > 2m$, so it is $\mathrm{DBL}$ or $\mathrm{CMP}$ (Lean:
+\texttt{badpair\_doubling\_or\_large}, with no hypothesis on the modulus). For singletons the
+exhaustiveness is computed, over $4 \le m \le 260$. The triple families are
+\emph{not} exhaustive, and Proposition~\ref{prop:triples-incomplete} exhibits minimal bad triples
+outside them.
+\end{theorem}
+
+The families themselves, the two-moduli confinement and the exhaustiveness at size two are
+verified; the exhaustiveness at size one is computed, over a range wider than any other computation
+in this paper. The size-two half is unconditional in the modulus, which is why it needs no range at
+all; the size-one half still rests on a sweep. We separate the two sizes because the distinction is
+load-bearing: the argument that a particular element closes
+the independence gap uses only the pair families, whereas the decision procedure of
+Theorem~\ref{thm:fam63} uses all nine and, as explained in Section~\ref{sec:vocab}, is unaffected by
+the triples that the classification misses.
+
+\begin{theorem}[Computed; Section~\ref{sec:computation}]\label{thm:main-63}
+For every $m$ with $4 \le m \le 63$, inequality \eqref{eq:lrc} holds for every $m$-element velocity
+set contained in $[1,2m]$.
+\end{theorem}
+
+The previously verified range for this restricted problem was $m \le 24$. Theorem~\ref{thm:main-63}
+is obtained from Theorem~\ref{thm:main-equiv} by deciding $\tau(2m) > m$ directly, which is a
+decision problem rather than a search for a certificate, and is correspondingly cheaper. The
+verdicts for $m \le 24$ reproduce the previously verified range, and the range $25 \le m \le 63$ is
+new. We stress that Theorem~\ref{thm:main-63} is computed and not verified: lifting it to a Lean
+proof requires a certificate for each $m$, and producing one is an open problem for each $m$
+(Remark~\ref{rem:lift}).
+
+The computation admits a sharper description. Because $\tau$ is monotone in the family of sets to be
+hit, the decision may be run against the nine families of Theorem~\ref{thm:main-vocab} alone, with
+the exhaustive enumeration discarded; it then still exhausts for every $m \le 63$
+(Theorem~\ref{thm:fam63}). On that route the exhaustiveness clause of Theorem~\ref{thm:main-vocab}
+is not used, every set fed to the search is one of the verified families, and the only unformalized
+ingredient left in Theorem~\ref{thm:main-63} is the finite search itself. That every generated set
+really is a bad set, which is what soundness needs, is certified constructively for all
+$m \le 250$; see Section~\ref{sec:computation}.
+
+Finally, Section~\ref{sec:obstructions} records five approaches to the uniform statement that are
+now closed, with the reasons. Among them is a counterexample at $m = 19$ to the block template that
+the cases $m = 10,13,16$ suggest.
+
+\subsection{What is not claimed}
+
+The uniform statement, that \eqref{eq:lrc} holds for every $m$ and every velocity set inside
+$[1,2m]$, remains open and nothing here approaches it. The framework certifies individual $m$; it
+has no known uniform selection mechanism, and Section~\ref{sec:obstructions} explains why the
+natural candidates fail.
+
+\begin{remark}\label{rem:regime}
+The efficiency of the method is governed by the minimum bad-set size, which by
+Theorem~\ref{thm:mincount} equals $\lfloor N/(m+1) \rfloor$. In a window $N = Bm$ with $B$ bounded
+this is a small constant and the decision procedure is fast; when $N/m$ grows the minimum bad set
+occupies a constant fraction of the window and the procedure degenerates. Applying the window
+reduction of \cite{MSS}, which permits taking $N = \binom{m+1}{2}^{m-1}$, the method reproves the
+unrestricted conjecture for at most four runners and is already impractical at five. It is
+therefore far behind the prime divisibility sieve on the unrestricted problem, and its regime is
+the bounded window.
+\end{remark}
+
+\section{Setup}\label{sec:setup}
+
+We work with the integer form of the badness predicate, which is decidable and is what the
+formalization manipulates.
+
+\begin{definition}\label{def:good}
+For $k, x, p, q \in \mathbb{N}$ with $q > 0$ set
+\[
+  \operatorname{good}_k(x,p,q) \;=\;
+  \bigl[\, q \le (k+2)\min\bigl(xp \bmod q,\ q - (xp \bmod q)\bigr) \,\bigr].
+\]
+We say $x$ is \emph{bad} at $(p,q)$ when $\operatorname{good}_k(x,p,q)$ fails.
+\end{definition}
+
+Writing $m = k+1$, badness at $(p,q)$ is exactly $\Norm{xp/q} < 1/(m+1)$, so
+$B_N(p,q) = \{x \in [1,N] : x \text{ bad at } (p,q)\}$. A velocity set $V$ with $|V| = m$ fails
+\eqref{eq:lrc} precisely when every bad set meets $V$, because the supremum defining $\ML$ is
+attained at a rational time whose denominator is a pairwise sum of velocities
+\cite[eq.~(4)]{PS}, \cite{Har,CG}. This is the input to
+Theorem~\ref{thm:main-equiv}.
+
+The following counting bound is used throughout and is sharp.
+
+\begin{theorem}[Verified]\label{thm:mincount}
+For all $k, N$ and all $p,q$ with $q > 0$,
+\[
+  \bigl|\{x \in [1,N] : x \text{ bad at } (p,q)\}\bigr| \;\ge\; \Bigl\lfloor \frac{N}{k+2} \Bigr\rfloor .
+\]
+\end{theorem}
+
+\begin{proof}
+Distribute the $N+1$ points $\{0 \cdot p/q\}, \dots, \{N \cdot p/q\}$ among the $k+2$ half-open
+boxes $[j/(k+2), (j+1)/(k+2))$. Some box contains at least $\lfloor N/(k+2)\rfloor + 1$ of them.
+Subtracting the least index in that box from the others gives $\lfloor N/(k+2)\rfloor$ distinct
+values in $[1,N]$, each bad, since two points of a common half-open box of length $1/(k+2)$ differ
+by less than $1/(k+2)$.
+\end{proof}
+
+Theorem~\ref{thm:mincount} is classical. It is the Dirichlet box principle with $B$ points per box
+in place of two, and also follows from van der Corput's generalization of Minkowski's theorem
+applied to $\{|x| < N + \delta,\ |y| < 1/(k+2)\}$ and the unimodular lattice $\{(v, vp/q - u)\}$;
+see \cite{Cassels}. The same inequality appears inside a proof in \cite[eq.~(1.34)]{BHV}, there
+under a linear independence hypothesis that excludes the rational times at which it is sharp. It is
+sharp: at $p/q = 1/(k+2)$ the bad set is the set of multiples of $k+2$.
+
+\section{The hitting formulation}\label{sec:hitting}
+
+\begin{theorem}[Verified]\label{thm:ceiling}
+Every bad set meets $[1,k+2]$. Consequently $\tau(N) \le k+2 = m+1$ for every $N \ge m+1$.
+\end{theorem}
+
+\begin{proof}
+Apply Theorem~\ref{thm:mincount} with $N = k+2$; the floor is $1$, so the bad set of any time has an
+element in $[1,k+2]$. Hence $[1,m+1]$ is itself a hitting set.
+\end{proof}
+
+\begin{theorem}[Verified]\label{thm:equiv}
+Fix $N \ge m+1$.
+\begin{enumerate}
+\item If every subset of $[1,N]$ with at most $m$ elements misses some bad set, then every
+  $m$-element velocity set inside $[1,N]$ satisfies \eqref{eq:lrc}.
+\item Conversely, if some $T \subseteq [1,N]$ with $|T| \le m$ meets every bad set, then there are
+  $m$ distinct positive velocities inside $[1,N]$ violating \eqref{eq:lrc}.
+\end{enumerate}
+In particular the window statement for $[1,N]$ is equivalent to $\tau(N) > m$, and with
+Theorem~\ref{thm:ceiling} to $\tau(N) = m+1$.
+\end{theorem}
+
+\begin{proof}
+For (1): a velocity set violating \eqref{eq:lrc} meets every bad set, so it is itself a hitting set
+of size $m$; the hypothesis applied to it produces a time at which every velocity is good, which
+contradicts the violation. For (2): extend $T$ to exactly $m$ distinct elements of $[1,N]$, which
+is possible since $N \ge m$; the extension still meets every bad set, and a family meeting every bad
+set has no good time, hence violates \eqref{eq:lrc}, by the attainment of the supremum defining
+$\ML$ at a rational time with denominator a pairwise sum of velocities, recorded above with
+references \cite[eq.~(4)]{PS}, \cite{Har,CG}.
+\end{proof}
+
+\begin{remark}
+The margin in Theorem~\ref{thm:equiv} is always exactly one, by Theorem~\ref{thm:ceiling}. This is
+the tight instance $\{1,\dots,m\}$ restated in hitting language and should not be read as a
+structural discovery; the ceiling is classical \cite[\S4]{PS}. It does explain why every certificate
+in this framework is tight, which is otherwise a recurring surprise.
+\end{remark}
+
+\section{The surplus certificate}\label{sec:surplus}
+
+For $U \subseteq [1,2m]$ let $\cpt(U)$ denote the largest size of a subset of $U$ containing no bad
+set, equivalently $|U| - \tau(U)$ where $\tau(U)$ is the least size of a subset of $U$ meeting every
+bad set contained in $U$.
+
+The cover-capacity certificate, in the form we use, states that if $U_1,\dots,U_r$ cover $[1,2m]$
+and every subset of $U_i$ with more than $c_i$ elements contains a bad set, then $\sum_i c_i < m$
+implies the window statement. The mechanism is that the complement of a violating velocity set is
+an independent set of size $m$ inside the window, and the parts bound it piecewise. At a general
+window height $Bm$ the complement has $(B-1)m$ elements and the condition becomes
+$\sum_i c_i < (B-1)m$; both forms are verified. The soundness of testing a weighted combination of times, equivalently a finitely supported measure, against a family of velocities is Bedert's \cite[Lemma~2.1]{Bed}; we claim no priority for it.
+
+Note that the $c_i$ are upper bounds supplied with the parts, so $c_i \ge \cpt(U_i)$, with equality
+only when the bound is exact; the surplus below is computed from the $c_i$ and not from $\cpt$.
+Note also that $\sum_i |U_i| = 2m$ together with the covering condition forces the $U_i$ to
+partition $[1,2m]$.
+
+\begin{lemma}[Verified]\label{thm:surplus}
+Set $\srp_i := |U_i| - 2c_i$. Under the hypotheses above with $\sum_i |U_i| = 2m$, the condition
+$\sum_i c_i < m$ is equivalent to $\sum_i \srp_i \ge 2$.
+\end{lemma}
+
+\begin{proof}
+$\sum_i \srp_i = \sum_i |U_i| - 2\sum_i c_i = 2m - 2\sum_i c_i$, and $2m - 2\sum_i c_i \ge 2$ is
+$\sum_i c_i \le m-1$.
+\end{proof}
+
+This is arithmetic, not mathematics: it is the same condition written so that the threshold no
+longer depends on $m$. We state it separately only because the search consumes it in that form.
+
+The identity is immediate; its value is that the budget no longer depends on $m$. A certificate
+becomes: cover the window by parts of nonnegative surplus and locate two units of surplus.
+
+\begin{proposition}[Proved]\label{prop:surplus-one}
+For every $m\ge1$ the only bad sets of size one inside $[1,2m]$ are $\{1\}$ and $\{m+1\}$.
+\end{proposition}
+
+\begin{proof}
+Fix $\alpha$ and let $\varepsilon=1/(m+1)$. Order the $2m+1$ points $\{x\alpha\}$, $x=0,\dots,2m$,
+on the circle and let $s$ be the least index difference realised by an adjacent pair, with gap $u$.
+The gaps sum to $1$; every gap whose index difference is not $s$ has length at least $\varepsilon$,
+since a shorter one would exhibit a bad singleton of smaller index difference; and at most
+$2m+1-s$ gaps have difference $s$. Hence $s\varepsilon\le1$, so $s\le m+1$.
+
+If $s\le m$ then $2s$ lies in the window, and $2s$ good forces $u\ge\varepsilon/2$. The points are
+then distinct and every pair $\{x,x+s\}$ is adjacent with gap exactly $u$, so
+$1\ge(2m+1-s)\varepsilon/2+s\varepsilon$, which forces $s=1$. Thus $s\in\{1,m+1\}$, and
+$s=m+1$ requires $(m+1)\alpha\in\mathbb{Z}$. Both are realised, at $\alpha$ near $0$ and at
+$\alpha=1/(m+1)$ respectively. No approximation theorem is used; the count is the mechanism behind
+the three-distance theorem. Verified independently by exhaustive breakpoint sweep in exact integer
+arithmetic for $2\le m\le400$, with a negative control at threshold $1/(m+2)$ that fails at every
+$m$.
+\end{proof}
+
+\begin{proposition}[Computed]\label{prop:surplus-two}
+The number of bad sets of the minimum size $B-1$ inside $[1,Bm]$ is exactly two for every
+$B \in \{3,4,5\}$ and every $m$ in the computed range. (The range of $m$ is not recorded and the generating program is not archived; HEURISTIC.) Together with
+Proposition~\ref{prop:surplus-one}, which settles $B=2$ for every $m$, the surplus available from
+minimum-size parts is exactly two.
+\end{proposition}
+
+Parts of nonnegative surplus known to us are: a singleton bad set, surplus $+1$; a bad pair,
+surplus $0$; an odd cycle of bad pairs of length $2\ell+1$, whose vertex cover number is $\ell+1$
+and independence number $\ell$, surplus $+1$; and a four-element part all four of whose triples are
+bad, surplus $0$.
+
+\begin{proposition}[Verified]\label{prop:packing}
+Let $S_1,\dots,S_{m+1}$ be pairwise disjoint subsets of $[1,Bm]$, each of size at least $B-1$. Then
+at least $B$ of them have size exactly $B-1$.
+\end{proposition}
+
+\begin{proof}
+Let $a$ be the number of parts of size exactly $B-1$ and $b$ the number of larger parts, so
+$a + b = m+1$ and $(B-1)a + Bb \le Bm$. Substituting $a = m+1-b$ gives $b \le m-B+1$, hence
+$a \ge B$.
+\end{proof}
+
+Proposition~\ref{prop:packing} combined with Theorem~\ref{thm:mincount} and
+Proposition~\ref{prop:surplus-two} shows that a certificate assembled from pairwise disjoint bad
+sets exists only at $B = 2$: it would require $B$ minimum-size bad sets, and only two exist. At
+$B = 2$ the requirement is exactly two and exactly two are available, which is why the dense-window
+certificates are tight and why the two free singletons are structurally necessary rather than
+convenient.
+
+\section{The vocabulary of small bad sets}\label{sec:vocab}
+
+Fix $m$ and write $k = m-1$. We classify the bad sets of size at most three inside $[1,2m]$. A bad
+set is \emph{minimal} if it contains no bad set properly.
+
+The enumeration is exhaustive over all real times, by the following observation. Membership of a
+fixed $x$ in the bad set changes only where $\Norm{x\alpha} = 1/(m+1)$, that is at
+$\alpha = (j(m+1) \pm 1)/(x(m+1))$, a rational of denominator dividing $x(m+1) \le N(m+1)$. Between
+two consecutive such breakpoints $a/b < c/d$ in lowest terms the mediant $(a+c)/(b+d)$ lies strictly
+between and has denominator at most $2N(m+1)$. Hence scanning every reduced $p/q$ with
+$q \le 2N(m+1)$ meets every breakpoint and every interval between consecutive breakpoints, and the
+resulting list of bad sets is the list occurring for any real time.
+
+\begin{theorem}[Computed]\label{thm:oth}
+For every $m$ with $4 \le m \le 260$, every minimal bad set of size one or two inside $[1,2m]$
+belongs to one of the families $\{1\}$, $\{m+1\}$, MUL, CMP, DBL below. Over that range this was
+checked against every bad set of size at most three produced by an enumeration exhaustive over all
+real times, and no further species of size one or two occurs. The program is \texttt{code/covering/clsweep.rs}: it checks $2\,341\,337$ minimal bad sets of size at most three over $4\le m\le260$ (the sets of size three that lie in none of the families are the triples of Proposition~\ref{prop:triples-incomplete}) and reports no unclassified singleton or pair. An earlier pair-only program, \texttt{code/covering/paircls.rs}, gives the same verdict for $4\le m\le32$; it stores a pair in a $64$-bit mask and is void for $m\ge33$.
+\end{theorem}
+
+For triples the corresponding statement is \emph{false}, and we record it as such.
+
+\begin{proposition}[Computed]\label{prop:triples-incomplete}
+The families SUM, SUM$'$, DBL$_3$ do not exhaust the minimal bad triples. Roughly one minimal bad
+triple in eight lies outside them, at every $m$ from $7$ to $260$. Two smallest examples:
+$\{5,8,13\}$ at $m = 9$, realized at $61/160$, and $\{6,12,18\}$ at $m = 10$, realized at
+$34/209$; both are minimal, and neither satisfies the hypotheses of any of the three propositions.
+The program \texttt{code/covering/bad\_triple\_classify.rs} enumerates all bad sets of size at most three over all real times and compares them as sets with the predicted list, with $0$ discrepancies, for $4\le m\le260$: it finds $2\,272\,034$ minimal triples, of which $294\,170$ lie outside the three families (types S3 and CHN of the exact classification), at least one outside at every $m$ from $7$ to $260$, with a fraction between $0.12$ and $0.19$ at each such $m$.
+\end{proposition}
+
+The two failures are of different kinds and both are instructive. The triple $\{5,8,13\}$ has the
+shape $\{a,b,a+b\}$ with $a,b$ coprime, but sits on the boundary of family SUM, where
+$2a+b = 18$ is not strictly greater than $2m = 18$, and it is too low for SUM$'$, which needs
+$b \ge m+1$. The triple $\{6,12,18\}$ is the set of multiples of $6$ inside the window, and it has
+both the SUM shape and the DBL$_3$ shape, but every family that could carry it requires a modular
+inverse and $\gcd(6,12) = 6$. A classification by shape alone would count both as covered; the
+families are defined by their hypotheses, and it is the hypotheses that fail.
+
+We can prove two of the three shapes for pairs, uniformly in $m$, and it is worth isolating what
+the obstruction to the third one is.
+
+\begin{theorem}[Verified]\label{thm:pairdich}
+Let $a < b$ both be bad at the time $p/q$. Then $b-a$ is bad or $a+b$ is bad.
+\end{theorem}
+
+\begin{proof}
+Write $r_x = xp \bmod q$ and regard $r_x$ as a point on a circle of circumference $q$; badness of
+$x$ says $r_x$ lies within $q/(m+1)$ of $0$, on one side or the other. If $r_a$ and $r_b$ lie on the
+same side, the distance from $0$ of $r_b - r_a$ is at most the larger of the two distances, so
+$b-a$ is bad; if on opposite sides, the same holds for $r_a + r_b$, so $a+b$ is bad.
+\end{proof}
+
+\begin{corollary}[Verified]\label{cor:pairstruct}
+If the bad set of $p/q$ inside $[1,2m]$ is exactly $\{a,b\}$ with $1 \le a < b \le 2m$, then
+$b = 2a$ or $a + b > 2m$.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:pairdich} one of $b-a$, $a+b$ is bad. In the first case $b-a$ lies in $[1,2m]$
+and is smaller than $b$, so it equals $a$ and $b = 2a$. In the second, $a+b$ exceeds $b$, so it
+cannot be one of the two bad values, and therefore cannot lie in the window at all.
+\end{proof}
+
+This is the doubling shape and the lower half of the complementary shape. The remaining gap is the
+upper bound $a+b \le 2m+2$ \emph{in the non-doubling case}, and the restriction is essential rather
+than cosmetic: $\{m,2m\}$ is a bad set for every $m$, by Proposition~\ref{prop:mul} at $d = m$, and
+it has $a+b = 3m$, which exceeds $2m+2$ as soon as $m \ge 3$. Doubling pairs are already covered by
+the first disjunct and must be excluded from the second.
+
+That remaining bound holds as soon as the pair is realized at one particular modulus.
+
+\begin{theorem}[Verified]\label{thm:pairupper}
+Let $a < b \le 2m$ with $b \ne 2a$, let $ap \equiv 1 \pmod{a+b}$, and suppose the bad set of
+$p/(a+b)$ inside $[1,2m]$ is exactly $\{a,b\}$. Then $a + b \le 2m+2$.
+\end{theorem}
+
+\begin{proof}
+Put $q = a+b$. Since $b = q - a$, its residue is $-1$, and $b - a = q - 2a$ has residue $-2$. So
+$b-a$ is bad exactly when $2(m+1) < q$. But $1 \le b - a \le 2m$, and $b - a$ is neither $a$, which
+would force $b = 2a$, nor $b$, which would force $a = 0$; so $b-a$ bad contradicts the bad set being
+$\{a,b\}$. Hence $q \le 2m+2$.
+\end{proof}
+
+The hypothesis that the pair is realized at that particular modulus can be weakened to an identity
+at whatever modulus is given. Fix a time $p/q$ whose bad set inside $[1,2m]$ is exactly $\{a,b\}$,
+and suppose the two residues lie on opposite sides of zero: write $u$ for the residue of $ap$ modulo
+$q$ and $q - v$ for the residue of $bp$, with $0 < u$ and $0 < v < q$.
+
+\begin{theorem}[Verified]\label{thm:pairident}
+With that notation, if
+\[
+  av + bu = q,
+\]
+then $a + b \le 2m+2$.
+\end{theorem}
+
+\begin{proof}
+Write $t = m+1$. Since $b \ne 2a$ and $a \ge 1$, the element $b-a$ lies in $[1,2m]$ and equals
+neither $a$ nor $b$, so it is good. Its residue is $-(u+v)$, whence $q \le (u+v)t$. The identity
+then gives $a(u+v) < av + bu = q \le (u+v)t$, so $a \le t - 1 = m$ and therefore $2a \le 2m$. As
+$2a$ is neither $a$ nor $b$, it is good as well, and its residue is $2u$, whence $q \le 2ut$.
+Writing $b = a+d$ with $d \ge 1$,
+\[
+  q(2a+d) = 2aq + dq \le 2a(u+v)t + d\cdot 2ut = 2t\bigl(av + (a+d)u\bigr) = 2tq ,
+\]
+and cancelling $q$ gives $a + b = 2a + d \le 2t = 2m+2$.
+\end{proof}
+
+Neither goodness fact is an extra hypothesis; both are forced by $\{a,b\}$ being the whole bad set,
+and both are derived from that in the formalization. Nothing is required of $v$ beyond positivity.
+The symmetric partner $q \le 2vt$ of the second fact is false, failing in $3280$ of the $11528$
+instances below (program \texttt{code/covering/identchk.rs}, $4\le m\le90$, which also fails the second known-false control $a+b\le 2t-1$ in $1601$ instances, so that the verdict of $0$ failures for the identity is not vacuous), and the argument does not use it.
+
+Theorem~\ref{thm:pairident} subsumes Theorem~\ref{thm:pairupper}: at $q = a+b$ with $ap \equiv 1$
+the residue of $b$ is $-1$, so $u = v = 1$ and the identity reads $a + b = q$. The identity is the
+classical relation between two consecutive best approximations, and it holds.
+
+\begin{theorem}[Verified]\label{thm:identity}
+With the notation above, $av + bu = q$, and $\gcd(a,b) = 1$.
+\end{theorem}
+
+\begin{proof}
+Let $\Lambda = \{(x,s) \in \mathbb{Z}^2 : s \equiv xp \pmod q\}$, a subgroup of index $q$
+containing $(a,u)$ and $(b,-v)$, and let $\Lambda' = \langle (a,u),(b,-v)\rangle$. The determinant
+of the second is $av+bu$, so $q \mid av+bu$; write $av + bu = cq$, so that $c \ge 1$ is the index of
+$\Lambda'$ in $\Lambda$.
+
+Suppose some $(z_0,s_0) \in \Lambda$ lies outside $\Lambda'$. Subtracting an element of $\Lambda'$
+puts it in the fundamental parallelogram: $z = \lambda a + \mu b$ and $s = \lambda u - \mu v$ with
+$\lambda, \mu \in [0,1)$ not both $0$. Then $0 < z < a+b$ and $-v < s < u$, so
+$|s| < \max(u,v) < q/t$. If $z > 2m$, replace the point by $(a,u)+(b,-v)-(z,s)$, which is again
+outside $\Lambda'$, has first coordinate $a+b-z$, and since $a+b \le 4m-1$ and $z > 2m$ that is
+below $2m$. So we may take $1 \le z \le 2m$. Then $z$ is bad, hence $z \in \{a,b\}$. If $z = a$
+then $q$ divides both $ap-u$ and $ap-s$, hence $u-s$, which lies strictly between $0$ and
+$u+v < q$: impossible. If $z = b$ the same applies to $v+s$. So no such $(z_0,s_0)$ exists, that is
+$\Lambda' = \Lambda$.
+
+Two points of $\Lambda$ now give the two conclusions. First, $(1,p) \in \Lambda = \Lambda'$, so
+$1$ is an integer combination of $a$ and $b$ and $\gcd(a,b) = 1$. Second, $(0,q) \in \Lambda$, and
+$\Lambda' \cap (\{0\}\times\mathbb{Z}) = cq\mathbb{Z}$ because $\gcd(a,b)=1$; so $cq \mid q$,
+that is $c = 1$.
+\end{proof}
+
+The construction is explicit rather than abstract: for $(0,q)$ the reduced point is
+$z = (\beta a + \alpha b)/c$ and $s = (\beta u - \alpha v)/c$ with $\beta = b \bmod c$ and
+$\alpha = -a \bmod c$, and both coordinates are integers by congruence alone, since
+$\beta a + \alpha b \equiv ba-ab = 0$ and $\beta u - \alpha v \equiv bu+av = cq \equiv 0$ mod
+$c$. For a general starting point the same formulas apply with $c$ replaced by $cq$ and
+$\beta, \alpha$ the residues of $z_0v + bs_0$ and $uz_0 - as_0$. That is what is formalized.
+
+\begin{corollary}[Verified]\label{cor:pairupper-uncond}
+Every non-doubling bad pair satisfies $a+b \le 2m+2$, with no further hypothesis.
+\end{corollary}
+
+Together with Corollary~\ref{cor:pairstruct}, which gives $a+b > 2m$ in the non-doubling case, this
+pins the complementary shape exactly: $a+b \in \{2m+1, 2m+2\}$. The coprimality that the shape
+alone does not supply is the second half of Theorem~\ref{thm:identity}, since
+$\gcd(a,a+b) = \gcd(a,b)$. The normalization asked about in earlier versions of this problem, that
+every non-doubling bad pair be realized at the modulus $a+b$, is no longer needed for either.
+
+The identity gives the bound, and the coprimality comes with it. A bad pair may have
+$a+b = 2m+1$ with $a$ sharing a factor with the modulus; over $4 \le m \le 40$ this happens $25$
+times, and every one of those pairs is a doubling pair, carried by the first disjunct. (The count $25$ was obtained in a session; the generating program is not archived and the count was not regenerated; HEURISTIC.) For
+non-doubling pairs it does not happen, and that is a consequence rather than an observation: a time
+realizing the pair at the modulus $a+b$ has $ap \equiv 1$, which exhibits $a$ as a unit. So the
+normalization yields the families of Section~\ref{sec:vocab} with their hypotheses, not merely the
+shapes, and that implication is formalized too.
+
+Nothing else in this paper depends on the triple classification being exhaustive. The decision of
+Theorem~\ref{thm:main-63} uses the enumeration, not the families. Theorem~\ref{thm:fam63} uses the
+families, but only in the direction where omitting bad sets is harmless: a smaller family of
+constraints can only lower the hitting number, so a verdict $\tau > m$ obtained from a subfamily is
+a verdict for the whole family. The unclassified triples are constraints that were simply not used.
+
+The individual families are verified. We state them with their exact hypotheses; in each case the
+conclusion is an equality of sets, since a part of a cover must contain a whole bad set.
+
+\begin{proposition}[Verified: singletons]
+$\{1\}$ is the bad set of the time $1/(2m+2)$, and $\{m+1\}$ is the bad set of the time $1/(m+1)$.
+\end{proposition}
+
+\begin{proposition}[Verified: MUL]\label{prop:mul}
+Let $2m/3 < d \le m$. Then the bad set of the time $1/d$ inside $[1,2m]$ is exactly $\{d, 2d\}$.
+\end{proposition}
+
+\begin{proof}
+The band at modulus $d$ has half-width $d/(m+1) < 1$, so $x$ is bad exactly when $d \mid x$; the
+hypothesis $3d > 2m$ says the third multiple has left the window.
+\end{proof}
+
+The number of admissible $d$ is $m - \lfloor 2m/3 \rfloor = \lceil m/3 \rceil$, and this matches the
+enumerated count of MUL pairs at every $m$ in the computed range.
+
+\begin{proposition}[Verified: CMP]\label{prop:cmp}
+Let $q \in \{2m+1,\ 2m+2\}$ and let $a p \equiv 1 \pmod q$ with $2 \le a \le 2m$. Then the bad set
+of $p/q$ inside $[1,2m]$ is exactly $\{a,\ q-a\}$. Moreover no other modulus supports a
+complementary pair: if $\{a, q-a\}$ is a bad set with residues $\pm 1$, then $q > 2m$, since
+otherwise $q$ itself is bad at residue $0$, and $q \le 2m+2$, since otherwise residue $\pm 2$ is bad
+and the set is larger.
+\end{proposition}
+
+The case $q = 2m+1$ is the coprimality edge of Bohman and Peng \cite[\S3]{BP}, who take the time
+$s^{-1}/(s+t)$ and observe that no velocity is $0$ or $\pm 1$ modulo $s+t$; we cite it and do not
+claim it. The case $q = 2m+2$ appears not to be recorded. At $a = 1$ the partner $q-1 = 2m+1$ leaves
+the window and the set degenerates to the singleton $\{1\}$, consistently with the singleton family.
+
+\begin{proposition}[Verified: DBL]\label{prop:dbl}
+Let $2m+2 < q \le 3m+3$, let $ap \equiv -1 \pmod q$, and suppose $2a \le 2m$ and $2m + 2a < q$. Then
+the bad set of $p/q$ inside $[1,2m]$ is exactly $\{a, 2a\}$.
+\end{proposition}
+
+The hypothesis $2m + 2a < q$ pushes the complementary partners $q-a$ and $q-2a$ out of the window;
+without it they re-enter and the bad set has four elements.
+
+The classification of pairs has a structural consequence for the graph they form. Write $G_m$ for
+the graph on $[2,2m]$, on $2m-1$ vertices, in which $a$ and $b$ are adjacent when $\{a,b\}$ is a bad
+set. The vertex $1$ is omitted because it is a bad singleton. Section~\ref{sec:obstructions} works
+instead with $G$, the induced subgraph of $G_m$ on $[2,2m]\setminus\{m+1\}$, on $2m-2$ vertices,
+which drops the second bad singleton as well. The two are distinct and both are used: triangle
+freeness is stated for the larger $G_m$, and the matching and independence results for $G$, where
+the candidate complements live.
+
+\begin{theorem}[Verified]\label{thm:trianglefree}
+$G_m$ contains no triangle, for every $m$.
+\end{theorem}
+
+\begin{proof}
+Every edge is a doubling pair $b = 2a$ or a complementary pair with $a + b \in \{2m+1, 2m+2\}$, by
+Corollary~\ref{cor:pairstruct} and Theorem~\ref{thm:pairupper}. Let $2 \le x < y < z$ be a
+triangle. If all three edges are complementary, the three sums lie in $\{2m+1,2m+2\}$, which forces
+$x,y,z \in [m-1,m+2]$; the only triple there with $x+y \ge 2m+1$ is $\{m,m+1,m+2\}$, and it fails
+because $y+z = 2m+3$. If exactly one edge doubles, subtracting the two complementary sums gives
+$x \le 1$. If two edges double, the triangle is $\{x,2x,4x\}$ with $5x \in \{2m+1,2m+2\}$, and the
+gcd condition then gives $x = 1$. Three doubling edges are inconsistent with $x<y<z$. Every branch
+contradicts $x \ge 2$.
+\end{proof}
+
+Two consequences are used in Section~\ref{sec:obstructions}. A part of three elements and capacity
+one requires all three of its pairs to be bad, so no such part exists. And no five-cycle of $G_m$ has
+all five edges complementary, since two complementary edges at a vertex force its neighbours to
+differ by at most one, which places all five vertices in a window of width two.
+
+For triples we record the three families and omit the proofs, which are of the same character.
+
+\begin{proposition}[Verified: SUM, SUM$'$, SUM$''$, DBL$_3$]\label{prop:triples}
+Let $a < b$.
+\begin{enumerate}
+\item If $m+1 < a+b \le 2m$, $2a+b > 2m$ and $a p \equiv 1 \pmod{a+b}$, the bad set of $p/(a+b)$ is
+  exactly $\{a, b, a+b\}$.
+\item If $b \ge m+1$, $a + b \le 2m$, $a + 2b \le 3m+3$ and $b p \equiv 1 \pmod{a+2b}$, the bad set
+  of $p/(a+2b)$ is exactly $\{a, b, a+b\}$.
+\item If $2a+b \le 2m$, $b \le m$, $a+2b > 2m$, $m+1 < a+b$, $3m+3 < 2a+3b \le 4m+4$ and
+  $(a+b)p \equiv 1 \pmod{2a+3b}$, the bad set of $p/(2a+3b)$ is exactly $\{a, b, a+b\}$. The
+  residues of $a$, $b$, $a+b$ at this modulus are $3$, $-2$, $1$.
+\item If $2a \le 2m$, $t \le 2m$, $a + t > 2m$, $2m+2 < 2a+t \le 3m+3$ and $ap \equiv 1
+  \pmod{2a+t}$, the bad set of $p/(2a+t)$ is exactly $\{a, 2a, t\}$.
+\end{enumerate}
+\end{proposition}
+
+The third item is family SUM$''$. It is the branch the enumeration of
+Section~\ref{sec:computation} has always used and this proposition did not state; the lower bound
+$3m+3 < 2a+3b$ is necessary and was absent from the enumeration's predicate. The smallest member
+carries residue $3$, so it is bad only when $3(m+1) < 2a+3b$, while the remaining conditions give
+only $2a+3b > 3m+1$. Without it the branch admits sets whose smallest member is not bad, of which
+there are $38$ below $m = 60$, the first being $\{3,4,7\}$ at $m = 5$, where $2a+3b = 18$ equals
+$3(m+1)$ and the bad set is $\{4,7\}$. With it the branch is realizable throughout the tested
+range, and the enumeration's membership check is unaffected.
+
+\begin{remark}[Formalization]
+The side condition $a+t>2m$ of item (3) need not be stipulated. Write $\theta_x$ for the signed
+distance from $x\alpha$ to the nearest integer, so that $x$ is bad exactly when
+$|\theta_x|<\varepsilon$, and note that on the window the residues add. For an exact bad set
+$\{a,2a,t\}$ the sum $a+t$ exceeds $t$, so if it were bad and at most $2m$ it would be a member
+larger than the largest, which is impossible; hence either $a+t>2m$, or $a+t$ is not bad and the
+difference $t-a$ is, and $t-a$ lies strictly below $t$, so it is $a$ or $2a$ and $t=3a$. Thus
+$a+t\le 2m$ forces the chain $\{a,2a,3a\}$, and item (3), where $t\neq 3a$, must satisfy $a+t>2m$.
+
+The same argument gives the shape dichotomy: an exact bad set $\{a,b,c\}$ with $a+b\le 2m$ satisfies
+$c=a+b$ or $b=2a$. For $a+b>2m$ the sum branch is vacuous, since badness outside $[1,2m]$ identifies
+no member, and the reflection of Theorem~\ref{thm:identity} is required: a reduced lattice point
+$z=\lambda a+\mu c$ above the window reflects to $a+c-z\in[1,2m]$ with residue
+$(1-\lambda)\theta_a+(1-\mu)\theta_c$, and since $z>2m$ forces $\lambda+\mu>1$, that residue is
+bounded by $(2-\lambda-\mu)\max(|\theta_a|,|\theta_c|)$ and is therefore strictly smaller. The
+reflected point is bad and in range, hence a member.
+
+The determinant argument behind Lemma 3.1 is formalized in the same way. With
+$\theta_a=a\alpha-j_a$ and $\theta_b=b\alpha-j_b$ the quantity $a\theta_b-b\theta_a$ equals
+$b j_a-a j_b$, an integer, the $\alpha$ terms cancelling; and it is bounded by $(a+b)\varepsilon$,
+which stays below $2$ on the window. An integer of absolute value below $2$ is $-1$, $0$ or $1$, and
+the vanishing case makes the two lifts parallel, so that $\theta_x=x\delta$ with $\delta=\alpha-k$
+and every $x\le a$ is bad, forcing the least bad speed to be $1$. Hence the determinant is $\pm1$,
+which is itself the B\'ezout relation: $b j_a-a j_b=1$ reads $a(-j_b)+b j_a=1$, so $\gcd(a,b)=1$ and
+the coefficients are exhibited at once.
+
+These statements are formalized in Lean, without \texttt{sorry} and on the standard axioms, in
+\texttt{ShapeTheorem.lean}, \texttt{ReflectionResidue.lean} and \texttt{LatticeReduction.lean}. The membership of every bad set of
+size at most three in the five families is checked for $2\le m\le 150$, over $q\le 2m+2$, by kernel evaluation and for
+$2\le m\le 300$, comprising $5{,}882{,}334$ sets, by an independent exhaustive sweep. The shape
+dichotomy is proved for $a+b\le 2m$. The complementary case is equivalent to a sharper statement: an
+exact bad set whose two smallest members form a DBL pair with $3a>2m$ has no third member. Over
+$2\le m\le 150$ there are $194{,}811$ such pairs and none extends (program \texttt{code/covering/bt\_dbl\_extend.rs}), so the statement is non-vacuous,
+but it is not proved. It cannot be proved from the residue inequalities alone: with $a>2m/3$ every
+speed is $r$, $a+r$ or $2a+r$ with $0\le r<a$, a third member exists exactly when some $r$ satisfies
+$|2\theta_a+\theta_r|<\varepsilon$ while $r$ and $a+r$ are not bad, and that system is satisfiable,
+for instance at $\theta_a=\varepsilon/4$, $\theta_r=-5\varepsilon/4$. The obstruction must come from
+which residues occur among the available $r$, which is a three-distance question.
+\end{remark}
+
+Families (1) and (2) realize the same triple $\{a,b,a+b\}$ at two different moduli; (1) applies when
+the second periods stay outside the window and (2) when they do not. The distinction is not
+cosmetic: at $m = 7$ the triple $\{2,9,11\}$ fails the hypothesis of (1), since $2a+b = 13 \le 14$,
+and the bad set at modulus $11$ is in fact $\{2,9,11,13\}$; it is realized by (2) at modulus $20$.
+
+\begin{remark}
+An empirical observation, computed and not proved, guided the choice of families. Extracting an
+irredundant subfamily of bad sets that still forces $\tau(2m) > m$, by repeatedly discarding a bad
+set and re-deciding, produces for every $m \le 33$ a core containing no bad set of size four or
+more. When $2m+1$ is prime the core has exactly $m+1$ members, namely the two singletons and $m-1$
+pairs forming a perfect matching, which recovers the structure behind the uniform proof for prime
+$2m+1$. When $2m+1$ is composite the core is larger and always contains triples. This is why the
+classification stops at size three.
+\end{remark}
+
+\section{Decision procedure and computations}\label{sec:computation}
+
+Theorem~\ref{thm:equiv} turns the window statement into the decision problem: does a hitting set of
+size $m$ exist? We decide it by branch and bound, seeding the incumbent at $m+1$, branching on the
+smallest not-yet-hit bad set, and pruning with the bound that pairwise disjoint not-yet-hit bad sets
+each require a distinct element. Bad sets are enumerated exhaustively as in Section~\ref{sec:vocab}
+and reduced to minimal ones.
+
+A verdict of the form ``no hitting set of size $m$ exists'' is robust to under-enumeration: $\tau$
+is monotone in the family of sets to be hit, so establishing $\tau > m$ for a subfamily establishes
+it for the whole family. Only a verdict in the other direction would require completeness of the
+enumeration, and none occurred.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main-63}]
+The procedure was run for $4 \le m \le 63$, the ceiling being the width of the machine word used for
+the window bitmask. In every case the search exhausted without finding a hitting set of size $m$,
+whence $\tau(2m) = m+1$ by Theorem~\ref{thm:ceiling} and the window statement follows by
+Theorem~\ref{thm:equiv}. Total running time was under thirteen minutes, dominated by the enumeration
+of bad sets rather than by the search.
+\end{proof}
+
+\subsection*{The same range from the verified families alone}
+The monotonicity just used has a consequence worth separating out. Since a verdict $\tau > m$ for a
+subfamily already gives the window statement, the search does not need the exhaustive enumeration at
+all: it may be run against the nine families of Section~\ref{sec:vocab} and nothing else. Those
+families are verified, so on this route the enumeration, which is the one ingredient of
+Theorem~\ref{thm:main-63} that is neither formalized nor independently auditable, is removed
+entirely.
+
+\begin{theorem}[Computed, from verified inputs]\label{thm:fam63}
+For every $m$ with $4 \le m \le 63$, the hitting-set search run against the two singleton, four pair
+and three triple families of Section~\ref{sec:vocab}, and against no other set, exhausts without
+finding a hitting set of size $m$. Consequently the window statement holds for every such $m$.
+\end{theorem}
+
+The soundness of this route depends on an inclusion in one direction only, and it is the opposite of
+the one in the previous paragraph. Under-generation is harmless. Over-generation is not: a set that
+is not a bad set is a constraint with no content behind it, and since adding constraints can only
+raise $\tau$, a single such set could manufacture a false verdict $\tau > m$. What is required is
+therefore exactly that every generated set is a bad set, and this is certified constructively rather
+than assumed. Each family member is emitted together with the time $p/q$ named in its proposition,
+and $B_{2m}(p,q)$ is recomputed from the definition and compared with the generated set. Over
+$4 \le m \le 250$ this was carried out for all $2{,}772{,}478$ generated members; in every case the
+two sets were equal, not merely nested. The certificate needs no enumeration and is therefore
+available at every $m$, including those far beyond the range the search itself reaches.
+
+Four controls were run. First, the verdicts for $m \le 24$ agree with the independently verified
+range. Second, replacing the threshold $1/(m+1)$ by $1/m$ makes the statement false, since
+$\ML(1,\dots,m) = 1/(m+1)$; the procedure then finds a hitting set, and the witness it returns is
+$\{1,\dots,m\}$, the classical tight instance. Third, an independent implementation computing
+$\tau(2m)$ exactly, with a different bound and code path, returns $\tau = m+1$ at $m = 25$ and
+$m = 26$, in agreement. Fourth, a search in the complementary formulation, looking for an $m$-set
+containing no bad set rather than for a hitting set, returns the same verdict at every $m \le 45$;
+it shares no branching logic with the first implementation.
+
+\begin{remark}\label{rem:sweep}
+The enumeration of bad sets can be made much cheaper than the scan over all reduced $p/q$ with
+$q \le 2N(m+1)$, which costs $O(m^4)$ times the window width. Membership of $x$ changes only where
+$\Norm{x\alpha} = 1/(m+1)$, that is at $\alpha = (j(m+1) \pm 1)/(x(m+1))$, so there are only $O(m^2)$
+breakpoints in $[0,1)$; evaluating the bad set at every breakpoint and at one interior point of every
+interval between consecutive breakpoints therefore produces the complete family in $O(m^3)$. The
+breakpoints must be evaluated and not only the intervals: at a breakpoint some $x$ has
+$\Norm{x\alpha} = 1/(m+1)$ exactly and is good there while bad on both sides, so the bad set at a
+breakpoint is a proper subset of both its neighbours, and a smaller bad set is a stronger
+constraint. Carried out in exact integer arithmetic on rationals, with interior points taken as
+mediants, this reproduces the family of minimal bad sets produced by the scan exactly, set for set,
+for every $m \le 26$. With the enumeration no longer the bottleneck, the branch and bound is, and its
+cost tracks the deficiency rather than $m$, which is what Proposition~\ref{prop:ke} would lead one
+to expect: searching against the nine families, $m = 56$ takes under a second and $m = 61$, whose
+deficiency is $18$, takes half an hour.
+\end{remark}
+
+\begin{remark}\label{rem:lift}
+Theorem~\ref{thm:main-63} is computed, not verified. The decision procedure establishes the
+nonexistence of a small hitting set, which is not by itself a certificate that the Lean statement
+can consume; the verified entry points require a cover with capacities. By Lemma~\ref{thm:surplus}
+and Proposition~\ref{prop:surplus-one}, producing such a cover at a given $m$ amounts to
+partitioning $[1,2m] \setminus \{1,m+1\}$ into parts of surplus zero, and we do not know how to do
+this uniformly; see Section~\ref{sec:obstructions}.
+\end{remark}
+
+\subsection*{A case above the window: $m = 13$ at height three}
+
+The decision procedure is not tied to the window $[1,2m]$. Raising the height to $3m$ at $m = 13$
+gives a case the literature does not cover, since the conjecture is known for at most $12$
+velocities and that is independent of height. We record the convention once more because a single
+velocity separates new from known: $m$ counts velocities and the number of runners is $m+1$, so
+$m = 13$ is $14$ runners.
+
+\begin{theorem}[Computed]\label{thm:k3m13}
+Every $13$-element set of velocities inside $[1,39]$ satisfies \eqref{eq:lrc}.
+\end{theorem}
+
+The criterion is the hitting formulation of Section~\ref{sec:hitting} applied verbatim at height
+three. A velocity set is lonely exactly when some time's bad set misses it entirely, so a
+counterexample is a set meeting every bad set. Over $[1,39]$ at threshold $1/14$ the family of
+distinct bad sets has $717$ members, obtained from the breakpoints together with the reduced
+mediants between consecutive ones. All $\binom{39}{13} = 8\,122\,425\,444$ velocity sets were
+tested against it and none meets every member.
+
+The direction of any error in the enumeration is the one that matters. Each member of the family is
+computed from an explicit rational by the definition, so the family can only omit bad sets, never
+contain a set that is not bad. An omission would report a lonely set as a counterexample, not the
+reverse, so a count of zero is safe while a positive count would have required checking each witness
+by hand.
+
+Two independent checks support the computation. First, the same procedure run at $m = 10, 11, 12$
+and the same height $3m$ returns no counterexample in each case, agreeing with the literature, which
+settles those by other methods. Second, the procedure detects counterexamples when they exist: at
+threshold $1/13$ rather than $1/14$ the set $\{1,\dots,13\}$, whose maximum loneliness is exactly
+$1/14$, is reported, and at threshold $1/10$ in $[1,20]$ four sets are reported. An earlier version
+of the program discarded empty bad sets, which are the times at which nothing in the window is bad,
+and consequently reported $\{1,\dots,13\}$ as a counterexample at threshold $1/14$; the second check
+is what caught it.
+
+Theorem~\ref{thm:k3m13} is computed and not verified, and the obstruction is sharper than the one in
+Remark~\ref{rem:lift}. At height $b+1$ the budget of Lemma~\ref{thm:surplus} becomes $b(k+1)$, so
+at $m = 13$ and height three a certificate needs parts covering $[1,39]$ with capacities summing to
+at most $25$, an average ratio of $0.641$. At this height there is no bad singleton and there are
+only two bad pairs, so the parts available at or below that ratio are scarce: one of size four, $54$
+of size five, none of size six with capacity three, and eight of size seven, the last all containing
+$\{1,2,14,28\}$. Every element of $[1,39]$ lies in some such part, so nothing is excluded outright,
+yet an exhaustive search over parts of size two through seven finds no cover within budget. The
+scarce elements, each lying in exactly three candidate parts, are what the search fails on.
+
+\section{Closed approaches}\label{sec:obstructions}
+
+We record five approaches to the uniform statement that are now closed, with reasons. Each was
+pursued to a decision, and the negative results are the durable part of this work.
+
+\subsection*{Bad pairs alone, integrally or fractionally}
+A cover by the two singletons and $m-1$ disjoint bad pairs certifies the window, and such a matching
+exists precisely when $2m+1$ is prime or equal to $9$, which was checked by blossom matching for
+every $m \le 24$. The fractional relaxation does no better: by half-integrality of the fractional
+matching polytope a vertex set decomposes into edges and odd cycles exactly when the graph has a
+fractional perfect matching, and computation over $5 \le m \le 24$ shows the bad-pair graph has one
+if and only if $2m+1$ is prime.
+
+Let $G$ be the bad-pair graph on $[1,2m] \setminus \{1,m+1\}$, on $n = 2m-2$ vertices, that is the
+induced subgraph of $G_m$ obtained by deleting $m+1$, with
+Gallai--Edmonds decomposition $(D,A,C)$ and deficiency $\mathrm{def} = n - 2\nu(G)$.
+
+\begin{proposition}[Proved; Classical]\label{prop:alpha}
+$\alpha(G) \le m - 1 + \tfrac12 \mathrm{def}$, with equality if and only if $G$ is
+K\"onig--Egerv\'ary, that is $\alpha(G) + \nu(G) = n$.
+\end{proposition}
+
+We claim nothing here: the statement is Gallai's identity combined with the definition of the
+K\"onig--Egerv\'ary property, and we record it only to fix the direction of the inequality, which
+is the direction that makes it useless on its own.
+
+\begin{proof}
+Gallai's identity $\alpha(G) + \rho(G) = n$, with $\rho$ the minimum vertex cover, together with
+$\rho(G) \ge \nu(G)$, gives $\alpha(G) \le n - \nu(G)$, and equality holds exactly when
+$\rho(G) = \nu(G)$, which is the K\"onig--Egerv\'ary property. Substituting
+$\nu(G) = (n - \mathrm{def})/2$ and $n = 2m-2$ turns $n - \nu(G)$ into $m - 1 + \tfrac12\mathrm{def}$.
+\end{proof}
+
+The inequality runs in the direction that is useless on its own: it caps $\alpha(G)$ rather than
+forcing it up. What the computation supplies is the equality case.
+
+\begin{proposition}[Computed]\label{prop:ke}
+For every composite $2m+1$ with $m \le 63$ the bad-pair graph is K\"onig--Egerv\'ary, so
+$\alpha(G) = m - 1 + \tfrac12\mathrm{def}$ exactly. The independence number was computed by exact
+maximum independent set, by a code path that does not use the deficiency, and the deficiency by
+blossom matching; the identity $\alpha + \nu = n$ was then read off. Consequently
+$\alpha(G) \ge m$ at each of the thirty-two of those values with $\mathrm{def} \ge 2$, the one
+exception being $m = 4$, where $2m+1 = 9$ and $\mathrm{def} = 0$.
+\end{proposition}
+
+Suppose $\alpha(G) \ge m$ and let $S$ be an independent set of $G$ with $|S| = m$. Its complement
+$H = [1,2m] \setminus S$ also has $m$ elements, and it meets every bad set of size at most two:
+it contains $1$ and $m+1$, which lie outside the ground set of $G$ and so outside $S$, and it meets
+every bad pair, since a bad pair inside $S$ would be an edge of $G$ inside an independent set. Hence
+the hitting number of the subfamily consisting of the bad singletons and the bad pairs is at most
+$m$, and no certificate assembled from that subfamily can reach $m+1$. So at every composite $2m+1$
+with $m \le 63$ other than $m = 4$, no certificate built from bad pairs alone can work, integrally
+or fractionally, and the bad triples are doing work that nothing smaller can do.
+
+This is a computed statement, and it cannot be promoted, because the K\"onig--Egerv\'ary property
+is \emph{false} in general.
+
+\begin{proposition}[Computed]\label{prop:ke-false}
+The bad-pair graph is not K\"onig--Egerv\'ary for every $m$. Over $4 \le m \le 900$ it fails at
+exactly four values, $m = 150, 318, 486, 570$. The least is $m = 150$, where $2m+1 = 301 = 7\cdot43$:
+there $|V| = 298$, $|E| = 323$ and $\nu = 139$, and no vertex cover of size $\nu$ exists.
+\end{proposition}
+
+All four have $7 \mid 2m+1$. We state that as an observation and not as a pattern: it is four points,
+the divisibility is necessary over the tested range but plainly not sufficient, since $128$ of the
+$897$ values tested satisfy it and only four fail, and the tightest residue class containing all
+four still contains six values that do not fail. Whether the failures are finite, sparse, or merely
+rare is open, and nothing in this paper depends on the answer.
+
+Whether a graph is K\"onig--Egerv\'ary is decidable in polynomial time, without computing the
+independence number, which is what makes a search out to $m = 150$ possible. Fix a maximum matching
+$M$. A vertex cover of size $|M|$ must contain exactly one endpoint of each edge of $M$ and no
+$M$-exposed vertex, since the $|M|$ disjoint edges already exhaust the budget; one boolean per edge
+of $M$ then turns the covering requirement into a $2$-SAT instance, satisfiable exactly when the
+graph is K\"onig--Egerv\'ary. In the satisfiable case the assignment is an explicit minimum vertex
+cover, so a positive answer certifies itself. K\"onig--Egerv\'ary graphs carry a literature of
+their own \cite{Dem,Ste,Lar}; Proposition~\ref{prop:ke-false} says the bad-pair graph does not
+belong to it, so that literature is not a route to a proof here.
+
+The equality $\alpha(G) = m - 1 + \tfrac12\mathrm{def}$ is therefore a feature of small $m$ rather
+than a theorem, and the negative result above rests on the measured values of $\alpha(G)$ and on
+nothing else. One half of it is unconditional and worth isolating, since it needs neither
+computation nor the classification.
+
+\begin{proposition}[Verified]\label{prop:alpha-m-1}
+$\alpha(G) \ge m-1$ for every $m$.
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{thm:ceiling} every bad set meets $[1,m+1]$. Hence no bad set is contained in
+$[m+2,2m]$, so that interval contains no bad set at all; in particular it spans no edge of $G$, and
+it is an independent set of $G$ of size $m-1$.
+\end{proof}
+
+The three steps are formalized: that the bad set always escapes the top interval, that no bad set is
+contained in it, and its specialization to the two-element sets which are the edges of $G$, together
+with the cardinality $m-1$.
+
+The remaining unit, from $m-1$ to $m$, reduces to a statement about a single element. Write
+$T = [m+2,2m]$ and let $x \notin T$. Since no bad set is contained in $T$, every bad set contained in
+$T \cup \{x\}$ must contain $x$; this too is verified. So $T \cup \{x\}$, which has $m$ elements, is
+independent in $G$ as soon as $\{x\}$ is not a bad set and no $\{x,y\}$ with $y \in T$ is a bad set.
+Nothing about how bad sets distribute over $T$ enters.
+
+\begin{proposition}[Verified, given the classification]\label{prop:topgap}
+Let $2m+1$ be composite and let $p$ be its least prime factor. Assume the classification of
+Theorem~\ref{thm:oth} in the form that a doubling bad pair $\{a,2a\}$ satisfies the hypothesis of
+MUL or of DBL. Then for every $m \ge 13$ the element $x = 2p$ forms no bad pair with any element of
+$T$, so $\alpha(G) \ge m$. The exceptions below that range are $m = 7$ and $m = 12$, where some
+element other than $2p$ is needed, and $m = 4$, where $2m+1 = 9$ and no element works at all.
+\end{proposition}
+
+\begin{proof}
+Since $p^2 \le 2m+1$ we have $2p < m+2$, so $2p$ lies below $T$ and the pair is $\{2p, y\}$ with
+$y \in T$. If it is complementary at $2m+1$ then $a$ is a unit there, but $p$ divides both $2p$ and
+$2m+1$; if complementary at $2m+2$ then $2$ divides both. If it is a doubling pair then $y = 4p$.
+Under MUL, $3\cdot 2p > 2m$ gives $3p > m$, so $9p^2 > m^2$; with $p^2 \le 2m+1$ this forces
+$m^2 < 18m+9$, hence $m \le 18$. Combined with $m \ge 13$ and $3p > m$ this gives $p \ge 5$, while
+$p^2 \le 2m+1 \le 37$ gives $p \le 6$, so $p = 5$; then $3p > m$ forces $m \le 14$ and $5 \mid 2m+1$
+fails, since $2m+1$ is $27$ or $29$. Directly: for each $m$ with $13 \le m \le 18$ and $2m+1$
+composite, namely $m \in \{13,16,17\}$ with least prime factor $3,3,5$, the condition $3p > m$
+already fails. Under DBL
+the modulus condition $2m + 2\cdot 2p < 3m+3$ gives $4p < m+3$, while $y = 4p \in T$ needs
+$4p \ge m+2$; so $4p = m+2$, whence $2m+1 = 8p-3$ and $p \mid 3$, giving $p = 3$ and $m = 10$.
+Both are below $13$.
+\end{proof}
+
+Only $m = 17$ and $m = 24$ are threatened at all in $13 \le m \le 28$, and at both the MUL and DBL
+hypotheses fail. The weaker form of the classification, shape together with coprimality, suffices
+for $m \ge 29$, where the doubling case is excluded by size alone.
+
+The three failures are of two different kinds, and the distinction matters. At $m = 4$ the
+deficiency is $0$ and $\alpha(G) = m-1$ exactly, so no element can work and nothing is missing. For
+prime $2m+1$ no element works either, again correctly, and for the same reason. At $m = 7$ and
+$m = 12$, by contrast, $\alpha(G) \ge m$ does hold while no set of the shape $T \cup \{x\}$ attains
+it, so there the construction is genuinely insufficient rather than merely unlucky.
+
+\begin{proposition}[Verified]\label{prop:topgap-fails}
+For $m = 7$ and for $m = 12$, every $x \in [2,m]$ admits a time whose bad set inside the window is a
+two-element subset of $T \cup \{x\}$. Hence no set of that shape is independent in $G$ at those two
+values.
+\end{proposition}
+
+Each of the seventeen blocking pairs is certified by an explicit time, and membership in a bad set
+is decidable, so the proposition is settled case by case inside the proof assistant rather than read
+off a table. We formalize it because the shape that fails is as much a part of the record as the
+shape that works.
+
+Why $2p$ should work is visible from the families of Section~\ref{sec:vocab}: $2p$ is a non-unit
+modulo $2m+1$, so it carries no CMP$(2m+1)$ pair; it is even while every unit modulo $2m+2$ is odd,
+so it carries no CMP$(2m+2)$ pair; and its doubling partners $p$ and $4p$ are both below $m+2$ once
+$p \le \sqrt{2m+1}$, so the MUL and DBL pairs through it do not reach $T$. That argument is not a
+proof, because it presumes the classification exhaustive, which is Problem~2 of
+Section~\ref{sec:open}.
+
+\subsection*{Enumerating the independent sets}
+Proposition~\ref{prop:ke} makes the residual task explicit: every independent $m$-set of $G$ must
+contain a bad set of size at least three. Writing $I(m)$ for the number of independent $m$-sets, the
+computed values (program \texttt{code/covering/indcount.rs}, $4\le m\le24$; it returns $I(m)=0$ at every prime $2m+1$ in the range) show $I(m)$ is governed by the deficiency rather than by $m$:
+$I = 1, 9, 3, 41, 1203$ at $\mathrm{def} = 2$ (for $m = 7,10,12,13,24$), $I = 310, 728$ at
+$\mathrm{def} = 4$, $I = 4093$ at $\mathrm{def} = 6$, and $I = 40493$ at $\mathrm{def} = 8$. Note
+$m = 22$, with $\mathrm{def} = 8$, has $I = 40493$ while the larger $m = 24$, with
+$\mathrm{def} = 2$, has $I = 1203$.
+
+Over the computed values $I$ grows by roughly an order of magnitude per two units of deficiency, so
+that $I \approx 10^{\mathrm{def}/2}$ describes the data. If the deficiency is $\Theta(m)$ for
+infinitely many $m$, which we expect but do not prove, and if that empirical growth persists, then
+$I(m)$ is exponential in $m$ along those $m$, and any argument treating the independent $m$-sets
+individually, by enumeration or by case analysis, is not uniform in $m$. We state this as the
+heuristic it is; it is a guide to the shape of an admissible proof rather than a proved obstruction,
+and each of the approaches below violates it.
+
+\subsection*{Disjoint bad sets at greater height} By Proposition~\ref{prop:packing} a certificate of
+pairwise disjoint bad sets inside $[1,Bm]$ needs $B$ bad sets of the minimum size $B-1$, while by
+Proposition~\ref{prop:surplus-two} only two exist. Hence this shape of certificate is confined to
+$B = 2$.
+
+\subsection*{Prime square moduli} The Gallai--Edmonds decomposition of the bad-pair graph satisfies
+$|D| - |A| = \operatorname{def}$ at all thirty-three composite $2m+1$ with $m \le 63$, so over that
+range $D$ is an independent set and the obstruction is a Hall violator rather than an odd component.
+We state the range because it is the whole evidence: the K\"onig--Egerv\'ary regularity of
+Proposition~\ref{prop:ke} was measured over exactly the same values and fails at $m = 150$. One hopes for an arithmetic
+description of $D$. Two natural candidates fail: $D$ is not the set of non-units modulo $2m+1$, and
+the deficiency is not the number of odd doubling chains among the non-units, agreeing in only seven
+of fourteen computed cases and failing in both directions. For $q = 2m+1 = p^2$ the deficiency takes
+the values $0, 2, 2, 4$ at $p = 3,5,7,11$, so the family is not uniform either.
+
+\subsection*{The six-three template} Every non-overlapping certificate we verified consists of the
+two singletons together with $(m-1)/3$ parts of six elements and capacity three, which requires
+$3 \mid m-1$. This holds at $m = 10, 13, 16$. It fails at $m = 19$: enumerating all six-element
+subsets of $[1,38] \setminus \{1,20\}$ and retaining the $4440$ with capacity exactly three, an
+exhaustive exact-cover search terminates without a partition after $969{,}154{,}513$ nodes (program \texttt{code/covering/tmpl63.rs}; its default node cap is $2\cdot10^{8}$, so the cap must be raised; the same program finds the template at $m=10,13,16$). So the
+template is a coincidence of small $m$, not a family.
+
+\section{Formalization}\label{sec:lean}
+
+The development is in Lean 4 with Mathlib. Every statement labelled verified builds cleanly with no
+\texttt{sorry} and depends only on \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound}; the few statements that use no choice are noted in the source. We are not aware
+of a previous formalization of any part of the lonely runner conjecture in any proof assistant.
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Statement & Lean declaration \\
+\midrule
+Theorem~\ref{thm:mincount} & \texttt{minBadCount} \\
+Theorem~\ref{thm:ceiling} & \texttt{bad\_meets\_initial} \\
+Theorem~\ref{thm:equiv}(1) & \texttt{floor\_of\_no\_hitting\_set} \\
+Theorem~\ref{thm:equiv}(2) & \texttt{not\_floor\_of\_hitting\_set} \\
+converse witness & \texttt{exists\_good\_time\_of\_floor} \\
+Lemma~\ref{thm:surplus} & \texttt{floor\_of\_surplus} \\
+capacity certificate, height $B$ & \texttt{floor\_of\_cover\_capacity\_height} \\
+Proposition~\ref{prop:packing} & \texttt{packing\_needs\_minimal} \\
+Proposition~\ref{prop:alpha-m-1} & \texttt{no\_badpair\_in\_top}, \texttt{card\_top\_interval} \\
+\quad supporting steps & \texttt{bad\_escapes\_top}, \texttt{no\_badset\_in\_top} \\
+reduction to a single element & \texttt{badset\_in\_top\_insert}, \texttt{card\_top\_insert} \\
+Proposition~\ref{prop:topgap-fails} & \texttt{top\_insert\_blocked\_m7}, \texttt{top\_insert\_blocked\_m12} \\
+Theorem~\ref{thm:pairdich} & \texttt{bad\_diff\_or\_sum} \\
+Corollary~\ref{cor:pairstruct} & \texttt{badpair\_doubling\_or\_large} \\
+Theorem~\ref{thm:pairupper} & \texttt{pairUpper\_at\_modulus} \\
+Proposition~\ref{prop:topgap} & \texttt{twoP\_closes\_gap\_full}, \texttt{twoP\_closes\_gap} \\
+\quad reduction chain & \texttt{pairUpperBound\_of\_realized}, \texttt{pairClassification\_of\_realized} \\
+\quad with coprimality & \texttt{pairClassificationStrong\_of\_realized} \\
+Proposition~\ref{prop:mul} & \texttt{badset\_mul\_pair} \\
+Proposition~\ref{prop:cmp}, $q = 2m+1$ & \texttt{badset\_unit\_pair} \\
+Proposition~\ref{prop:cmp}, $q = 2m+2$ & \texttt{badset\_compl\_pair} \\
+Proposition~\ref{prop:dbl} & \texttt{badset\_dbl\_pair} \\
+Proposition~\ref{prop:triples}(1),(2),(3) & \texttt{badset\_sum\_triple}, \texttt{badset\_sum\_triple\_high}, \texttt{badset\_dbl\_triple} \\
+all windows imply the conjecture & \texttt{lonelyRunner\_of\_all\_windows} \\
+dense window, $2m+1$ prime & \texttt{dense\_floor\_of\_prime} \\
+dense window, $2m+1$ composite, $m \le 24$ & \texttt{dense\_floor\_m4}, \texttt{dense\_floor\_m7}, \dots, \texttt{dense\_floor\_m24} \\
+Theorem~\ref{thm:identity}, the reflection step (gap G1) & \texttt{dbl\_reflection} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The programs for the computed statements are in \texttt{code/covering} and \texttt{code/dense} of the
+accompanying archive; its \texttt{README.md} lists, statement by statement, which counts are regenerated by a
+program in the archive and which are not.
+
+Statements that are computed or conjectural, rather than verified, are named in Lean as predicates
+and are never asserted. Naming them fixes their quantifiers and the direction of their inequalities
+before any effort is spent on a proof, and a statement that cannot be typed out correctly is not yet
+understood; but a proof obligation discharged by \texttt{sorry} is an assertion the kernel accepts
+on faith, and no statement this paper relies on is discharged that way. Every result that needs an
+open statement takes it as an
+explicit hypothesis, so the dependency appears in the type rather than in a comment. The open
+statements are the identity behind the pair classification, the independence statement
+$\alpha(G) \ge m$, and the window on $25 \le m \le 63$.
+
+Consequently \texttt{\#print axioms} on any declaration cited in the table above returns
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}, or a subset of them, and never
+\texttt{sorryAx}. That is a mechanical check, and it is what separates what this paper establishes
+from what it assumes. No declaration in the Lean modules on which the table above depends carries a \texttt{sorry} body. The four
+stated-first contracts that previously did, for eight runners and for the residual case of four, are
+held outside it; they were imported by nothing cited here, and they remain conjectural.
+
+\section{Where the window statement now stands}\label{sec:reduction}
+
+The prime case is settled outright, and we state it because the reduction below rests on it.
+
+\begin{theorem}[Verified]\label{thm:prime}
+Let $2m+1$ be prime. Then every set of $m$ distinct positive velocities bounded by $2m$ satisfies
+\eqref{eq:lrc}.
+\end{theorem}
+
+\begin{proof}
+The complementary pairs $\{a, 2m+1-a\}$ for $1 \le a \le m$ partition $[1,2m]$, and each satisfies
+$\gcd(a, 2m+1) = 1$ because $2m+1$ is prime, so each is a bad pair by
+Proposition~\ref{prop:cmp}. A complement $W$ of size $m$ containing no bad set is independent in
+the bad-pair graph, so it meets each of those $m$ pairs at most once, hence exactly once. It avoids
+$1$ and $m+1$, both bad singletons, so from the pair $\{1,2m\}$ it takes $2m$ and from the pair
+$\{m,m+1\}$ it takes $m$. But $\{m,2m\}$ is a bad pair, by Proposition~\ref{prop:mul} at $d = m$.
+So no such $W$ exists, and by Theorem~\ref{thm:equiv} the window statement holds.
+\end{proof}
+
+
+The classification of Section~\ref{sec:vocab} reduces the window statement to a single unproved
+combinatorial claim. We record the reduction because it isolates what remains.
+
+Suppose $V \subseteq [1,2m]$ has $m$ elements and defeats \eqref{eq:lrc}. By
+Theorem~\ref{thm:equiv} its complement $W = [1,2m] \setminus V$, also of size $m$, contains no bad
+set. Three consequences are immediate and each is verified.
+
+\begin{enumerate}
+\item $W$ contains neither $1$ nor $m+1$, since both are bad singletons.
+\item $W$ contains no bad pair, so $W$ is independent in the bad-pair graph.
+\item If $2m+1$ is prime the bad-pair graph has a perfect matching on
+  $[1,2m] \setminus \{1,m+1\}$, and the independence number is below $m$; this is
+  Theorem~\ref{thm:prime}, and no such $W$ exists.
+\end{enumerate}
+
+So only composite $2m+1$ remains, and there the independence number is at least $m$: pairs alone
+cannot finish, and the bad triples must. What is missing is exactly this.
+
+\begin{conjecture}[Conjecture]\label{conj:link}
+Let $2m+1$ be composite. Every $m$-element subset of $[1,2m]$ that avoids $1$ and $m+1$ and is
+independent in the bad-pair graph contains a triple of family SUM or of family SUM$'$.
+\end{conjecture}
+
+Conjecture~\ref{conj:link} implies the window statement for every $m$, since the prime case is
+Theorem~\ref{thm:prime} and the two families are verified in
+Proposition~\ref{prop:triples}. It has been checked for $4 \le m \le 30$ by a search that looks for
+a counterexample directly rather than enumerating candidates, every run terminating without a cap.
+
+Part of the conjecture is governed by classical extremal theory, and we record that because it
+localises what is genuinely new. Nothing below is proved for a general $m$: the extremal input is
+asymptotic with an unspecified threshold, so every statement in this passage is computed over the
+range stated. A set is \emph{sum-free} if it contains no solution of $a+b=c$ with
+$a,b,c$ in the set, $a=b$ permitted. The largest sum-free subsets of $[1,2m]$ have exactly $m$
+elements, so a candidate $W$ has precisely the extremal size, and the extremal sets are classified.
+
+\begin{proposition}[Computed for $5\le m\le12$; classical in substance]\label{prop:sf}
+For $5\le m\le12$ the sum-free subsets of $[1,2m]$ of size $m$ are exactly three: the odd numbers,
+the interval $[m,2m-1]$, and the interval $[m+1,2m]$. Each of them contains $1$ or $m+1$.
+\end{proposition}
+
+\begin{corollary}[Computed for $5\le m\le20$]\label{cor:schur}
+For $5\le m\le20$, every $m$-element $W\subseteq[1,2m]$ avoiding $1$ and $m+1$ contains a solution of
+$a+b=c$ with $a,b,c\in W$, where $a=b$ is permitted.
+\end{corollary}
+
+\begin{proof}
+The odd numbers contain $1$, and both intervals contain $m+1$, so no set of the extremal size avoids
+both; hence $W$ is not sum-free. The range $5\le m\le20$ has been verified directly, by searching for
+a sum-free $m$-subset of $[1,2m]$ avoiding $1$ and $m+1$ and finding none. At $m=4$ the statement
+fails: $\{2,3,7,8\}$ is sum-free, has four elements in $[1,8]$, and avoids $1$ and $5$.
+\end{proof}
+
+The case $a=b$ is not excluded. One might expect independence to rule it out, since $a=b$ puts
+$\{a,2a\}$ inside $W$, but a doubling pair need not be a bad pair: MUL requires $2m/3<a\le m$ and
+DBL requires $2a<m+3$, so the band $(m+3)/2<a\le2m/3$ is covered by neither, and there $\{a,2a\}$ is
+an edge of no graph. The smallest instances are $a=9,10$ at $m=15$, $a=10,11$ at $m=17$ and
+$a=12,13$ at $m=20$. So Corollary~\ref{cor:schur} yields a Schur solution but not necessarily three
+distinct elements.
+
+What Conjecture~\ref{conj:link} asks beyond Corollary~\ref{cor:schur} is that some sum triple have
+distinct entries and meet the threshold $2c\ge3m+1$ and the coprimality conditions of the two
+families. Existence of a solution is settled; distinctness and the side conditions are not. That is
+where the remaining content sits.
+
+We do not claim the extremal input as new. The maximum size $\lceil n/2\rceil$ of a sum-free subset
+of $[1,n]$ is classical, and the structure of sum-free subsets of an interval near that size has been
+studied at length; Tran~\cite{Tran} characterises the sum-free subsets of $[1,n]$ of density at
+least $2/5-c$ for an absolute $c>0$, and our candidates have density exactly $1/2$. The alternative
+in that characterisation that a large sum-free set is either entirely odd or has $\min A\ge|A|$
+gives Proposition~\ref{prop:sf} for all large $m$, the two intervals being the two sum-free
+$m$-subsets of $[m,2m]$. We verify the range we use rather than
+track the exact threshold at which the structure theorem takes hold.
+
+Four measurements delimit what a proof must do.
+
+First, family DBL$_3$ is not needed: no independent set is met by DBL$_3$ alone at any $m$ checked,
+while SUM$'$ alone meets $1$, $2$ and $9$ of them at $m = 10, 16, 22$. Both sum families are
+required and the third is not.
+
+Second, writing $c = a+b$, family SUM requires $a > 2m - c$ and SUM$'$ requires $a \le c-m-1$, so
+between them they cover every splitting of $c$ exactly when $2c \ge 3m+1$, and below that threshold
+the splitting $a = c-m$ is reached by neither. The threshold is therefore sharp.
+
+Third, every candidate does contain sum triples above that threshold, between $3$ and $9$ of them,
+with none lacking one for $4 \le m \le 30$. This is not a statement about sum-free sets alone: with
+independence dropped, the block $\{2,3,\dots,m,m+2\}$ has all its sums too small and is a
+counterexample at every $m$. That block carries every pair $\{a,2a\}$ with $2a \le m$, which is what
+independence forbids.
+
+Fourth, the coprimality conditions are severe. Of a candidate's sum triples above the threshold, as
+few as $2$ of $36$ satisfy the coprimality that SUM or SUM$'$ also demands, at $m = 22$. The count
+of usable triples never falls below $2$ for $m \ge 13$, but the proportion does not stay bounded
+away from zero, so a counting argument over the threshold alone will not establish
+Conjecture~\ref{conj:link}.
+
+\section{Open problems}\label{sec:open}
+
+\begin{enumerate}
+\item The uniform window statement: does \eqref{eq:lrc} hold for every $m$ and every velocity set
+inside $[1,2m]$? Equivalently, by Theorem~\ref{thm:equiv}, is $\tau(2m) = m+1$ for every $m$?
+\item Classify the bad sets of size four and above. Sizes one to three are treated in
+Section~\ref{sec:vocab}; the pair classification is now complete
+(Theorem~\ref{thm:identity} and Corollary~\ref{cor:pairupper-uncond}), and the triples are handled
+by families that Proposition~\ref{prop:triples-incomplete} shows are not exhaustive. Nothing is
+known about size four. The empirical observation of item~4 below suggests they may not matter for
+the decision procedure, which would be worth proving.
+\item Classify the minimal bad triples that Proposition~\ref{prop:triples-incomplete} shows lie
+outside SUM, SUM$'$ and DBL$_3$. The two examples given fail for different reasons, one on a
+boundary of the hypotheses and one on a coprimality condition, which suggests the families need
+widening rather than supplementing.
+\item Is the empirical observation that irredundant cores use no bad set of size four or more true
+for every $m$? If so, the window statement depends only on the sets classified in
+Section~\ref{sec:vocab}.
+\item Give an arithmetic description of the Gallai--Edmonds set $D$ of the bad-pair graph. All
+candidates known to us fail, as recorded in Section~\ref{sec:obstructions}.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{Bed} B.~Bedert, \emph{Riesz products and the lonely runner conjecture: a wider gap of
+loneliness}, 2025. arXiv:2511.16636.
+
+\bibitem{Tran} T.~Tran, \emph{On the structure of large sum-free sets of integers}, Israel J.
+Math. \textbf{228} (2018), 249--292. arXiv:1705.02584.
+
+\bibitem{BHV} V.~Beresnevich, A.~Haynes, S.~Velani, \emph{Sums of reciprocals of fractional parts
+and multiplicative Diophantine approximation}, Mem. Amer. Math. Soc. \textbf{263} (2020), no.~1276.
+
+\bibitem{BP} T.~Bohman, F.~Peng, \emph{Coprime mappings and lonely runners}, Mathematika
+\textbf{68} (2022), 784--804. arXiv:2109.09860.
+
+\bibitem{Dem} R.~W.~Deming, \emph{Independence numbers of graphs: an extension of the
+K\"onig--Egerv\'ary theorem}, Discrete Math. \textbf{27} (1979), 23--33.
+
+\bibitem{Lar} C.~E.~Larson, \emph{The critical independence number and an independence
+decomposition}, European J. Combin. \textbf{32} (2011), 294--300.
+
+\bibitem{Pan} R.~K.~Pandey, \emph{On the lonely runner conjecture}, Math. Bohem. \textbf{135}
+(2010), 63--68.
+
+\bibitem{Ste} F.~Sterboul, \emph{A characterization of the graphs in which the transversal number
+equals the matching number}, J. Combin. Theory Ser. B \textbf{27} (1979), 228--229.
+
+\bibitem{Cassels} J.~W.~S.~Cassels, \emph{An Introduction to the Geometry of Numbers}, Springer,
+1959.
+
+\bibitem{CG} S.~Czerwi\'nski, J.~Grytczuk, \emph{Invisible runners in finite fields},
+Inform. Process. Lett. \textbf{108} (2008), no.~2, 64--67.
+
+\bibitem{Har} N.~M.~Haralambis, \emph{Sets of integers with missing differences},
+J. Combin. Theory Ser. A \textbf{23} (1977), no.~1, 22--33.
+
+\bibitem{MSS} R.~D.~Malikiosis, F.~Santos, M.~Schymura, \emph{Linearly-exponential checking is
+enough for the Lonely Runner Conjecture and some of its variants}, Forum Math. Sigma \textbf{13}
+(2025), e164, 32~pp. arXiv:2411.06903.
+
+\bibitem{PS} G.~Perarnau, O.~Serra, \emph{The Lonely Runner Conjecture turns 60},
+Comput. Sci. Rev. \textbf{58} (2025), 100798. arXiv:2409.20160.
+
+\bibitem{Pom} C.~Pomerance, \emph{Coprime matchings}, INTEGERS \textbf{22} (2022), \#A2.
+
+\bibitem{Ros8} M.~Rosenfeld, \emph{The lonely runner conjecture holds for eight runners}, 2025.
+arXiv:2509.14111.
+
+\bibitem{Ros9} M.~Rosenfeld, \emph{The lonely runner conjecture holds for nine runners}, 2025.
+arXiv:2512.01912.
+
+\bibitem{ST} T.~Sungkawichai, T.~Trakulthongchai, \emph{Eleven, twelve, and thirteen lonely
+runners}, 2026. arXiv:2604.23906.
+
+\bibitem{Tao} T.~Tao, \emph{Some remarks on the lonely runner conjecture}, Contrib. Discrete Math.
+\textbf{13} (2018), no.~2, 1--31. arXiv:1701.02048.
+
+\bibitem{Tra} T.~Trakulthongchai, \emph{Nine and ten lonely runners}, Electron. J. Combin.
+\textbf{33} (2026), no.~2, \#P2.46. arXiv:2511.22427.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,5 @@
+Delta2CoverRangeX EXIT:0 207s free=7594MB
+ALL OK
+build seconds: 207
+'LRSpectrumFull.dense_floor_m57' depends on axioms: [propext, Classical.choice, Quot.sound] 
+sorry/native/axiom lines: 0

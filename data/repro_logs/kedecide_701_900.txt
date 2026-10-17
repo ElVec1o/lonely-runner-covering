@@ -1,0 +1,2 @@
+  m     q  type    |  V    E   nu  def | KE? | check
+710  1421  compos.  | 1418 1411  655  108 | yes | cover 655 = nu, alpha = 763   [10/200 elapsed 90s eta 2586s]

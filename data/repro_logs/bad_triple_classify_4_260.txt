@@ -1,0 +1,518 @@
+done m=4 exact<=3=23 minimal3=0 out9=0 discrepancies=0
+done m=5 exact<=3=35 minimal3=2 out9=0 discrepancies=0
+done m=6 exact<=3=45 minimal3=1 out9=0 discrepancies=0
+done m=7 exact<=3=56 minimal3=7 out9=1 discrepancies=0
+done m=8 exact<=3=71 minimal3=8 out9=1 discrepancies=0
+done m=9 exact<=3=86 minimal3=16 out9=3 discrepancies=0
+done m=10 exact<=3=97 minimal3=20 out9=3 discrepancies=0
+done m=11 exact<=3=120 minimal3=30 out9=4 discrepancies=0
+done m=12 exact<=3=136 minimal3=30 out9=5 discrepancies=0
+done m=13 exact<=3=157 minimal3=44 out9=8 discrepancies=0
+done m=14 exact<=3=177 minimal3=50 out9=7 discrepancies=0
+done m=15 exact<=3=201 minimal3=58 out9=7 discrepancies=0
+done m=16 exact<=3=219 minimal3=69 out9=9 discrepancies=0
+done m=17 exact<=3=248 minimal3=93 out9=14 discrepancies=0
+done m=18 exact<=3=275 minimal3=82 out9=12 discrepancies=0
+done m=19 exact<=3=303 minimal3=114 out9=18 discrepancies=0
+done m=20 exact<=3=332 minimal3=118 out9=17 discrepancies=0
+done m=21 exact<=3=362 minimal3=133 out9=19 discrepancies=0
+done m=22 exact<=3=385 minimal3=149 out9=21 discrepancies=0
+done m=23 exact<=3=430 minimal3=170 out9=25 discrepancies=0
+done m=24 exact<=3=457 minimal3=174 out9=24 discrepancies=0
+done m=25 exact<=3=493 minimal3=200 out9=28 discrepancies=0
+done m=26 exact<=3=530 minimal3=212 out9=27 discrepancies=0
+done m=27 exact<=3=565 minimal3=246 out9=33 discrepancies=0
+done m=28 exact<=3=599 minimal3=251 out9=34 discrepancies=0
+done m=29 exact<=3=651 minimal3=290 out9=41 discrepancies=0
+done m=30 exact<=3=692 minimal3=284 out9=38 discrepancies=0
+done m=31 exact<=3=735 minimal3=331 out9=48 discrepancies=0
+done m=32 exact<=3=774 minimal3=345 out9=51 discrepancies=0
+done m=33 exact<=3=829 minimal3=361 out9=52 discrepancies=0
+done m=34 exact<=3=859 minimal3=398 out9=56 discrepancies=0
+done m=35 exact<=3=916 minimal3=427 out9=57 discrepancies=0
+done m=36 exact<=3=966 minimal3=416 out9=54 discrepancies=0
+done m=37 exact<=3=1017 minimal3=481 out9=67 discrepancies=0
+done m=38 exact<=3=1062 minimal3=503 out9=68 discrepancies=0
+done m=39 exact<=3=1121 minimal3=529 out9=69 discrepancies=0
+done m=40 exact<=3=1165 minimal3=548 out9=70 discrepancies=0
+done m=41 exact<=3=1236 minimal3=597 out9=80 discrepancies=0
+done m=42 exact<=3=1283 minimal3=603 out9=79 discrepancies=0
+done m=43 exact<=3=1353 minimal3=661 out9=93 discrepancies=0
+done m=44 exact<=3=1407 minimal3=679 out9=93 discrepancies=0
+done m=45 exact<=3=1467 minimal3=720 out9=96 discrepancies=0
+done m=46 exact<=3=1524 minimal3=740 out9=98 discrepancies=0
+done m=47 exact<=3=1593 minimal3=813 out9=112 discrepancies=0
+done m=48 exact<=3=1656 minimal3=793 out9=107 discrepancies=0
+done m=49 exact<=3=1720 minimal3=874 out9=123 discrepancies=0
+done m=50 exact<=3=1792 minimal3=887 out9=120 discrepancies=0
+done m=51 exact<=3=1863 minimal3=929 out9=123 discrepancies=0
+done m=52 exact<=3=1912 minimal3=978 out9=131 discrepancies=0
+done m=53 exact<=3=2013 minimal3=1019 out9=142 discrepancies=0
+done m=54 exact<=3=2077 minimal3=1037 out9=138 discrepancies=0
+done m=55 exact<=3=2148 minimal3=1111 out9=148 discrepancies=0
+done m=56 exact<=3=2219 minimal3=1121 out9=145 discrepancies=0
+done m=57 exact<=3=2292 minimal3=1188 out9=154 discrepancies=0
+done m=58 exact<=3=2360 minimal3=1211 out9=158 discrepancies=0
+done m=59 exact<=3=2452 minimal3=1303 out9=176 discrepancies=0
+done m=60 exact<=3=2534 minimal3=1265 out9=167 discrepancies=0
+done m=61 exact<=3=2624 minimal3=1364 out9=188 discrepancies=0
+done m=62 exact<=3=2687 minimal3=1408 out9=191 discrepancies=0
+done m=63 exact<=3=2793 minimal3=1434 out9=189 discrepancies=0
+done m=64 exact<=3=2854 minimal3=1509 out9=198 discrepancies=0
+done m=65 exact<=3=2954 minimal3=1565 out9=204 discrepancies=0
+done m=66 exact<=3=3028 minimal3=1574 out9=201 discrepancies=0
+done m=67 exact<=3=3128 minimal3=1679 out9=224 discrepancies=0
+done m=68 exact<=3=3227 minimal3=1685 out9=221 discrepancies=0
+done m=69 exact<=3=3315 minimal3=1763 out9=229 discrepancies=0
+done m=70 exact<=3=3393 minimal3=1796 out9=230 discrepancies=0
+done m=71 exact<=3=3499 minimal3=1902 out9=250 discrepancies=0
+done m=72 exact<=3=3587 minimal3=1880 out9=247 discrepancies=0
+done m=73 exact<=3=3698 minimal3=1982 out9=272 discrepancies=0
+done m=74 exact<=3=3793 minimal3=2024 out9=273 discrepancies=0
+done m=75 exact<=3=3902 minimal3=2080 out9=274 discrepancies=0
+done m=76 exact<=3=3973 minimal3=2160 out9=284 discrepancies=0
+done m=77 exact<=3=4085 minimal3=2241 out9=300 discrepancies=0
+done m=78 exact<=3=4195 minimal3=2209 out9=288 discrepancies=0
+done m=79 exact<=3=4305 minimal3=2355 out9=318 discrepancies=0
+done m=80 exact<=3=4396 minimal3=2384 out9=318 discrepancies=0
+done m=81 exact<=3=4526 minimal3=2430 out9=321 discrepancies=0
+done m=82 exact<=3=4602 minimal3=2509 out9=333 discrepancies=0
+done m=83 exact<=3=4754 minimal3=2605 out9=351 discrepancies=0
+done m=84 exact<=3=4839 minimal3=2603 out9=344 discrepancies=0
+done m=85 exact<=3=4960 minimal3=2707 out9=360 discrepancies=0
+done m=86 exact<=3=5073 minimal3=2740 out9=359 discrepancies=0
+done m=87 exact<=3=5172 minimal3=2857 out9=373 discrepancies=0
+done m=88 exact<=3=5284 minimal3=2874 out9=375 discrepancies=0
+done m=89 exact<=3=5428 minimal3=3001 out9=398 discrepancies=0
+done m=90 exact<=3=5536 minimal3=3002 out9=388 discrepancies=0
+done m=91 exact<=3=5656 minimal3=3123 out9=410 discrepancies=0
+done m=92 exact<=3=5755 minimal3=3178 out9=416 discrepancies=0
+done m=93 exact<=3=5893 minimal3=3248 out9=424 discrepancies=0
+done m=94 exact<=3=5986 minimal3=3346 out9=437 discrepancies=0
+done m=95 exact<=3=6147 minimal3=3411 out9=444 discrepancies=0
+done m=96 exact<=3=6268 minimal3=3389 out9=434 discrepancies=0
+done m=97 exact<=3=6392 minimal3=3585 out9=475 discrepancies=0
+done m=98 exact<=3=6528 minimal3=3605 out9=468 discrepancies=0
+done m=99 exact<=3=6665 minimal3=3697 out9=473 discrepancies=0
+done m=100 exact<=3=6773 minimal3=3753 out9=477 discrepancies=0
+done m=101 exact<=3=6918 minimal3=3896 out9=508 discrepancies=0
+done m=102 exact<=3=7040 minimal3=3891 out9=502 discrepancies=0
+done m=103 exact<=3=7204 minimal3=4041 out9=536 discrepancies=0
+done m=104 exact<=3=7319 minimal3=4100 out9=542 discrepancies=0
+done m=105 exact<=3=7483 minimal3=4141 out9=533 discrepancies=0
+done m=106 exact<=3=7593 minimal3=4217 out9=544 discrepancies=0
+done m=107 exact<=3=7744 minimal3=4387 out9=577 discrepancies=0
+done m=108 exact<=3=7882 minimal3=4350 out9=568 discrepancies=0
+done m=109 exact<=3=8042 minimal3=4534 out9=608 discrepancies=0
+done m=110 exact<=3=8168 minimal3=4591 out9=604 discrepancies=0
+done m=111 exact<=3=8330 minimal3=4682 out9=611 discrepancies=0
+done m=112 exact<=3=8442 minimal3=4773 out9=623 discrepancies=0
+done m=113 exact<=3=8648 minimal3=4873 out9=649 discrepancies=0
+done m=114 exact<=3=8773 minimal3=4899 out9=639 discrepancies=0
+done m=115 exact<=3=8916 minimal3=5071 out9=669 discrepancies=0
+done m=116 exact<=3=9076 minimal3=5084 out9=668 discrepancies=0
+done m=117 exact<=3=9230 minimal3=5207 out9=681 discrepancies=0
+done m=118 exact<=3=9358 minimal3=5290 out9=692 discrepancies=0
+done m=119 exact<=3=9536 minimal3=5439 out9=710 discrepancies=0
+done m=120 exact<=3=9686 minimal3=5400 out9=694 discrepancies=0
+done m=121 exact<=3=9850 minimal3=5592 out9=731 discrepancies=0
+done m=122 exact<=3=9979 minimal3=5682 out9=742 discrepancies=0
+done m=123 exact<=3=10169 minimal3=5756 out9=748 discrepancies=0
+done m=124 exact<=3=10304 minimal3=5867 out9=762 discrepancies=0
+done m=125 exact<=3=10488 minimal3=5995 out9=780 discrepancies=0
+done m=126 exact<=3=10638 minimal3=5985 out9=769 discrepancies=0
+done m=127 exact<=3=10826 minimal3=6204 out9=816 discrepancies=0
+done m=128 exact<=3=11002 minimal3=6218 out9=812 discrepancies=0
+done m=129 exact<=3=11156 minimal3=6396 out9=833 discrepancies=0
+done m=130 exact<=3=11310 minimal3=6433 out9=833 discrepancies=0
+done m=131 exact<=3=11530 minimal3=6599 out9=865 discrepancies=0
+done m=132 exact<=3=11656 minimal3=6617 out9=862 discrepancies=0
+done m=133 exact<=3=11861 minimal3=6763 out9=892 discrepancies=0
+done m=134 exact<=3=12015 minimal3=6864 out9=894 discrepancies=0
+done m=135 exact<=3=12204 minimal3=6950 out9=893 discrepancies=0
+done m=136 exact<=3=12336 minimal3=7071 out9=911 discrepancies=0
+done m=137 exact<=3=12544 minimal3=7252 out9=955 discrepancies=0
+done m=138 exact<=3=12743 minimal3=7196 out9=933 discrepancies=0
+done m=139 exact<=3=12925 minimal3=7476 out9=989 discrepancies=0
+done m=140 exact<=3=13116 minimal3=7460 out9=974 discrepancies=0
+done m=141 exact<=3=13318 minimal3=7583 out9=982 discrepancies=0
+done m=142 exact<=3=13435 minimal3=7749 out9=1007 discrepancies=0
+done m=143 exact<=3=13663 minimal3=7896 out9=1033 discrepancies=0
+done m=144 exact<=3=13841 minimal3=7871 out9=1021 discrepancies=0
+done m=145 exact<=3=14045 minimal3=8051 out9=1051 discrepancies=0
+done m=146 exact<=3=14214 minimal3=8151 out9=1052 discrepancies=0
+done m=147 exact<=3=14398 minimal3=8303 out9=1064 discrepancies=0
+done m=148 exact<=3=14573 minimal3=8381 out9=1077 discrepancies=0
+done m=149 exact<=3=14813 minimal3=8581 out9=1120 discrepancies=0
+done m=150 exact<=3=14993 minimal3=8552 out9=1102 discrepancies=0
+done m=151 exact<=3=15219 minimal3=8765 out9=1151 discrepancies=0
+done m=152 exact<=3=15377 minimal3=8874 out9=1160 discrepancies=0
+done m=153 exact<=3=15615 minimal3=8985 out9=1167 discrepancies=0
+done m=154 exact<=3=15762 minimal3=9122 out9=1178 discrepancies=0
+done m=155 exact<=3=15996 minimal3=9293 out9=1196 discrepancies=0
+done m=156 exact<=3=16188 minimal3=9232 out9=1177 discrepancies=0
+done m=157 exact<=3=16389 minimal3=9534 out9=1243 discrepancies=0
+done m=158 exact<=3=16626 minimal3=9551 out9=1236 discrepancies=0
+done m=159 exact<=3=16827 minimal3=9752 out9=1256 discrepancies=0
+done m=160 exact<=3=16995 minimal3=9855 out9=1264 discrepancies=0
+done m=161 exact<=3=17218 minimal3=10017 out9=1293 discrepancies=0
+done m=162 exact<=3=17408 minimal3=10034 out9=1287 discrepancies=0
+done m=163 exact<=3=17684 minimal3=10255 out9=1338 discrepancies=0
+done m=164 exact<=3=17836 minimal3=10373 out9=1352 discrepancies=0
+done m=165 exact<=3=18088 minimal3=10433 out9=1341 discrepancies=0
+done m=166 exact<=3=18269 minimal3=10567 out9=1359 discrepancies=0
+done m=167 exact<=3=18522 minimal3=10841 out9=1414 discrepancies=0
+done m=168 exact<=3=18747 minimal3=10751 out9=1387 discrepancies=0
+done m=169 exact<=3=18974 minimal3=11061 out9=1448 discrepancies=0
+done m=170 exact<=3=19157 minimal3=11146 out9=1443 discrepancies=0
+done m=171 exact<=3=19402 minimal3=11282 out9=1454 discrepancies=0
+done m=172 exact<=3=19579 minimal3=11409 out9=1476 discrepancies=0
+done m=173 exact<=3=19894 minimal3=11577 out9=1515 discrepancies=0
+done m=174 exact<=3=20080 minimal3=11648 out9=1505 discrepancies=0
+done m=175 exact<=3=20294 minimal3=11879 out9=1541 discrepancies=0
+done m=176 exact<=3=20537 minimal3=11889 out9=1534 discrepancies=0
+done m=177 exact<=3=20754 minimal3=12088 out9=1557 discrepancies=0
+done m=178 exact<=3=20951 minimal3=12198 out9=1577 discrepancies=0
+done m=179 exact<=3=21249 minimal3=12426 out9=1621 discrepancies=0
+done m=180 exact<=3=21484 minimal3=12368 out9=1597 discrepancies=0
+done m=181 exact<=3=21720 minimal3=12725 out9=1669 discrepancies=0
+done m=182 exact<=3=21924 minimal3=12799 out9=1667 discrepancies=0
+done m=183 exact<=3=22210 minimal3=12912 out9=1672 discrepancies=0
+done m=184 exact<=3=22380 minimal3=13107 out9=1696 discrepancies=0
+done m=185 exact<=3=22656 minimal3=13288 out9=1728 discrepancies=0
+done m=186 exact<=3=22888 minimal3=13266 out9=1705 discrepancies=0
+done m=187 exact<=3=23133 minimal3=13575 out9=1764 discrepancies=0
+done m=188 exact<=3=23357 minimal3=13652 out9=1769 discrepancies=0
+done m=189 exact<=3=23634 minimal3=13808 out9=1776 discrepancies=0
+done m=190 exact<=3=23842 minimal3=13912 out9=1782 discrepancies=0
+done m=191 exact<=3=24143 minimal3=14165 out9=1828 discrepancies=0
+done m=192 exact<=3=24318 minimal3=14201 out9=1832 discrepancies=0
+done m=193 exact<=3=24653 minimal3=14423 out9=1889 discrepancies=0
+done m=194 exact<=3=24887 minimal3=14558 out9=1894 discrepancies=0
+done m=195 exact<=3=25135 minimal3=14730 out9=1898 discrepancies=0
+done m=196 exact<=3=25360 minimal3=14827 out9=1908 discrepancies=0
+done m=197 exact<=3=25639 minimal3=15139 out9=1972 discrepancies=0
+done m=198 exact<=3=25916 minimal3=15042 out9=1940 discrepancies=0
+done m=199 exact<=3=26170 minimal3=15447 out9=2025 discrepancies=0
+done m=200 exact<=3=26445 minimal3=15429 out9=2010 discrepancies=0
+done m=201 exact<=3=26709 minimal3=15629 out9=2029 discrepancies=0
+done m=202 exact<=3=26904 minimal3=15844 out9=2060 discrepancies=0
+done m=203 exact<=3=27230 minimal3=16031 out9=2094 discrepancies=0
+done m=204 exact<=3=27481 minimal3=15998 out9=2071 discrepancies=0
+done m=205 exact<=3=27760 minimal3=16270 out9=2117 discrepancies=0
+done m=206 exact<=3=27978 minimal3=16439 out9=2128 discrepancies=0
+done m=207 exact<=3=28265 minimal3=16628 out9=2148 discrepancies=0
+done m=208 exact<=3=28502 minimal3=16753 out9=2163 discrepancies=0
+done m=209 exact<=3=28798 minimal3=17025 out9=2205 discrepancies=0
+done m=210 exact<=3=29076 minimal3=16963 out9=2168 discrepancies=0
+done m=211 exact<=3=29380 minimal3=17317 out9=2244 discrepancies=0
+done m=212 exact<=3=29604 minimal3=17413 out9=2260 discrepancies=0
+done m=213 exact<=3=29928 minimal3=17579 out9=2274 discrepancies=0
+done m=214 exact<=3=30136 minimal3=17794 out9=2305 discrepancies=0
+done m=215 exact<=3=30493 minimal3=17980 out9=2327 discrepancies=0
+done m=216 exact<=3=30738 minimal3=17943 out9=2310 discrepancies=0
+done m=217 exact<=3=31015 minimal3=18297 out9=2377 discrepancies=0
+done m=218 exact<=3=31298 minimal3=18397 out9=2377 discrepancies=0
+done m=219 exact<=3=31601 minimal3=18629 out9=2394 discrepancies=0
+done m=220 exact<=3=31805 minimal3=18806 out9=2408 discrepancies=0
+done m=221 exact<=3=32176 minimal3=18959 out9=2442 discrepancies=0
+done m=222 exact<=3=32410 minimal3=19007 out9=2433 discrepancies=0
+done m=223 exact<=3=32753 minimal3=19345 out9=2510 discrepancies=0
+done m=224 exact<=3=33011 minimal3=19431 out9=2504 discrepancies=0
+done m=225 exact<=3=33322 minimal3=19608 out9=2509 discrepancies=0
+done m=226 exact<=3=33579 minimal3=19744 out9=2529 discrepancies=0
+done m=227 exact<=3=33865 minimal3=20170 out9=2613 discrepancies=0
+done m=228 exact<=3=34207 minimal3=19995 out9=2572 discrepancies=0
+done m=229 exact<=3=34510 minimal3=20444 out9=2666 discrepancies=0
+done m=230 exact<=3=34806 minimal3=20535 out9=2653 discrepancies=0
+done m=231 exact<=3=35123 minimal3=20683 out9=2646 discrepancies=0
+done m=232 exact<=3=35345 minimal3=20902 out9=2680 discrepancies=0
+done m=233 exact<=3=35757 minimal3=21138 out9=2734 discrepancies=0
+done m=234 exact<=3=35990 minimal3=21211 out9=2724 discrepancies=0
+done m=235 exact<=3=36338 minimal3=21477 out9=2771 discrepancies=0
+done m=236 exact<=3=36604 minimal3=21611 out9=2779 discrepancies=0
+done m=237 exact<=3=36893 minimal3=21907 out9=2815 discrepancies=0
+done m=238 exact<=3=37181 minimal3=21957 out9=2817 discrepancies=0
+done m=239 exact<=3=37583 minimal3=22304 out9=2880 discrepancies=0
+done m=240 exact<=3=37860 minimal3=22223 out9=2851 discrepancies=0
+done m=241 exact<=3=38189 minimal3=22674 out9=2947 discrepancies=0
+done m=242 exact<=3=38474 minimal3=22768 out9=2953 discrepancies=0
+done m=243 exact<=3=38879 minimal3=22911 out9=2960 discrepancies=0
+done m=244 exact<=3=39102 minimal3=23219 out9=2998 discrepancies=0
+done m=245 exact<=3=39453 minimal3=23396 out9=3014 discrepancies=0
+done m=246 exact<=3=39718 minimal3=23449 out9=3000 discrepancies=0
+done m=247 exact<=3=40039 minimal3=23848 out9=3083 discrepancies=0
+done m=248 exact<=3=40374 minimal3=23885 out9=3085 discrepancies=0
+done m=249 exact<=3=40733 minimal3=24101 out9=3100 discrepancies=0
+done m=250 exact<=3=41012 minimal3=24254 out9=3111 discrepancies=0
+done m=251 exact<=3=41393 minimal3=24620 out9=3176 discrepancies=0
+done m=252 exact<=3=41658 minimal3=24615 out9=3163 discrepancies=0
+done m=253 exact<=3=42045 minimal3=24934 out9=3230 discrepancies=0
+done m=254 exact<=3=42338 minimal3=25109 out9=3235 discrepancies=0
+done m=255 exact<=3=42661 minimal3=25313 out9=3240 discrepancies=0
+done m=256 exact<=3=42962 minimal3=25473 out9=3264 discrepancies=0
+done m=257 exact<=3=43371 minimal3=25823 out9=3344 discrepancies=0
+done m=258 exact<=3=43670 minimal3=25833 out9=3323 discrepancies=0
+done m=259 exact<=3=44015 minimal3=26231 out9=3397 discrepancies=0
+done m=260 exact<=3=44322 minimal3=26246 out9=3375 discrepancies=0
+m=   4 exact<=3=    23 minimal_triples=     0 outside_paper9=    0 discrepancies=0 tags=[]
+m=   5 exact<=3=    35 minimal_triples=     2 outside_paper9=    0 discrepancies=0 tags=[("S1", 2)]
+m=   6 exact<=3=    45 minimal_triples=     1 outside_paper9=    0 discrepancies=0 tags=[("S1", 1)]
+m=   7 exact<=3=    56 minimal_triples=     7 outside_paper9=    1 discrepancies=0 tags=[("S1", 5), ("S2", 1), ("S3/out9", 1)]
+m=   8 exact<=3=    71 minimal_triples=     8 outside_paper9=    1 discrepancies=0 tags=[("S1", 5), ("S2", 2), ("S3/out9", 1)]
+m=   9 exact<=3=    86 minimal_triples=    16 outside_paper9=    3 discrepancies=0 tags=[("CHN/out9", 1), ("DBL3", 1), ("S1", 9), ("S2", 3), ("S3/out9", 2)]
+m=  10 exact<=3=    97 minimal_triples=    20 outside_paper9=    3 discrepancies=0 tags=[("CHN/out9", 1), ("DBL3", 2), ("S1", 11), ("S2", 4), ("S3/out9", 2)]
+m=  11 exact<=3=   120 minimal_triples=    30 outside_paper9=    4 discrepancies=0 tags=[("CHN/out9", 1), ("DBL3", 4), ("S1", 15), ("S2", 7), ("S3/out9", 3)]
+m=  12 exact<=3=   136 minimal_triples=    30 outside_paper9=    5 discrepancies=0 tags=[("CHN/out9", 1), ("DBL3", 3), ("S1", 15), ("S2", 7), ("S3/out9", 4)]
+m=  13 exact<=3=   157 minimal_triples=    44 outside_paper9=    8 discrepancies=0 tags=[("CHN/out9", 1), ("DBL3", 3), ("S1", 24), ("S2", 9), ("S3/out9", 7)]
+m=  14 exact<=3=   177 minimal_triples=    50 outside_paper9=    7 discrepancies=0 tags=[("CHN/out9", 1), ("DBL3", 4), ("S1", 27), ("S2", 12), ("S3/out9", 6)]
+m=  15 exact<=3=   201 minimal_triples=    58 outside_paper9=    7 discrepancies=0 tags=[("CHN/out9", 2), ("DBL3", 6), ("S1", 30), ("S2", 15), ("S3/out9", 5)]
+m=  16 exact<=3=   219 minimal_triples=    69 outside_paper9=    9 discrepancies=0 tags=[("CHN/out9", 2), ("DBL3", 8), ("S1", 36), ("S2", 16), ("S3/out9", 7)]
+m=  17 exact<=3=   248 minimal_triples=    93 outside_paper9=   14 discrepancies=0 tags=[("CHN/out9", 2), ("DBL3", 11), ("S1", 47), ("S2", 21), ("S3/out9", 12)]
+m=  18 exact<=3=   275 minimal_triples=    82 outside_paper9=   12 discrepancies=0 tags=[("CHN/out9", 2), ("DBL3", 9), ("S1", 41), ("S2", 20), ("S3/out9", 10)]
+m=  19 exact<=3=   303 minimal_triples=   114 outside_paper9=   18 discrepancies=0 tags=[("CHN/out9", 2), ("DBL3", 11), ("S1", 59), ("S2", 26), ("S3/out9", 16)]
+m=  20 exact<=3=   332 minimal_triples=   118 outside_paper9=   17 discrepancies=0 tags=[("CHN/out9", 2), ("DBL3", 11), ("S1", 60), ("S2", 30), ("S3/out9", 15)]
+m=  21 exact<=3=   362 minimal_triples=   133 outside_paper9=   19 discrepancies=0 tags=[("CHN/out9", 3), ("DBL3", 14), ("S1", 67), ("S2", 33), ("S3/out9", 16)]
+m=  22 exact<=3=   385 minimal_triples=   149 outside_paper9=   21 discrepancies=0 tags=[("CHN/out9", 3), ("DBL3", 17), ("S1", 76), ("S2", 35), ("S3/out9", 18)]
+m=  23 exact<=3=   430 minimal_triples=   170 outside_paper9=   25 discrepancies=0 tags=[("CHN/out9", 3), ("DBL3", 18), ("S1", 86), ("S2", 41), ("S3/out9", 22)]
+m=  24 exact<=3=   457 minimal_triples=   174 outside_paper9=   24 discrepancies=0 tags=[("CHN/out9", 3), ("DBL3", 16), ("S1", 91), ("S2", 43), ("S3/out9", 21)]
+m=  25 exact<=3=   493 minimal_triples=   200 outside_paper9=   28 discrepancies=0 tags=[("CHN/out9", 3), ("DBL3", 16), ("S1", 107), ("S2", 49), ("S3/out9", 25)]
+m=  26 exact<=3=   530 minimal_triples=   212 outside_paper9=   27 discrepancies=0 tags=[("CHN/out9", 3), ("DBL3", 22), ("S1", 109), ("S2", 54), ("S3/out9", 24)]
+m=  27 exact<=3=   565 minimal_triples=   246 outside_paper9=   33 discrepancies=0 tags=[("CHN/out9", 4), ("DBL3", 27), ("S1", 125), ("S2", 61), ("S3/out9", 29)]
+m=  28 exact<=3=   599 minimal_triples=   251 outside_paper9=   34 discrepancies=0 tags=[("CHN/out9", 4), ("DBL3", 29), ("S1", 127), ("S2", 61), ("S3/out9", 30)]
+m=  29 exact<=3=   651 minimal_triples=   290 outside_paper9=   41 discrepancies=0 tags=[("CHN/out9", 4), ("DBL3", 34), ("S1", 144), ("S2", 71), ("S3/out9", 37)]
+m=  30 exact<=3=   692 minimal_triples=   284 outside_paper9=   38 discrepancies=0 tags=[("CHN/out9", 4), ("DBL3", 34), ("S1", 140), ("S2", 72), ("S3/out9", 34)]
+m=  31 exact<=3=   735 minimal_triples=   331 outside_paper9=   48 discrepancies=0 tags=[("CHN/out9", 4), ("DBL3", 35), ("S1", 169), ("S2", 79), ("S3/out9", 44)]
+m=  32 exact<=3=   774 minimal_triples=   345 outside_paper9=   51 discrepancies=0 tags=[("CHN/out9", 4), ("DBL3", 30), ("S1", 179), ("S2", 85), ("S3/out9", 47)]
+m=  33 exact<=3=   829 minimal_triples=   361 outside_paper9=   52 discrepancies=0 tags=[("CHN/out9", 5), ("DBL3", 36), ("S1", 183), ("S2", 90), ("S3/out9", 47)]
+m=  34 exact<=3=   859 minimal_triples=   398 outside_paper9=   56 discrepancies=0 tags=[("CHN/out9", 5), ("DBL3", 41), ("S1", 205), ("S2", 96), ("S3/out9", 51)]
+m=  35 exact<=3=   916 minimal_triples=   427 outside_paper9=   57 discrepancies=0 tags=[("CHN/out9", 5), ("DBL3", 50), ("S1", 214), ("S2", 106), ("S3/out9", 52)]
+m=  36 exact<=3=   966 minimal_triples=   416 outside_paper9=   54 discrepancies=0 tags=[("CHN/out9", 5), ("DBL3", 41), ("S1", 213), ("S2", 108), ("S3/out9", 49)]
+m=  37 exact<=3=  1017 minimal_triples=   481 outside_paper9=   67 discrepancies=0 tags=[("CHN/out9", 5), ("DBL3", 44), ("S1", 251), ("S2", 119), ("S3/out9", 62)]
+m=  38 exact<=3=  1062 minimal_triples=   503 outside_paper9=   68 discrepancies=0 tags=[("CHN/out9", 5), ("DBL3", 51), ("S1", 258), ("S2", 126), ("S3/out9", 63)]
+m=  39 exact<=3=  1121 minimal_triples=   529 outside_paper9=   69 discrepancies=0 tags=[("CHN/out9", 6), ("DBL3", 58), ("S1", 268), ("S2", 134), ("S3/out9", 63)]
+m=  40 exact<=3=  1165 minimal_triples=   548 outside_paper9=   70 discrepancies=0 tags=[("CHN/out9", 6), ("DBL3", 63), ("S1", 279), ("S2", 136), ("S3/out9", 64)]
+m=  41 exact<=3=  1236 minimal_triples=   597 outside_paper9=   80 discrepancies=0 tags=[("CHN/out9", 6), ("DBL3", 63), ("S1", 305), ("S2", 149), ("S3/out9", 74)]
+m=  42 exact<=3=  1283 minimal_triples=   603 outside_paper9=   79 discrepancies=0 tags=[("CHN/out9", 6), ("DBL3", 65), ("S1", 307), ("S2", 152), ("S3/out9", 73)]
+m=  43 exact<=3=  1353 minimal_triples=   661 outside_paper9=   93 discrepancies=0 tags=[("CHN/out9", 6), ("DBL3", 68), ("S1", 338), ("S2", 162), ("S3/out9", 87)]
+m=  44 exact<=3=  1407 minimal_triples=   679 outside_paper9=   93 discrepancies=0 tags=[("CHN/out9", 6), ("DBL3", 67), ("S1", 347), ("S2", 172), ("S3/out9", 87)]
+m=  45 exact<=3=  1467 minimal_triples=   720 outside_paper9=   96 discrepancies=0 tags=[("CHN/out9", 7), ("DBL3", 75), ("S1", 366), ("S2", 183), ("S3/out9", 89)]
+m=  46 exact<=3=  1524 minimal_triples=   740 outside_paper9=   98 discrepancies=0 tags=[("CHN/out9", 7), ("DBL3", 81), ("S1", 376), ("S2", 185), ("S3/out9", 91)]
+m=  47 exact<=3=  1593 minimal_triples=   813 outside_paper9=  112 discrepancies=0 tags=[("CHN/out9", 7), ("DBL3", 94), ("S1", 409), ("S2", 198), ("S3/out9", 105)]
+m=  48 exact<=3=  1656 minimal_triples=   793 outside_paper9=  107 discrepancies=0 tags=[("CHN/out9", 7), ("DBL3", 85), ("S1", 402), ("S2", 199), ("S3/out9", 100)]
+m=  49 exact<=3=  1720 minimal_triples=   874 outside_paper9=  123 discrepancies=0 tags=[("CHN/out9", 7), ("DBL3", 89), ("S1", 448), ("S2", 214), ("S3/out9", 116)]
+m=  50 exact<=3=  1792 minimal_triples=   887 outside_paper9=  120 discrepancies=0 tags=[("CHN/out9", 7), ("DBL3", 94), ("S1", 449), ("S2", 224), ("S3/out9", 113)]
+m=  51 exact<=3=  1863 minimal_triples=   929 outside_paper9=  123 discrepancies=0 tags=[("CHN/out9", 8), ("DBL3", 101), ("S1", 469), ("S2", 236), ("S3/out9", 115)]
+m=  52 exact<=3=  1912 minimal_triples=   978 outside_paper9=  131 discrepancies=0 tags=[("CHN/out9", 8), ("DBL3", 110), ("S1", 496), ("S2", 241), ("S3/out9", 123)]
+m=  53 exact<=3=  2013 minimal_triples=  1019 outside_paper9=  142 discrepancies=0 tags=[("CHN/out9", 8), ("DBL3", 107), ("S1", 516), ("S2", 254), ("S3/out9", 134)]
+m=  54 exact<=3=  2077 minimal_triples=  1037 outside_paper9=  138 discrepancies=0 tags=[("CHN/out9", 8), ("DBL3", 108), ("S1", 528), ("S2", 263), ("S3/out9", 130)]
+m=  55 exact<=3=  2148 minimal_triples=  1111 outside_paper9=  148 discrepancies=0 tags=[("CHN/out9", 8), ("DBL3", 114), ("S1", 570), ("S2", 279), ("S3/out9", 140)]
+m=  56 exact<=3=  2219 minimal_triples=  1121 outside_paper9=  145 discrepancies=0 tags=[("CHN/out9", 8), ("DBL3", 112), ("S1", 575), ("S2", 289), ("S3/out9", 137)]
+m=  57 exact<=3=  2292 minimal_triples=  1188 outside_paper9=  154 discrepancies=0 tags=[("CHN/out9", 9), ("DBL3", 126), ("S1", 605), ("S2", 303), ("S3/out9", 145)]
+m=  58 exact<=3=  2360 minimal_triples=  1211 outside_paper9=  158 discrepancies=0 tags=[("CHN/out9", 9), ("DBL3", 132), ("S1", 618), ("S2", 303), ("S3/out9", 149)]
+m=  59 exact<=3=  2452 minimal_triples=  1303 outside_paper9=  176 discrepancies=0 tags=[("CHN/out9", 9), ("DBL3", 143), ("S1", 662), ("S2", 322), ("S3/out9", 167)]
+m=  60 exact<=3=  2534 minimal_triples=  1265 outside_paper9=  167 discrepancies=0 tags=[("CHN/out9", 9), ("DBL3", 128), ("S1", 647), ("S2", 323), ("S3/out9", 158)]
+m=  61 exact<=3=  2624 minimal_triples=  1364 outside_paper9=  188 discrepancies=0 tags=[("CHN/out9", 10), ("DBL3", 138), ("S1", 700), ("S2", 338), ("S3/out9", 178)]
+m=  62 exact<=3=  2687 minimal_triples=  1408 outside_paper9=  191 discrepancies=0 tags=[("CHN/out9", 9), ("DBL3", 144), ("S1", 722), ("S2", 351), ("S3/out9", 182)]
+m=  63 exact<=3=  2793 minimal_triples=  1434 outside_paper9=  189 discrepancies=0 tags=[("CHN/out9", 10), ("DBL3", 152), ("S1", 729), ("S2", 364), ("S3/out9", 179)]
+m=  64 exact<=3=  2854 minimal_triples=  1509 outside_paper9=  198 discrepancies=0 tags=[("CHN/out9", 10), ("DBL3", 162), ("S1", 772), ("S2", 377), ("S3/out9", 188)]
+m=  65 exact<=3=  2954 minimal_triples=  1565 outside_paper9=  204 discrepancies=0 tags=[("CHN/out9", 10), ("DBL3", 169), ("S1", 795), ("S2", 397), ("S3/out9", 194)]
+m=  66 exact<=3=  3028 minimal_triples=  1574 outside_paper9=  201 discrepancies=0 tags=[("CHN/out9", 10), ("DBL3", 173), ("S1", 799), ("S2", 401), ("S3/out9", 191)]
+m=  67 exact<=3=  3128 minimal_triples=  1679 outside_paper9=  224 discrepancies=0 tags=[("CHN/out9", 10), ("DBL3", 180), ("S1", 857), ("S2", 418), ("S3/out9", 214)]
+m=  68 exact<=3=  3227 minimal_triples=  1685 outside_paper9=  221 discrepancies=0 tags=[("CHN/out9", 10), ("DBL3", 174), ("S1", 860), ("S2", 430), ("S3/out9", 211)]
+m=  69 exact<=3=  3315 minimal_triples=  1763 outside_paper9=  229 discrepancies=0 tags=[("CHN/out9", 11), ("DBL3", 186), ("S1", 898), ("S2", 450), ("S3/out9", 218)]
+m=  70 exact<=3=  3393 minimal_triples=  1796 outside_paper9=  230 discrepancies=0 tags=[("CHN/out9", 11), ("DBL3", 197), ("S1", 913), ("S2", 456), ("S3/out9", 219)]
+m=  71 exact<=3=  3499 minimal_triples=  1902 outside_paper9=  250 discrepancies=0 tags=[("CHN/out9", 11), ("DBL3", 214), ("S1", 961), ("S2", 477), ("S3/out9", 239)]
+m=  72 exact<=3=  3587 minimal_triples=  1880 outside_paper9=  247 discrepancies=0 tags=[("CHN/out9", 11), ("DBL3", 196), ("S1", 959), ("S2", 478), ("S3/out9", 236)]
+m=  73 exact<=3=  3698 minimal_triples=  1982 outside_paper9=  272 discrepancies=0 tags=[("CHN/out9", 11), ("DBL3", 201), ("S1", 1017), ("S2", 492), ("S3/out9", 261)]
+m=  74 exact<=3=  3793 minimal_triples=  2024 outside_paper9=  273 discrepancies=0 tags=[("CHN/out9", 11), ("DBL3", 213), ("S1", 1030), ("S2", 508), ("S3/out9", 262)]
+m=  75 exact<=3=  3902 minimal_triples=  2080 outside_paper9=  274 discrepancies=0 tags=[("CHN/out9", 12), ("DBL3", 227), ("S1", 1052), ("S2", 527), ("S3/out9", 262)]
+m=  76 exact<=3=  3973 minimal_triples=  2160 outside_paper9=  284 discrepancies=0 tags=[("CHN/out9", 12), ("DBL3", 237), ("S1", 1099), ("S2", 540), ("S3/out9", 272)]
+m=  77 exact<=3=  4085 minimal_triples=  2241 outside_paper9=  300 discrepancies=0 tags=[("CHN/out9", 12), ("DBL3", 239), ("S1", 1139), ("S2", 563), ("S3/out9", 288)]
+m=  78 exact<=3=  4195 minimal_triples=  2209 outside_paper9=  288 discrepancies=0 tags=[("CHN/out9", 12), ("DBL3", 240), ("S1", 1118), ("S2", 563), ("S3/out9", 276)]
+m=  79 exact<=3=  4305 minimal_triples=  2355 outside_paper9=  318 discrepancies=0 tags=[("CHN/out9", 12), ("DBL3", 247), ("S1", 1201), ("S2", 589), ("S3/out9", 306)]
+m=  80 exact<=3=  4396 minimal_triples=  2384 outside_paper9=  318 discrepancies=0 tags=[("CHN/out9", 12), ("DBL3", 249), ("S1", 1212), ("S2", 605), ("S3/out9", 306)]
+m=  81 exact<=3=  4526 minimal_triples=  2430 outside_paper9=  321 discrepancies=0 tags=[("CHN/out9", 13), ("DBL3", 258), ("S1", 1232), ("S2", 619), ("S3/out9", 308)]
+m=  82 exact<=3=  4602 minimal_triples=  2509 outside_paper9=  333 discrepancies=0 tags=[("CHN/out9", 13), ("DBL3", 272), ("S1", 1278), ("S2", 626), ("S3/out9", 320)]
+m=  83 exact<=3=  4754 minimal_triples=  2605 outside_paper9=  351 discrepancies=0 tags=[("CHN/out9", 13), ("DBL3", 286), ("S1", 1317), ("S2", 651), ("S3/out9", 338)]
+m=  84 exact<=3=  4839 minimal_triples=  2603 outside_paper9=  344 discrepancies=0 tags=[("CHN/out9", 13), ("DBL3", 266), ("S1", 1332), ("S2", 661), ("S3/out9", 331)]
+m=  85 exact<=3=  4960 minimal_triples=  2707 outside_paper9=  360 discrepancies=0 tags=[("CHN/out9", 13), ("DBL3", 274), ("S1", 1389), ("S2", 684), ("S3/out9", 347)]
+m=  86 exact<=3=  5073 minimal_triples=  2740 outside_paper9=  359 discrepancies=0 tags=[("CHN/out9", 13), ("DBL3", 280), ("S1", 1403), ("S2", 698), ("S3/out9", 346)]
+m=  87 exact<=3=  5172 minimal_triples=  2857 outside_paper9=  373 discrepancies=0 tags=[("CHN/out9", 14), ("DBL3", 303), ("S1", 1459), ("S2", 722), ("S3/out9", 359)]
+m=  88 exact<=3=  5284 minimal_triples=  2874 outside_paper9=  375 discrepancies=0 tags=[("CHN/out9", 14), ("DBL3", 311), ("S1", 1466), ("S2", 722), ("S3/out9", 361)]
+m=  89 exact<=3=  5428 minimal_triples=  3001 outside_paper9=  398 discrepancies=0 tags=[("CHN/out9", 14), ("DBL3", 325), ("S1", 1525), ("S2", 753), ("S3/out9", 384)]
+m=  90 exact<=3=  5536 minimal_triples=  3002 outside_paper9=  388 discrepancies=0 tags=[("CHN/out9", 14), ("DBL3", 318), ("S1", 1530), ("S2", 766), ("S3/out9", 374)]
+m=  91 exact<=3=  5656 minimal_triples=  3123 outside_paper9=  410 discrepancies=0 tags=[("CHN/out9", 14), ("DBL3", 325), ("S1", 1600), ("S2", 788), ("S3/out9", 396)]
+m=  92 exact<=3=  5755 minimal_triples=  3178 outside_paper9=  416 discrepancies=0 tags=[("CHN/out9", 14), ("DBL3", 326), ("S1", 1628), ("S2", 808), ("S3/out9", 402)]
+m=  93 exact<=3=  5893 minimal_triples=  3248 outside_paper9=  424 discrepancies=0 tags=[("CHN/out9", 15), ("DBL3", 346), ("S1", 1653), ("S2", 825), ("S3/out9", 409)]
+m=  94 exact<=3=  5986 minimal_triples=  3346 outside_paper9=  437 discrepancies=0 tags=[("CHN/out9", 15), ("DBL3", 363), ("S1", 1706), ("S2", 840), ("S3/out9", 422)]
+m=  95 exact<=3=  6147 minimal_triples=  3411 outside_paper9=  444 discrepancies=0 tags=[("CHN/out9", 15), ("DBL3", 369), ("S1", 1732), ("S2", 866), ("S3/out9", 429)]
+m=  96 exact<=3=  6268 minimal_triples=  3389 outside_paper9=  434 discrepancies=0 tags=[("CHN/out9", 15), ("DBL3", 353), ("S1", 1731), ("S2", 871), ("S3/out9", 419)]
+m=  97 exact<=3=  6392 minimal_triples=  3585 outside_paper9=  475 discrepancies=0 tags=[("CHN/out9", 15), ("DBL3", 366), ("S1", 1842), ("S2", 902), ("S3/out9", 460)]
+m=  98 exact<=3=  6528 minimal_triples=  3605 outside_paper9=  468 discrepancies=0 tags=[("CHN/out9", 15), ("DBL3", 380), ("S1", 1838), ("S2", 919), ("S3/out9", 453)]
+m=  99 exact<=3=  6665 minimal_triples=  3697 outside_paper9=  473 discrepancies=0 tags=[("CHN/out9", 16), ("DBL3", 393), ("S1", 1884), ("S2", 947), ("S3/out9", 457)]
+m= 100 exact<=3=  6773 minimal_triples=  3753 outside_paper9=  477 discrepancies=0 tags=[("CHN/out9", 16), ("DBL3", 407), ("S1", 1915), ("S2", 954), ("S3/out9", 461)]
+m= 101 exact<=3=  6918 minimal_triples=  3896 outside_paper9=  508 discrepancies=0 tags=[("CHN/out9", 16), ("DBL3", 416), ("S1", 1987), ("S2", 985), ("S3/out9", 492)]
+m= 102 exact<=3=  7040 minimal_triples=  3891 outside_paper9=  502 discrepancies=0 tags=[("CHN/out9", 16), ("DBL3", 421), ("S1", 1980), ("S2", 988), ("S3/out9", 486)]
+m= 103 exact<=3=  7204 minimal_triples=  4041 outside_paper9=  536 discrepancies=0 tags=[("CHN/out9", 16), ("DBL3", 430), ("S1", 2062), ("S2", 1013), ("S3/out9", 520)]
+m= 104 exact<=3=  7319 minimal_triples=  4100 outside_paper9=  542 discrepancies=0 tags=[("CHN/out9", 16), ("DBL3", 417), ("S1", 2100), ("S2", 1041), ("S3/out9", 526)]
+m= 105 exact<=3=  7483 minimal_triples=  4141 outside_paper9=  533 discrepancies=0 tags=[("CHN/out9", 17), ("DBL3", 434), ("S1", 2108), ("S2", 1066), ("S3/out9", 516)]
+m= 106 exact<=3=  7593 minimal_triples=  4217 outside_paper9=  544 discrepancies=0 tags=[("CHN/out9", 17), ("DBL3", 446), ("S1", 2155), ("S2", 1072), ("S3/out9", 527)]
+m= 107 exact<=3=  7744 minimal_triples=  4387 outside_paper9=  577 discrepancies=0 tags=[("CHN/out9", 17), ("DBL3", 473), ("S1", 2233), ("S2", 1104), ("S3/out9", 560)]
+m= 108 exact<=3=  7882 minimal_triples=  4350 outside_paper9=  568 discrepancies=0 tags=[("CHN/out9", 17), ("DBL3", 458), ("S1", 2221), ("S2", 1103), ("S3/out9", 551)]
+m= 109 exact<=3=  8042 minimal_triples=  4534 outside_paper9=  608 discrepancies=0 tags=[("CHN/out9", 17), ("DBL3", 466), ("S1", 2323), ("S2", 1137), ("S3/out9", 591)]
+m= 110 exact<=3=  8168 minimal_triples=  4591 outside_paper9=  604 discrepancies=0 tags=[("CHN/out9", 17), ("DBL3", 496), ("S1", 2331), ("S2", 1160), ("S3/out9", 587)]
+m= 111 exact<=3=  8330 minimal_triples=  4682 outside_paper9=  611 discrepancies=0 tags=[("CHN/out9", 18), ("DBL3", 517), ("S1", 2369), ("S2", 1185), ("S3/out9", 593)]
+m= 112 exact<=3=  8442 minimal_triples=  4773 outside_paper9=  623 discrepancies=0 tags=[("CHN/out9", 18), ("DBL3", 536), ("S1", 2418), ("S2", 1196), ("S3/out9", 605)]
+m= 113 exact<=3=  8648 minimal_triples=  4873 outside_paper9=  649 discrepancies=0 tags=[("CHN/out9", 18), ("DBL3", 526), ("S1", 2473), ("S2", 1225), ("S3/out9", 631)]
+m= 114 exact<=3=  8773 minimal_triples=  4899 outside_paper9=  639 discrepancies=0 tags=[("CHN/out9", 18), ("DBL3", 528), ("S1", 2492), ("S2", 1240), ("S3/out9", 621)]
+m= 115 exact<=3=  8916 minimal_triples=  5071 outside_paper9=  669 discrepancies=0 tags=[("CHN/out9", 18), ("DBL3", 541), ("S1", 2588), ("S2", 1273), ("S3/out9", 651)]
+m= 116 exact<=3=  9076 minimal_triples=  5084 outside_paper9=  668 discrepancies=0 tags=[("CHN/out9", 18), ("DBL3", 527), ("S1", 2595), ("S2", 1294), ("S3/out9", 650)]
+m= 117 exact<=3=  9230 minimal_triples=  5207 outside_paper9=  681 discrepancies=0 tags=[("CHN/out9", 19), ("DBL3", 548), ("S1", 2654), ("S2", 1324), ("S3/out9", 662)]
+m= 118 exact<=3=  9358 minimal_triples=  5290 outside_paper9=  692 discrepancies=0 tags=[("CHN/out9", 19), ("DBL3", 561), ("S1", 2701), ("S2", 1336), ("S3/out9", 673)]
+m= 119 exact<=3=  9536 minimal_triples=  5439 outside_paper9=  710 discrepancies=0 tags=[("CHN/out9", 19), ("DBL3", 595), ("S1", 2758), ("S2", 1376), ("S3/out9", 691)]
+m= 120 exact<=3=  9686 minimal_triples=  5400 outside_paper9=  694 discrepancies=0 tags=[("CHN/out9", 19), ("DBL3", 565), ("S1", 2754), ("S2", 1387), ("S3/out9", 675)]
+m= 121 exact<=3=  9850 minimal_triples=  5592 outside_paper9=  731 discrepancies=0 tags=[("CHN/out9", 20), ("DBL3", 585), ("S1", 2860), ("S2", 1416), ("S3/out9", 711)]
+m= 122 exact<=3=  9979 minimal_triples=  5682 outside_paper9=  742 discrepancies=0 tags=[("CHN/out9", 19), ("DBL3", 588), ("S1", 2909), ("S2", 1443), ("S3/out9", 723)]
+m= 123 exact<=3= 10169 minimal_triples=  5756 outside_paper9=  748 discrepancies=0 tags=[("CHN/out9", 20), ("DBL3", 612), ("S1", 2931), ("S2", 1465), ("S3/out9", 728)]
+m= 124 exact<=3= 10304 minimal_triples=  5867 outside_paper9=  762 discrepancies=0 tags=[("CHN/out9", 20), ("DBL3", 630), ("S1", 2990), ("S2", 1485), ("S3/out9", 742)]
+m= 125 exact<=3= 10488 minimal_triples=  5995 outside_paper9=  780 discrepancies=0 tags=[("CHN/out9", 20), ("DBL3", 645), ("S1", 3047), ("S2", 1523), ("S3/out9", 760)]
+m= 126 exact<=3= 10638 minimal_triples=  5985 outside_paper9=  769 discrepancies=0 tags=[("CHN/out9", 20), ("DBL3", 640), ("S1", 3047), ("S2", 1529), ("S3/out9", 749)]
+m= 127 exact<=3= 10826 minimal_triples=  6204 outside_paper9=  816 discrepancies=0 tags=[("CHN/out9", 20), ("DBL3", 658), ("S1", 3166), ("S2", 1564), ("S3/out9", 796)]
+m= 128 exact<=3= 11002 minimal_triples=  6218 outside_paper9=  812 discrepancies=0 tags=[("CHN/out9", 20), ("DBL3", 653), ("S1", 3171), ("S2", 1582), ("S3/out9", 792)]
+m= 129 exact<=3= 11156 minimal_triples=  6396 outside_paper9=  833 discrepancies=0 tags=[("CHN/out9", 21), ("DBL3", 686), ("S1", 3255), ("S2", 1622), ("S3/out9", 812)]
+m= 130 exact<=3= 11310 minimal_triples=  6433 outside_paper9=  833 discrepancies=0 tags=[("CHN/out9", 21), ("DBL3", 703), ("S1", 3270), ("S2", 1627), ("S3/out9", 812)]
+m= 131 exact<=3= 11530 minimal_triples=  6599 outside_paper9=  865 discrepancies=0 tags=[("CHN/out9", 21), ("DBL3", 717), ("S1", 3351), ("S2", 1666), ("S3/out9", 844)]
+m= 132 exact<=3= 11656 minimal_triples=  6617 outside_paper9=  862 discrepancies=0 tags=[("CHN/out9", 21), ("DBL3", 689), ("S1", 3382), ("S2", 1684), ("S3/out9", 841)]
+m= 133 exact<=3= 11861 minimal_triples=  6763 outside_paper9=  892 discrepancies=0 tags=[("CHN/out9", 21), ("DBL3", 700), ("S1", 3458), ("S2", 1713), ("S3/out9", 871)]
+m= 134 exact<=3= 12015 minimal_triples=  6864 outside_paper9=  894 discrepancies=0 tags=[("CHN/out9", 21), ("DBL3", 729), ("S1", 3496), ("S2", 1745), ("S3/out9", 873)]
+m= 135 exact<=3= 12204 minimal_triples=  6950 outside_paper9=  893 discrepancies=0 tags=[("CHN/out9", 22), ("DBL3", 743), ("S1", 3538), ("S2", 1776), ("S3/out9", 871)]
+m= 136 exact<=3= 12336 minimal_triples=  7071 outside_paper9=  911 discrepancies=0 tags=[("CHN/out9", 22), ("DBL3", 765), ("S1", 3607), ("S2", 1788), ("S3/out9", 889)]
+m= 137 exact<=3= 12544 minimal_triples=  7252 outside_paper9=  955 discrepancies=0 tags=[("CHN/out9", 22), ("DBL3", 773), ("S1", 3697), ("S2", 1827), ("S3/out9", 933)]
+m= 138 exact<=3= 12743 minimal_triples=  7196 outside_paper9=  933 discrepancies=0 tags=[("CHN/out9", 22), ("DBL3", 780), ("S1", 3656), ("S2", 1827), ("S3/out9", 911)]
+m= 139 exact<=3= 12925 minimal_triples=  7476 outside_paper9=  989 discrepancies=0 tags=[("CHN/out9", 22), ("DBL3", 795), ("S1", 3816), ("S2", 1876), ("S3/out9", 967)]
+m= 140 exact<=3= 13116 minimal_triples=  7460 outside_paper9=  974 discrepancies=0 tags=[("CHN/out9", 22), ("DBL3", 775), ("S1", 3809), ("S2", 1902), ("S3/out9", 952)]
+m= 141 exact<=3= 13318 minimal_triples=  7583 outside_paper9=  982 discrepancies=0 tags=[("CHN/out9", 23), ("DBL3", 801), ("S1", 3866), ("S2", 1934), ("S3/out9", 959)]
+m= 142 exact<=3= 13435 minimal_triples=  7749 outside_paper9= 1007 discrepancies=0 tags=[("CHN/out9", 23), ("DBL3", 823), ("S1", 3964), ("S2", 1955), ("S3/out9", 984)]
+m= 143 exact<=3= 13663 minimal_triples=  7896 outside_paper9= 1033 discrepancies=0 tags=[("CHN/out9", 23), ("DBL3", 849), ("S1", 4020), ("S2", 1994), ("S3/out9", 1010)]
+m= 144 exact<=3= 13841 minimal_triples=  7871 outside_paper9= 1021 discrepancies=0 tags=[("CHN/out9", 23), ("DBL3", 809), ("S1", 4029), ("S2", 2012), ("S3/out9", 998)]
+m= 145 exact<=3= 14045 minimal_triples=  8051 outside_paper9= 1051 discrepancies=0 tags=[("CHN/out9", 23), ("DBL3", 821), ("S1", 4129), ("S2", 2050), ("S3/out9", 1028)]
+m= 146 exact<=3= 14214 minimal_triples=  8151 outside_paper9= 1052 discrepancies=0 tags=[("CHN/out9", 23), ("DBL3", 850), ("S1", 4166), ("S2", 2083), ("S3/out9", 1029)]
+m= 147 exact<=3= 14398 minimal_triples=  8303 outside_paper9= 1064 discrepancies=0 tags=[("CHN/out9", 24), ("DBL3", 882), ("S1", 4234), ("S2", 2123), ("S3/out9", 1040)]
+m= 148 exact<=3= 14573 minimal_triples=  8381 outside_paper9= 1077 discrepancies=0 tags=[("CHN/out9", 24), ("DBL3", 902), ("S1", 4274), ("S2", 2128), ("S3/out9", 1053)]
+m= 149 exact<=3= 14813 minimal_triples=  8581 outside_paper9= 1120 discrepancies=0 tags=[("CHN/out9", 24), ("DBL3", 906), ("S1", 4378), ("S2", 2177), ("S3/out9", 1096)]
+m= 150 exact<=3= 14993 minimal_triples=  8552 outside_paper9= 1102 discrepancies=0 tags=[("CHN/out9", 24), ("DBL3", 908), ("S1", 4361), ("S2", 2181), ("S3/out9", 1078)]
+m= 151 exact<=3= 15219 minimal_triples=  8765 outside_paper9= 1151 discrepancies=0 tags=[("CHN/out9", 24), ("DBL3", 914), ("S1", 4486), ("S2", 2214), ("S3/out9", 1127)]
+m= 152 exact<=3= 15377 minimal_triples=  8874 outside_paper9= 1160 discrepancies=0 tags=[("CHN/out9", 24), ("DBL3", 932), ("S1", 4534), ("S2", 2248), ("S3/out9", 1136)]
+m= 153 exact<=3= 15615 minimal_triples=  8985 outside_paper9= 1167 discrepancies=0 tags=[("CHN/out9", 25), ("DBL3", 955), ("S1", 4578), ("S2", 2285), ("S3/out9", 1142)]
+m= 154 exact<=3= 15762 minimal_triples=  9122 outside_paper9= 1178 discrepancies=0 tags=[("CHN/out9", 25), ("DBL3", 978), ("S1", 4653), ("S2", 2313), ("S3/out9", 1153)]
+m= 155 exact<=3= 15996 minimal_triples=  9293 outside_paper9= 1196 discrepancies=0 tags=[("CHN/out9", 25), ("DBL3", 1019), ("S1", 4716), ("S2", 2362), ("S3/out9", 1171)]
+m= 156 exact<=3= 16188 minimal_triples=  9232 outside_paper9= 1177 discrepancies=0 tags=[("CHN/out9", 25), ("DBL3", 979), ("S1", 4709), ("S2", 2367), ("S3/out9", 1152)]
+m= 157 exact<=3= 16389 minimal_triples=  9534 outside_paper9= 1243 discrepancies=0 tags=[("CHN/out9", 25), ("DBL3", 998), ("S1", 4882), ("S2", 2411), ("S3/out9", 1218)]
+m= 158 exact<=3= 16626 minimal_triples=  9551 outside_paper9= 1236 discrepancies=0 tags=[("CHN/out9", 25), ("DBL3", 1003), ("S1", 4880), ("S2", 2432), ("S3/out9", 1211)]
+m= 159 exact<=3= 16827 minimal_triples=  9752 outside_paper9= 1256 discrepancies=0 tags=[("CHN/out9", 26), ("DBL3", 1041), ("S1", 4974), ("S2", 2481), ("S3/out9", 1230)]
+m= 160 exact<=3= 16995 minimal_triples=  9855 outside_paper9= 1264 discrepancies=0 tags=[("CHN/out9", 26), ("DBL3", 1064), ("S1", 5029), ("S2", 2498), ("S3/out9", 1238)]
+m= 161 exact<=3= 17218 minimal_triples= 10017 outside_paper9= 1293 discrepancies=0 tags=[("CHN/out9", 26), ("DBL3", 1074), ("S1", 5108), ("S2", 2542), ("S3/out9", 1267)]
+m= 162 exact<=3= 17408 minimal_triples= 10034 outside_paper9= 1287 discrepancies=0 tags=[("CHN/out9", 26), ("DBL3", 1077), ("S1", 5118), ("S2", 2552), ("S3/out9", 1261)]
+m= 163 exact<=3= 17684 minimal_triples= 10255 outside_paper9= 1338 discrepancies=0 tags=[("CHN/out9", 26), ("DBL3", 1091), ("S1", 5234), ("S2", 2592), ("S3/out9", 1312)]
+m= 164 exact<=3= 17836 minimal_triples= 10373 outside_paper9= 1352 discrepancies=0 tags=[("CHN/out9", 26), ("DBL3", 1085), ("S1", 5302), ("S2", 2634), ("S3/out9", 1326)]
+m= 165 exact<=3= 18088 minimal_triples= 10433 outside_paper9= 1341 discrepancies=0 tags=[("CHN/out9", 27), ("DBL3", 1109), ("S1", 5315), ("S2", 2668), ("S3/out9", 1314)]
+m= 166 exact<=3= 18269 minimal_triples= 10567 outside_paper9= 1359 discrepancies=0 tags=[("CHN/out9", 27), ("DBL3", 1133), ("S1", 5392), ("S2", 2683), ("S3/out9", 1332)]
+m= 167 exact<=3= 18522 minimal_triples= 10841 outside_paper9= 1414 discrepancies=0 tags=[("CHN/out9", 27), ("DBL3", 1165), ("S1", 5522), ("S2", 2740), ("S3/out9", 1387)]
+m= 168 exact<=3= 18747 minimal_triples= 10751 outside_paper9= 1387 discrepancies=0 tags=[("CHN/out9", 27), ("DBL3", 1136), ("S1", 5484), ("S2", 2744), ("S3/out9", 1360)]
+m= 169 exact<=3= 18974 minimal_triples= 11061 outside_paper9= 1448 discrepancies=0 tags=[("CHN/out9", 27), ("DBL3", 1154), ("S1", 5657), ("S2", 2802), ("S3/out9", 1421)]
+m= 170 exact<=3= 19157 minimal_triples= 11146 outside_paper9= 1443 discrepancies=0 tags=[("CHN/out9", 27), ("DBL3", 1193), ("S1", 5675), ("S2", 2835), ("S3/out9", 1416)]
+m= 171 exact<=3= 19402 minimal_triples= 11282 outside_paper9= 1454 discrepancies=0 tags=[("CHN/out9", 28), ("DBL3", 1218), ("S1", 5737), ("S2", 2873), ("S3/out9", 1426)]
+m= 172 exact<=3= 19579 minimal_triples= 11409 outside_paper9= 1476 discrepancies=0 tags=[("CHN/out9", 28), ("DBL3", 1243), ("S1", 5808), ("S2", 2882), ("S3/out9", 1448)]
+m= 173 exact<=3= 19894 minimal_triples= 11577 outside_paper9= 1515 discrepancies=0 tags=[("CHN/out9", 28), ("DBL3", 1243), ("S1", 5887), ("S2", 2932), ("S3/out9", 1487)]
+m= 174 exact<=3= 20080 minimal_triples= 11648 outside_paper9= 1505 discrepancies=0 tags=[("CHN/out9", 28), ("DBL3", 1248), ("S1", 5928), ("S2", 2967), ("S3/out9", 1477)]
+m= 175 exact<=3= 20294 minimal_triples= 11879 outside_paper9= 1541 discrepancies=0 tags=[("CHN/out9", 28), ("DBL3", 1268), ("S1", 6056), ("S2", 3014), ("S3/out9", 1513)]
+m= 176 exact<=3= 20537 minimal_triples= 11889 outside_paper9= 1534 discrepancies=0 tags=[("CHN/out9", 28), ("DBL3", 1236), ("S1", 6071), ("S2", 3048), ("S3/out9", 1506)]
+m= 177 exact<=3= 20754 minimal_triples= 12088 outside_paper9= 1557 discrepancies=0 tags=[("CHN/out9", 29), ("DBL3", 1274), ("S1", 6167), ("S2", 3090), ("S3/out9", 1528)]
+m= 178 exact<=3= 20951 minimal_triples= 12198 outside_paper9= 1577 discrepancies=0 tags=[("CHN/out9", 29), ("DBL3", 1299), ("S1", 6226), ("S2", 3096), ("S3/out9", 1548)]
+m= 179 exact<=3= 21249 minimal_triples= 12426 outside_paper9= 1621 discrepancies=0 tags=[("CHN/out9", 29), ("DBL3", 1332), ("S1", 6325), ("S2", 3148), ("S3/out9", 1592)]
+m= 180 exact<=3= 21484 minimal_triples= 12368 outside_paper9= 1597 discrepancies=0 tags=[("CHN/out9", 29), ("DBL3", 1299), ("S1", 6312), ("S2", 3160), ("S3/out9", 1568)]
+m= 181 exact<=3= 21720 minimal_triples= 12725 outside_paper9= 1669 discrepancies=0 tags=[("CHN/out9", 30), ("DBL3", 1337), ("S1", 6506), ("S2", 3213), ("S3/out9", 1639)]
+m= 182 exact<=3= 21924 minimal_triples= 12799 outside_paper9= 1667 discrepancies=0 tags=[("CHN/out9", 29), ("DBL3", 1356), ("S1", 6528), ("S2", 3248), ("S3/out9", 1638)]
+m= 183 exact<=3= 22210 minimal_triples= 12912 outside_paper9= 1672 discrepancies=0 tags=[("CHN/out9", 30), ("DBL3", 1388), ("S1", 6568), ("S2", 3284), ("S3/out9", 1642)]
+m= 184 exact<=3= 22380 minimal_triples= 13107 outside_paper9= 1696 discrepancies=0 tags=[("CHN/out9", 30), ("DBL3", 1414), ("S1", 6683), ("S2", 3314), ("S3/out9", 1666)]
+m= 185 exact<=3= 22656 minimal_triples= 13288 outside_paper9= 1728 discrepancies=0 tags=[("CHN/out9", 30), ("DBL3", 1415), ("S1", 6773), ("S2", 3372), ("S3/out9", 1698)]
+m= 186 exact<=3= 22888 minimal_triples= 13266 outside_paper9= 1705 discrepancies=0 tags=[("CHN/out9", 30), ("DBL3", 1414), ("S1", 6763), ("S2", 3384), ("S3/out9", 1675)]
+m= 187 exact<=3= 23133 minimal_triples= 13575 outside_paper9= 1764 discrepancies=0 tags=[("CHN/out9", 30), ("DBL3", 1438), ("S1", 6934), ("S2", 3439), ("S3/out9", 1734)]
+m= 188 exact<=3= 23357 minimal_triples= 13652 outside_paper9= 1769 discrepancies=0 tags=[("CHN/out9", 30), ("DBL3", 1437), ("S1", 6970), ("S2", 3476), ("S3/out9", 1739)]
+m= 189 exact<=3= 23634 minimal_triples= 13808 outside_paper9= 1776 discrepancies=0 tags=[("CHN/out9", 31), ("DBL3", 1466), ("S1", 7036), ("S2", 3530), ("S3/out9", 1745)]
+m= 190 exact<=3= 23842 minimal_triples= 13912 outside_paper9= 1782 discrepancies=0 tags=[("CHN/out9", 31), ("DBL3", 1494), ("S1", 7090), ("S2", 3546), ("S3/out9", 1751)]
+m= 191 exact<=3= 24143 minimal_triples= 14165 outside_paper9= 1828 discrepancies=0 tags=[("CHN/out9", 31), ("DBL3", 1533), ("S1", 7204), ("S2", 3600), ("S3/out9", 1797)]
+m= 192 exact<=3= 24318 minimal_triples= 14201 outside_paper9= 1832 discrepancies=0 tags=[("CHN/out9", 31), ("DBL3", 1503), ("S1", 7251), ("S2", 3615), ("S3/out9", 1801)]
+m= 193 exact<=3= 24653 minimal_triples= 14423 outside_paper9= 1889 discrepancies=0 tags=[("CHN/out9", 31), ("DBL3", 1515), ("S1", 7367), ("S2", 3652), ("S3/out9", 1858)]
+m= 194 exact<=3= 24887 minimal_triples= 14558 outside_paper9= 1894 discrepancies=0 tags=[("CHN/out9", 31), ("DBL3", 1535), ("S1", 7428), ("S2", 3701), ("S3/out9", 1863)]
+m= 195 exact<=3= 25135 minimal_triples= 14730 outside_paper9= 1898 discrepancies=0 tags=[("CHN/out9", 32), ("DBL3", 1573), ("S1", 7502), ("S2", 3757), ("S3/out9", 1866)]
+m= 196 exact<=3= 25360 minimal_triples= 14827 outside_paper9= 1908 discrepancies=0 tags=[("CHN/out9", 32), ("DBL3", 1600), ("S1", 7553), ("S2", 3766), ("S3/out9", 1876)]
+m= 197 exact<=3= 25639 minimal_triples= 15139 outside_paper9= 1972 discrepancies=0 tags=[("CHN/out9", 32), ("DBL3", 1629), ("S1", 7705), ("S2", 3833), ("S3/out9", 1940)]
+m= 198 exact<=3= 25916 minimal_triples= 15042 outside_paper9= 1940 discrepancies=0 tags=[("CHN/out9", 32), ("DBL3", 1620), ("S1", 7654), ("S2", 3828), ("S3/out9", 1908)]
+m= 199 exact<=3= 26170 minimal_triples= 15447 outside_paper9= 2025 discrepancies=0 tags=[("CHN/out9", 32), ("DBL3", 1643), ("S1", 7884), ("S2", 3895), ("S3/out9", 1993)]
+m= 200 exact<=3= 26445 minimal_triples= 15429 outside_paper9= 2010 discrepancies=0 tags=[("CHN/out9", 32), ("DBL3", 1622), ("S1", 7869), ("S2", 3928), ("S3/out9", 1978)]
+m= 201 exact<=3= 26709 minimal_triples= 15629 outside_paper9= 2029 discrepancies=0 tags=[("CHN/out9", 33), ("DBL3", 1662), ("S1", 7965), ("S2", 3973), ("S3/out9", 1996)]
+m= 202 exact<=3= 26904 minimal_triples= 15844 outside_paper9= 2060 discrepancies=0 tags=[("CHN/out9", 33), ("DBL3", 1697), ("S1", 8083), ("S2", 4004), ("S3/out9", 2027)]
+m= 203 exact<=3= 27230 minimal_triples= 16031 outside_paper9= 2094 discrepancies=0 tags=[("CHN/out9", 33), ("DBL3", 1715), ("S1", 8165), ("S2", 4057), ("S3/out9", 2061)]
+m= 204 exact<=3= 27481 minimal_triples= 15998 outside_paper9= 2071 discrepancies=0 tags=[("CHN/out9", 33), ("DBL3", 1670), ("S1", 8173), ("S2", 4084), ("S3/out9", 2038)]
+m= 205 exact<=3= 27760 minimal_triples= 16270 outside_paper9= 2117 discrepancies=0 tags=[("CHN/out9", 33), ("DBL3", 1687), ("S1", 8327), ("S2", 4139), ("S3/out9", 2084)]
+m= 206 exact<=3= 27978 minimal_triples= 16439 outside_paper9= 2128 discrepancies=0 tags=[("CHN/out9", 33), ("DBL3", 1739), ("S1", 8390), ("S2", 4182), ("S3/out9", 2095)]
+m= 207 exact<=3= 28265 minimal_triples= 16628 outside_paper9= 2148 discrepancies=0 tags=[("CHN/out9", 34), ("DBL3", 1775), ("S1", 8474), ("S2", 4231), ("S3/out9", 2114)]
+m= 208 exact<=3= 28502 minimal_triples= 16753 outside_paper9= 2163 discrepancies=0 tags=[("CHN/out9", 34), ("DBL3", 1801), ("S1", 8540), ("S2", 4249), ("S3/out9", 2129)]
+m= 209 exact<=3= 28798 minimal_triples= 17025 outside_paper9= 2205 discrepancies=0 tags=[("CHN/out9", 34), ("DBL3", 1838), ("S1", 8663), ("S2", 4319), ("S3/out9", 2171)]
+m= 210 exact<=3= 29076 minimal_triples= 16963 outside_paper9= 2168 discrepancies=0 tags=[("CHN/out9", 34), ("DBL3", 1834), ("S1", 8629), ("S2", 4332), ("S3/out9", 2134)]
+m= 211 exact<=3= 29380 minimal_triples= 17317 outside_paper9= 2244 discrepancies=0 tags=[("CHN/out9", 34), ("DBL3", 1849), ("S1", 8835), ("S2", 4389), ("S3/out9", 2210)]
+m= 212 exact<=3= 29604 minimal_triples= 17413 outside_paper9= 2260 discrepancies=0 tags=[("CHN/out9", 34), ("DBL3", 1820), ("S1", 8907), ("S2", 4426), ("S3/out9", 2226)]
+m= 213 exact<=3= 29928 minimal_triples= 17579 outside_paper9= 2274 discrepancies=0 tags=[("CHN/out9", 35), ("DBL3", 1869), ("S1", 8964), ("S2", 4472), ("S3/out9", 2239)]
+m= 214 exact<=3= 30136 minimal_triples= 17794 outside_paper9= 2305 discrepancies=0 tags=[("CHN/out9", 35), ("DBL3", 1903), ("S1", 9083), ("S2", 4503), ("S3/out9", 2270)]
+m= 215 exact<=3= 30493 minimal_triples= 17980 outside_paper9= 2327 discrepancies=0 tags=[("CHN/out9", 35), ("DBL3", 1944), ("S1", 9144), ("S2", 4565), ("S3/out9", 2292)]
+m= 216 exact<=3= 30738 minimal_triples= 17943 outside_paper9= 2310 discrepancies=0 tags=[("CHN/out9", 35), ("DBL3", 1872), ("S1", 9173), ("S2", 4588), ("S3/out9", 2275)]
+m= 217 exact<=3= 31015 minimal_triples= 18297 outside_paper9= 2377 discrepancies=0 tags=[("CHN/out9", 35), ("DBL3", 1901), ("S1", 9369), ("S2", 4650), ("S3/out9", 2342)]
+m= 218 exact<=3= 31298 minimal_triples= 18397 outside_paper9= 2377 discrepancies=0 tags=[("CHN/out9", 35), ("DBL3", 1942), ("S1", 9391), ("S2", 4687), ("S3/out9", 2342)]
+m= 219 exact<=3= 31601 minimal_triples= 18629 outside_paper9= 2394 discrepancies=0 tags=[("CHN/out9", 36), ("DBL3", 1988), ("S1", 9495), ("S2", 4752), ("S3/out9", 2358)]
+m= 220 exact<=3= 31805 minimal_triples= 18806 outside_paper9= 2408 discrepancies=0 tags=[("CHN/out9", 36), ("DBL3", 2027), ("S1", 9590), ("S2", 4781), ("S3/out9", 2372)]
+m= 221 exact<=3= 32176 minimal_triples= 18959 outside_paper9= 2442 discrepancies=0 tags=[("CHN/out9", 36), ("DBL3", 2003), ("S1", 9677), ("S2", 4837), ("S3/out9", 2406)]
+m= 222 exact<=3= 32410 minimal_triples= 19007 outside_paper9= 2433 discrepancies=0 tags=[("CHN/out9", 36), ("DBL3", 2019), ("S1", 9703), ("S2", 4852), ("S3/out9", 2397)]
+m= 223 exact<=3= 32753 minimal_triples= 19345 outside_paper9= 2510 discrepancies=0 tags=[("CHN/out9", 36), ("DBL3", 2036), ("S1", 9890), ("S2", 4909), ("S3/out9", 2474)]
+m= 224 exact<=3= 33011 minimal_triples= 19431 outside_paper9= 2504 discrepancies=0 tags=[("CHN/out9", 36), ("DBL3", 2029), ("S1", 9933), ("S2", 4965), ("S3/out9", 2468)]
+m= 225 exact<=3= 33322 minimal_triples= 19608 outside_paper9= 2509 discrepancies=0 tags=[("CHN/out9", 37), ("DBL3", 2063), ("S1", 10013), ("S2", 5023), ("S3/out9", 2472)]
+m= 226 exact<=3= 33579 minimal_triples= 19744 outside_paper9= 2529 discrepancies=0 tags=[("CHN/out9", 37), ("DBL3", 2090), ("S1", 10092), ("S2", 5033), ("S3/out9", 2492)]
+m= 227 exact<=3= 33865 minimal_triples= 20170 outside_paper9= 2613 discrepancies=0 tags=[("CHN/out9", 37), ("DBL3", 2161), ("S1", 10288), ("S2", 5108), ("S3/out9", 2576)]
+m= 228 exact<=3= 34207 minimal_triples= 19995 outside_paper9= 2572 discrepancies=0 tags=[("CHN/out9", 37), ("DBL3", 2124), ("S1", 10198), ("S2", 5101), ("S3/out9", 2535)]
+m= 229 exact<=3= 34510 minimal_triples= 20444 outside_paper9= 2666 discrepancies=0 tags=[("CHN/out9", 37), ("DBL3", 2147), ("S1", 10454), ("S2", 5177), ("S3/out9", 2629)]
+m= 230 exact<=3= 34806 minimal_triples= 20535 outside_paper9= 2653 discrepancies=0 tags=[("CHN/out9", 37), ("DBL3", 2170), ("S1", 10477), ("S2", 5235), ("S3/out9", 2616)]
+m= 231 exact<=3= 35123 minimal_triples= 20683 outside_paper9= 2646 discrepancies=0 tags=[("CHN/out9", 38), ("DBL3", 2204), ("S1", 10543), ("S2", 5290), ("S3/out9", 2608)]
+m= 232 exact<=3= 35345 minimal_triples= 20902 outside_paper9= 2680 discrepancies=0 tags=[("CHN/out9", 38), ("DBL3", 2243), ("S1", 10668), ("S2", 5311), ("S3/out9", 2642)]
+m= 233 exact<=3= 35757 minimal_triples= 21138 outside_paper9= 2734 discrepancies=0 tags=[("CHN/out9", 38), ("DBL3", 2245), ("S1", 10781), ("S2", 5378), ("S3/out9", 2696)]
+m= 234 exact<=3= 35990 minimal_triples= 21211 outside_paper9= 2724 discrepancies=0 tags=[("CHN/out9", 38), ("DBL3", 2239), ("S1", 10838), ("S2", 5410), ("S3/out9", 2686)]
+m= 235 exact<=3= 36338 minimal_triples= 21477 outside_paper9= 2771 discrepancies=0 tags=[("CHN/out9", 38), ("DBL3", 2259), ("S1", 10980), ("S2", 5467), ("S3/out9", 2733)]
+m= 236 exact<=3= 36604 minimal_triples= 21611 outside_paper9= 2779 discrepancies=0 tags=[("CHN/out9", 38), ("DBL3", 2276), ("S1", 11040), ("S2", 5516), ("S3/out9", 2741)]
+m= 237 exact<=3= 36893 minimal_triples= 21907 outside_paper9= 2815 discrepancies=0 tags=[("CHN/out9", 39), ("DBL3", 2337), ("S1", 11174), ("S2", 5581), ("S3/out9", 2776)]
+m= 238 exact<=3= 37181 minimal_triples= 21957 outside_paper9= 2817 discrepancies=0 tags=[("CHN/out9", 39), ("DBL3", 2363), ("S1", 11195), ("S2", 5582), ("S3/out9", 2778)]
+m= 239 exact<=3= 37583 minimal_triples= 22304 outside_paper9= 2880 discrepancies=0 tags=[("CHN/out9", 39), ("DBL3", 2403), ("S1", 11356), ("S2", 5665), ("S3/out9", 2841)]
+m= 240 exact<=3= 37860 minimal_triples= 22223 outside_paper9= 2851 discrepancies=0 tags=[("CHN/out9", 39), ("DBL3", 2351), ("S1", 11347), ("S2", 5674), ("S3/out9", 2812)]
+m= 241 exact<=3= 38189 minimal_triples= 22674 outside_paper9= 2947 discrepancies=0 tags=[("CHN/out9", 40), ("DBL3", 2403), ("S1", 11586), ("S2", 5738), ("S3/out9", 2907)]
+m= 242 exact<=3= 38474 minimal_triples= 22768 outside_paper9= 2953 discrepancies=0 tags=[("CHN/out9", 39), ("DBL3", 2416), ("S1", 11620), ("S2", 5779), ("S3/out9", 2914)]
+m= 243 exact<=3= 38879 minimal_triples= 22911 outside_paper9= 2960 discrepancies=0 tags=[("CHN/out9", 40), ("DBL3", 2449), ("S1", 11672), ("S2", 5830), ("S3/out9", 2920)]
+m= 244 exact<=3= 39102 minimal_triples= 23219 outside_paper9= 2998 discrepancies=0 tags=[("CHN/out9", 40), ("DBL3", 2487), ("S1", 11847), ("S2", 5887), ("S3/out9", 2958)]
+m= 245 exact<=3= 39453 minimal_triples= 23396 outside_paper9= 3014 discrepancies=0 tags=[("CHN/out9", 40), ("DBL3", 2505), ("S1", 11920), ("S2", 5957), ("S3/out9", 2974)]
+m= 246 exact<=3= 39718 minimal_triples= 23449 outside_paper9= 3000 discrepancies=0 tags=[("CHN/out9", 40), ("DBL3", 2510), ("S1", 11955), ("S2", 5984), ("S3/out9", 2960)]
+m= 247 exact<=3= 40039 minimal_triples= 23848 outside_paper9= 3083 discrepancies=0 tags=[("CHN/out9", 40), ("DBL3", 2541), ("S1", 12175), ("S2", 6049), ("S3/out9", 3043)]
+m= 248 exact<=3= 40374 minimal_triples= 23885 outside_paper9= 3085 discrepancies=0 tags=[("CHN/out9", 40), ("DBL3", 2513), ("S1", 12199), ("S2", 6088), ("S3/out9", 3045)]
+m= 249 exact<=3= 40733 minimal_triples= 24101 outside_paper9= 3100 discrepancies=0 tags=[("CHN/out9", 41), ("DBL3", 2560), ("S1", 12291), ("S2", 6150), ("S3/out9", 3059)]
+m= 250 exact<=3= 41012 minimal_triples= 24254 outside_paper9= 3111 discrepancies=0 tags=[("CHN/out9", 41), ("DBL3", 2600), ("S1", 12370), ("S2", 6173), ("S3/out9", 3070)]
+m= 251 exact<=3= 41393 minimal_triples= 24620 outside_paper9= 3176 discrepancies=0 tags=[("CHN/out9", 41), ("DBL3", 2658), ("S1", 12535), ("S2", 6251), ("S3/out9", 3135)]
+m= 252 exact<=3= 41658 minimal_triples= 24615 outside_paper9= 3163 discrepancies=0 tags=[("CHN/out9", 41), ("DBL3", 2593), ("S1", 12578), ("S2", 6281), ("S3/out9", 3122)]
+m= 253 exact<=3= 42045 minimal_triples= 24934 outside_paper9= 3230 discrepancies=0 tags=[("CHN/out9", 41), ("DBL3", 2617), ("S1", 12747), ("S2", 6340), ("S3/out9", 3189)]
+m= 254 exact<=3= 42338 minimal_triples= 25109 outside_paper9= 3235 discrepancies=0 tags=[("CHN/out9", 41), ("DBL3", 2657), ("S1", 12815), ("S2", 6402), ("S3/out9", 3194)]
+m= 255 exact<=3= 42661 minimal_triples= 25313 outside_paper9= 3240 discrepancies=0 tags=[("CHN/out9", 42), ("DBL3", 2706), ("S1", 12904), ("S2", 6463), ("S3/out9", 3198)]
+m= 256 exact<=3= 42962 minimal_triples= 25473 outside_paper9= 3264 discrepancies=0 tags=[("CHN/out9", 42), ("DBL3", 2742), ("S1", 12990), ("S2", 6477), ("S3/out9", 3222)]
+m= 257 exact<=3= 43371 minimal_triples= 25823 outside_paper9= 3344 discrepancies=0 tags=[("CHN/out9", 42), ("DBL3", 2743), ("S1", 13174), ("S2", 6562), ("S3/out9", 3302)]
+m= 258 exact<=3= 43670 minimal_triples= 25833 outside_paper9= 3323 discrepancies=0 tags=[("CHN/out9", 42), ("DBL3", 2760), ("S1", 13170), ("S2", 6580), ("S3/out9", 3281)]
+m= 259 exact<=3= 44015 minimal_triples= 26231 outside_paper9= 3397 discrepancies=0 tags=[("CHN/out9", 42), ("DBL3", 2786), ("S1", 13389), ("S2", 6659), ("S3/out9", 3355)]
+m= 260 exact<=3= 44322 minimal_triples= 26246 outside_paper9= 3375 discrepancies=0 tags=[("CHN/out9", 42), ("DBL3", 2773), ("S1", 13392), ("S2", 6706), ("S3/out9", 3333)]
+
+RANGE m=4..260: minimal triples=2272034 outside paper's nine=294170 DISCREPANCIES=0
+aggregate tags: {"CHN/out9": 5422, "DBL3": 241494, "S1": 1158952, "S2": 577418, "S3/out9": 288748}
+RESULT: predicted list == enumerated list (exact bad sets of size <=3) on the whole range

@@ -1,0 +1,333 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\nrm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ML}{\operatorname{ML}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\lean}[1]{{\def\_{\textunderscore\allowbreak}\def\.{.\allowbreak}\texttt{#1}}}
+\newcommand{\LRC}{\mathrm{LRC}}
+
+\title[Lean formalization: eight lonely runners]{A Lean formalization of the lonely runner conjecture\\ for eight runners}
+\author{Vico Bonfioli}
+\email{vicobonfioli@gmail.com}
+\date{}
+
+\begin{document}
+\emergencystretch=3em
+
+\begin{abstract}
+For positive integer speeds $v_1,\dots,v_n$ let $\ML(v)=\sup_{t\in\R}\min_i\nrm{v_it}$, where
+$\nrm{x}$ is the distance from $x$ to the nearest integer. The lonely runner conjecture for $n+1$
+runners asserts $\ML(v)\ge 1/(n+1)$. We describe a formalization in Lean~4 with Mathlib of the case
+$n=7$ (eight runners), proved by Rosenfeld in 2025. The Lean theorem in the default build depends on the three standard
+axioms of Lean and on $27$ axioms, each of which records a kernel check of a finite certificate that
+was carried out and then removed from the build for disk reasons. A second module, outside the
+default build, imports the $27$ kernel proofs as kept object files and proves the same statement
+from the three standard axioms alone; the certificates are regenerated from recorded SHA-256
+hashes by a published procedure. On the way the formalization proves the case
+$n=6$ (seven runners, Barajas and Serra, 2008) from the standard axioms alone, and replaces the
+height bound of Malikiosis, Santos and Schymura used by Rosenfeld with a pigeonhole argument and
+the planar rounding step of Giri and Kravitz. The formalization of Barajas and Serra found errors in
+eleven places of the printed proof; none affects the theorem. No new mathematical result is
+claimed.
+\end{abstract}
+
+\maketitle
+
+\section{Statement and trust base}
+
+\subsection{Statement}
+For $v\in\Z_{>0}^n$ and $t\in\R$ put $\operatorname{gap}_v(t)=\min_i\nrm{v_it}$ and
+$\ML(v)=\sup_t\operatorname{gap}_v(t)$. The lonely runner conjecture of Wills \cite{wills} and
+Cusick \cite{cusick73} asserts
+\[
+\LRC(n):\qquad \ML(v)\ge \frac1{n+1}\quad\text{for all } v\in\Z_{>0}^n .
+\]
+It is known for $n\le 6$ \cite{bhk,bs}, for $n=7$ \cite{ros8}, for $n=8,9$ \cite{ros9,trak}, and
+beyond \cite{st,allikvere}. In Lean, speeds are $v:\lean{Fin k}\to\Z$, $\nrm{x}$ is
+$\lean{nearestIntDist}\,x=\min(\{x\},1-\{x\})$, and $\ML$ is the conditional supremum
+$\lean{sSup (Set.range (gap v))}$. Repeated speeds are allowed; no primitivity is assumed.
+
+\begin{theorem}[Lean \lean{LRSpectrumFull.EightRunners.eight\_runners\_unconditional}]\label{thm:8}
+For every $v:\lean{Fin 7}\to\Z$ with $v_i>0$ for all $i$, $\ML(v)\ge 1/8$.
+\end{theorem}
+
+\begin{theorem}[Lean \lean{LRSpectrumFull.BarajasSerra.LRC6\_barajasSerra}]\label{thm:7}
+For every $u:\lean{Fin 6}\to\Z$ with $u_i>0$ for all $i$, $\ML(u)\ge 1/7$.
+\end{theorem}
+
+The module \lean{EightRunners.lean} contains only Theorem~\ref{thm:8}. It imports
+\lean{EightE5}, which imports the reduction, the certificate axioms and Theorem~\ref{thm:7}.
+
+\subsection{Trust base}
+Table~\ref{tab:trust} lists the output of \lean{\#print axioms}, run on 2026-09-27 with
+\lean{lake env lean} after building the module \lean{EightRunners}. The literal output
+is reproduced in the file \texttt{LEAN\_MAP.md} accompanying this paper.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}p{0.50\textwidth}p{0.42\textwidth}@{}}
+\toprule
+Declaration & Axioms beyond \lean{propext}, \lean{Classical.choice}, \lean{Quot.sound} \\
+\midrule
+\lean{EightRunners.eight\_runners\_unconditional} (Thm.~\ref{thm:8}) & the 27 axioms \lean{EightCert27.lemma7Check\_seven\_p}$p$\lean{\_verified} \\
+\lean{EightCert27.hchk\_all} (all 27 primes) & the same 27 \\
+\lean{EightRunnersReal.eight\_runners\_unconditional\_real} (same statement, outside the default build) & none \\
+\lean{EightRunnersReal.hchk\_all\_real} (all 27 primes) & none \\
+\lean{BarajasSerra.LRC6\_barajasSerra} (Thm.~\ref{thm:7}) & none \\
+\lean{EightE5.mssGap7\_holds} (rounding step) & none \\
+\lean{EightMSS.e5b\_staircase} (pigeonhole) & none \\
+\lean{EightV4.lemma7Check\_of\_checkRootH} (checker soundness) & none \\
+\bottomrule
+\end{tabular}
+\caption{Trust base. No declaration listed depends on \lean{sorryAx}; no \lean{native\_decide}
+(\lean{Lean.ofReduceBool}) is used.}
+\label{tab:trust}
+\end{table}
+
+The $27$ axioms state \lean{lemma7Check 7 p = true} for the primes
+$p\in S=\{31,37,43,\dots,157,163\}$ of Rosenfeld's set, $|S|=27$. For each $p$ the statement was
+proved by the Lean kernel (\lean{decide +kernel}) from a generated certificate, and \lean{\#print
+axioms} of that proof reported the three standard axioms only. The generated sources (about
+$1.6$\,GB in total) and their object files were then deleted, and the fact was reinstated as a
+named axiom whose docstring records the SHA-256 hash of the concatenated sources. These axioms
+record kernel checks run by the author; the evidence that each check succeeded is the per-prime record in \texttt{code/eight/records}, and the axioms are not re-checked by a build of the present tree. All $27$ certificates have
+been regenerated and re-checked by the kernel at least once (25 of them on 2026-09-27, the
+remaining two, $p=31$ and $p=37$, earlier), with hashes matching the recorded
+originals; the records in \texttt{code/eight/records} give the kernel results. Section~\ref{sec:repro} gives the procedure that
+regenerates each certificate, compares its hash, and rebuilds its kernel proof.
+
+The module \lean{EightRunnersReal.lean} removes the $27$ axioms. It imports the modules
+\lean{E8Stage.P}$p$\lean{.Asm} produced by procedure~(2) of Section~\ref{sec:repro} with the object
+files kept (about $2.6$\,GB in total, outside the lake package, regenerable in about $12$ hours),
+restates \lean{hchk\_all\_real} from the $27$ theorems \lean{EightV4.Cert}$p$\lean{.lemma7Check\_seven\_p}$p$, and
+proves \lean{eight\_runners\_unconditional\_real} through \lean{EightE5.eight\_runners\_of}, which takes the
+per-prime checks as a hypothesis. On 2026-09-30, compiled with \lean{lean} against these object files,
+\lean{\#print axioms} reports exactly \lean{propext}, \lean{Classical.choice}, \lean{Quot.sound} for both
+declarations. As a control, the same environment reports the $27$ \lean{EightCert27} axioms for
+\lean{EightRunners.eight\_runners\_unconditional}. The module \lean{EightE5} imports \lean{EightCert27}, so
+the $27$ axioms are present in that environment but are not used by the new theorem. This module is not
+built by \lean{lake build}; it is compiled by a script in \texttt{code/eight/stage/}.
+For the primes $p\in\{31,37,43,47,53,59,61,67,113,163\}$ the stored declarations were in addition
+replayed through a fresh kernel with \lean{Lean.Environment.replay}, from the kept object files, against the
+environment of their imports; all were accepted with the three standard axioms and the statement
+\lean{lemma7Check 7 p = true}. The remaining $17$ primes were not replayed. This shows that the stored terms
+re-typecheck; it does not audit Lean, Mathlib or the checker \lean{lemma7Check}.
+
+\section{Rosenfeld's reduction as formalized}\label{sec:ros}
+
+We follow \cite[Section~5]{ros8} with $n=7$. Lean names in this section are in the namespace
+\lean{LRSpectrumFull.EightPlan} unless stated otherwise. A counterexample is a primitive
+$v\in\Z_{>0}^7$ with $\ML(v)<1/8$ (\lean{IsCE}).
+
+\begin{itemize}
+\item[E0] (gcd reduction) $\ML$ is invariant under division by $\gcd(v)$, so it suffices to treat
+primitive $v$ (\lean{e0\_primitive}).
+\item[E4] (leave-one-out, \cite[Lemma~5]{ros8}) Given $\LRC(6)$, every six of the seven speeds of a
+counterexample are coprime; in particular at most five of them are even (\lean{e4\_leaveOneOut},
+\lean{e4\_parity}).
+\item[E2] (\cite[Lemmas~6, 7]{ros8}) If \lean{lemma7Check 7 p = true} then $p$ divides some speed of
+every counterexample satisfying the parity condition of E4 (\lean{e2\_prime\_dvd}). Here
+\lean{lemma7Check} is a Boolean function defined by enumeration of admissible residue tuples
+modulo $p$.
+\item[E3] (\cite[Lemma~4]{ros8}) Consequently $840\prod_{p\in S}p$ divides $\prod_iv_i$
+(\lean{e3\_lcm\_dvd}).
+\item[NUM] $28^{42}<7^7\cdot 840\prod_{p\in S}p$ (\lean{numeric}), and by the inequality of
+arithmetic and geometric means $28^{42}<7^7\prod_i v_i$ implies $\sum_i v_i>28^6$
+(\lean{e5\_amgm}).
+\item[E5] Given $\LRC(6)$, a primitive $v\in\Z_{>0}^7$ with $\sum_iv_i>28^6$ has $\ML(v)\ge1/8$
+(Section~\ref{sec:e5}).
+\item[E6] $\LRC(6)$: Theorem~\ref{thm:7} (Section~\ref{sec:bs}).
+\end{itemize}
+The assembly is \lean{EightE5.eight\_runners\_of}, which takes $\LRC(6)$ and the $27$ prime checks
+as hypotheses and uses only the standard axioms; \lean{EightE5.eight\_runners\_unconditional}
+instantiates it with Theorem~\ref{thm:7} and \lean{EightCert27.hchk\_all}. A counterexample then
+satisfies E3, hence $\sum v_i>28^6$ by NUM, contradicting E5.
+
+\section{The prime campaign}\label{sec:primes}
+
+\subsection{The certificate checker}
+Evaluating \lean{lemma7Check 7 p} directly in the kernel is infeasible for the larger primes. We
+wrote a second checker, \lean{EightCheckV4}, which walks a search tree supplied as data (a
+certificate) and accepts only if every leaf is closed by a counting bound or a table lookup. Its
+soundness theorem \lean{EightV4.lemma7Check\_of\_checkRootH} (file \lean{EightCheckSound.lean})
+states that acceptance implies \lean{lemma7Check 7 p = true}; it depends on the standard axioms
+only. A Rust program generates, for each prime, the certificate as Lean source split into modules;
+the kernel evaluates the checker on it by \lean{decide +kernel}. The soundness proof does not depend
+on the generator: a wrong certificate is rejected and cannot produce a false theorem.
+
+\subsection{Reproduction}\label{sec:repro}
+For each $p\in S$ a record file stores the generator command, the SHA-256 of the generator, of the
+checker and of the soundness file, of each generated module and of their concatenation, the
+toolchain (\lean{leanprover/lean4:v4.30.0}), and the axiom output of the kernel proof. The generator,
+the scripts and the $27$ records are in \texttt{code/eight/}. Two procedures are provided.
+\begin{enumerate}
+\item Hash check (\texttt{stage/repro\_check.sh p}): regenerate the sources and compare the
+concatenated hash with the record and with the axiom docstring. This takes seconds per prime and
+does not run Lean.
+\item Full re-check (\texttt{stage/run\_prime.sh p}): regenerate, compile every module of that
+prime with one \lean{lean} process per module, and require that \lean{\#print axioms} of
+\lean{EightV4.Cert}$p$\lean{.lemma7Check\_seven\_p}$p$ reports exactly the three standard axioms.
+\end{enumerate}
+On 2026-09-27 procedure~(1), run from \texttt{code/eight/}, reproduced all $27$ hashes, and every
+hash occurs in \lean{EightCert27.lean}. Procedure~(1) was repeated on a copy of \texttt{code/eight/} on 2026-10-18 and again reproduced all $27$ hashes (1143 s; \texttt{data/repro\_logs/eight\_repro\_all\_27.txt}). Procedure~(2) was not repeated for the archive. Procedure~(2) was run once per prime during the campaign
+(2026-09-24 to 2026-09-26). Three records (\(p=31,37,43\)) name an earlier revision of the generator
+source; the present generator reproduces their hashes.
+
+\section{The height bound E5}\label{sec:e5}
+
+Rosenfeld obtains E5 from \cite[Theorem~A$'$]{mss}, whose proof passes through zonotopes and
+successive minima. We did not formalize that proof. E5 is instead obtained from two statements:
+a pigeonhole lemma and the planar rounding step of Giri and Kravitz \cite[Section~7]{gk}, which
+reduces a speed vector close to a rational plane to $\LRC(n-1)$. The same step is the case $r=1$
+of \cite[Proposition~3.4]{allikvere}. We claim no novelty for either.
+
+\begin{lemma}[Lean \lean{EightMSS.e5b\_staircase}]\label{lem:stair}
+Let $v\in\Z_{>0}^n$ be primitive and $l\ge1$ an integer with $\sum_iv_i>l^{n-1}$. There are
+$z\in\Z^n$, not proportional to $v$, and $\sigma\in\Q$ with $|lz_i-\sigma v_i|\le1$ for all $i$.
+\end{lemma}
+
+\begin{proof}[Sketch]
+For each pair $e=(i,a)$ with $0\le a<v_i$ put $\tau_e=(2a+1)/(2v_i)$ and let $q_e\in\Z^n$ be the
+coordinatewise rounding of $\tau_ev$ with ties broken according to the index order, so that the
+$\sum_iv_i$ points $q_e$ are distinct and $|q_{e,j}-\tau_ev_j|\le1/2$. The map
+$(e,c)\mapsto q_e+cv \bmod l$ on pairs with $0\le c<l$ has $l\sum_iv_i>l^n$ arguments, so two
+arguments collide. If they share $e$, primitivity gives $l\mid c-c'$, impossible. Otherwise
+$lz=q_e-q_{e'}-(c'-c)v$ defines $z\in\Z^n$, and $\sigma=\tau_e-\tau_{e'}-(c'-c)$ satisfies the bound.
+If $z$ were proportional to $v$, primitivity would give $q_e-q_{e'}=sv$ with $s\in\Z$; the bounds
+$0\le q_{e,k}$ and $q_{e,k}<v_k$ at the index $k$ of $e$ (and of $e'$) force $s=0$, contradicting
+$q_e\ne q_{e'}$.
+\end{proof}
+
+\begin{proposition}[Lean \lean{EightE5.mssGap7\_holds}]\label{prop:round}
+Assume $\LRC(6)$. Let $v\in\Z_{>0}^7$, $z\in\Z^7$ not proportional to $v$, and $\sigma\in\Q$ with
+$|28z_k-\sigma v_k|\le1$ for all $k$. Then $\ML(v)\ge1/8$.
+\end{proposition}
+
+\begin{proof}
+Choose $i,j$ with $z_i/v_i<z_j/v_j$ adjacent among the distinct values of $z_k/v_k$
+(\lean{EightE5.exists\_adjacent\_pair}). Put $c=(z_i+z_j)v-(v_i+v_j)z\in\Z^7$. Then $c_k=0$ would
+mean $z_k/v_k=(z_i+z_j)/(v_i+v_j)$, which lies strictly between the two adjacent values; so no
+$c_k$ vanishes. Also $c_j=-c_i$. Apply $\LRC(6)$ to the six positive integers $|c_k|$, $k\ne j$:
+there is $\tau\in\R$ with $\nrm{c_k\tau}\ge1/7$ for $k\ne j$, and then also for $k=j$. Let $s=\sigma/28$
+and $d=z-sv$, so $|d_k|\le1/28$. Let $N$ be an integer nearest to $(v_i+v_j)\tau$ and
+$r=N-(v_i+v_j)\tau$, so $|r|\le1/2$. For $t=(z_i+z_j)\tau+rs$,
+\[
+tv_k=c_k\tau+\bigl((v_i+v_j)\tau+r\bigr)z_k-r d_k=c_k\tau+Nz_k-rd_k ,
+\]
+hence $\nrm{tv_k}\ge1/7-1/56=1/8$ for every $k$.
+\end{proof}
+
+With $l=28$ and $n=7$, Lemma~\ref{lem:stair} and Proposition~\ref{prop:round} give E5
+(\lean{EightMSS.e5\_sum\_of\_gap}, \lean{EightE5.e5\_sum}, and the product form
+\lean{EightE5.e5\_prod}). The threshold $28^6$ is the one Rosenfeld uses, so no other part of the
+reduction changes.
+
+\begin{remark}
+An earlier version of this formalization carried E5 as an axiom transcribing the case $n=7$ of
+\cite[Theorem~A$'$]{mss} (\lean{EightMSSImport.mss\_theorem\_A\_n7}), and an attempt to formalize
+that theorem through its zonotope argument (\lean{EightZonotope.lean}) stopped at
+\cite[Propositions~3.3, 3.4]{mss}. Neither is in the closure of Theorem~\ref{thm:8}; both files are
+kept and marked as superseded.
+\end{remark}
+
+\section{Seven runners: Barajas and Serra}\label{sec:bs}
+
+Lean names are in \lean{LRSpectrumFull.BarajasSerra}. Throughout $p$ is a prime, $N=p^{m+1}$,
+$\nu=\nu_p$, $q(x)=\lfloor (x\bmod N)/p^m\rfloor \bmod p$ (the arc of length $N/p$ containing
+$x$), and $\Lambda_j$ are the multiplier families of \cite[Section~2]{bs}.
+
+\subsection{Prime filtering}
+\cite[Lemma~2]{bs} (\lean{primeFiltering}) drives the proof: after rescaling so that the speeds sit
+at $p$-adic levels $0\le i\le m$, a counting induction over levels produces a multiplier coprime to
+$p$ that moves every speed out of the arcs $q\in\{0,p-1\}$, provided each level below the top
+carries few enough speeds. We formalized the digit arithmetic ($q$ under multiplication by
+$\Lambda_j$, carries of $q(jd)$ for small $j$, reflection $q(N-d)=p-1-q(d)$), the descending
+induction, and the passage from $q\notin\{0,p-1\}$ to $\nrm{td}\ge1/p$ for $t=\lambda/N$.
+
+\subsection{Three and five runners: finite tables}
+For $n=2$ ($p=3$) filtering and two short cases suffice (\lean{barajasSerra\_card2}). For $n=4$
+($p=5$) the configuration with three speeds at a common level and one above is not covered by
+filtering. We did not follow the paper's case analysis there. Each level-$0$ speed is replaced by a
+finite model (its arc, its residue mod $5$, and three carry bits), and the claim that any three
+model elements share a good multiplier $(1+5^mk)j$ with $1\le j\le4$, $k<5$ is checked by the
+kernel on the model (\lean{BarajasSerraCard4Table}, eight chunks); the theorem is
+\lean{barajasSerra\_card4}. Both cases use the standard axioms only.
+
+\subsection{Seven runners}
+For $n=6$, $p=7$. After scaling the minimum level to $0$, either every level below the top
+carries at most three speeds, and filtering applies, or one of four distributions occurs:
+(a)~five speeds at level~$0$ and one above; (b)~four at level~$0$ and two at the top; (c)~four at
+level~$0$, one strictly between, one at the top; (d)~one at level~$0$, four at an intermediate
+level, one at the top. The level split and dispatch are \lean{Sec5.lrc6\_nat} and \lean{Sec5.lrc6}.
+
+\emph{Cases (b)--(d), Section~5 of \cite{bs}.} The core statement is that four level-$0$ units
+admit a common multiplier $(1+7^mk)j$, $j\le5$, moving all four off the arcs $0$ and $6$. We prove
+it through a Farey model of the carries of $q(jd)$, $j\le5$, and small kernel tables
+(\lean{BarajasSerraSec5Fin}), assembled in \lean{Sec5.sec5}. Cases (b), (c), (d) reduce to it
+(\lean{Sec5.case\_b0}, \lean{case\_c0} with the paper's multiplier $u'(1+7^{m-i_0})$,
+\lean{case\_d0} with filtering below level $i_0$).
+
+\emph{Case (a), Sections~6 and~7 of \cite{bs}.} For $m=1$ the case is decided by a kernel table
+modulo $98$ (\lean{lrc6\_m1\_scaled}, \lean{BarajasSerraLRC6M1Table}, 17 chunks). For $m\ge2$ we
+formalized Lemmas~4, 5, 6, 7, 9, 10, 11, 12 and subsections 6.1 to 6.6 (\lean{Sec6.sec61\_witness}
+to \lean{Sec6.sec66\_witness}). Each subsection fixes a pattern of residue classes mod $7$ of the
+five level-$0$ speeds and concludes that a multiplier coprime to $7$ moves all six speeds off the
+arcs $0$ and $6$. Statements about $\Z_7$ alone are proved by \lean{decide}
+(\lean{BarajasSerraZ7}). The reduction of an arbitrary configuration to one of the seven patterns
+(sign flips, choice of base element) is \lean{Sec6.g4}. Case (a) is \lean{case\_a}.
+
+\subsection{Method}
+Each lemma of Sections~5 and~6 of \cite{bs} was first tested in Rust with exact integer arithmetic
+on a transcription of the Lean definitions, in most cases exhaustively at $m=2$ and exhaustively or
+by sampling at $m=3$, together with a negative control that must fail. Only then was Lean written.
+The checkers cited by the errata are in \texttt{code/eight/checks/} with the commands that run them.
+
+\section{Errata to Barajas and Serra}\label{sec:errata}
+The file \texttt{errata\_barajas\_serra.md} lists, for each item, the printed statement, the
+corrected statement, the computational evidence and the Lean declaration. In summary:
+Lemma~4(ii) has the wrong range in the equal-residue case; Lemma~5 is false as printed for two
+profiles (not used there); in Section~6 there are wrong intermediate values or signs in 6.1, 6.3,
+6.5, 6.6(a) and 6.6(b), an unsatisfiable normalisation and a wrong exception pair in 6.2, an
+unsuitable choice of $s$ and an untreated case $e_{45}=0$ in 6.4, and a hypothesis of Remark~8(i)
+that fails where Lemma~9 uses it; in Section~5, Case~3, eq.~(9) alone does not imply claim (12)
+(28 failures in 12544 model configurations), while (12) itself holds. None of these affects the
+theorem: every statement used by the argument is true, and each repair is local.
+
+\section{Scope and credits}
+This is a formalization of known theorems. The mathematical content of Theorem~\ref{thm:8} is due to
+Rosenfeld \cite{ros8}; that of Theorem~\ref{thm:7} to Barajas and Serra \cite{bs}; the rounding
+step of Section~\ref{sec:e5} to Giri and Kravitz \cite{gk} (see also \cite{allikvere}). Rosenfeld's
+height bound is that of Malikiosis, Santos and Schymura \cite{mss}; the formalization avoids it,
+but the threshold $28^6$ and the overall architecture are Rosenfeld's. Honglu Chen's repository
+\cite{chen} contains an earlier, independent Lean formalization of $\LRC(6)$ following Barajas and
+Serra; its statement was imported as an axiom, with a proved bridge to our
+formulation, as an interim input (\lean{Chen7RunnerImport}). Theorem~\ref{thm:8} does not depend on
+it. We did not re-check Chen's development, which uses a different Lean and Mathlib version.
+
+The contributions of this paper are the Lean proofs, the certificate checker with its soundness
+proof, the reproduction procedure for the $27$ certificates, the finite-model routes for $n=4$ and
+for Section~5 of \cite{bs}, and the list of errata. The formalization uses Lean~4.30.0 and Mathlib
+\cite{mathlib} pinned in the repository's \texttt{lake-manifest.json}. For background on the
+conjecture see \cite{cp,tao,kravitz,ps}.
+
+\bibliographystyle{amsplain}
+\bibliography{refs}
+
+\end{document}

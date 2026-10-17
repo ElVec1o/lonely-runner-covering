@@ -1,0 +1,40 @@
+n=6    k=1 unitM_min=1/24 (x n(n-1) = 1.2500) M=[5]   |  nonunitM_min=0.7500 M=[2]
+n=7    k=1 unitM_min=1/42 (x n(n-1) = 1.0000) M=[3]   |  nonunitM_min=none
+n=8    k=1 unitM_min=1/48 (x n(n-1) = 1.1667) M=[3]   |  nonunitM_min=0.8000 M=[6]
+n=9    k=1 unitM_min=1/72 (x n(n-1) = 1.0000) M=[4]   |  nonunitM_min=0.9524 M=[3]
+n=10   k=1 unitM_min=1/80 (x n(n-1) = 1.1250) M=[9]   |  nonunitM_min=0.8036 M=[4]
+n=11   k=1 unitM_min=1/110 (x n(n-1) = 1.0000) M=[5]   |  nonunitM_min=none
+n=12   k=1 unitM_min=1/120 (x n(n-1) = 1.1000) M=[5]   |  nonunitM_min=1.0476 M=[10]
+n=13   k=1 unitM_min=1/156 (x n(n-1) = 1.0000) M=[6]   |  nonunitM_min=none
+n=14   k=1 unitM_min=1/168 (x n(n-1) = 1.0833) M=[13]   |  nonunitM_min=0.4924 M=[6]
+n=15   k=1 unitM_min=1/210 (x n(n-1) = 1.0000) M=[7]   |  nonunitM_min=0.7424 M=[6]
+n=16   k=1 unitM_min=1/224 (x n(n-1) = 1.0714) M=[7]   |  nonunitM_min=0.9091 M=[14]
+n=17   k=1 unitM_min=1/272 (x n(n-1) = 1.0000) M=[8]   |  nonunitM_min=none
+n=18   k=1 unitM_min=1/288 (x n(n-1) = 1.0625) M=[17]   |  nonunitM_min=0.8693 M=[8]
+n=19   k=1 unitM_min=1/342 (x n(n-1) = 1.0000) M=[9]   |  nonunitM_min=none
+n=20   k=1 unitM_min=1/360 (x n(n-1) = 1.0556) M=[9]   |  nonunitM_min=0.5846 M=[18]
+n=21   k=1 unitM_min=1/420 (x n(n-1) = 1.0000) M=[10]   |  nonunitM_min=0.9231 M=[18]
+n=22   k=1 unitM_min=1/440 (x n(n-1) = 1.0500) M=[21]   |  nonunitM_min=0.8235 M=[20]
+n=23   k=1 unitM_min=1/506 (x n(n-1) = 1.0000) M=[11]   |  nonunitM_min=none
+n=24   k=1 unitM_min=1/528 (x n(n-1) = 1.0455) M=[11]   |  nonunitM_min=0.7441 M=[10]
+n=25   k=1 unitM_min=1/600 (x n(n-1) = 1.0000) M=[12]   |  nonunitM_min=0.9176 M=[10]
+n=26   k=1 unitM_min=1/624 (x n(n-1) = 1.0417) M=[25]   |  nonunitM_min=0.5263 M=[24]
+n=27   k=1 unitM_min=1/702 (x n(n-1) = 1.0000) M=[13]   |  nonunitM_min=0.8211 M=[24]
+n=28   k=1 unitM_min=1/728 (x n(n-1) = 1.0385) M=[13]   |  nonunitM_min=0.7826 M=[26]
+n=29   k=1 unitM_min=1/812 (x n(n-1) = 1.0000) M=[14]   |  nonunitM_min=none
+n=30   k=1 unitM_min=1/840 (x n(n-1) = 1.0357) M=[29]   |  nonunitM_min=0.7733 M=[28]
+n=31   k=1 unitM_min=1/930 (x n(n-1) = 1.0000) M=[15]   |  nonunitM_min=none
+n=32   k=1 unitM_min=1/960 (x n(n-1) = 1.0333) M=[15]   |  nonunitM_min=0.3851 M=[30]
+n=33   k=1 unitM_min=1/1056 (x n(n-1) = 1.0000) M=[16]   |  nonunitM_min=0.5963 M=[30]
+n=34   k=1 unitM_min=1/1088 (x n(n-1) = 1.0312) M=[33]   |  nonunitM_min=0.7586 M=[32]
+n=35   k=1 unitM_min=1/1190 (x n(n-1) = 1.0000) M=[17]   |  nonunitM_min=0.9273 M=[15]
+n=36   k=1 unitM_min=1/1224 (x n(n-1) = 1.0294) M=[17]   |  nonunitM_min=0.7527 M=[34]
+n=37   k=1 unitM_min=1/1332 (x n(n-1) = 1.0000) M=[18]   |  nonunitM_min=none
+n=38   k=1 unitM_min=1/1368 (x n(n-1) = 1.0278) M=[37]   |  nonunitM_min=0.4774 M=[36]
+n=39   k=1 unitM_min=1/1482 (x n(n-1) = 1.0000) M=[19]   |  nonunitM_min=0.7355 M=[36]
+n=40   k=1 unitM_min=1/1520 (x n(n-1) = 1.0263) M=[19]   |  nonunitM_min=0.7429 M=[38]
+n=41   k=1 unitM_min=1/1640 (x n(n-1) = 1.0000) M=[20]   |  nonunitM_min=none
+n=42   k=1 unitM_min=1/1680 (x n(n-1) = 1.0250) M=[41]   |  nonunitM_min=0.7387 M=[40]
+n=43   k=1 unitM_min=1/1806 (x n(n-1) = 1.0000) M=[21]   |  nonunitM_min=none
+n=44   k=1 unitM_min=1/1848 (x n(n-1) = 1.0238) M=[21]   |  nonunitM_min=0.4649 M=[42]
+=== unit-class instances checked: 594  VIOLATIONS: 0 ===

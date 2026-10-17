@@ -1,0 +1,28 @@
+Thu Oct  1 03:53:02 +07 2026 pool m=38 S=8
+edge-unions: 22167702 saturated=false
+parts incl. extensions: 27693372
+Thu Oct  1 03:54:42 +07 2026 dumpkept
+LP 0.0 P 27693372
+kept 7 of 27693372 min rc 0.0
+tight rows (1-based velocities) [] count 0
+Thu Oct  1 03:55:21 +07 2026 mip
+status Infeasible obj inf
+Thu Oct  1 03:55:22 +07 2026 done m=38
+      139.81 real       133.34 user         5.45 sys
+         11232215040  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             3845180  page reclaims
+                  51  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 363  voluntary context switches
+               33995  involuntary context switches
+            26794961  instructions retired
+            13622409  cycles elapsed
+             1376688  peak memory footprint

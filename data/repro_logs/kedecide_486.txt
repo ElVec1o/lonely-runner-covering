@@ -1,0 +1,4 @@
+  m     q  type    |  V    E   nu  def | KE? | check
+486   973  compos.  | 970 1059  454   62 | *NO* | -   [1/1 elapsed 3s eta -0s]
+
+Koenig-Egervary FAILS at: [486]

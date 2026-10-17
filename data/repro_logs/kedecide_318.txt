@@ -1,0 +1,4 @@
+  m     q  type    |  V    E   nu  def | KE? | check
+318   637  compos.  | 634  654  289   56 | *NO* | -   [1/1 elapsed 1s eta -0s]
+
+Koenig-Egervary FAILS at: [318]

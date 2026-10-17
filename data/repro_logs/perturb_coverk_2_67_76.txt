@@ -1,0 +1,36 @@
+== positive controls for `strip` ==
+  contained interval fully removed : true
+  partial overlap trimmed exactly  : true
+  disjoint interval survives       : true
+  straddling interval splits in two: true
+  divisibility filter: fires on U = true (expect true)
+  silent after v=n=32                = true (expect true)
+  still fires after v=60             = true (expect true)
+  isolated 1/4 and 1/2 coverable   : true true
+
+== STRICT-mode control: isolated survivors must be retained ==
+   1/8 survives R={11,13} : true
+   7/8 survives R={11,13} : true
+   residual is nonempty (no spurious cover) : true
+
+== END-TO-END positive control: rediscover the known tight sets (k=2) ==
+   FOUND n=5 M=[1, 3] R=[6, 8]
+   FOUND n=8 M=[2, 3] R=[11, 13]
+   2 tight configurations rediscovered
+
+== k=2 falsification search, 67 <= n <= 76 ==
+A COVER would be a counterexample to LRC at n runners.
+
+   n      sets       (M,v1)          tests   COVERS   capped
+  67      2145        86374         161097        0        0
+  68      2211        95855         177691        0        0
+  69      2278        99068         186581        0        0
+  70      2346       101074         183138        0        0
+  71      2415       102387         189784        0        0
+  72      2485       110965         203802        0        0
+  73      2556       111812         208426        0        0
+  74      2628       123166         235431        0        0
+  75      2701       126951         240193        0        0
+  76      2775       129197         237832        0        0
+
+TOTAL  (M,v1): 1086849   tests: 2023975   COVERS: 0   capped: 0

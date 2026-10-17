@@ -1,0 +1,16 @@
+[1, 2, 3, 4]: ML 1/5 (expected 1/5), grid q<=400: 1/5 ok
+[3, 4, 7, 11]: ML 2/9 (expected 2/9), grid q<=400: 2/9 ok
+[1, 3, 4, 7]: ML 1/5 (expected 1/5), grid q<=400: 1/5 ok
+[1, 3, 4, 5, 9]: ML 1/6 (expected 1/6), grid q<=400: 1/6 ok
+[1, 2]: ML 1/3 (expected 1/3), grid q<=400: 1/3 ok
+[1, 2, 3]: ML 1/4 (expected 1/4), grid q<=400: 1/4 ok
+[1, 2, 3, 4]: ML 1/5 (expected 1/5), grid q<=400: 1/5 ok
+[1, 2, 3, 4, 5]: ML 1/6 (expected 1/6), grid q<=400: 1/6 ok
+[1, 2, 3, 4, 5, 6]: ML 1/7 (expected 1/7), grid q<=400: 1/7 ok
+[1, 2, 3, 4, 5, 6, 7]: ML 1/8 (expected 1/8), grid q<=400: 1/8 ok
+[1, 2, 3, 4, 5, 6, 7, 8]: ML 1/9 (expected 1/9), grid q<=400: 1/9 ok
+[1, 2, 3, 4, 5, 6, 7, 8, 9]: ML 1/10 (expected 1/10), grid q<=400: 1/10 ok
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]: ML 1/11 (expected 1/11), grid q<=400: 1/11 ok
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]: ML 1/12 (expected 1/12), grid q<=400: 1/12 ok
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]: ML 1/13 (expected 1/13), grid q<=400: 1/13 ok
+selftest failures: 0

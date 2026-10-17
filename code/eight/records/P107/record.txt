@@ -1,0 +1,87 @@
+theorem LRSpectrumFull.EightV4.Cert107.lemma7Check_seven_p107 : lemma7Check 7 107 = true
+'LRSpectrumFull.EightV4.Cert107.lemma7Check_seven_p107' depends on axioms: [propext, Classical.choice, Quot.sound]
+status: all modules EXIT:0, no 'error'/'sorry' in any log; kernel: decide +kernel (no native_decide)
+verified_at: 2026-09-25 18:35:04  total_wall_s: 2268
+generator: private/eight/src/l7v4.rs sha256 f467166f10327a49eba12adae2c1a7373cc24963350683a0c1457d5f805a61a1
+generator_cmd: l7v4s 107 stage <dir> 400000 16 bitkey
+checker: lean-mathlib/LRSpectrumFull/EightCheckV4.lean sha256 76166bdc05e1cdd7276d516ac6240e1412c7608d1fb07c4d127bdb2aa15f85a1
+soundness: lean-mathlib/LRSpectrumFull/EightCheckSound.lean sha256 27236b6dbb5b9a777bf5628257918bcf3bfe4566b4446bf71e6e5d79c624c0fb
+toolchain: leanprover/lean4:v4.30.0
+manifest: p 107 delegated 3155 groups 33 top_nodes 53 task_nodes 176906 total_nodes 176959 top_fields 53671 tab_chunk 16
+sources_sha256 (sorted file list, then sha256 of the concatenation in that order):
+  Asm.lean ffa9a0f5bda994d4991c7f1aa6cd6b0627d33461ec526e8a06db06eb22c0b0f6   907231
+  Base.lean 97620f40c0806bcdf1c25353c74d35aa6d14aa0c5bc0849e7af6101a2afb3a9f  7637161
+  S0.lean f7e425e0ac00eb33ee2178ab8fe8f51655bab6e4c72e94a1b6896d6299721e4e  1616776
+  S1.lean 456a3a8b231cac40e884d1f7a19a892fe32ba4030461dd445d8de0f8e31994fd  1589318
+  S10.lean 3a2bbe978e2dcb77e073c29b3e590b23cbab134873b554c063a5c168b451984f  1617132
+  S11.lean a3b6edb2db81cad16f66eb91e78b090eabf5a877ba4c605d42dd55ba1c089050  1623908
+  S12.lean 61c285573e00acf5d0d2fcfdfbe890f726985faa08cefc8059080e6fbadad36f  1630359
+  S13.lean db30829f7ebc119f3015ff6b9053e5d380ffcbcbdee10f6cc8f67e444db99859  1618641
+  S14.lean 3f348f21ba81ae471a42c77b80ff21c6fc2db8606d7f89ef2bd4c9536633eba5  1608662
+  S15.lean c982e95677f02b98c34706920f9a9606864c692a90e844cd38bc35c841f8bb3b  1615772
+  S16.lean c81ac5be120782db9462c3dd6d9d9e0086761c6252e1b499acfeabc54997daaa  1620876
+  S17.lean f08f194a3bd6200392b4c8961b0415c0ae9ad5d91800733b4b66a982b70890af  1615414
+  S18.lean 916554037393e7d65bccc03ae36e7d0b34a25a6b0306fb3f5bc8a140a2e0ed07  1623441
+  S19.lean 98e077e30a27e97d6cb998b11416aa106b0c0630c5d63d979c718df89aa82e44  1632300
+  S2.lean f56c373fca576a3c2dee60bb245030ae040c6cb272421249c617d92a45b2e251  1624395
+  S20.lean 0c838e2298e520c4b71c30835f0fa3daa437903c32e26dad510b3728c78111f8  1631115
+  S21.lean 42683164b56ea58594879e96bba0c12cc558c94ce001ca25652867e281aca1df  1632355
+  S22.lean 00ef2c7796983d21d8a83ec2d7b4cf6de4adbe3ff69425a87c4d824cc1809abc  1632901
+  S23.lean e652c35be79c7a90ab51cb56ec18c4ac5ed435077bbdfb82b19cd997abe12e34  1624431
+  S24.lean ebc10ed78ced19c4907a5408988527bc82de38aa67f6568301adaae4cc52f8cb  1632599
+  S25.lean 20d021e491c078bbfd66948d61cc7c653f326b13fac949bfdc038c21c0df3492  1629741
+  S26.lean c78e4a0d865dce327bd741377bd224293ddbf284b82c1678198a1344813eb871  1629436
+  S27.lean 06ac34110bfdeec1c32d047d33bb74acef22abe49afab61279d49808d3e26f79  1638396
+  S28.lean baaa14ab1158e3eb9158e3d25f01bed32005e7d1709aeae683e808a436193f60  1629762
+  S29.lean d9930b6efa426f534c97691b573960719c959af4013d51c28aa6e58dd1fc1bce  1631294
+  S3.lean 36eba28f210dcc7b0f7da7f7d50bf659452f1d338a61ee45f7356aa3142d53d5  1620642
+  S30.lean bd8e575fb648502b36c45b257320a5253d1fec46a6e5c5b829683463f33fcb1f  1640343
+  S31.lean a14867a733496e1816c5342d7ea21de033ce55ec26f06c89e65f10723eea7dee  1639258
+  S32.lean 72afc44173682b8d30a6ffa2e5ca2a056bcfc9422ef17b0f62180b8467e300da   714554
+  S4.lean a2172bac503fecaca9bc52487861ba030e49618ab1226622396a0d26c0157c62  1600971
+  S5.lean 73f968279bdcd368d68bc7469043e4a93918d8f365075503b873b06145bd4d31  1622021
+  S6.lean 1c1709a27d3cab632441504a21db7673f56845982e25f620da98c1983b1cb865  1617841
+  S7.lean fde6940601e0aabdad43dd3bf8ea0f60e7812fd003c8a979c2e3a3fab660efb8  1602683
+  S8.lean c9273732a3199943d92d2545f4c3036e64abee6c1f5d4658cafbc00697b8f823  1628879
+  S9.lean 8a90b295a34aedc7714160adb9c87bc1b5f79cc083252a1c1fc7f96f0c07fd1c  1605830
+  Tab.lean 87c6e632f20fc65e7536bf6a27da8e87c93f77f9cafd8036300d4118e2607221     9246
+  Top.lean 8e0ce4822cfb4bc9b9f342802b614e16b21259475bc936184e376c2a52c68939      522
+combined_sha256 dce4e471d4853adb090029fb958ad75026951d28ee497e1d0e3d7ec0a0b59a74
+per-module (wall, user, footprint):
+  Base EXIT:0 wall=85s user=72.43s fp=2.81GB
+  Tab EXIT:0 wall=128s user=74.48s fp=1.15GB
+  Top EXIT:0 wall=33s user=11.01s fp=2.29GB
+  S0 EXIT:0 wall=140s user=95.08s fp=1.38GB
+  S1 EXIT:0 wall=121s user=89.36s fp=1.38GB
+  S2 EXIT:0 wall=123s user=93.66s fp=1.36GB
+  S3 EXIT:0 wall=120s user=91.76s fp=1.35GB
+  S4 EXIT:0 wall=117s user=89.56s fp=1.37GB
+  S5 EXIT:0 wall=119s user=91.09s fp=1.29GB
+  S6 EXIT:0 wall=118s user=90.78s fp=1.33GB
+  S7 EXIT:0 wall=121s user=90.82s fp=1.32GB
+  S8 EXIT:0 wall=127s user=94.10s fp=1.33GB
+  S9 EXIT:0 wall=125s user=92.57s fp=1.32GB
+  S10 EXIT:0 wall=122s user=90.26s fp=1.27GB
+  S11 EXIT:0 wall=123s user=92.53s fp=1.30GB
+  S12 EXIT:0 wall=123s user=92.95s fp=1.26GB
+  S13 EXIT:0 wall=124s user=92.99s fp=1.29GB
+  S14 EXIT:0 wall=127s user=91.13s fp=1.26GB
+  S15 EXIT:0 wall=130s user=92.46s fp=1.28GB
+  S16 EXIT:0 wall=126s user=93.20s fp=1.27GB
+  S17 EXIT:0 wall=124s user=91.57s fp=1.26GB
+  S18 EXIT:0 wall=130s user=94.78s fp=1.24GB
+  S19 EXIT:0 wall=128s user=94.35s fp=1.21GB
+  S20 EXIT:0 wall=128s user=93.82s fp=1.23GB
+  S21 EXIT:0 wall=132s user=94.47s fp=1.18GB
+  S22 EXIT:0 wall=124s user=90.65s fp=1.23GB
+  S23 EXIT:0 wall=122s user=91.51s fp=1.21GB
+  S24 EXIT:0 wall=124s user=92.88s fp=1.20GB
+  S25 EXIT:0 wall=128s user=94.80s fp=1.16GB
+  S26 EXIT:0 wall=125s user=92.36s fp=1.19GB
+  S27 EXIT:0 wall=125s user=92.46s fp=1.14GB
+  S28 EXIT:0 wall=123s user=90.52s fp=1.13GB
+  S29 EXIT:0 wall=122s user=89.19s fp=1.13GB
+  S30 EXIT:0 wall=122s user=89.64s fp=1.10GB
+  S31 EXIT:0 wall=124s user=90.81s fp=1.10GB
+  S32 EXIT:0 wall=56s user=41.04s fp=1.02GB
+  Asm EXIT:0 wall=98s user=77.23s fp=1.70GB

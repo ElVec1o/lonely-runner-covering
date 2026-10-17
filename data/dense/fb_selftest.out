@@ -1,0 +1,5 @@
+dense_floor_m4: ctrl1 drop heaviest -> REJECT (expected REJECT), ctrl2 D-1 -> REJECT, ctrl3 wrong size -> REJECT, ctrl4 zero weights -> REJECT
+dense_floor_m7: ctrl1 drop heaviest -> REJECT (expected REJECT), ctrl2 D-1 -> REJECT, ctrl3 wrong size -> REJECT, ctrl4 zero weights -> REJECT
+dense_floor_m12: ctrl1 drop heaviest -> REJECT (expected REJECT), ctrl2 D-1 -> REJECT, ctrl3 wrong size -> REJECT, ctrl4 zero weights -> REJECT
+dense_floor_m13: ctrl1 drop heaviest -> REJECT (expected REJECT), ctrl2 D-1 -> REJECT, ctrl3 wrong size -> REJECT, ctrl4 zero weights -> REJECT
+selftest failures: 0

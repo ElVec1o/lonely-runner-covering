@@ -1,0 +1,45 @@
+theorem LRSpectrumFull.EightV4.Cert73.lemma7Check_seven_p73 : lemma7Check 7 73 = true
+'LRSpectrumFull.EightV4.Cert73.lemma7Check_seven_p73' depends on axioms: [propext, Classical.choice, Quot.sound]
+status: all modules EXIT:0, no 'error'/'sorry' in any log; kernel: decide +kernel (no native_decide)
+verified_at: 2026-09-24 18:58:23  total_wall_s: 897
+generator: private/eight/src/l7v4.rs sha256 f467166f10327a49eba12adae2c1a7373cc24963350683a0c1457d5f805a61a1
+generator_cmd: l7v4s 73 stage <dir> 400000 16 bitkey
+checker: lean-mathlib/LRSpectrumFull/EightCheckV4.lean sha256 76166bdc05e1cdd7276d516ac6240e1412c7608d1fb07c4d127bdb2aa15f85a1
+soundness: lean-mathlib/LRSpectrumFull/EightCheckSound.lean sha256 27236b6dbb5b9a777bf5628257918bcf3bfe4566b4446bf71e6e5d79c624c0fb
+toolchain: leanprover/lean4:v4.30.0
+manifest: p 73 delegated 1487 groups 12 top_nodes 36 task_nodes 58475 total_nodes 58511 top_fields 21179 tab_chunk 16
+sources_sha256 (sorted file list, then sha256 of the concatenation in that order):
+  Asm.lean db8c35af694c434bca60682a246715061b46e7e6a6ea83c0df582cb3d150249a   416353
+  Base.lean ae0804a8a023f8d88fb5c0c43c3f7f4bf8c67cf3c1270c79672ce4dc2f8ce766  2744526
+  S0.lean 248d1e2510ced2547a9b6c47f13fb726c7c5f46f435e446acc8474444a25ff39  1620186
+  S1.lean 39a6e6946315230d708e281a113d4904f3abb60107ff8ba0322e2983b34fdaee  1621555
+  S10.lean 285615531cc22d460b25a7f099cecc333511f998e07642eb4d17cd7db3972264  1642982
+  S11.lean e4edc0b49efee09d941f906054eeac646450527c883c6ccbea23a26fe2f6792a  1524682
+  S2.lean aa1e6c4d8691a7e2cf4e77a1b37c0be202fd8fb12513d99e3618a95017319fc7  1622282
+  S3.lean 34f5b40c49cf61df7e380fad426293dc5a226b7e83caa07c19e5e471a45c2069  1630797
+  S4.lean 359b3e279ba471c12eff55686b61a7a9a137d2b41ecd0c5595425fa8f00bc9a2  1628949
+  S5.lean b139e682eecfdb23fb2be50c1f5e767600c8d93452ec1a8a3c54046cf019cbee  1619576
+  S6.lean 6d6c49ca6935343f85f6f23cc568697a2f7523d4fecdc0e6640c919222556a69  1631387
+  S7.lean 48b34625abc551007e82e5b87f733e64442abb98cf465e6826ab1c75406cd70d  1628345
+  S8.lean d0788bf63cd0098358ea15ae43aecc3e8aa38aa9d36ccd13f10913ec7b5faece  1633415
+  S9.lean 5a24536a374351a4f67e7d220522faa21d91dd601c7b2c656bc6bc7ce197c1b5  1637168
+  Tab.lean 6354d038a6ab0896a8f32a6a890fba113efdd33bebdf1525d5e793f19b32efb0     6850
+  Top.lean 7e41d3d969cfc0edcf28a9826b841b4019bd8b9f7511247bf00c34f60ae73856      518
+combined_sha256 3f81624438d9443d3c9aecf16473cbe192c758f640587f3cd3047baee4101656
+per-module (wall, user, footprint):
+  Base EXIT:0 wall=49s user=29.19s fp=1.71GB
+  Tab EXIT:0 wall=67s user=37.45s fp=1.06GB
+  Top EXIT:0 wall=12s user=5.59s fp=1.38GB
+  S0 EXIT:0 wall=141s user=80.57s fp=1.14GB
+  S1 EXIT:0 wall=141s user=80.56s fp=1.12GB
+  S2 EXIT:0 wall=140s user=80.41s fp=1.12GB
+  S3 EXIT:0 wall=140s user=80.64s fp=1.11GB
+  S4 EXIT:0 wall=138s user=78.98s fp=1.09GB
+  S5 EXIT:0 wall=133s user=78.08s fp=1.09GB
+  S6 EXIT:0 wall=118s user=78.19s fp=1.08GB
+  S7 EXIT:0 wall=111s user=77.52s fp=1.05GB
+  S8 EXIT:0 wall=110s user=77.39s fp=1.05GB
+  S9 EXIT:0 wall=110s user=77.47s fp=1.04GB
+  S10 EXIT:0 wall=106s user=75.86s fp=1.03GB
+  S11 EXIT:0 wall=92s user=68.76s fp=1.01GB
+  Asm EXIT:0 wall=39s user=30.78s fp=1.26GB

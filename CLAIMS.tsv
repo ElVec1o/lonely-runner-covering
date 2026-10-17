@@ -1,0 +1,172 @@
+paper	item	label	kind	reference	regenerated_in_archive
+dense-window	Setting: gap, ML	definitions	prose-or-computation	gap, ML [MaxLoneliness]	see below
+dense-window	Lemma 1 (witness)	VERIFIED	lean	cube_floor_of_witness; floor_of_not_dvd_le [Delta2CubeWitness; Delta2DigitGreedy]	n/a (Lean)
+dense-window	Lemma 2 (pair sum, prime)	VERIFIED	lean	floor_of_pairsum_prime [Delta2Pigeonhole]	n/a (Lean)
+dense-window	Thm 3 (prime 2m+1)	VERIFIED (S: raw print in data/dense/dev_logs/thmD_axioms.out)	lean	dense_floor_of_prime [Delta2DenseWindow]	n/a (Lean)
+dense-window	Prop 4 (fractional blocking)	VERIFIED	lean	goodAt, floor_of_frac_blocking [Delta2FracBlocking]	n/a (Lean)
+dense-window	Table 1: m = 4, 7, 12, 13	VERIFIED (S, printed 2026-10-01); certificate columns COMPUTED, regenerated	lean	dense_floor_m4, m7, m12, m13 [Delta2FracBlocking]	n/a (Lean)
+dense-window	Thm 5 (cover capacity)	VERIFIED	lean	floor_of_cover_capacity [Delta2CoverCapacity]	n/a (Lean)
+dense-window	Table 2: m = 10, 16, 17, 19, 22	VERIFIED (S, printed 2026-10-01)	lean	dense_floor_m10, m16, m17, m19, m22 [Delta2CoverCapacity]	n/a (Lean)
+dense-window	Table 2: m = 24	VERIFIED (L: print recorded in LEAN_MAP.md only, raw output not archived)	lean	dense_floor_m24 [Delta2CoverCapacity]	n/a (Lean)
+dense-window	Table 2: m = 25, 27, 28, 32, 31	VERIFIED (L)	lean	dense_floor_m25 / m27 / m28 / m32 / m31 [Delta2CoverRangeI / J / K / L / M]	n/a (Lean)
+dense-window	Table 2: m = 34, 37, 38, 40, 42, 43, 45, 46, 47	VERIFIED (L)	lean	dense_floor_m34 / m37 / m38 / m40 / m42 / m43 / m45 / m46 / m47 [Delta2CoverRangeN / O / P / Q / R / S / T / U / V]	n/a (Lean)
+dense-window	Table 2: m = 55, 57, 59, 60, 61	VERIFIED (L for 55; S for 57, 59, 60, 61)	lean	dense_floor_m55 / m57 / m59 / m60 / m61 [Delta2CoverRangeW / X / Z / AA / AB]	n/a (Lean)
+dense-window	Table 2: m = 49, 52, 58	VERIFIED (S)	lean	dense_floor_m49 / m52 / m58 [Delta2CoverRangeAD / AE / AF]	n/a (Lean)
+dense-window	Table 2: m = 62	VERIFIED (S), built 2026-10-02 in 134 s	lean	dense_floor_m62 [Delta2CoverRangeAC]	n/a (Lean)
+dense-window	Table 2: m = 62 recheck (split style)	VERIFIED (S)	lean	dense_floor_m62_split [Delta2CoverRangeSA]	n/a (Lean)
+dense-window	Table 2: m = 64	VERIFIED (S), 56 s	lean	dense_floor_m64_split [Delta2CoverRangeSB]	n/a (Lean)
+dense-window	Table 2: m = 66, 67, 70, 71, 72, 73, 76, 77, 79, 80, 82, 84, 85, 87, 88, 91, 92, 93	VERIFIED (S), data/dense/results.tsv	lean	dense_floor_m<M>_split [Delta2CoverRangeS<M>]; data/dense/results.tsv	n/a (Lean)
+dense-window	Table 2: m = 100, 101, 102, 104, 106, 107, 108, 110, 112, 117, 118, 121, 123, 124, 126	VERIFIED (S), data/dense/results.tsv	lean	dense_floor_m<M>_split [Delta2CoverRangeS<M>]; data/dense/results.tsv	n/a (Lean)
+dense-window	NOT verified: m = 94, 97, 103, 109, 115, 122 (2m+1 = 189, 195, 207, 219, 231, 245)	m = 97, 103, 109, 115, 122: certificate accepted by v1 (COMPUTED), no Lean module; m = 94: search UNRESOLVED (3 h, node caps hit)	prose-or-computation	code/dense/src/v1; code/dense/src/m94; data/dense/m94	v1 acceptance regenerated (data/dense/check_g1_certs.out); m=94 log archived, not re-run
+dense-window	Statement 6 (Y independent, per m)	HEURISTIC (finite check, 2<=m<=62)	prose-or-computation	code/dense/src/yind; code/dense/src/cg (cg edges M); data/dense/yind_2_62.out; data/dense/cg_edges_4_62.out	YES: 61 values (yind), 59 values (cg), counts of bad sets and minimal bad sets agree at all 59
+dense-window	Statement 7 (packing of blocks)	HEURISTIC	prose-or-computation	none	see below
+dense-window	Statement 8 (block family complete, \	T\	prose-or-computation	<=4) [PROVED + COMPUTED self-test]	see below
+dense-window	Statement 9 (irreducible reduction)	PROVED	prose-or-computation	none	see below
+dense-window	Not in the table: m with 2m+1 prime	VERIFIED	lean	dense_floor_of_prime (Thm 3) [Delta2DenseWindow]	n/a (Lean)
+obstructions	Setting: gap, ML	definitions	prose-or-computation	MaxLoneliness.gap, MaxLoneliness.ML	see below
+obstructions	Sec. 2 first-moment lemma	VERIFIED	lean	RoomA4Compress.floor_of_integral_unionBound, floor_of_measure_certificate	n/a (Lean)
+obstructions	Thm 1 (barrier)	VERIFIED	lean	RoomA4Barrier.goodSet_countable, goodSet_null, integral_le_sum_badSet, lt_ML_of_integral_unionBound	n/a (Lean)
+obstructions	Cor 2	VERIFIED	lean	RoomA4Barrier.not_UDFires_of_tight, lt_ML_of_UDFires, not_UDFires_of_ML_le, not_UDFires_consec (non-vacuity), ML_consec_le	n/a (Lean)
+obstructions	Rem 3 (O5 scope)	HEURISTIC	prose-or-computation	none, prose	see below
+obstructions	Prop 4 (escape)	VERIFIED	lean	RoomFCUModerator.ML_ge_of_escape; RoomFCUCompress.lonely_iff_escape, rational_point_of_lt, window_via_escape, famF_via_escape, lemmaP_via_escape	n/a (Lean)
+obstructions	Prop 5 (missing divisor)	VERIFIED (known)	lean	RoomA4Rosenfeld.witness_of_missing_divisor	n/a (Lean)
+obstructions	Obs 6 (O4), Table 1	HEURISTIC	prose-or-computation	none, computation (code/reduction/mdr; code/obstructions/repro_O4.sh)	see below
+obstructions	Thm 7 (O6)	VERIFIED	lean	RoomO6.not_dvd_speed (core), mul_sub_lt, exists_coprime_in_window	n/a (Lean)
+obstructions	Cor 8	VERIFIED (family) / PROVED by inspection (T1-T6)	lean	RoomO6.not_divisorComplete; T1-T6: none, prose	n/a (Lean)
+obstructions	Prop 9	PROVED	prose-or-computation	statement pinned in RoomFCU_f5 (TightNoDvd, TightMaximisersAtMp1); tightNoDvd_of_strong has sorry	see below
+obstructions	Conj 10 (T), (T')	CONJECTURE	prose-or-computation	RoomFCU_f5.TightNoDvd, TightMaximisersAtMp1 (definitions, no proof)	see below
+obstructions	E_m value, (2m+1)ML(E_m)>2	VERIFIED (known, Kravitz Thm 5.1)	lean	RoomEm.ML_Em_m, RoomEm.thmB_gt	n/a (Lean)
+obstructions	T2	CONJECTURE	prose-or-computation	RoomT2.T2OnD, T2Weak (t2Weak is sorry)	see below
+obstructions	Prop 11	VERIFIED	lean	RoomFCUMss.halfShift_not_lonely	n/a (Lean)
+obstructions	Phase-blindness of MSS tools	PROVED (reading), not formal	prose-or-computation	none, prose	see below
+obstructions	Sec. 6 table	HEURISTIC / PROVED	prose-or-computation	none, prose	see below
+reduction	Def 2.1(4) strongly free	VERIFIED (axioms: n/a)	lean	`StrongFree` (def) in Delta2FreeGrowth.lean	n/a (Lean)
+reduction	Def 2.1(5) two-free	VERIFIED (axioms: n/a)	lean	`TwoFree` (def) in Delta2SeparationWindow.lean	n/a (Lean)
+reduction	Def 2.2 B_i, U_D	VERIFIED (axioms: n/a)	lean	`RoomA4Compress.badSet`, `rieszWeight`, `UDFires` (defs) in RoomA4_compress.lean	n/a (Lean)
+reduction	Def 3.1 A1	VERIFIED (axioms: n/a)	lean	`StrongFreeWindowTiny` (def, UNPROVED) in Delta2SeparationWindow.lean	n/a (Lean)
+reduction	Def 3.1 A2	VERIFIED (axioms: n/a)	lean	`DissociatedOctetWitness` (def, UNPROVED) in Delta2Connect.lean	n/a (Lean)
+reduction	Def 3.1 A3	see LEAN_MAP	prose	hypothesis `hwinB` of Thm 3.3 (UNPROVED) in RoomA4_compress.lean	n/a (Lean)
+reduction	Def 3.2 crux	VERIFIED (axioms: n/a)	lean	`RoomA4Compress.FloorCruxU` (def, OPEN) in RoomA4_compress.lean	n/a (Lean)
+reduction	Thm 3.3	VERIFIED (axioms: standard)	lean	`RoomA4Compress.universalFloor_of_four_atoms_U` in RoomA4_compress.lean	n/a (Lean)
+reduction	Thm 3.4	VERIFIED (axioms: standard)	lean	`RoomFCUErdos.floorCruxU_iff_universalFloor` in RoomFCU_erdos.lean	n/a (Lean)
+reduction	Prop 3.5	VERIFIED (axioms: standard)	lean	`strongFreeWindowTiny_of_456` in Delta2WindowK3.lean	n/a (Lean)
+reduction	Rem 3.6 (case ML > delta)	VERIFIED (axioms: standard)	lean	`RoomFCUCompress.rational_point_of_lt` in RoomFCU_compress.lean	n/a (Lean)
+reduction	Lem 3.7	VERIFIED (axioms: standard)	lean	`RoomA4Rosenfeld.witness_of_missing_divisor`, `RoomFCUErdos.floor_of_not_D` in RoomA4_rosenfeld.lean, RoomFCU_erdos.lean	n/a (Lean)
+reduction	Lem 3.8	VERIFIED (axioms: standard)	lean	`RoomA4Rosenfeld.floor_of_leaveOneOut_imprimitive` in RoomA4_rosenfeld.lean	n/a (Lean)
+reduction	Prop 3.9	VERIFIED (axioms: standard)	lean	`RoomFCUErdos.universalFloor_iff_divisible` in RoomFCU_erdos.lean	n/a (Lean)
+reduction	Prop 3.10	VERIFIED (axioms: standard)	lean	`RoomFCUModerator.strictFloorD_false` in RoomFCU_moderator.lean	n/a (Lean)
+reduction	Rem 3.11	VERIFIED (axioms: standard (floorCruxU_of_ind2, both top theorems; the two small implications were not separately printed))	lean	`RoomA4Rosenfeld.bridgeDisjunctionQPrimInd_of_QPrim`, `RoomA4Rosenfeld.ind_of_ind2`, `RoomA4Compress.floorCruxU_of_ind2`; older top theorems `universalFloor_of_four_atoms_QWprim`, `RoomA4Rosenfeld.universalFloor_of_four_atoms_ind2` in Delta2Connect.lean, RoomA4_rosenfeld.lean, RoomA4_compress.lean	n/a (Lean)
+reduction	Prop 4.1	VERIFIED (axioms: standard)	lean	`RoomA4Compress.floor_of_measure_certificate` in RoomA4_compress.lean	n/a (Lean)
+reduction	Prop 4.2	VERIFIED (axioms: standard)	lean	`RoomA4Compress.floor_of_integral_unionBound`, `RoomA4Compress.floor_of_UD` in RoomA4_compress.lean	n/a (Lean)
+reduction	Thm 4.3	VERIFIED (axioms: standard)	lean	`floor_of_rieszSharpFiresQ` (hypothesis `rieszSharpFiresQ`, masses `webMassQ`, `webMassDelQ`, `webSections`) in Delta2Connect.lean, Delta2BridgeDisjunction.lean	n/a (Lean)
+reduction	Cor 4.4	VERIFIED (axioms: standard)	lean	`rieszSharpFiresQ_of_subfamilySum_le` in Delta2Connect.lean	n/a (Lean)
+reduction	Rem 4.5	see LEAN_MAP	prose	NOT formalized (W(v) empty for strongly free v; one line) in 	n/a (Lean)
+reduction	Thm 4.6(1)	VERIFIED (axioms: standard)	lean	`RoomA4Barrier.goodSet_countable` in RoomA4_barrier.lean	n/a (Lean)
+reduction	Thm 4.6(2)	VERIFIED (axioms: standard)	lean	`RoomA4Barrier.integral_le_sum_badSet` in RoomA4_barrier.lean	n/a (Lean)
+reduction	Thm 4.6(3)	VERIFIED (axioms: standard)	lean	`RoomA4Barrier.lt_ML_of_UDFires` in RoomA4_barrier.lean	n/a (Lean)
+reduction	Thm 4.6(4)	VERIFIED (axioms: standard)	lean	`RoomA4Barrier.not_UDFires_of_tight` in RoomA4_barrier.lean	n/a (Lean)
+reduction	Thm 4.6(5)	VERIFIED (axioms: standard)	lean	`RoomA4Barrier.not_UDFires_consec` in RoomA4_barrier.lean	n/a (Lean)
+reduction	Prop 5.1	VERIFIED (axioms: standard)	lean	`RoomFCUModerator.ML_ge_of_escape` in RoomFCU_moderator.lean	n/a (Lean)
+reduction	after Prop 5.1	VERIFIED (axioms: standard)	lean	`RoomFCUCompress.ML_ge_of_residues`, `RoomFCUCompress.lonely_iff_escape` in RoomFCU_compress.lean	n/a (Lean)
+reduction	Thm 5.2 (Lemma P)	VERIFIED (axioms: standard)	lean	`RoomFCUCompress.lemmaP_quant` (bound 2W/(q(2W-1))); `RoomFCULemmaP.lemmaP` and `RoomFCUCompress.lemmaP_via_escape` (strict form, `RoomFCUErdos.LemmaP_statement`) in RoomFCU_compress.lean, RoomFCU_lemmaP.lean	n/a (Lean)
+reduction	Thm 5.3	VERIFIED (axioms: standard)	lean	`RoomFCUCompress.famF_via_escape` (ML form), `RoomFCURamanujan.famF_lonely` (residue form, the time (sD+1)/(jD)); `famF` (def) in RoomFCU_compress.lean, RoomFCU_ramanujan.lean	n/a (Lean)
+reduction	Conj 5.4	see LEAN_MAP	prose	CONJECTURE, no Lean in 	n/a (Lean)
+reduction	Prop 5.5	VERIFIED (axioms: standard)	lean	`RoomFCUGoddyn.fast_runner_floor`, `RoomFCUGoddyn.cruxU_fast` in RoomFCU_goddyn.lean	n/a (Lean)
+reduction	Conj 6.1, 6.2, 6.4	see LEAN_MAP	prose	CONJECTURES, no Lean in 	n/a (Lean)
+reduction	Prop 6.3	VERIFIED (axioms: standard (gw_not_dvd printed; gw_family_not_dvd not separately printed))	lean	`RoomFCUHilbert.gw_not_dvd`, `RoomFCUHilbert.gw_family_not_dvd` in RoomFCU_hilbert.lean	n/a (Lean)
+reduction	Rem 6.5 (T2 => LRC)	see LEAN_MAP	prose	NOT formalized (PROVED, short) in 	n/a (Lean)
+reduction	Thm 7.1	VERIFIED (axioms: standard)	lean	`T2Sub.oneEntry_ML_ge` (family `T2Sub.oneEntry`, def; engine `T2Sub.ML_ge_two_div_of_unit`) in T2Sub.lean	n/a (Lean)
+reduction	Cor 7.2	VERIFIED (axioms: standard)	lean	`T2Sub.oneEntry_T2` in T2Sub.lean	n/a (Lean)
+reduction	Thm 7.3	VERIFIED (axioms: standard)	lean	`T2Sub.oneEntry_ML_ge_inv`, `T2Sub.oneEntry_T2_inv` in T2Sub.lean	n/a (Lean)
+reduction	Prop 8.3	VERIFIED (axioms: standard)	lean	`RoomFCUMss.halfShift_not_lonely` in RoomFCU_mss.lean	n/a (Lean)
+eight	Thm 1.1 (eight runners)	VERIFIED (axioms: C27 (2026-09-27))	lean	`EightRunners.eight_runners_unconditional` in EightRunners.lean	n/a (Lean)
+eight	Thm 1.1, same proof	VERIFIED (axioms: C27 (2026-09-27))	lean	`EightE5.eight_runners_unconditional` in EightE5.lean	n/a (Lean)
+eight	Thm 1.2 (seven runners)	VERIFIED (axioms: standard (2026-09-27))	lean	`BarajasSerra.LRC6_barajasSerra`; `BarajasSerra.Sec5.lrc6` in BarajasSerraLRC6Plan.lean, BarajasSerraLRC6.lean	n/a (Lean)
+eight	Table 1, all 27 primes	VERIFIED (axioms: C27 (2026-09-27))	lean	`EightCert27.hchk_all` in EightCert27.lean	n/a (Lean)
+eight	Sec 3.2, the 27 axioms	VERIFIED (axioms: are axioms)	lean	`EightCert27.lemma7Check_seven_p<p>_verified` (docstrings carry the SHA-256) in EightCert27.lean	n/a (Lean)
+eight	E0	VERIFIED (axioms: standard (2026-09-27))	lean	`EightPlan.e0_primitive` in EightPlan.lean	n/a (Lean)
+eight	E4	VERIFIED (axioms: standard)	lean	`EightPlan.e4_leaveOneOut`, `EightPlan.e4_parity` in EightPlan.lean	n/a (Lean)
+eight	E2	VERIFIED (axioms: standard (2026-09-27))	lean	`EightPlan.e2_prime_dvd` in EightPlan.lean	n/a (Lean)
+eight	E3	VERIFIED (axioms: standard (2026-09-27))	lean	`EightPlan.e3_lcm_dvd` in EightPlan.lean	n/a (Lean)
+eight	NUM	VERIFIED (axioms: standard (2026-09-27))	lean	`EightPlan.numeric`, `EightPlan.e5_amgm` in EightPlan.lean	n/a (Lean)
+eight	assembly	VERIFIED (axioms: standard (2026-09-27))	lean	`EightE5.eight_runners_of` (LRC6 and the prime checks as hypotheses) in EightE5.lean	n/a (Lean)
+eight	checker	VERIFIED (axioms: n/a)	lean	`EightCheckV4` (definitions) in EightCheckV4.lean	n/a (Lean)
+eight	soundness	VERIFIED (axioms: standard (2026-09-26; not imported by `EightRunners`, see Sec 3.1 of the paper))	lean	`EightV4.lemma7Check_of_checkRootH`, `EightV4.go_sound` in EightCheckSound.lean	n/a (Lean)
+eight	reproduction	see LEAN_MAP	prose	records `code/eight/records/P<p>/record.txt`; scripts `code/eight/stage/` in 	n/a (Lean)
+eight	Lemma 4.1 (pigeonhole)	VERIFIED (axioms: standard (2026-09-27))	lean	`EightMSS.e5b_staircase` in EightMSS.lean	n/a (Lean)
+eight	Prop 4.2 (rounding step)	VERIFIED (axioms: standard (2026-09-27))	lean	`EightE5.mssGap7_holds`; adjacent pair `EightE5.exists_adjacent_pair`; statement `EightMSS.MSSGap7` (def) in EightE5.lean, EightMSS.lean	n/a (Lean)
+eight	E5	VERIFIED (axioms: standard (2026-09-27))	lean	`EightMSS.e5_sum_of_gap`, `EightE5.e5_sum`, `EightE5.e5_prod` in EightMSS.lean, EightE5.lean	n/a (Lean)
+eight	BS Lemma 2 (prime filtering)	VERIFIED (axioms: standard)	lean	`primeFiltering` in BarajasSerra.lean	n/a (Lean)
+eight	filtering variants	VERIFIED (axioms: standard)	lean	`primeFilteringCor3Top`; `G.primeFilteringBelow`, `G.primeFilteringSlack` in BarajasSerra.lean, BarajasSerraG.lean	n/a (Lean)
+eight	n = 4, finite model	VERIFIED (axioms: standard)	lean	`barajasSerra_card4_hard`; table `Card4Table.combo` in BarajasSerraCard4.lean, BarajasSerraCard4Table.lean	n/a (Lean)
+eight	level split	VERIFIED (axioms: standard)	lean	`Sec5.lrc6_nat`, `Sec5.lrc6` in BarajasSerraLRC6.lean	n/a (Lean)
+eight	cases (b), (c), (d)	VERIFIED (axioms: standard)	lean	`Sec5.case_b0`, `Sec5.case_c0`, `Sec5.case_d0` in BarajasSerraLRC6BCD.lean	n/a (Lean)
+eight	BS Section 5 core	VERIFIED (axioms: standard)	lean	`Sec5.sec5`; tables `Sec5Fin.F1a`, `F1b`, `F2`, `F3`, `Z1`-`Z3` in BarajasSerraSec5.lean, BarajasSerraSec5Fin.lean	n/a (Lean)
+eight	case (a), m = 1	VERIFIED (axioms: standard)	lean	`lrc6_m1_scaled`; tables in `LRC6M1Table` in BarajasSerraLRC6M1.lean, BarajasSerraLRC6M1Table.lean	n/a (Lean)
+eight	case (a), m >= 2	VERIFIED (axioms: standard)	lean	`Sec6.case_a_ge2`; reduction to seven patterns `Sec6.g4` in BarajasSerraSec6G4.lean	n/a (Lean)
+eight	case (a)	VERIFIED (axioms: standard)	lean	`case_a` in BarajasSerraCaseA.lean	n/a (Lean)
+eight	BS Lemma 4	VERIFIED (axioms: standard)	lean	`Sec6.lemma4_i`, `Sec6.lemma4_ii`, `Sec6.lemma4_ii_eq` in BarajasSerraSec6.lean	n/a (Lean)
+eight	BS Lemma 5	VERIFIED (axioms: standard)	lean	`Z7.lemma5`; `Z7.lemma5_as_printed_false` in BarajasSerraZ7.lean	n/a (Lean)
+eight	BS Lemma 6	VERIFIED (axioms: standard)	lean	`Z7.lemma6_i`, `Z7.lemma6_ii`, `Z7.lemma6_iii` in BarajasSerraZ7.lean	n/a (Lean)
+eight	BS Lemma 7	VERIFIED (axioms: standard)	lean	`Sec6.lemma7_i`, `Sec6.lemma7_ii` in BarajasSerraSec6.lean	n/a (Lean)
+eight	BS Lemma 9	VERIFIED (axioms: standard)	lean	`Sec6.lemma9_i`, `Sec6.lemma9_ii_two`, `Sec6.lemma9_ii_three` in BarajasSerraSec6L9.lean	n/a (Lean)
+eight	BS Lemma 10, 11	VERIFIED (axioms: standard)	lean	`Sec6.lemma10`, `Sec6.lemma11` in BarajasSerraSec6L10.lean	n/a (Lean)
+eight	BS Lemma 12	VERIFIED (axioms: standard)	lean	`Z7.lemma12_i`, `Z7.lemma12_ii` in BarajasSerraZ7.lean	n/a (Lean)
+eight	BS 6.1	VERIFIED (axioms: standard)	lean	`Sec6.sec61`, `Sec6.sec61_witness` in BarajasSerraSec6_1.lean	n/a (Lean)
+eight	BS 6.2	VERIFIED (axioms: standard)	lean	`Sec6.sec62`, `Sec6.sec62_witness` in BarajasSerraSec6_2.lean	n/a (Lean)
+eight	BS 6.3	VERIFIED (axioms: standard)	lean	`Sec6.sec63`, `Sec6.sec63_witness` in BarajasSerraSec6_3.lean, BarajasSerraSec6_3a.lean	n/a (Lean)
+eight	BS 6.4	VERIFIED (axioms: standard)	lean	`Sec6.sec64`, `Sec6.sec64_witness` in BarajasSerraSec6_4.lean	n/a (Lean)
+eight	BS 6.5	VERIFIED (axioms: standard)	lean	`Sec6.sec65`, `Sec6.sec65_witness` in BarajasSerraSec6_5.lean	n/a (Lean)
+eight	BS 6.6	VERIFIED (axioms: standard)	lean	`Sec6.sec66`, `Sec6.sec66_witness`; `Z7.sec66b` in BarajasSerraSec6_6.lean, BarajasSerraZ7.lean	n/a (Lean)
+dense-window	Tables 1-2: parts / max / times, rows m=10..126 (63 rows)	COMPUTED + VERIFIED (Lean)	script	code/dense/check_rows.py -> data/dense/check_rows.out	YES: 63/63 rows match; all accepted by independent checker v1 (re-run 2026-10-18; output identical to data/dense/check_rows.out)
+dense-window	Lean modules m>=66 (and 64) generated from certificates	VERIFIED (Lean)	script	code/dense/regen_lean.sh -> data/dense/regen_lean.out	YES (2026-10-17 run): 34/34 byte-identical (m=64 up to provenance comment); not re-run 2026-10-18
+dense-window	composite lists: 33 values m<=62, 40 values in [63,126], exceptions E	COMPUTED	script	code/dense/check_rows.py	YES
+dense-window	Certificates accepted by v1 for m=97,103,109,115,122 (no Lean module)	COMPUTED	script	code/dense/src/v1; data/dense/certs/m*.g1.sol -> data/dense/check_g1_certs.out	YES (2026-10-17 run): ACCEPT; not built in Lean
+dense-window	m=94: search ended without a cover	COMPUTED (search only); status UNRESOLVED	log	code/dense/src/m94 (driver); data/dense/m94/{drive.log,rounds.tsv,final.txt}	generator and log archived; NOT re-run (3 h); the exact phases stopped at node caps
+dense-window	Table 1 (fractional blocking m=4,7,12,13): times 5/9/15/21, D = 1/2/2/11, total weight 5/1, 15/2, 25/2, 145/11	COMPUTED (exact integers)	script	code/dense/src/fb; data/dense/fb_check.out, fb_selftest.out	YES: 4 ACCEPT; 4 perturbations of each certificate REJECT
+dense-window	search method/time column for rows m<=62; build times	logged single runs; HEURISTIC (provenance only)	log	data/dense/dev_logs (CG/glpsol driver outputs for m>=27, build logs for m=57..64); no log located for the ILP* rows (m=10..24)	NOT REGENERATED (generator not archived for ILP* and pool+HiGHS rows; logs archived for the others)
+dense-window	axiom prints of the rows m<=64	VERIFIED (S) for 14 rows + prime + Table 1; VERIFIED (L) for 16 rows	log	data/dense/dev_logs/{thmD_axioms.out,xc_lean_chain.log,mk57.out,mk59.out,mk60.out,mk61.out,mk62.out,mkSA.out,mkSB.out,chain.log}	raw output archived for m=4,7,10,12,13,16,17,19,22,49,52,57,58,59,60,61,62,64 and the prime case; NOT located for m=24,25,27,28,31,32,34,37,38,40,42,43,45,46,47,55; no Lean build run
+dense-window	Statements 7 to 9: references to unarchived development notes	HEURISTIC / PROVED (unchanged)	prose	paper/dense-window/main.tex	text reworded: notes are stated to be not archived; PROVED label of Statements 8 and 9 rests on those notes
+obstructions	Table O4 rows 1-5: ML (mlcheck), U1, U2, first certificate level	HEURISTIC	script	code/obstructions/repro_O4.sh (mdr, levelfit, mlcheck); data/obstructions/repro_O4.out	YES: ML 14/121, 11/84, 168/1697, 28/191, 30/203; U1 1.003918, 1.002573, 1.483163, 1.007002, 1.024583; U2 1.001345, 1.000429, 1.715019, 1.003326, 1.014631; levels 22, 13, 35, 38, 39 (WI)
+obstructions	Table O4, last row: exact multiple scan, q<=2m+2, m=18..24, not broken	HEURISTIC; status UNRESOLVED (time-limited search)	script	mdr hunt2 with MDR_WX=1; data/obstructions/seeds; data/obstructions/hunt_m*_120s.log	PARTIAL: repeated at 120 s per m (best levels 29, 37, 34, 37 against cutoffs 38, 42, 46, 50, no family written); the recorded run (480 s per m, 278,755 evaluations) is in a development log only
+obstructions	Exhaustive census ground: m=6 H<=50, m=8 H<=24, m=10 H<=30, m=12 H<=26, m=14 H<=24; 1067 census families; 147 adversarial families	HEURISTIC	script	mdr enumw; mdr cert; data/obstructions/{census,enumw_*.out,cert_*.out}	YES: each box searched completely, 0 failures of the window first-order certificate (WE) and of the exact scan (WX); 1067 + 147 families have WE and WX within q<=2m+2
+obstructions	Shifted sup gap 3/22 at t=7/22 for (1,2,3,4,6,9), ML=1/5	HEURISTIC	script	mdr shift; mlcheck; code/obstructions/shift_grid.py	YES: exact rational scan q<=400 gives 3/22 at 7/22; control with zero phases gives 1/5
+reduction	Withdrawn: ML(1,4,6,7,10,11,12,13,16,17,19,23) = 2/25 (equality of T2 at m=12)	FALSE (exact value ML = 1/9)	script	code/obstructions/mlcheck.rs; mdr ml (corrected); rational scan q<300	the original mdr ml printed 2/25 because it skipped numerators not coprime to the denominator; corrected; paper edited
+perturbation	331,291 firings of condition (c) at k=1, n<=2000; 0 for 2<=k<=10	COMPUTED	script	code/perturbation/perturb_cfire.rs; data/repro_logs/perturb_cfire_2000_10.txt	YES: 331291 / 0
+perturbation	65,504 subsets 3<=n<=16; 43,849 with a degenerate component; every positive component a window; 62,816 wrong without deduplication	COMPUTED	script	code/perturbation/perturb_degen.rs; data/repro_logs/perturb_degen.txt	YES: 65504 / 43849 / 0 exceptions / 62816
+perturbation	7,315 pairs (n,M), |M|<=3, n in {12,16,20,24,28}: measure equals the deduplicated base-point sum	COMPUTED	script	perturb_window measexact; data/repro_logs/perturb_window_measexact.txt	YES: 95+935+6285 = 7315 pairs, all equal
+perturbation	4,338,029 triples with b>=2 (4,563,449 with b>=1)	COMPUTED	script	perturb_thm.rs (one counter line added); data/repro_logs/perturb_thm.txt	YES: 4338029 printed; 4563449 - 225420 = 4338029
+perturbation	ratio of ell(n,{n-2}) n^2 to 2/P(n-2): 1.163, 1.036, 1.009, 1.002 at n=50,200,800,3200	COMPUTED	script	code/perturbation/perturb_ratio.rs; data/repro_logs/perturb_ratio.txt	YES: 1.162791, 1.036269, 1.008827, 1.002192
+perturbation	147,099 normal-form instances, gap criterion decides 94.17%, 0 violations	COMPUTED	script	code/perturbation/g1_gap_criterion.rs; data/repro_logs/g1_gap_criterion.txt	YES (floating-point ground truth): 147099, 138527 = 94.17%, 0 violations
+perturbation	49,121 instances; 49,120 decided at M=40; single undecided (3,4,7,11), ML(3,4,7,11)=2/9	COMPUTED	script	code/perturbation/r1_fourier_criterion.rs; mlcheck; data/repro_logs/r1_fourier_criterion_40.txt	YES (floating point): 49121, 49120, undecided (3,4,7,11); ML = 2/9 exact
+perturbation	margin of the Fourier criterion never below 0.372 mu unless an integer relation of coefficients <=3	HEURISTIC	none	none	NOT REGENERATED (generator not archived); marked in the paper; HEURISTIC
+perturbation	161,696 deletion sets and 161,414 beyond 13 runners (k=2, 5<=n<=100)	COMPUTED	script	arithmetic: C(100,3)-C(4,3); 161,696-282	YES (closed form)
+perturbation	k=3, 7<=n<=40: 91,375 sets, 3,021,814 pairs, 153,363,483 steps, 0 covers, 0 capped	COMPUTED	log + script	data/repro_logs/perturb_coverk_k3_7_40_original.log; code/perturbation/perturb_coverk.rs	PARTIAL: original log archived (column sums equal the paper); program reproduced rows 7<=n<=22 exactly; rows 23<=n<=40 not re-run (development run only)
+perturbation	k=2, 5<=n<=100: 161,696 sets, 7,520,944 pairs, 13,989,171 steps, 0 covers, 0 capped	COMPUTED	script	code/perturbation/perturb_coverk.rs 2 5 100; data/repro_logs/perturb_coverk_2_*.txt	YES: rows 5..100 contiguous, sums equal the paper (rows 31..66 from the 2026-10-17 run, others 2026-10-18; overlapping rows identical)
+lrc_covering	Theorem oth: singleton and pair families exhaustive, 4<=m<=260	COMPUTED	script	code/covering/clsweep.rs; data/repro_logs/clsweep_4_260.txt	YES: 2341337 minimal bad sets of size <=3, singletons 0 and pairs 0 unclassified (328 s); paircls 4..32 agrees (void for m>=33)
+lrc_covering	Proposition triples-incomplete: {5,8,13} at m=9 (61/160), {6,12,18} at m=10 (34/209); about one triple in eight	COMPUTED	script	code/covering/bad_triple_classify.rs; data/repro_logs/bad_triple_classify_4_260.txt	YES: 2272034 minimal triples, 294170 outside the three families (12.9 per cent), 0 discrepancies, 4<=m<=260; the two examples also checked by an exact rational script (session)
+lrc_covering	194,811 doubling pairs with 3a>2m, none extends (m<=150)	COMPUTED	script	code/covering/bt_dbl_extend.rs; data/repro_logs/bt_dbl_extend_150.txt	YES: 194811, 0 extensions
+lrc_covering	identity a v + b u = q on 11,528 instances (4<=m<=90); 3280 fail the symmetric partner	COMPUTED	script	code/covering/identchk.rs; data/repro_logs/identchk_4_90.txt	YES: 11528, identity failures 0, control 3280 (and 1601 for the second control)
+lrc_covering	25 pairs with a+b=2m+1 and a sharing a factor with the modulus (4<=m<=40)	HEURISTIC	none	generator not archived	NOT REGENERATED; marked in the paper
+lrc_covering	969,154,513 nodes, no (6,3)-partition at m=19 (4440 blocks); template exists at m=10,13,16	COMPUTED	script	code/covering/tmpl63.rs; data/repro_logs/tmpl63_m19.txt, tmpl63_m10.txt, tmpl63_m13.txt, tmpl63_m16.txt	YES: nodes 969154513 (95 s), EXISTS at 10, 13, 16 (controls)
+lrc_covering	I(m) of independent m-sets: 1, 9, 3, 41, 310, 728, 4093, 40493, 1203 (m=7,10,12,13,16,17,19,22,24)	COMPUTED	script	code/covering/indcount.rs; data/repro_logs/indcount_4_24.txt	YES
+lrc_covering	bad sets of minimum size B-1 inside [1,Bm] number exactly two, B=3,4,5	HEURISTIC	none	generator and range not archived	NOT REGENERATED; marked in the paper
+lrc_covering	Theorem main-63 / fam63 (hitdec, famdec) 4<=m<=63	COMPUTED	script	code/covering/hitdec.rs, famdec.rs; data/repro_logs/hitdec_4_58_partial.txt, famdec_4_56.txt, covering_hitdec_*.txt, covering_famdec_*.txt	PARTIAL: see rows below
+lrc_covering	hitdec at m=59 (window decision)	UNRESOLVED	script	code/covering/hitdec.rs 59 59 2	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	hitdec at m=60 (window decision)	UNRESOLVED	script	code/covering/hitdec.rs 60 60 2	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	hitdec at m=61 (window decision)	UNRESOLVED	script	code/covering/hitdec.rs 61 61 2	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	hitdec at m=62 (window decision)	UNRESOLVED	script	code/covering/hitdec.rs 62 62 2	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	hitdec at m=63 (window decision)	UNRESOLVED	script	code/covering/hitdec.rs 63 63 2	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	famdec at m=57 (decision from the nine families)	UNRESOLVED	script	code/covering/famdec.rs 57 57	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	famdec at m=58 (decision from the nine families)	UNRESOLVED	script	code/covering/famdec.rs 58 58	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	famdec at m=59 (decision from the nine families)	UNRESOLVED	script	code/covering/famdec.rs 59 59	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	famdec at m=60 (decision from the nine families)	UNRESOLVED	script	code/covering/famdec.rs 60 60	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	famdec at m=61 (decision from the nine families)	UNRESOLVED	script	code/covering/famdec.rs 61 61	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	famdec at m=62 (decision from the nine families)	UNRESOLVED	script	code/covering/famdec.rs 62 62	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	famdec at m=63 (decision from the nine families)	UNRESOLVED	script	code/covering/famdec.rs 63 63	NOT COMPLETED within the budget of 480 s (status not run); UNRESOLVED, not aggregated
+lrc_covering	Prop ke: bad-pair graph Koenig-Egervary for 4<=m<=63 (alpha = m-1+def/2); Prop ke-false: fails at m=150, 318, 486, 570 (m=150: |V|=298, |E|=323, nu=139)	COMPUTED	script	code/covering/kedecide.rs, alphaex.rs; data/repro_logs/kedecide_*.txt, alphaex_4_63.txt	PARTIAL: KE holds for 4<=m<=63; over 4<=m<=700 it fails exactly at 150, 318, 486, 570; 701<=m<=900 and the count 128 of 897 not regenerated (see kedecide_701_900 row if present)
+eight	27 certificate-source hashes (hash check, no Lean)	COMPUTED (axioms in Lean build)	script	code/eight/stage/repro_all.sh; data/repro_logs/eight_repro_all_27.txt	YES: 27/27 REPRODUCED (1143 s), 0 MISMATCH; the 27 Lean kernel re-checks were not run
+eight	finite checkers of the Barajas-Serra sections (23 Rust programs) and e5retry	COMPUTED	script	code/eight/checks/*; data/repro_logs/eight_checks/*.out	YES: 23 programs run on 2026-10-18 (outputs archived; negative controls are expected to report failures); falsify.py not re-run
+reduction	ML(1,5,6,11,16,17)=5/33	COMPUTED	script	code/reduction/fcuspec eval; code/obstructions/mlcheck.rs	YES (mlcheck 2026-10-18; fcuspec 2026-10-17)
+reduction	Section 7: 15,307 families, minimum (2m+1)ML=2, equality (3,2,4),(4,2,5),(5,2,18), 42 uncovered	COMPUTED	script	code/reduction/t2sweep	YES (2026-10-17 run); not re-run 2026-10-18
+reduction	Table 1 boxes (fcuspec sweep, all boxes), Table 2 (t2hunt), rmj, gdn, ecalc, modchk	COMPUTED	script	code/reduction/* (cargo projects needing rayon/num-bigint offline)	NOT re-run in this session (cargo build needed; hours of compute); fcuspec fails to build with plain rustc

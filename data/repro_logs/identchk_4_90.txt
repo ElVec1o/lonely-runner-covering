@@ -1,0 +1,18 @@
+ConsecutiveIdentity, m = 4..90
+
+  non-doubling pairs with opposite residues :    11528
+  doubling pairs skipped                    :   209916
+  same-side residues skipped                :    11528
+
+  IDENTITY  a*v + b*u = q          failures :        0  HOLDS
+  coefficients q observed                   : [1]
+
+  derived  a <= m                  failures :        0
+  derived  q <= 2*u*t              failures :        0
+  derived  q <= (u+v)*t            failures :        0
+  conclusion  a+b <= 2t            failures :        0
+
+  CONTROL C1  q <= 2*v*t   (known FALSE)  fired :     3280
+  CONTROL C2  a+b <= 2t-1  (known FALSE)  fired :     1601
+
+  Both controls fired, so a HOLDS verdict above is meaningful.

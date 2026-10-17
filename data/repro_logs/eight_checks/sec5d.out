@@ -1,0 +1,12 @@
+Farey M=7^1: 0 bad
+Farey M=7^2: 0 bad
+Farey M=7^3: 0 bad
+Farey M=7^4: 0 bad
+Farey M=7^5: 0 bad
+F1: 24 non-arc a-tuples (expect 24), 0 failures
+F2: 0 failures
+F3: 0 failures
+Z1: 0 failures
+Z2: 0 failures
+Z3: 0 failures; NC ratios (4,4): 84 failures
+dispatch: 0 uncovered of 81

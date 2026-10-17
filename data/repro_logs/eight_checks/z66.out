@@ -1,0 +1,4 @@
+z66_15 fail=0 | NC(o2=2) fails=70
+(a) bad (a,b) = {(4, 2), (4, 4), (5, 4), (6, 4), (6, 6)}
+(b) bad (a,b) = {(2, 3), (2, 5), (4, 2), (4, 4)}
+zA fail=0 zA5 fail=0 zA6 fail=0 zB fail=0 | NC(a notin {5,6}) fails=14 NC(b: a!=2) fails=14

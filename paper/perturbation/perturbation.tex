@@ -1,0 +1,1553 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\LR}{\operatorname{LR}}
+\newcommand{\nrm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+
+\title{Two- and three-speed modifications of the tight Lonely Runner instance:\\
+exhaustive verification, and a Lean~4 formalization of the covering framework}
+\author{Vico Bonfioli}
+\email{vicobonfioli@gmail.com}
+
+\begin{abstract}
+For a set $V$ of $n-1$ distinct positive integers write $\LR(V)=\max_t \min_{v\in V}\nrm{vt}$, where
+$\nrm{x}$ is the distance from $x$ to the nearest integer; $V$ is \emph{tight} if $\LR(V)=1/n$, the
+value predicted by the Lonely Runner Conjecture. Every such $V$ is a \emph{$k$-speed modification}
+of the baseline $[n-1]=\{1,\dots,n-1\}$: writing $M=[n-1]\setminus V$ and $R=V\setminus[n-1]$ one
+has $|M|=|R|=k$, where $k$ counts the speeds of $V$ that are at least $n$.
+
+The case $k=1$ is settled. Goddyn and Wong \cite{gw} classified the tight sets obtained by replacing
+one speed with a multiple, and Zhang \cite{zhang} (version~2, 31 August 2026) completed the
+classification of one-entry modifications (Thm.~1.2), bounded the largest speed by $O(n\log n)$
+(Thm.~1.3), and computed exactly the components of the region $U(n,r)$ left uncovered when a single
+speed $r$ is deleted (Thm.~1.4). For $k=2$, Zhang \cite[Thms.~7.5, 7.10]{zhang} proves that no tight
+two-speed modification exists for removed sets $\{2,r'\}$ with $n\ge19$ and $\{q,r'\}$ with
+$n\ge\max(40,10q)$, with no bound on the inserted speeds, and his census \cite[Thm.~7.13]{zhang}
+covers $8\le n\le140$ with inserted speeds at most $8n$. Version~1 of that paper had verified
+$6\le n\le34$ under the hypothesis that the inserted speeds are at most $4n$.
+
+This paper contributes three things. First, a covering bound which is uniform over the inserted
+speeds: if $\LR(V)\le1/n$ then $\sum_{v\in R}1/v\ \ge\ \ell(n,M)(n-2k)/2$, where $\ell(n,M)$ is the
+length of the longest component of the uncovered region, with \emph{no} upper bound on any inserted
+speed assumed. For $k=2$ Zhang's non-existence theorems \cite[Thms.~7.5, 7.10]{zhang} are stronger than the bound
+here on the removed sets they cover; the measure argument here is uniform in $k$ and in the inserted
+speeds, at the cost of a constant. Second, and as a
+consequence, an exhaustive verification with the cap on the inserted speeds removed: the conjecture
+holds for every $2$-speed modification with $5\le n\le100$ and every $3$-speed modification with
+$7\le n\le40$. The enumeration is finite for two rigorous reasons and no branch was truncated.
+Third, a formalization in Lean~4 with Mathlib of the covering framework and of the description of
+the uncovered region, comprising $70$ theorems and $5$ definitions with no \texttt{sorry}. We are not aware of any
+previous formalization of the material treated here; for the conjecture itself, the Acorn library
+contains proofs of statements with the constant slack by one, discussed in the companion paper. The statement itself, and Tao's
+bound, appear in Lean in the \texttt{formal-conjectures} repository with \texttt{sorry} bodies and
+no proof content. For the wider context of the problem we refer to the survey \cite{ps}. Not every statement below is
+formalized, and the Formalization section is the authoritative account of which are and which are
+not; downstream of the strip lemma the formalized constants carry $2+4/n$ in place of the sharp $2$.
+
+Much of Sections~\ref{sec:uncond}, \ref{sec:region}, \ref{sec:localize} and~\ref{sec:divis} is
+expository; Section~\ref{sec:comp} and the formalization are not. The description of the uncovered region
+by localization at fractions whose denominators were deleted is Zhang's \cite[\S2, proof of Lemma~2.4]{zhang}, used
+constructively by Bohman and Peng \cite[\S3]{bp}; the measure of the uncovered region as an object of
+study is Cusick's \cite{cusick74}, with measure and component-count bookkeeping already in
+Cusick and Pomerance \cite{cp}; the gap-and-block framework is Bohman, Holzman and Kleitman
+\cite{bhk}; the divisibility obstruction is \cite[Lemma~2.2]{gw}, \cite[Lemmas~2.3, 6.1]{zhang} and
+\cite[Lemma~4]{rosenfeld}; and the factor-of-two barrier for measure arguments is \cite[Prop.~1.1]{tao}.
+We include these because the formalization and the search consume them, and we claim no priority for
+any of them.
+\end{abstract}
+
+Statements are tagged with the status of their proof: \emph{Verified} means formalized in Lean~4
+against Mathlib with no \texttt{sorry} and no axioms beyond \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}; \emph{Computed} means established by a finite
+computation, with the generating script cited. An untagged theorem, lemma, proposition or corollary
+carries a complete proof in the text and no formalization. Conjectures are labelled as such and are
+proved nowhere here. Definitions carry no status.
+
+
+\date{18 October 2026. Preprint, not peer reviewed.}
+\maketitle
+
+\section{Introduction}
+
+Let $\nrm{x}$ be the distance from $x\in\R$ to the nearest integer. For a set $V$ of $n-1$ distinct
+positive integers put $\LR(V)=\max_{t\in\R}\min_{v\in V}\nrm{vt}$. The Lonely Runner Conjecture
+asserts $\LR(V)\ge 1/n$. The baseline $[n-1]=\{1,\dots,n-1\}$ satisfies $\LR([n-1])=1/n$, attained at
+$t=1/n$, so it is \emph{tight}.
+
+Goddyn and Wong \cite{gw} classified the tight sets obtained from $[n-1]$ by replacing one speed $r$
+with a multiple, and proved that for fixed $r$ only finitely many non-multiple replacements can be
+tight. Zhang \cite{zhang} made that finiteness effective. Writing $U(n,r)$ for the region left uncovered when $r$ is deleted (Definition~\ref{def:U} below,
+with $M=\{r\}$), he computes the length of every connected component of $U(n,r)$ exactly, in
+both regimes $2r>n-1$ and $2r\le n-1$, and deduces an explicit upper bound on the inserted speed, hence $n\le 6r$ when $2r\le n-1$,
+together with the complete classification for $r=2$ and $r=3$.
+
+Throughout, $P(b)$ denotes the smallest prime not dividing $b$.
+
+This note treats modifications of arbitrary size.
+
+\begin{definition}\label{def:mod}
+Let $n\ge 3$ and $k\ge1$. A \emph{$k$-speed modification} of the baseline is
+\[
+  V\;=\;\bigl([n-1]\setminus M\bigr)\cup R,\qquad M\subseteq[n-1],\ |M|=|R|=k,\ \ v\ge n \text{ for all } v\in R .
+\]
+\end{definition}
+
+\begin{remark}\label{rem:general}
+This is no restriction on the speed set. Let $V$ be any set of $n-1$ distinct positive integers, and
+put $M=[n-1]\setminus V$, $R=V\setminus[n-1]$, $k=\#\{v\in V:v\ge n\}$. Then $|V\cap[n-1]|=n-1-k$, so
+$|M|=(n-1)-(n-1-k)=k=|R|$, and $V$ is the $k$-speed modification determined by $M$ and $R$. Every
+instance with $1\le k\le n-2$ arises exactly once in this way, with $k$ recording how
+many speeds exceed the baseline. The hypothesis $2k<n$ belongs to Theorem~\ref{thm:cover}, not to the
+setting: Theorem~\ref{thm:localize} holds for every $k\le n-2$, and Theorem~\ref{thm:exact} for
+every $k\le n-2$ as well.
+\end{remark}
+
+Then $|V|=n-1$, so the predicted floor for $V$ is again $1/n$. The inserted speeds are subject to no
+upper bound, and that is the difficulty.
+
+\begin{definition}\label{def:U}
+For $M\subseteq[n-1]$ and $v\ge1$ put
+\[
+  U(n,M)=\bigl\{t\in[0,1):\nrm{jt}\ge 1/n \ \text{ for all } j\in[n-1]\setminus M\bigr\},
+  \qquad
+  B_v=\bigl\{t\in[0,1):\nrm{vt}<1/n\bigr\}.
+\]
+Both depend on $n$; the dependence of $B_v$ on $n$ is suppressed. Since $U(n,M)$ is a finite union
+of closed intervals, a longest component exists; write $\ell(n,M)$ for its length, which is $0$
+exactly when $U(n,M)$ is finite.
+\end{definition}
+
+$U(n,M)$ is closed and each $B_v$ is open of Lebesgue measure exactly $2/n$, independently of $v$.
+Directly from the definitions, $\LR(V)\ge 1/n$ if and only if
+$U(n,M)\not\subseteq\bigcup_{v\in R}B_v$.
+
+\subsection*{What is new here, and what is not}
+
+Arguments that show a family of bad sets fails to cover the uncovered region of a sub-family are
+long established. Bohman, Holzman and Kleitman \cite{bhk} work with exactly this dichotomy, calling
+a maximal uncovered interval for a sub-collection $S$ an $S$-gap and a maximal covered interval an
+$S$-block; their Lemma~4 bounds the length of a block of the \emph{two} fastest speeds and their
+Corollary~5 concludes non-covering from a long enough gap. So the passage from one covering speed to
+two is not new, and neither is the idea of measuring the uncovered region, which goes back to
+Cusick \cite{cusick74} and, with component counting alongside the measure, to Cusick and Pomerance
+\cite{cp}.
+
+What is new is the form of the bound. For a single inserted speed the natural step is a
+connectivity argument: a connected subset of $\{t:\nrm{wt}\le 1/n\}$ lies inside a single one of its
+constituent intervals, so its length is at most $2/(wn)$. That uses in an essential way that there
+is only \emph{one} inserted speed. The argument of \cite{bhk} handles two, but through explicit
+block-length estimates tied to the five- and six-runner case analysis. Section~7 of \cite{zhang}
+(version~2) handles two inserted speeds by a counting bound on the part of a bad set inside a
+component (Lemma~7.3) and proves the non-existence statements of Theorems~7.5 and~7.10 with no bound
+on the inserted speeds; on the removed sets they cover, for $k=2$, these are stronger than
+Theorem~\ref{thm:cover}, which only bounds $\sum_{v\in R}1/v$. Theorem~\ref{thm:cover} replaces
+these arguments by a measure estimate which holds for every $k$ simultaneously, is uniform over the
+inserted speeds, and assumes no upper bound on any of them. That uniformity is what makes the
+enumeration of Section~\ref{sec:comp} finite for $k=3$ without a cap on $\max R$; for $k=2$ the
+cap that version~1 of \cite{zhang} needed is removed there by other means.
+
+The price is a constant. Theorem~\ref{thm:cover} carries a factor $2$ that the connectivity argument
+does not, so at $k=1$ it is weaker than \cite[Thm.~1.4]{zhang}, which computes $\ell(n,\{b\})$
+exactly. Sections~\ref{sec:uncond} to~\ref{sec:region} accordingly record the $k=1$ theory in the
+form the later sections consume, with attribution; the reader wanting the sharp $k=1$ statements
+should take them from \cite{zhang}.
+
+\begin{theorem}[Proved; Covering bound]\label{thm:cover}
+Let $V$ be a $k$-speed modification with $2k<n$ and $\LR(V)\le 1/n$. Then
+\[
+  \sum_{v\in R}\frac1v\;\ge\;\frac{\ell(n,M)\,(n-2k)}{2},
+  \qquad\text{and consequently}\qquad
+  \min R\;\le\;\frac{2k}{\ell(n,M)\,(n-2k)}
+\]
+whenever $\ell(n,M)>0$. No upper bound on any element of $R$ is assumed.
+\end{theorem}
+
+A large inserted speed is close to equidistributed and contributes about $2\ell/n$ to a component of
+length $\ell$; $k$ of them contribute about $2k\ell/n<\ell$ and cannot finish the covering. The
+deficit must come from the boundary term $2/(vn)$, which is large only for small $v$.
+
+The remaining task is to bound $\ell(n,M)$ below, uniformly in $M$. We do this from scratch in
+Section~\ref{sec:region}, by exhibiting an explicit interval inside the uncovered region; the following
+observation reduces every $k$ to the case of a single deleted speed.
+
+\begin{lemma}[Proved; Monotonicity]\label{lem:mono}
+If $M'\subseteq M$ then $U(n,M')\subseteq U(n,M)$; hence for nonempty $M$,
+$\ell(n,M)\ge\max_{b\in M}\ell(n,\{b\})$.
+\end{lemma}
+
+\begin{theorem}[Proved; Uniform component bound]\label{thm:uniform}
+Let $n\ge3$ and let $M\subseteq[n-1]$ be nonempty.
+\begin{enumerate}
+\item[(i)] $\ell(n,M)\ \ge\ \dfrac{1}{2n^{3}}$, with an elementary and explicit proof.
+\item[(ii)] If $M$ contains an element coprime to $n$, or an element $b$ with $2b>n-1$, then
+  $\ell(n,M)\ \ge\ \dfrac{1}{n^{2}\,(2\log n+2)}$, again explicitly.
+\item[(iii)] $\ell(n,M)\ \ge\ c/(n^{2}\log n)$ for an absolute constant $c$. Here $c$ is not
+  explicit: the remaining case rests on Iwaniec's bound for Jacobsthal's function, whose implied
+  constant is effective but has not been computed.
+\end{enumerate}
+\end{theorem}
+
+In the coprime case the truth is sharper, and the sharp constant is attained.
+
+\begin{theorem}[Proved; Coprime component bound]\label{thm:unit}
+Let $n\ge2$, let $1\le a<n$ be coprime to $n$, and let $j_+\in[1,n)$ be the unique speed with
+$j_+a\equiv 1\pmod n$. If $j_+\in M$ then
+\[
+  \Bigl[\tfrac{a}{n}-\tfrac{1}{n(n-1)},\ \tfrac{a}{n}\Bigr]\ \subseteq\ U(n,M),
+  \qquad\text{so}\qquad \ell(n,M)\ \ge\ \frac{1}{n(n-1)} .
+\]
+In particular this holds whenever $M$ contains an element coprime to $n$, and for every nonempty $M$
+when $n$ is prime. The constant cannot be improved: Proposition~\ref{prop:attained} exhibits
+equality, computationally.
+\end{theorem}
+
+Combining Theorems~\ref{thm:cover}, \ref{thm:uniform} and \ref{thm:unit}:
+
+\begin{corollary}[Proved]\label{cor:main}
+Let $V$ be a $k$-speed modification with $2k<n$ and $\LR(V)\le 1/n$. Then
+\[
+  \min R\ \le\ \frac{4k\,n^{3}}{n-2k},
+\]
+and if $M$ contains an element coprime to $n$,
+\[
+  \min R\ \le\ \frac{2k\,n(n-1)}{n-2k}.
+\]
+For $n$ prime the second bound is unconditional in $M$. For $k=1$ we have $\min R=\max R$, so these
+bound the inserted speed outright.
+\end{corollary}
+
+\begin{proof}
+Immediate from Theorems~\ref{thm:cover}, \ref{thm:uniform} and \ref{thm:unit}: the first supplies
+the covering inequality, the second the component bound valid for every $M$, and the third the
+sharper bound when some element of $M$ is coprime to $n$. For $n$ prime every element of $M$ not
+divisible by $n$ is coprime to it, and $M\subseteq[n-1]$, so the coprime case always applies.
+\end{proof}
+
+\begin{remark}\label{rem:notO}
+We state inequalities rather than asymptotics deliberately. Definition~\ref{def:mod} permits
+$n-2k=1$, and there the second bound of Corollary~\ref{cor:main} is $\Theta(n^{3})$, not
+$\Theta(kn)$, so an assertion of the form $\min R=O(kn)$ is not available from these bounds. We do
+not claim it is false: we know of no family realising $\min R\gg kn$, and a search over tight
+modifications with $n-2k=1$ found $\max\min R=6$ at $n=5$, $k=2$ and $8$ at $n=7$, $k=3$. That search
+is finite for a reason internal to this paper: Theorem~\ref{thm:cover} bounds the smallest inserted
+speed, and applying it again to the region left after that speed is removed bounds the next, a branch
+terminating as soon as the region has no component of positive length. At such a leaf the branch is
+scored without further search, provided the region is nonempty, which holds in every case we
+searched and which for fewer than $n-1$ speeds is an instance of the conjecture itself. The region is
+then a finite set of rationals; any $t=p/q$ in it, in lowest terms, has $q\ge2$ because
+$0\in B_j$ for every present speed $j$ and $[n-1]\setminus M\ne\emptyset$. One may take every remaining speed in the class
+$v\equiv c\pmod q$ with $cp\equiv\lfloor q/2\rfloor$, giving $\nrm{vt}=\lfloor q/2\rfloor/q\ge1/3$;
+infinitely many such $v$ exist, so $t$ survives and $\min R$ is already determined. Under the additional
+hypothesis $2k\le(1-\varepsilon)n$ one does get $\min R=O_\varepsilon(kn)$ in the coprime case,
+$O_\varepsilon(kn^{2})$ in general, and $O_\varepsilon(kn\log n)$ from
+Theorem~\ref{thm:uniform}(iii).
+\end{remark}
+
+Bounding $\ell(n,M)$ from below by exhibiting an interval, as above, leaves open how much of the
+uncovered region those intervals miss. They miss nothing: the region has no freedom at all in where
+it can sit. The reason is Dirichlet's approximation theorem, which for every real $t$ produces a
+denominator $q\le n-1$ approximating $t$ to within $1/(qn)$. If $t$ is uncovered then that
+denominator cannot be a present speed, so it was deleted.
+
+\begin{theorem}[Proved; Localization]\label{thm:localize}
+Let $n\ge2$ and $M\subseteq[n-1]$, and let $t\in\R$ satisfy $\nrm{jt}>1/n$ for every present $j$.
+Then there are $q\in M$ and $a\in\Z$ with $\gcd(a,q)=1$ and
+\[
+  \Bigl|\,t-\frac aq\,\Bigr|\ \le\ \frac1{qn}.
+\]
+\end{theorem}
+
+Since there are $\sum_{q\in M}q$ fractions with denominator in $M$, each carrying an interval of
+length $2/(qn)$, this bounds the whole region at once, uniformly in how large the deleted speeds
+are.
+
+\begin{corollary}[Proved]\label{cor:measure}
+$\lambda\bigl(U(n,M)\bigr)\ \le\ 2|M|/n$.
+\end{corollary}
+
+More is true. Each component of $U(n,M)$ not only lies near such a fraction $a/q$ but runs back to
+it, so the component is cut out by an explicit minimum over the present speeds. That is
+Theorem~\ref{thm:exact}: writing $w(n,b,a,M)$ for the window at $a/b$ of
+Definition~\ref{def:window}, and provided $M\ne[n-1]$ so that some speed is present,
+\[
+  \ell(n,M)\ =\ \max_{b\in M}\ \max_{\substack{0\le a<b\\ \gcd(a,b)=1}} w(n,b,a,M),
+\]
+an identity costing $O\bigl(n\sum_{b\in M}\varphi(b)\bigr)$ operations rather than an
+$O(n^{2}\log n)$ sweep. Feeding it into
+Theorem~\ref{thm:uncond} gives Corollary~\ref{cor:window}, an unconditional criterion which, unlike
+Corollary~\ref{cor:uncond}, loses nothing: over all $k$-subsets at $n=22,\dots,42$ and $k=1,2,3$ it
+certifies exactly the subsets for which the criterion of Theorem~\ref{thm:uncond} holds at all.
+
+The coprimality hypothesis in Theorem~\ref{thm:unit} cannot be dropped, and the witness is the
+Goddyn--Wong set recorded in version~1 of \cite{zhang} (it is not in version~2): $\{1,\dots,29,31,90\}$ has $n=32$,
+$M=\{30\}$, $R=\{90\}$ and $\gcd(30,32)=2$. Here $\ell(32,\{30\})=1/2576$, the bound of
+Theorem~\ref{thm:cover} reads $\min R\le 171.73$ and holds, while the coprime bound of
+Corollary~\ref{cor:main} reads $\min R\le 66.13$ and fails.
+
+\section{The covering bound}
+
+\begin{lemma}[Proved]\label{lem:strip}
+Let $C$ be an interval of length $\ell$, let $n\ge2$ and let $v\ge1$ be an integer. Then
+$\lambda(B_v\cap C)\le 2\ell/n+2/(vn)$, where $\lambda$ is Lebesgue measure.
+\end{lemma}
+
+\begin{proof}
+Work with the $1$-periodic extension of $B_v$ to $\R$, which is legitimate since intersecting back
+with $[0,1)$ only decreases measure. It is invariant under translation by $1/v$, and each period
+carries measure exactly $2/(vn)$:
+the map $t\mapsto vt$ sends a window of length $1/v$ bijectively onto a window of length $1$, and
+$\lambda\{u\in[c,c+1):\nrm{u}<1/n\}=2/n$. Put $m=\lceil \ell v\rceil$ and $C=[x,x+\ell]$. Then
+$C\subseteq[x,x+m/v]$, a union of $m$ windows of length $1/v$, so
+$\lambda(B_v\cap C)\le m\cdot 2/(vn)\le(\ell v+1)\cdot 2/(vn)=2\ell/n+2/(vn)$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:cover}]
+First, $\LR(V)\le 1/n$ forces $S=\{t:\nrm{vt}\ge1/n\text{ for all }v\in V\}$ to be a null set: for
+$t\in S$ the minimum $\min_{v\in V}\nrm{vt}$ is at least $1/n$ and, by hypothesis, at most $1/n$, so
+it equals $1/n$ and some $v\in V$ has $\nrm{vt}=1/n$. Hence
+$S\cap[0,1)\subseteq\bigcup_{v\in V}\{t\in[0,1):\nrm{vt}=1/n\}$, a finite set. So $U(n,M)$ is covered by
+$\bigcup_{v\in R}B_v$ up to measure zero.
+
+Let $C\subseteq U(n,M)$ be a component of length $\ell=\ell(n,M)>0$. Then
+$\ell\le\sum_{v\in R}\lambda(B_v\cap C)$, so Lemma~\ref{lem:strip} gives
+\[
+  \ell\;\le\;\sum_{v\in R}\Bigl(\frac{2\ell}{n}+\frac{2}{vn}\Bigr)
+   \;=\;\frac{2k\ell}{n}+\frac2n\sum_{v\in R}\frac1v ,
+\]
+whence $\ell(n-2k)\le 2\sum_{v\in R}1/v$. Since $|R|=k$, $\sum_{v\in R}1/v\le k/\min R$.
+\end{proof}
+
+\begin{remark}
+The hypothesis $v\ge n$ of Definition~\ref{def:mod} is not used in this proof; Lemma~\ref{lem:strip}
+needs only $v\ge1$. It is needed for $|V|=n-1$, not for the argument.
+\end{remark}
+
+\section{An unconditional case}\label{sec:uncond}
+
+Theorem~\ref{thm:cover} says that covering forces $\sum_{v\in R}1/v$ to be large. Since every
+inserted speed is at least $n$, that sum is at most $k/n$. When the two are incompatible the
+covering hypothesis is untenable and no $R$ whatsoever can cover, so $V$ is lonely with no bound on
+any inserted speed and no appeal to anything further.
+
+\begin{theorem}[Proved; Unconditional loneliness]\label{thm:uncond}
+Let $n\ge3$ and $k\ge1$ with $2k<n$, and let $M\subseteq[n-1]$ with $|M|=k$. If
+\[
+  \ell(n,M)\ >\ \frac{2k}{n\,(n-2k)},
+\]
+then $\LR\bigl(([n-1]\setminus M)\cup R\bigr)\ge 1/n$ for \emph{every} admissible $R$, that is, for
+every $R$ as in Definition~\ref{def:mod}.
+\end{theorem}
+
+\begin{proof}
+If $\LR(V)<1/n$ then Theorem~\ref{thm:cover} gives
+$\sum_{v\in R}1/v\ge\ell(n,M)(n-2k)/2>k/n$. But $|R|=k$ and every $v\in R$ satisfies $v\ge n$, so
+$\sum_{v\in R}1/v\le k/n$, a contradiction, since Theorem~\ref{thm:cover} applies as soon as $\LR(V)\le1/n$. Hence
+$\LR(V)\ge1/n$.
+\end{proof}
+
+Combined with the lower bounds of Section~\ref{sec:region} this settles an explicit subclass
+outright. Feeding Proposition~\ref{prop:missing}'s bound $\ell(n,\{b\})\ge(2s-j_0)/(2nbj_0)$, valid
+for $2b\le n-1$, and Proposition~\ref{prop:twosided}'s bound
+$\ell(n,\{b\})\ge\frac{s}{nb}(\frac1{j_0}+\frac1{n-1})$, valid for $2b\ge n$, into the criterion, and
+using Lemma~\ref{lem:mono}:
+
+\begin{corollary}[Proved]\label{cor:uncond}
+Let $n\ge3$ and $k\ge1$ with $2k<n$, and let $M\subseteq[n-1]$ with $|M|=k$. Write $s=n-b$, and for $b\ge2$ let $j_0=j_0(n,b)$ be as in Section~\ref{sec:region} (case (a)
+below does not use it). Suppose $M$ contains a speed $b$ with either
+\begin{enumerate}
+\item[(a)] $b=1$ and $n>6k$; or
+\item[(b)] $2\le b$, $2b\le n-1$ and $(2s-j_0)(n-2k)>4kb\,j_0$; or
+\item[(c)] $2\le b$, $2b>n-1$ and $s(n-2k)(j_0+n-1)>2kb\,j_0(n-1)$.
+\end{enumerate}
+Then $\LR(([n-1]\setminus M)\cup R)\ge1/n$ for every admissible $R$.
+\end{corollary}
+
+\begin{proof}
+Case (a) is separate because Proposition~\ref{prop:missing} requires $b\ge2$: the integer $a$ there
+lies in $[1,b)$, which is empty at $b=1$. It is handled directly, and the argument is that of
+\cite[proof of Thm.~2.3, case $r=1$]{gw}. Every present speed $j$ satisfies
+$2\le j\le n-1$, so for $t\in[\tfrac1{2n},\tfrac1n]$ we have
+$jt\in[\tfrac{j}{2n},\tfrac{j}{n}]\subseteq[\tfrac1n,1-\tfrac1n]$, whence $\nrm{jt}\ge1/n$. Thus
+$[\tfrac1{2n},\tfrac1n]\subseteq U(n,\{1\})$ and $\ell(n,\{1\})\ge\tfrac1{2n}$, which exceeds
+$2k/(n(n-2k))$ exactly when $n>6k$. (In fact $\ell(n,\{1\})=1/(2n)$; we verified this for
+$3\le n\le44$.)
+
+In case (b), Proposition~\ref{prop:missing} gives $\ell(n,\{b\})\ge(2s-j_0)/(2nbj_0)$; in case (c),
+Proposition~\ref{prop:twosided} gives $\ell(n,\{b\})\ge\frac{s}{nb}(\frac1{j_0}+\frac1{n-1})$. The
+stated inequalities say exactly that these exceed $2k/(n(n-2k))$. Lemma~\ref{lem:mono} raises the bound from $\ell(n,\{b\})$ to $\ell(n,M)$, and
+Theorem~\ref{thm:uncond} applies.
+\end{proof}
+
+\begin{remark}\label{rem:closed}
+Condition (b) admits a closed form at the cost of some strength. Since $j_0\le n-1$ one has
+$(2s-j_0)/j_0\ge(n-2b+1)/(n-1)$, so the inequality clause of (b) follows from
+$4kb(n-1)<(n-2b+1)(n-2k)$, and that in turn from $8kb\le n$ together with $n>6k-2$. The side clauses
+of (b) come along too when $b\ge2$: $8kb\le n$ gives $2b\le n/(4k)\le n/4\le n-1$. (At $b=1$ the
+hypotheses land in case (a) instead.) The derivation: the first gives $4kb(n-1)\le n(n-1)/2$, while
+$2b\le n/(4k)\le n/4$ gives $(n-2b+1)(n-2k)\ge\tfrac34n(n-2k)$, and $n(n-1)/2<\tfrac34n(n-2k)$
+reduces to $n>6k-2$. We verified $4kb(n-1)<(n-2b+1)(n-2k)$ directly on all $4\,338\,029$ triples
+with $b\ge2$, $n\le4000$ and $k\le60$ admitted by those hypotheses, with no exception. (Admitting
+$b=1$, which the previous sentence sends to case (a) instead, the count is $4\,563\,449$ and there
+is still no exception.)
+
+The step $j_0\le n-1$ is wasteful for mid-range $b$, where $j_0$ exceeds $s$ only by the gap to the
+next integer coprime to $b$. If that gap is $o(s)$ then (b) reads $n-2k>4kb$ asymptotically, i.e.
+$b<(n-2k)/(4k)$, roughly twice the range of the closed form. We do not use this, since bounding the
+gap needs the input of Theorem~\ref{thm:uniform}(iii); conditions (b) and (c) are exact and
+checkable as they stand.
+\end{remark}
+
+How much this settles, counted exactly over \emph{all} $k$-subsets $M$. Over $22\le n\le38$ the
+criterion of Theorem~\ref{thm:uncond} holds for $36.00\%$ to $44.44\%$ of subsets when $k=1$, for
+$17.66\%$ to $25.08\%$ when $k=2$, and for $11.88\%$ to $19.56\%$ when $k=3$. Its reach falls away
+for small $n$: at $n=10$ it settles $22.22\%$ of subsets when $k=1$ and nothing at all when $k=2$ or
+$k=3$, the first $n$ at which it is satisfiable being $7,11,15$ for $k=1,2,3$.
+Corollary~\ref{cor:uncond} recovers most of that. At $n=22,26,30,34,38,42$, with the criterion's own
+reach printed alongside so that the comparison is on the same $n$:
+\[
+\begin{array}{lcccccc}
+\hline
+n & 22 & 26 & 30 & 34 & 38 & 42\\
+\hline
+\text{criterion, }k=1 & 38.10 & 36.00 & 41.38 & 42.42 & 37.84 & 41.46\\
+\text{Cor.~\ref{cor:uncond}, }k=1 & 33.33 & 32.00 & 37.93 & 33.33 & 35.14 & 36.59\\
+\text{ratio} & 0.875 & 0.889 & 0.917 & 0.786 & 0.929 & 0.882\\[0.6ex]
+\text{criterion, }k=2 & 21.43 & 19.33 & 23.89 & 21.78 & 24.77 & 22.44\\
+\text{Cor.~\ref{cor:uncond}, }k=2 & 18.57 & 15.67 & 19.95 & 17.61 & 20.72 & 18.78\\
+\text{ratio} & 0.867 & 0.811 & 0.835 & 0.808 & 0.836 & 0.837\\[0.6ex]
+\text{criterion, }k=3 & 14.44 & 13.13 & 11.88 & 18.37 & 16.82 & 15.55\\
+\text{Cor.~\ref{cor:uncond}, }k=3 & 14.29 & 12.00 & 10.34 & 17.61 & 15.77 & 14.27\\
+\text{ratio} & 0.990 & 0.914 & 0.870 & 0.959 & 0.938 & 0.918\\
+\hline
+\end{array}
+\]
+The closed form of Remark~\ref{rem:closed} is weaker, certifying
+$9.52,12.00,10.34,12.12,10.81,12.20$ per cent at $k=1$ over the same $n$. The residual gap is closed
+outright in Section~\ref{sec:localize}: Corollary~\ref{cor:window} replaces the case analysis by a
+single explicit window and matches the criterion in every cell of the table above.
+
+The two-sided window of Proposition~\ref{prop:twosided} is what makes case (c) useful at $k=1$. With
+the one-sided bound of Proposition~\ref{prop:missing} in its place, case (c) is provably empty at
+every $k$: in that regime $2b\ge n$ and $j_0\ge s$ give $2kbj_0\ge kns\ge ns>(n-2k)s$, so the
+one-sided inequality $s(n-2k)>2kbj_0$ has no solutions at all, and the $k=1$ reach falls to
+$19.05,20.00,20.69,21.21,21.62,21.95$ per cent. Even with the two-sided window, case (c) remains
+empty for every $k\ge2$; see Remark~\ref{rem:cempty}.
+
+The reason the criterion fires so often is that $\ell(n,\{b\})$ is of order $1/(2bn)$ for small $b$,
+not of order $1/n^{2}$: at $n=40$ the values of $\ell\,n^{2}$ for $b=1,\dots,9$ are
+$20.000,9.487,6.667,4.730,3.778,3.143,2.857,2.348,2.222$, in close agreement with $n/(2b)$. This is
+what Proposition~\ref{prop:missing} predicts, since $s\approx n$ and $j_0\approx n$ there.
+
+\section{The uncovered region for general \texorpdfstring{$M$}{M}}\label{sec:region}
+
+\begin{proof}[Proof of Lemma~\ref{lem:mono}]
+$[n-1]\setminus M\subseteq[n-1]\setminus M'$, so the constraints defining $U(n,M)$ are a subfamily of
+those defining $U(n,M')$. Taking $M'=\{b\}$ for $b\in M$ gives the second claim.
+\end{proof}
+
+By Lemma~\ref{lem:mono} it suffices to exhibit a long interval inside $U(n,\{b\})$ for a single $b$.
+We do this directly. Fix $2\le b<n$, put $s=n-b\ge1$ and
+\[
+  j_0\;=\;j_0(n,b)\;=\;\min\{\,j\ge s:\ \gcd(j,b)=1\,\}.
+\]
+The window $[s,s+b-1]$ consists of $b$ consecutive integers, one of them congruent to $1$ modulo $b$,
+so $j_0$ exists and $s\le j_0\le s+b-1=n-1$. In particular $j_0$ is a speed of $[n-1]$, and
+$j_0\ne b$ because $\gcd(j_0,b)=1$ and $b\ge2$.
+
+\begin{proposition}[Proved; Missing-speed interval]\label{prop:missing}
+Let $2\le b<n$ and let $a$ be the unique integer with $1\le a<b$ and $j_0\,a\equiv-1\pmod b$; it
+exists because $\gcd(j_0,b)=1$, and $a\ne0$ because $\gcd(a,b)=1$. Put
+\[
+  \delta_0=\begin{cases}\dfrac{1}{2bn}, & 2b\le n-1,\\[2mm] 0, & 2b>n-1.\end{cases}
+\]
+Then the interval below is nonempty: if $2b\le n-1$ then $s\ge b+1$, so $j_0\le s+b-1\le 2s-2$ and
+$\delta_0<s/(nbj_0)$; while if $2b>n-1$ then $\delta_0=0$. (The claim $j_0\le 2s$ is false in the
+second regime: at $n=32$, $b=30$ one has $s=2$ and $j_0=7$.) Moreover
+$\bigl[\tfrac ab+\delta_0,\ \tfrac ab+\tfrac{s}{nbj_0}\bigr]\subseteq U(n,\{b\})\subseteq[0,1)$; hence
+\[
+  \ell(n,\{b\})\ \ge\ \frac{s}{n\,b\,j_0}-\delta_0
+  \;=\;\begin{cases}\dfrac{2s-j_0}{2\,n\,b\,j_0}, & 2b\le n-1,\\[2mm]
+                    \dfrac{s}{n\,b\,j_0}, & 2b>n-1.\end{cases}
+\]
+\end{proposition}
+
+\begin{proof}
+Let $\delta\in[\delta_0,\,s/(nbj_0)]$ and $t=a/b+\delta$. Note $\delta\le 1/(nb)$, since $j_0\ge s$.
+Let $j\in[1,n)$ with $j\ne b$.
+
+First, $t\in[0,1)$: since $1\le a<b$ we have $t\ge a/b\ge 1/b>0$, and
+$t\le\frac{b-1}{b}+\frac{1}{nb}=1-\frac{n-1}{nb}<1$.
+
+\emph{Multiples of $b$.} If $b\mid j$, write $j=mb$; then $m\ne0$ and $m\ne1$, so $m\ge2$ and
+$j\ge 2b$, which forces $2b\le n-1$ and hence $\delta_0=1/(2bn)$. Now $j\cdot(a/b)=ma\in\Z$, so
+$\nrm{jt}=\nrm{j\delta}$, and
+\[
+  j\delta\ \ge\ 2b\cdot\frac{1}{2bn}=\frac1n,
+  \qquad
+  j\delta\ \le\ (n-1)\cdot\frac{1}{nb}\ \le\ \frac{n-1}{n}=1-\frac1n .
+\]
+A real number in $[1/n,1-1/n]$ is at distance at least $1/n$ from every integer.
+
+\emph{Non-multiples.} If $b\nmid j$, put $r=ja\bmod b$; then $r\ne0$ because $\gcd(a,b)=1$, so
+$1\le r\le b-1$. Writing $ja=bQ+r$ gives $jt=Q+\bigl(\tfrac rb+j\delta\bigr)$, and
+$\tfrac rb+j\delta\ge\tfrac1b\ge\tfrac1n$. For the upper edge we must check
+$j\delta\le\frac{b-r}{b}-\frac1n$, and it suffices to check it at $\delta=s/(nbj_0)$.
+If $r=b-1$ then $j\equiv -a^{-1}\equiv j_0\pmod b$; the elements of that class below $n$ are
+$j_0,\ j_0-b,\ j_0-2b,\dots$, since $j_0+b\ge s+b=n$, so $j\le j_0$ and
+\[
+  j\delta\ \le\ j_0\cdot\frac{s}{nbj_0}=\frac{s}{nb}=\frac1b-\frac1n=\frac{b-r}{b}-\frac1n .
+\]
+If $r\le b-2$ then, using $j\le n-1$ and $s\le j_0$,
+\[
+  j\delta\ \le\ \frac{(n-1)s}{nbj_0}\ \le\ \frac{n-1}{nb}
+  \ \le\ \frac{2n-b}{nb}\ =\ \frac2b-\frac1n\ \le\ \frac{b-r}{b}-\frac1n ,
+\]
+the middle inequality because $b\le n+1$. So no residue class with $b-r\ge2$ is ever binding.
+\end{proof}
+
+\begin{proposition}[Proved; Two-sided window]\label{prop:twosided}
+Let $2\le b<n$ with $2b>n-1$, and let $a$, $j_0$ be as in Proposition~\ref{prop:missing}. Then no
+multiple of $b$ other than $b$ itself is a speed of $[n-1]$, the window extends on both sides of
+$a/b$, and
+\[
+  \ell(n,\{b\})\ \ge\ \frac{s}{n\,b}\Bigl(\frac1{j_0}+\frac1{n-1}\Bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+Since $2b>n-1$, any multiple $mb$ with $m\ge2$ satisfies $mb\ge 2b\ge n$, so the only present speeds
+are non-multiples of $b$, and Proposition~\ref{prop:missing} applies with $\delta_0=0$ on the right.
+On the left, take $t=a/b-\delta$ with $\delta\ge0$. For a present $j$ with $r=ja\bmod b$, the
+argument of Proposition~\ref{prop:missing} applies with the roles of $r$ and $b-r$ exchanged: the
+binding class is now $r=1$, that is $j\equiv a^{-1}\pmod b$, and the binding member is the largest
+such $j$ below $n$, which is at most $n-1$. Hence $\delta\le s/(nb(n-1))$ is admissible, and the
+interval $[\,a/b-s/(nb(n-1)),\ a/b+s/(nbj_0)\,]$ lies in $U(n,\{b\})$.
+\end{proof}
+
+We verified this bound against the exhaustively computed $\ell(n,\{b\})$ for all $9999$ pairs with
+$2\le b<n\le200$ and $2b\ge n$: no violation. Equality holds throughout the family $b=n/2$, $n$ even, which we verified for all even $6\le n\le250$; over all admissible pairs with $n\le N$ the proportion of exact cases falls from $14.3\%$ at $N=30$ to $1.8\%$ at $N=250$. The bound is exact, for instance
+$\ell(8,\{4\})=3/70=1/40+1/56$ and $\ell(32,\{16\})=1/544+1/992$.
+
+\begin{remark}\label{rem:zhang4}
+Proposition~\ref{prop:twosided} lives in the regime $2b\ge n$, and there it is
+\cite[Thm.~1.4]{zhang} weakened by one substitution. Zhang computes
+$\ell(n,\{b\})=\frac{s}{bn}\max_u\bigl(\frac1{F(u)}+\frac1{F(b-u)}\bigr)$ with $F(x)$ the largest
+$i\le n-1$ congruent to $x$ modulo $b$; for $x$ coprime to $b$ that representative is the unique one
+in $[s,n-1]$, so $\min_u F(u)$ is exactly our $j_0$, and his $I(n,r)$ is our $j_0$. Replacing
+$F(b-u)$ by the cruder $n-1$ gives Proposition~\ref{prop:twosided}, which is why ours is an
+inequality where his is an identity. A reader wanting the sharp statement in this regime should take
+it from \cite{zhang}; we keep the weaker form only because it is what the Lean development proves.
+\end{remark}
+
+\begin{remark}\label{rem:zhang}
+Proposition~\ref{prop:missing} is a lower bound only, which is all that is needed below. Zhang
+\cite[Thm.~1.4]{zhang} computes $\ell(n,\{b\})$ exactly, and in the regime $2b\le n-1$ his value
+agrees with ours, so the bound is sharp there.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{thm:uniform}]
+By Lemma~\ref{lem:mono} take $M=\{b\}$. If $b=1$ then $\gcd(b,n)=1$ and $j_+=1=b\in M$ for $a=1$,
+so Theorem~\ref{thm:unit} gives $\ell\ge 1/(n(n-1))$, which is stronger than every claim below.
+Assume $b\ge2$ and apply Proposition~\ref{prop:missing}. The two regimes are separated by $2b$
+against $n-1$, not by $b$ against $n/2$.
+
+\emph{(i).} If $2b>n-1$ then $\ell\ge s/(nbj_0)\ge 1/(n\cdot n\cdot n)=1/n^{3}$, using $s\ge1$,
+$b<n$ and $j_0\le n-1$. If $2b\le n-1$ then $s=n-b\ge b+1$, so $j_0\le s+b-1\le 2s-2$, giving
+$2s-j_0\ge2$ and
+\[
+  \ell\ \ge\ \frac{2s-j_0}{2nbj_0}\ \ge\ \frac{1}{nbj_0}\ \ge\ \frac{2}{n(n-1)^{2}}\ \ge\ \frac{1}{2n^{3}},
+\]
+using $b\le(n-1)/2$ and $j_0\le n-1$, and $4n^{2}\ge(n-1)^{2}$ for the last step.
+
+\emph{(ii).} Suppose $2b>n-1$, so $\ell\ge s/(nbj_0)$. Let $P=P(b)$ and let $P^m$ be the least power
+of $P$, with $m\ge0$ allowed, satisfying $P^m\ge s$. Then $P^m<Ps$ (for $s=1$ take $m=0$) and
+$\gcd(P^m,b)=1$, so $j_0\le P^m<Ps$ and $\ell> s/(nb\cdot Ps)=1/(nbP)>1/(n^{2}P)$. It remains to
+check $P<2\log b+2$. If $P\ge13$ then every prime at most $11$ divides $b$, so
+$b\ge e^{\theta(P-1)}>e^{(P-1)/2}$, where $\theta(x)=\sum_{p\le x}\log p$ and $\theta(x)>x/2$ for
+$x\ge11$ \cite{rs};
+hence $P<2\log b+1$. For $P\le11$ the least admissible $b$ is $3,2,6,30,210$ for $P=2,3,5,7,11$, and
+since $2\log b+2$ increases with $b$ it suffices to check those: the values are
+$4.20,3.39,5.58,8.80,12.69$, each larger than $P$. If instead $M$ contains an element coprime to
+$n$, Theorem~\ref{thm:unit} gives $\ell\ge 1/(n(n-1))\ge 1/(n^{2}(2\log n+2))$.
+
+\emph{(iii).} By (ii) the cases $2b>n-1$ and $\gcd(b,n)=1$ are done, so there remains $2b\le n-1$
+with $\gcd(b,n)>1$, where $s\ge b+1$. Let $g(b)$ be Jacobsthal's function, the largest gap between
+consecutive integers coprime to $b$; then $j_0\le s+g(b)-1$. By Iwaniec \cite{iwaniec},
+$g(b)\ll\log^{2}b$, so there is $N_0$ with $g(b)\le s/2$ for all $n\ge N_0$ in this range. For such
+$n$, $2s-j_0\ge s/2$ and $j_0\le 3s/2$, so
+$\ell\ge \frac{s/2}{2nb\cdot 3s/2}=\frac{1}{6nb}\ge\frac{1}{3n^{2}}$. For $3\le n<N_0$, part (i)
+gives $\ell\ge 1/(2n^{3})$, hence $\ell\,n^{2}\log n\ge \log 3/(2N_0)$. Taking $c$ to be the least of
+$1/3$, $\log 3/(2\log 3+2)$ and $\log 3/(2N_0)$ proves (iii); the second of these is the constant
+obtained from (ii), since converting $1/(n^{2}(2\log n+2))$ to the shape $c/(n^{2}\log n)$ requires
+$c\le\log n/(2\log n+2)$, whose infimum over $n\ge3$ is $\log 3/(2\log 3+2)=0.2617\ldots$. The
+dependence on $N_0$, hence on Iwaniec's implied constant, is why $c$ is not explicit.
+\end{proof}
+
+\section{Localization of the uncovered region}\label{sec:localize}
+
+This section is expository. For $M=\{r\}$ the localization below is in \cite[\S2: Lemmas~2.1 and~2.2 and the first paragraph of the proof of Lemma~2.4; the case $2r>n-1$ is Lemma~2.5]{zhang}, version~2:
+Dirichlet's theorem with $N=n-1$ forces $\nrm{rt}\le1/n$ on $U(n,r)$, whence
+$U(n,r)\subseteq\bigcup_p[p/r-1/(rn),\,p/r+1/(rn)]$, coprimality reduction included. Replacing
+$\{r\}$ by $M$ changes nothing in that argument. Bohman and Peng \cite[\S3]{bp} use the same idea
+constructively, taking a witness time whose denominator is built from deleted speeds. We note also
+that Dirichlet is not needed for the containment: since $\LR([n-1])=1/n$, the set on which every
+$j\in[n-1]$ has $\nrm{jt}\ge1/n$ is the finite set $\{a/n:\gcd(a,n)=1\}$ (see
+the opening line of the proof of \cite[Prop.~10.4]{kravitz}), so off a finite set $U(n,M)\subseteq\bigcup_{b\in M}B_b$ in one line,
+which also gives Corollary~\ref{cor:measure} directly. The measure of the uncovered region as an
+object of study is \cite{cusick74}, and measure together with component count already appears in
+\cite[Lemma~1]{cp}. We record all of it here because the formalization and Section~\ref{sec:comp}
+consume it.
+
+Sections~\ref{sec:uncond} and~\ref{sec:region} bound $\ell(n,M)$ from below by exhibiting an
+interval inside $U(n,M)$. This section determines $\ell(n,M)$ exactly. The mechanism is Dirichlet's
+approximation theorem: it forces every uncovered time to sit close to a fraction whose denominator
+was deleted, and there is nowhere else for the uncovered region to be.
+
+
+
+\begin{proof}[Proof of Theorem~\ref{thm:localize}]
+Dirichlet's approximation theorem with $N=n-1$ gives an integer $q$ with $1\le q\le n-1$ and
+$\nrm{qt}\le 1/(N+1)=1/n$. If $q$ were present the hypothesis would force $\nrm{qt}>1/n$, so
+$q\in M$. Taking $a$ nearest to $qt$ turns $\nrm{qt}\le1/n$ into $|t-a/q|\le1/(qn)$.
+
+For coprimality, write $d=\gcd(a,q)$, $a=da'$, $q=dq'$. Then $|t-a'/q'|=|t-a/q|\le 1/(qn)\le
+1/(q'n)$, so $\nrm{q't}\le 1/n$ with $1\le q'\le n-1$, and the same argument puts $q'$ in $M$.
+\end{proof}
+
+The first consequence bounds the size of the uncovered region, uniformly in which speeds were
+deleted and how large they are.
+
+
+
+\begin{proof}[Proof of Corollary~\ref{cor:measure}]
+The complement of $U(n,M)$ in $[0,1)$ is a finite union of open intervals, so $U(n,M)$ differs from
+its interior by a finite set. Every interior point satisfies $\nrm{jt}>1/n$ for all present $j$:
+if some present $j$ had $\nrm{jt}=1/n$ then $t$ would lie on the boundary of $B_j$ and hence not be
+interior to the complement of $B_j$. Theorem~\ref{thm:localize} therefore covers the interior by the
+intervals $[a/q-1/(qn),\,a/q+1/(qn)]$ with $q\in M$ and $0\le a<q$. There are at most
+$\sum_{q\in M}q$ of them, of length $2/(qn)$ each, for a total of
+$\sum_{q\in M}q\cdot 2/(qn)=2|M|/n$.
+\end{proof}
+
+The bound is of the right order: over all $M$ with $|M|=k$ for $k=1,2,3$ and
+$n\in\{16,22,28,34,40\}$ the largest value of $\lambda(U(n,M))\big/(2k/n)$ lies between $0.5139$ and
+$0.6492$. The maximiser is unique in each of the fifteen cells and is usually a set of primes
+just above $n/2$, though not always: at $n=16$, $k=2$ it is $\{9,11\}$, at $n=16$, $k=3$ it is
+$\{9,11,13\}$, at $n=28$, $k=3$ it is
+$\{1,17,19\}$, and at $n=40$, $k=3$ it is $\{23,25,29\}$.
+
+The second consequence is an exact formula. The point of Theorem~\ref{thm:localize} is not only that
+the uncovered region sits near the deleted denominators, but that each of its components runs all
+the way back to one of them, so that the component is determined by an explicit minimum.
+
+\begin{definition}\label{def:window}
+Let $b\in M$ and let $a$ satisfy $0\le a<b$ and $\gcd(a,b)=1$. For present $j$ write
+$r_j=ja\bmod b$, and set
+\[
+  \delta^{+}=\min_{j\ \text{present}}
+    \begin{cases}\dfrac{(b-r_j)/b-1/n}{j}, & b\nmid j,\\[2.2ex]
+                 \dfrac{1-1/n}{j}, & b\mid j,\end{cases}
+  \qquad
+  \delta^{-}=\min_{j\ \text{present}}
+    \begin{cases}\dfrac{r_j/b-1/n}{j}, & b\nmid j,\\[2.2ex]
+                 \dfrac{1-1/n}{j}, & b\mid j,\end{cases}
+\]
+\[
+  \delta^{0}=\max\Bigl\{\tfrac1{jn}\ :\ j\ \text{present},\ b\mid j\Bigr\},
+\]
+with $\delta^{0}=0$ when $b$ has no present multiple. The \emph{window} at $a/b$ is
+\[
+  w(n,b,a,M)=\begin{cases}
+    \delta^{+}+\delta^{-}, & \delta^{0}=0,\\[0.6ex]
+    \max\{\delta^{+},\delta^{-}\}-\delta^{0}, & \delta^{0}>0,
+  \end{cases}
+\]
+read as $0$ if the right-hand side is negative.
+\end{definition}
+
+\begin{theorem}[Proved; Exact formula]\label{thm:exact}
+For every $n\ge3$ and every $M$ with $\emptyset\ne M\subsetneq[n-1]$,
+\[
+  \ell(n,M)\ =\ \max_{b\in M}\ \max_{\substack{0\le a<b\\ \gcd(a,b)=1}}\ w(n,b,a,M).
+\]
+The hypothesis $M\ne[n-1]$ is needed: at $M=[n-1]$ there is no present speed, $U(n,M)=[0,1)$ and
+$\ell=1$, while $\delta^{+}$ and $\delta^{-}$ are minima over an empty family. Every $M$ arising
+from a $k$-speed modification satisfies $2k<n$ and so is covered.
+\end{theorem}
+
+\begin{proof}
+\emph{The maximum is attained inside $U(n,M)$.} Fix $b$ and $a$ and let $t=a/b+\delta$ with
+$\delta^{0}\le\delta\le\delta^{+}$. If $b\mid j$ then $j\,a/b\in\Z$, so $\nrm{jt}=\nrm{j\delta}$;
+here $j\delta\ge j\delta^{0}\ge 1/n$ by the definition of $\delta^{0}$, and $j\delta\le
+j\delta^{+}\le 1-1/n$ by the second branch of $\delta^{+}$. If $b\nmid j$ then $jt\equiv
+r_j/b+j\delta$, which is at least $r_j/b\ge1/b>1/n$ above the integer below it, and at most
+$1-1/n$ by the first branch. So $[a/b+\delta^{0},\,a/b+\delta^{+}]\subseteq U(n,M)$, and symmetrically
+on the left; when $\delta^{0}=0$ the two sides join at $a/b$.
+
+\emph{Every component of positive length is such a window.} Let $C$ be a component of $U(n,M)$
+with $|C|>0$, which exists by Theorem~\ref{thm:uniform}(i), and let $t$ be an interior
+point of $C$, so $\nrm{jt}>1/n$ for every present $j$. Theorem~\ref{thm:localize} gives $b\in M$ and
+$a$ coprime to $b$ with $|t-a/b|\le 1/(bn)$; assume $t\ge a/b$, the other case being the mirror
+image, and put $D=t-a/b$. Since $j\le n-1$ we have $jD\le (n-1)/(bn)<1/b$ for every present $j$.
+
+First, $\delta^{0}\le D$. Indeed if $b\mid j$ for a present $j$ then $\nrm{jt}=\nrm{jD}$, and
+$jD<1/b\le1$, so $\nrm{jt}>1/n$ forces $jD>1/n$, that is $D>1/(jn)$; taking the maximum over the
+present multiples gives $D\ge\delta^{0}$.
+
+Now let $\delta^{0}\le d\le D$ and $s=a/b+d$. If $b\nmid j$, write $ja=Qb+r_j$ with $0<r_j<b$; then
+$js=Q+r_j/b+jd$. Its distance down to $Q$ is $r_j/b+jd\ge r_j/b\ge1/b>1/n$, and its distance up to
+$Q+1$ is $1-r_j/b-jd$, which decreases in $d$ and so is at least $1-r_j/b-jD$. Now
+$r_j/b+jD<(b-1)/b+1/b=1$ rules out a wrap, so $1-r_j/b-jD$ is one of the two distances from $jt$ to
+$\Z$ and hence at least $\nrm{jt}$, which is at least $1/n$ because $t\in U(n,M)$. If instead
+$b\mid j$ then $\nrm{js}=\nrm{jd}$, with $jd\ge j\delta^{0}\ge1/n$ and
+$jd\le jD\le (n-1)/(bn)\le 1-1/n$.
+
+So no present speed blocks between $a/b+\delta^{0}$ and $t$, whence $[a/b+\delta^{0},t]\subseteq C$.
+It remains to identify both endpoints of $C$. On the right, the containment step already gives
+$[a/b+\delta^{0},a/b+\delta^{+}]\subseteq U(n,M)$, and at $\delta^{+}$ the minimum defining it is
+attained by some present $j$, for which $\nrm{j(a/b+\delta)}<1/n$ for every $\delta$ slightly larger;
+so $C$ ends at $a/b+\delta^{+}$. On the left, if $b$ has a present multiple $j$ then
+$\nrm{j(a/b+\delta)}=\nrm{j\delta}<1/n$ for $0\le\delta<1/(jn)$, so $C$ starts at $a/b+\delta^{0}$
+and $|C|=\delta^{+}-\delta^{0}$; the mirror argument bounds the component on the left of $a/b$ by
+$\delta^{-}-\delta^{0}$, and $w$ takes the larger of the two. If $b$ has no present multiple then
+$\delta^{0}=0$, the two sides join at $a/b$, and the same argument at $-\delta^{-}$ gives
+$C=[a/b-\delta^{-},a/b+\delta^{+}]$, of length $\delta^{+}+\delta^{-}$. Either way
+$|C|=w(n,b,a,M)$, and taking $C$ of maximal length gives the reverse inequality.
+\end{proof}
+
+\begin{remark}\label{rem:measeq}
+Since the components are disjoint, $\lambda(U(n,M))$ is the sum of their lengths. It is
+\emph{not} the case that every component is a window: $U(n,M)$ also has degenerate components,
+isolated points of the equality locus where some present $j$ attains $\nrm{jt}=1/n$ exactly. At
+$n=4$, $M=\{2\}$ there are three components and one window. Over all $65\,504$ nonempty
+$M\subsetneq[n-1]$ with $3\le n\le16$, degenerate non-window components occur in $43\,849$ cases.
+They carry no measure, so what is true, and what Theorem~\ref{thm:exact} gives, is that every
+\emph{positive-length} component is a window; that holds with no exception over the same $65\,504$
+cases. Hence $\lambda(U(n,M))$ is the sum of the windows \emph{distinct as intervals}: the
+deduplication is load-bearing, and summing over base points without it is wrong in $62\,816$ of
+those $65\,504$ cases, because a base point whose $b$ has a present multiple contributes the two
+windows $[a/b+\delta^{0},a/b+\delta^{+}]$ and $[a/b-\delta^{-},a/b-\delta^{0}]$ while a component
+may abut two different base points. This is bookkeeping, not a theorem, and the pairing of measure
+with component count is already in \cite[Lemma~1]{cp}. Verified on all $7\,315$ pairs with
+$|M|\le3$, $n\in\{12,16,20,24,28\}$.
+\end{remark}
+
+Three points about the formula. It costs $O\bigl(n\sum_{b\in M}\varphi(b)\bigr)$ arithmetic
+operations, against $O(n^{2}\log n)$ for sweeping the endpoints $(in\pm1)/(jn)$ directly; for a
+single deleted speed $b$ of order $n$ that is a saving of the logarithmic factor only, and the
+saving is real only when the deleted speeds are small. It excludes \emph{all} of $M$ from the minima,
+which is what Lemma~\ref{lem:mono} cannot do: monotonicity replaces $M$ by a single $\{b\}$ and so
+still sees the other deleted speeds as present. And it turns Theorem~\ref{thm:uncond} into a finite,
+exactly checkable condition.
+
+\begin{corollary}[Proved; Unconditional criterion, explicit form]\label{cor:window}
+Let $n\ge3$ and $k\ge1$ with $2k<n$, and let $M\subseteq[n-1]$ with $|M|=k$. If some $b\in M$ and
+some $a$ with $0\le a<b$ and $\gcd(a,b)=1$ satisfy
+\[
+  w(n,b,a,M)\ >\ \frac{2k}{n(n-2k)},
+\]
+then $\LR(([n-1]\setminus M)\cup R)\ge 1/n$ for every admissible $R$.
+\end{corollary}
+
+\begin{proof}
+Immediate from Theorem~\ref{thm:exact} and Theorem~\ref{thm:uncond}.
+\end{proof}
+
+Corollary~\ref{cor:window} is stronger than Corollary~\ref{cor:uncond}, and by
+Theorem~\ref{thm:exact} it is equivalent to the criterion of Theorem~\ref{thm:uncond} itself, so it
+exhausts what the covering bound can reach. The table below is therefore a consistency check on the
+implementation rather than independent evidence; we record it because it is what the code computes.
+Counted over \emph{all} $k$-subsets $M$, at $n=22,26,30,34,38,42$:
+\[
+\begin{array}{lcccccc}
+\hline
+n & 22 & 26 & 30 & 34 & 38 & 42\\
+\hline
+k=1 & 38.10 & 36.00 & 41.38 & 42.42 & 37.84 & 41.46\\
+k=2 & 21.43 & 19.33 & 23.89 & 21.78 & 24.77 & 22.44\\
+k=3 & 14.44 & 13.13 & 11.88 & 18.37 & 16.82 & 15.55\\
+\hline
+\end{array}
+\]
+The same agreement holds at $n=20,24,28,32,36,40$ for $k=1,2,3$, and the identity
+$\ell(n,M)=\max_{b,a}w(n,b,a,M)$ of Theorem~\ref{thm:exact} was checked directly, in exact rational
+arithmetic, on all $134\,721$ pairs $(n,M)$ with $|M|\le4$ and $n\in\{16,20,24,28,32,36\}$.
+
+\begin{remark}\label{rem:cempty}
+Condition (c) of Corollary~\ref{cor:uncond} is empty for every $k\ge2$. In that regime $2b\ge n$,
+and $s\le j_0\le n-1$, so
+\[
+  s(n-2k)(j_0+n-1)\ \le\ j_0(n-4)\cdot 2(n-1)\ <\ 2n\,j_0(n-1)\ \le\ 2kb\,j_0(n-1),
+\]
+the last step using $k\ge2$ and $2b\ge n$. Condition (c) therefore contributes only at $k=1$, where
+it fires $331\,291$ times for $n\le2000$; for $2\le k\le10$ and $n\le2000$ it fires not at all. This
+is why the $k=2$ and $k=3$ figures for conditions (a)--(c) coincide with those for (a)--(b) alone.
+Corollary~\ref{cor:window} is not subject to this: it fires at every $k$ for which the criterion
+does.
+\end{remark}
+
+\section{The coprime case}
+
+\begin{proof}[Proof of Theorem~\ref{thm:unit}]
+Since $1\le a<n$ we have $a/n-\frac1{n(n-1)}\ge0$ and $a/n\le\frac{n-1}{n}<1$, so the interval lies
+in $[0,1)$. Let $j\in[1,n)$ with $j\ne j_+$, let $\varepsilon\in[0,\frac{1}{n(n-1)}]$ and put
+$t=a/n-\varepsilon$. Write $r=ja\bmod n$. As $\gcd(a,n)=1$ and $1\le j<n$ we have $n\nmid ja$, so
+$r\ne0$; and $r=1$ would give $j\equiv a^{-1}$, that is $j=j_+$, so $r\ne1$. Hence $2\le r\le n-1$.
+Also $j\varepsilon\le(n-1)\cdot\frac1{n(n-1)}=\frac1n$. Writing $ja=nq+r$,
+\[
+  jt=q+\Bigl(\frac rn-j\varepsilon\Bigr),\qquad
+  \frac rn-j\varepsilon\in\Bigl[\frac{r-1}{n},\frac rn\Bigr]\subseteq\Bigl[\frac1n,1-\frac1n\Bigr],
+\]
+and a real number in $[1/n,1-1/n]$ is at distance at least $1/n$ from every integer.
+\end{proof}
+
+The constant is attained, and for a reason rather than by coincidence.
+
+\begin{proposition}[Computed; lower bound proved for all odd $n\ge5$; equality computed for $n\le41$]\label{prop:attained}
+For every odd $n\ge5$, $\ \ell\bigl(n,\{(n-1)/2\}\bigr)\ \ge\ \dfrac{1}{n(n-1)}$, with equality for
+every odd $n$ with $5\le n\le41$.
+\end{proposition}
+
+\begin{proof}
+Put $b=(n-1)/2$, so $s=n-b=(n+1)/2$. Since $s$ and $b$ differ by $1$ they are coprime, so the least
+$j\ge s$ with $\gcd(j,b)=1$ is $j_0=s$ itself. Also $2b=n-1<n$, so the speed $2b$ is present and
+Proposition~\ref{prop:missing} applies, giving
+\[
+  \ell\bigl(n,\{b\}\bigr)\ \ge\ \frac{2s-j_0}{2nb\,j_0}\ =\ \frac{s}{2nb\,s}\ =\ \frac{1}{2nb}
+  \ =\ \frac{1}{n(n-1)} .
+\]
+Note also that $b$ is coprime to $n$, since any common divisor of $(n-1)/2$ and $n$ divides
+$\gcd(n-1,n)=1$, so Theorem~\ref{thm:unit} gives the same lower bound independently.
+
+The matching upper bound is not proved here. It is verified by exact rational computation of
+$\ell(n,\{b\})$ for every odd $n$ with $5\le n\le41$, where equality holds in every case; the
+checker is committed. Proposition~\ref{prop:ceiling} gives only $\ell\le(n-2)/(n(n-1))$, which is
+larger by a factor $n-2$, so the upper bound needs an argument the present method does not
+supply.
+\end{proof}
+
+Neither primality of $n$ nor $n$ being large plays any role. When $n$ \emph{is} prime, more is true:
+$b=(n-1)/2$ is then the worst single deletion there is. Over all $76$ primes with $5\le n\le400$ the
+minimum of $\ell(n,\{b\})$ over $b$ equals $1/(n(n-1))$ and is attained at $b=(n-1)/2$, in every
+case; and $1/(n(n-1))$ bounds $\ell(n,\{b\})$ from below for every $b$, which is
+Theorem~\ref{thm:unit} again since every $b<n$ is coprime to a prime $n$. So at prime $n$ the
+covering criterion of Theorem~\ref{thm:uncond} can never fire at the extremal deletion: it would
+need $1/(n(n-1))>2/(n(n-2))$, that is $0>n$.
+
+For even $n$ the extremal deletion is not so simply described. The value at $b=n-2$ has the closed
+form $\ell(n,\{n-2\})=\frac{2}{n(n-2)}\bigl(\frac1P+\frac1{n-2-P}\bigr)$, with $P$ the least prime
+not dividing $n-2$, exact for all even $6\le n\le400$ except $n=6,8$; at $n=32$ this reads
+$\frac{2}{960}(\frac17+\frac1{23})=\frac1{2576}$. But $b=n-2$ is not always the minimiser: over the
+$148$ even $n$ with $6\le n\le300$ it is so in $121$ cases and not in $27$, the first exceptions
+being $n=10,14,18,24$.
+
+\section{Computations}\label{sec:comp}
+
+All arithmetic is exact over $\Z$ and $\mathbb{Q}$ in \texttt{i128}; no floating point is
+load-bearing. The programs are \texttt{code/perturbation/perturb\_*.rs} in the accompanying archive,
+the subcommands and the values each regenerates are documented in
+\texttt{code/perturbation/README.md}. Components of $U(n,M)$ are obtained by sorting the endpoints
+$(in\pm1)/(jn)$ of the excluded intervals and sweeping. Each range is stated where it is used; they
+are not uniform.
+
+\subsection*{A complete decision at \texorpdfstring{$k=2$}{k=2}}
+
+For $5\le n\le100$ and every $M$ with $|M|=2$ there is no admissible $R$ at all: the conjecture holds
+for every $2$-speed modification in that range. By Remark~\ref{rem:general} that is exactly the
+statement that every set of $n-1$ distinct positive integers with precisely two members at least $n$
+is lonely, for those $n$.
+
+This is a decision rather than a sample, because two rigorous bounds make the enumeration finite.
+Theorem~\ref{thm:cover} gives $\min R\le 4/(\ell(n,M)(n-4))$, which bounds the smaller inserted
+speed; over $n\le30$ the largest value taken is $136$. Given $v_1$, the residual
+$U(n,M)\setminus B_{v_1}$ must lie inside $B_{v_2}$, and $B_{v_2}$ is a \emph{disjoint} union of open
+intervals, so each connected piece of the residual lies in a single one of them: a residual
+component of length $L$ forces $v_2<2/(Ln)$. If the residual has no component of positive length it
+is a finite set of rationals $p/q$, and $\nrm{v_2p/q}<1/n$ depends only on $v_2$ modulo $q$, so one
+period of $\operatorname{lcm}(q)$ decides that branch; it did not arise.
+
+Totals over $5\le n\le100$: $161\,696$ deletion sets, $7\,520\,944$ pairs $(M,v_1)$ examined and
+$13\,989\,171$ enumeration steps,
+no covering $R$, and no branch truncated by a cap. The conjecture is known for at most $13$
+runners: seven in \cite{bs}, eight in \cite{rosenfeld}, nine and ten in \cite{trak}, and eleven to
+thirteen in \cite{st}. So $161\,414$ of those $161\,696$ sets lie beyond the range proved outright.
+
+The enumeration does not carry over to $k=3$ unchanged, and we record why. The second of the two
+bounds above is a connectivity argument: it reads off $v_2<2/(Ln)$ from the fact that a residual
+component must lie inside a single interval of $B_{v_2}$. That inference needs exactly one speed to
+remain. With two still to place, a residual component may be covered jointly by
+$B_{v_2}\cup B_{v_3}$ and neither speed need satisfy the bound. At $k=3$ the recursion reaches a
+level with two speeds remaining, so the connectivity bound is outside its hypothesis there. The
+repair is to use Theorem~\ref{thm:cover} on the residual at every level where $r\ge2$ speeds remain,
+giving $\min\le 2r/(\ell(n-2r))$, which is uniform in $r$ and is the same measure argument that
+removes the cap at level zero.
+
+With that bound in place the enumeration at $k=3$ decides $7\le n\le40$: $3\,021\,814$ pairs
+$(M,v_1)$ and $153\,363\,483$ enumeration steps, no covering $R$, and no branch truncated by a cap.
+The corrected bound multiplies the number of steps by about seven relative to the connectivity
+version, which is the measure of how much of the space the latter was missing. The $k=2$ decision is
+unaffected either way, since exactly one speed remains at every recursive level there.
+
+\paragraph{Reproduction status.} The $k=2$ totals above are regenerated by \texttt{code/perturbation/perturb\_coverk.rs 2 5 100}: the rows $5\le n\le100$ sum to $161\,696$ sets, $7\,520\,944$ pairs and $13\,989\,171$ steps with no cover and no capped branch (rows $31$ to $66$ come from a run of 17 October 2026, the others from 18 October 2026, same program). The $k=3$ totals are the column sums of the log of the original run (\texttt{data/repro\_logs/perturb\_coverk\_k3\_7\_40\_original.log}); the archived program reproduced its rows for $7\le n\le22$ exactly, and the rows $23\le n\le40$ were not re-run. The $k=3$ decision for $23\le n\le40$ is therefore a COMPUTED result of a development run that is not regenerated here.
+
+Zhang \cite{zhang} reports exact $k=3$ searches inside windows (removals in the mid-range, $n\le140$; see his Remark~6.3 and Section~8); we have not found a height-free decision for $k=3$ in the literature read, and have not searched exhaustively. The case $k=1$ is settled by \cite[Thm.~2.3]{gw} together with \cite[Thm.~1.2, Lemma~2.3]{zhang}
+and a computation; \cite[Thm.~2.4]{gw} gives finiteness for fixed $r$ but is not effective, and
+\cite[Thm.~1.4]{zhang} computes the components in a sharper form than anything here. For $k=2$,
+\cite[Thms.~7.5, 7.10, 7.13]{zhang} prove non-existence of tight two-speed modifications for the removed
+sets $\{2,r'\}$ ($n\ge19$) and $\{q,r'\}$ ($n\ge\max(40,10q)$), and give a census for $8\le n\le140$
+with inserted speeds at most $8n$; version~1 had verified $6\le n\le34$ under $\max R\le4n$. The
+computation here is independent of those arguments: Theorem~\ref{thm:cover} bounds $\min R$ with no
+hypothesis on the inserted speeds, so the enumeration is finite without a cap, and it covers
+$5\le n\le100$ for $k=2$ and $7\le n\le40$ for $k=3$. For $k=2$ it is not a stronger result than
+Zhang's theorems on the removed sets they cover.
+
+As a control, the tight set $\{1,4,5,6,7,11,13\}$ at $n=8$, due to Goddyn and Wong \cite{gw} and
+also recorded by Zhang, which is the $2$-speed modification with $M=\{2,3\}$ and $R=\{11,13\}$, lies
+in the range swept here. It is tight, not a counterexample,
+and the search correctly reports no covering: the times $1/8$ and $7/8$ survive, since neither $11$
+nor $13$ is divisible by $8$.
+
+The search is instrumented against the failure mode of a test that cannot succeed. Six positive
+controls check that the interval subtraction removes a contained interval, trims a partial overlap to
+the exact expected endpoint, leaves a disjoint interval untouched, splits a straddling interval in
+two, and that the congruence branch fires at $t=1/4$ and $t=1/2$, where a covering residue class
+exists. The negative control is that the search reports nothing for $n\le13$, where the conjecture is
+a theorem.
+
+
+\subsection{The tight $2$-speed modifications, exhaustively}\label{sec:tight2}
+
+The same enumeration, run to decide tightness rather than to look for counterexamples, classifies
+the tight $2$-speed modifications outright. With no cap on the inserted speeds, over
+$1.41\cdot10^{8}$ enumeration steps and with no branch left undecided:
+
+\begin{proposition}[Computed]\label{prop:tight2}
+For $5\le n\le100$, the following three $2$-speed modifications of $[n-1]$ are tight, and the
+enumeration finds no others:
+\[
+  \{2,4,6,8\}\ (n=5),\qquad \{1,4,5,6,7,11,13\}\ (n=8),\qquad
+  \bigl([73]\setminus\{70,72\}\bigr)\cup\{140,144\}\ (n=74).
+\]
+\end{proposition}
+
+Two caveats on completeness, both in the same direction. The search records, for each deleted pair
+and each smallest inserted speed, the first covering completion it finds rather than all of them, so
+a second tight set sharing both could in principle go unlisted; enumerating all completions instead
+changes nothing over $5\le n\le34$, where the raw hits collapse to the same two sets. And the
+interval arithmetic represents the complement of a closed bad set by closed intervals, so it retains
+endpoints touched exactly and thereby over-estimates the surviving region. Both errors can only
+cause a covering to be missed, never invented, so Proposition~\ref{prop:tight2} should be read as
+listing the tight modifications the enumeration finds, with no counterexample to the conjecture
+anywhere in the range, rather than as a proof that no fourth tight set exists.
+
+None of the three is new, and it is worth being precise about why. The first is the dilation
+$2\cdot[4]$. The second is the Goddyn--Wong set above. The third is an instance of the
+simultaneous-acceleration theorem of Goddyn and Wong \cite{gw}, stated as \cite[Thm.~12]{ps}:
+accelerating $r$ by a factor $m$ within $[n-1]$ preserves tightness when $r$
+shares a factor with every element of $[n-r,\,m(n-r)-1]$, and accelerations at several $r$ compose.
+Here $r=70$ and $r=72$ are both accelerated by $m=2$, with intervals $[4,7]$ and $[2,3]$; since
+$70=2\cdot5\cdot7$ meets each of $4,5,6,7$ and $72$ meets each of $2,3$, both qualify.
+
+So the content of Proposition~\ref{prop:tight2} is negative, and that is its interest. A complete
+characterisation of tight instances is open, and the converse of that theorem is known to fail in
+general \cite{ps}. Within $2$-speed modifications, up to $n=100$, the converse holds: every tight
+instance is a dilation or a Goddyn--Wong acceleration, with no sporadic example.
+
+Tightness of the three was re-checked independently of the search, by computing $\LR(V)$ in exact
+integer arithmetic over the candidate times $a/q$ with $q$ dividing some $|v_i\pm v_j|$ or $2v_i$.
+That routine returns $\LR=1/4,1/5,1/6$ on $\{1,2,3\}$, $\{1,2,3,4\}$, $\{1,3,4,5,9\}$, and returns
+$2/13$ on a perturbation of the $n=8$ set, so it distinguishes tight from non-tight rather than
+reporting tightness unconditionally.
+
+\begin{remark}[The closest unconditional result on this object]\label{rem:bp}
+For large $n$, Bohman and Peng \cite[Thm.~1.3]{bp}, with the range improved by Pomerance
+\cite{pomerance}, show that a set with $n<\max R\le 2n-c(\log n)^{2}$ is not tight. In the notation
+here that settles every $k$-speed modification, for every $k$, whose inserted speeds all lie below
+$2n-c(\log n)^{2}$; their witness time is again a fraction whose denominator is assembled from
+deleted speeds. It is asymptotic and ineffective in $n$, so it does not decide any particular small
+$n$, which is what Section~\ref{sec:comp} does; but it is the strongest existing unconditional
+statement about the objects of this paper.
+\end{remark}
+
+\section{The divisibility obstruction}\label{sec:divis}
+
+Covering a rational point of the uncovered region is not an analytic condition but a divisibility
+one, and the two families of rational points that always lie in $U(n,M)$ impose competing demands.
+
+This section is expository: the content is known. Proposition~\ref{prop:divbase} is the mechanism
+behind \cite[Lemma~2.3]{zhang}, which is in turn immediate from \cite[Lemma~2.2]{gw}, and
+Proposition~\ref{prop:divtriv} is the same observation at the base point $1/n$. We include the
+statements because the Lean development uses them and because they are what the search of
+Section~\ref{sec:comp} prunes on, not as new results.
+
+\begin{proposition}[Proved; Divisibility at a base point]\label{prop:divbase}
+Let $b<n$, $\gcd(a,b)=1$, and let $v$ satisfy $\nrm{v\,a/b}<1/n$. Then $b\mid v$.
+\end{proposition}
+
+\begin{proof}
+Write $r=va\bmod b$, so $\nrm{v\,a/b}=\min(r,b-r)/b$. If $r\ne0$ this is at least $1/b>1/n$. Hence
+$r=0$, that is $b\mid va$, and $\gcd(a,b)=1$ gives $b\mid v$.
+\end{proof}
+
+\begin{proposition}[Proved; The times $j/n$]\label{prop:divtriv}
+Let $\gcd(j,n)=1$. Then $j/n\in U(n,M)$ for \emph{every} $M\subseteq[n-1]$, and any $v$ with
+$\nrm{v\,j/n}<1/n$ satisfies $n\mid v$.
+\end{proposition}
+
+\begin{proof}
+A present speed $q$ has $1\le q<n$, so $n\nmid qj$ and $\nrm{q\,j/n}\ge1/n$; this uses nothing about
+$M$. For the second claim, $\nrm{v\,j/n}<1/n$ forces $vj\equiv0\pmod n$, and $\gcd(j,n)=1$ gives
+$n\mid v$.
+\end{proof}
+
+Both are equivalences: $b\mid v$ makes $a/b$ a centre of a bad interval of $v$, and likewise for
+$n\mid v$ and $j/n$. We verified them as such in exact arithmetic, by
+\texttt{code/perturbation/perturb\_divis.rs}: $593\,442$ instances of Proposition~\ref{prop:divbase} over
+$3\le n\le40$, $1\le b<n$, $a$ a unit mod $b$ and $1\le v\le 3n$; and $132\,684$ instances of
+Proposition~\ref{prop:divtriv} over $3\le n\le60$ with $1\le v\le 3n$. No exception. The membership
+$j/n\in U(n,M)$ was checked over \emph{all} $2^{n-1}$ subsets $M$ for $3\le n\le14$, including
+$M=[n-1]$: $121\,368$ instances, no exception.
+
+\begin{corollary}[Proved; Necessary conditions on $R$; cf.\ \protect{\cite[Lemmas~2.3, 6.1]{zhang}}]\label{cor:divnec}
+Suppose $\LR(([n-1]\setminus M)\cup R)<1/n$. Then some $v\in R$ is divisible by $n$; and for every
+$b\in M$ having no present multiple, some $v\in R$ is divisible by $b$. Writing $M_0$ for the set of
+such $b$, if $|M_0|=k$ then the $k$ speeds of $R$ must realise the $k+1$ demands $M_0\cup\{n\}$, so
+some $v\in R$ is divisible by $\operatorname{lcm}(d,d')$ for two distinct demands $d,d'$.
+\end{corollary}
+
+The statement differs from \cite[Lemma~2.3]{zhang} in three ways: he assumes $2r>n-1$ where the
+condition here is the weaker ``no present multiple'' (which $2b\in M$ also satisfies), he assumes
+tightness where we assume $\LR<1/n$, and the clause about $n\mid v$ and the pigeonhole over
+$M_0\cup\{n\}$ are not in the statements we read (his Lemma~6.1 extends the divisibility to every
+removed $r<n$ under tightness). The mechanism is his.
+
+\begin{proof}
+If $b$ has no present multiple then $\delta^{0}=0$, so $a/b\in U(n,M)$ by Theorem~\ref{thm:exact};
+$j/n\in U(n,M)$ always by Proposition~\ref{prop:divtriv}. Each must be covered by some $v\in R$, and
+Propositions~\ref{prop:divbase} and~\ref{prop:divtriv} identify the divisor. The last clause is
+pigeonhole on $k+1$ demands and $k$ speeds.
+\end{proof}
+
+At $k=1$ the two demands collide on a single speed, and that alone settles the regime.
+
+\begin{theorem}[Proved; Criterion D]\label{thm:critD}
+Let $n\ge3$, $k=1$, and $M=\{b\}$ with $2b\ge n$, so that $b$ has no present multiple. If
+\[
+  \ell(n,\{b\})\cdot n\cdot\operatorname{lcm}(b,n)\ \ge\ 2,
+\]
+then $\LR(([n-1]\setminus\{b\})\cup R)\ge1/n$ for every admissible $R$.
+\end{theorem}
+
+\begin{proof}
+Suppose not, and let $R=\{v\}$. By Corollary~\ref{cor:divnec}, $b\mid v$ and $n\mid v$, so
+$\operatorname{lcm}(b,n)\mid v$ and in particular $v\ge\operatorname{lcm}(b,n)$. The longest
+component $W$ of $U(n,M)$ is connected and contained in $B_v$, which is a disjoint union of open
+intervals, so $W$ lies in one of them and $\ell(n,\{b\})=|W|<2/(vn)$. Hence
+$v<2/(\ell n)$, contradicting the displayed hypothesis.
+\end{proof}
+
+Theorem~\ref{thm:critD} is not new, and we claim no priority for it. The regime $2b\ge n$ at
+$k=1$ is already closed in the literature by exactly this route: \cite[Lemma~2.3]{zhang} gives
+$b\mid v$, after which \cite[Thms.~1.1, 1.2]{zhang} classify the single-speed modifications. We record the criterion in this form only because it
+is what the formalization proves and because the numerical comparison below locates the measure
+criterion's loss. Exhaustively over all $b$ with $2b\ge n$, Theorem~\ref{thm:critD} certifies
+$100\%$ of them at $n=20,26,32,38,44,50$, against $30.0,30.8,37.5,31.6,40.9,40.0$ per cent for the
+criterion of Theorem~\ref{thm:uncond}, and $100\%$ is also the truth. So on this regime the measure
+criterion is losing roughly $60$ per cent of what divisibility sees, which is the useful reading.
+The mechanism is visible at $n=32$, $M=\{30\}$: the covering bound caps $v$ at $171$, while
+$\operatorname{lcm}(30,32)=480$.
+
+For $k\ge2$ the two demands need not fall on the same speed, and Corollary~\ref{cor:divnec} becomes
+a constraint rather than a contradiction: the speed covering the base point of the longest window is
+divisible by $b$, hence at least $b\lceil n/b\rceil$, and so covers only the radius $1/(vn)$ about
+$a/b$, leaving two arms to the remaining $k-1$ speeds. Each arm is connected, so the connectivity
+bound applies to it, and the analysis is the finite recursion of Section~\ref{sec:comp} rather than
+a closed criterion. What the divisibility does supply there is a sound and substantial pruning: by
+Proposition~\ref{prop:divtriv}, if any $j/n$ survives the speeds chosen so far, the last remaining
+speed must be a multiple of $n$.
+
+Propositions~\ref{prop:divbase} and~\ref{prop:divtriv}, the membership $j/n\in U(n,M)$, and the
+divisibility half of Theorem~\ref{thm:critD} are formalized; see Section~\ref{sec:comp} and the
+table in the Formalization section.
+
+\begin{itemize}
+\item Theorem~\ref{thm:unit} was tested on all $M$ of size $1$ with $n\le 44$ ($602$ instances with
+$M$ meeting the units mod $n$) and of size $2$ with $n\le34$ ($4857$ instances): no violation, and
+the value $1/(n(n-1))$ attained.
+\item The lower bound of Proposition~\ref{prop:missing}, together with
+Theorem~\ref{thm:unit}, was compared against the exhaustively computed $\ell(n,\{b\})$ for all
+$4004$ pairs $b<n\le 90$: no violation. Over that range
+$\min \ell(n,\{b\})\,n(n-1)P(b)=1.59563$, at $(n,b)=(74,70)$, and the same minimum for the proved
+lower bound is $1.39048$, at the same pair.
+\item Over all $b<n\le400$: the largest coprime gap $j_0-s$ is $9$, at $(n,b)=(212,210)$; and in
+the regime where it is used, namely $2b\le n-1$, the quantity $(2s-j_0)/s$ is always at least
+$0.625$, attained at $(n,b)=(14,6)$, with no case where $2s-j_0\le0$.
+\item $P(b)<2\log b+2$ was verified for all $2\le b\le 2\cdot10^{5}$, consistent with the case check
+in the proof of Theorem~\ref{thm:uniform}(ii).
+\end{itemize}
+
+The logarithm in Theorem~\ref{thm:uniform}(iii) is not an artifact of the proof, but establishing
+that needs an \emph{upper} bound on $\ell$, which Proposition~\ref{prop:missing} does not provide.
+Zhang \cite[Thm.~1.4]{zhang} computes $\ell(n,\{b\})$ exactly; his formula at $M=\{n-2\}$ gives
+$\ell\,n(n-1)=2/P(n-2)+o(1)$ as $n\to\infty$ along any sequence with $P(n-2)$ fixed, and
+$P(b)\to\infty$ along primorials, so no bound of the form $c/n^{2}$ holds for all $M$. We record the
+agreement of our computed values with that formula, without relying on it elsewhere: $P=7$ for $b=720$
+gives limit $2/7=0.2857$ and measured $0.28892$ at $n=722$; $P=11$ for $b=420$ gives $0.18182$ and
+measured $0.18715$ at $n=422$; $P=13$ for $b=2310$ gives $0.15385$ and measured $0.15478$ at
+$n=2312$.
+
+\section{Formalization}
+
+The covering bound, the coprime component bound, the localization theorem and the unconditional
+criterion are formalized in Lean~4 with Mathlib. Each declaration builds with no \texttt{sorry} and
+depends only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The development
+comprises $70$ theorems and $5$ definitions, across the fifteen modules
+\texttt{Perturb*.lean}, \texttt{CoveringBound.lean} and \texttt{PhaseBound.lean}; the count is
+reproduced by
+\texttt{grep -cE '\textasciicircum(theorem|def)' } on those files.
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Statement & Lean declaration & constant \\
+\hline
+Cor.~\ref{cor:main}, coprime case & \texttt{perturbation\_bound\_of\_coprime} & $(2{+}4/n)k$ \\
+Thm.~\ref{thm:cover}, assembled & \texttt{covering\_bound} & $(2{+}4/n)k$ \\
+Lemma~\ref{lem:strip} & \texttt{volume\_badSet\_inter\_Icc} & $(2{+}4/n)/(vn)$ \\
+$B_v$ as a union of intervals & \texttt{badSet\_eq} & n/a \\
+Thm.~\ref{thm:cover}, arithmetic core & \texttt{covering\_forces\_small\_speed} & general \\
+Thm.~\ref{thm:unit} & \texttt{perturb\_component\_of\_coprime} & sharp \\
+Thm.~\ref{thm:unit}, core & \texttt{perturb\_component} & sharp \\
+uniqueness of $j_+$ & \texttt{residue\_one\_unique} & n/a \\
+$r\ne0$ & \texttt{residue\_ne\_zero} & n/a \\
+distance to $\Z$ on $[1/n,1-1/n]$ & \texttt{dist\_int\_ge\_of\_mem\_Icc} & n/a \\
+Lemma~\ref{lem:mono} & \texttt{uncovered\_mono} & n/a \\
+Thm.~\ref{thm:unit} in region form & \texttt{Icc\_subset\_uncovered} & n/a \\
+Prop.~\ref{prop:missing}, containment & \texttt{Icc\_subset\_uncovered\_missing} & sharp \\
+Prop.~\ref{prop:missing}, upper edge & \texttt{hnon\_of\_j0} & sharp \\
+Cor.~\ref{cor:main}, missing-speed case & \texttt{perturbation\_bound\_missing} & $(4{+}8/n)k$ \\
+maximality of $j_0$ & \texttt{le\_of\_congr\_of\_ge} & n/a \\
+$j_0$ exists in the window & \texttt{exists\_coprime\_window} & n/a \\
+existence of $a$ & \texttt{exists\_a\_of\_coprime} & n/a \\
+maximality, packaged & \texttt{hj0max\_of\_spec} & n/a \\
+Thm.~\ref{thm:uniform}(i), two regimes & \texttt{exists\_interval\_missing} & explicit \\
+\textbf{Thm.~\ref{thm:uniform}(i)} & \texttt{exists\_interval\_uncovered} & explicit \\
+Thm.~\ref{thm:uncond}, covering step & \texttt{not\_covered\_of\_long\_interval} & $(2{+}4/n)k$ \\
+\textbf{Thm.~\ref{thm:uncond}} & \texttt{exists\_lonely\_time} & $(2{+}4/n)k$ \\
+Cor.~\ref{cor:uncond}, window from $j_0$ & \texttt{Icc\_subset\_uncovered\_of\_j0} & sharp \\
+Cor.~\ref{cor:uncond}, criterion & \texttt{lonely\_of\_j0\_criterion} & $(2{+}4/n)k$ \\
+Cor.~\ref{cor:uncond}(a) & \texttt{lonely\_of\_one\_mem} & $n>(6{+}8/n)k$ \\
+\textbf{Cor.~\ref{cor:uncond}(b)} & \texttt{lonely\_of\_criterion\_b} & $(4{+}8/n)kbj_0$ \\
+Cor.~\ref{cor:uncond}(c), one-sided & \texttt{lonely\_of\_criterion\_c} & vacuous \\
+Prop.~\ref{prop:twosided}, left edge & \texttt{missing\_nonmultiple\_protects\_left} & sharp \\
+\textbf{Prop.~\ref{prop:twosided}} & \texttt{Icc\_subset\_uncovered\_twosided} & sharp \\
+\textbf{Cor.~\ref{cor:uncond}(c)} & \texttt{lonely\_of\_criterion\_c'} & $(2{+}4/n)kbj_0j_1$ \\
+\textbf{Thm.~\ref{thm:localize}} & \texttt{exists\_deleted\_fraction} & sharp \\
+Thm.~\ref{thm:localize}, denominator form & \texttt{exists\_deleted\_denominator} & sharp \\
+Thm.~\ref{thm:localize}, lowest terms & \texttt{deleted\_denominator\_of\_dvd} & sharp \\
+Cor.~\ref{cor:measure}, covering step & \texttt{uncoveredStrict\_subset\_union} & sharp \\
+\textbf{Thm.~\ref{thm:exact}}, abutment & \texttt{uncovered\_between} & sharp \\
+uncovered $\to$ strict on an interval & \texttt{uncoveredStrict\_of\_Icc\_subset} & sharp \\
+\textbf{Thm.~\ref{thm:exact}}, abutment left & \texttt{uncovered\_between\_left} & sharp \\
+two-sided window, any regime & \texttt{Icc\_subset\_uncovered\_twosided\_general} & sharp \\
+two-sided containment, per speed & \texttt{Icc\_subset\_uncovered\_twosided\_direct} & sharp \\
+\textbf{Cor.~\ref{cor:window}}, two-sided & \texttt{lonely\_of\_window\_twosided} & $(2{+}4/n)k$ \\
+Cor.~\ref{cor:measure} on a component & \texttt{exists\_base\_point\_of\_Icc} & sharp \\
+\textbf{Cor.~\ref{cor:window}} & \texttt{lonely\_of\_window} & $(2{+}4/n)k$ \\
+\textbf{Prop.~\ref{prop:divbase}} & \texttt{dvd\_of\_covers\_base} & sharp \\
+Prop.~\ref{prop:divtriv}, membership & \texttt{mem\_uncovered\_of\_coprime} & sharp \\
+\textbf{Prop.~\ref{prop:divtriv}} & \texttt{dvd\_of\_covers\_trivial} & sharp \\
+\textbf{Thm.~\ref{thm:critD}}, divisibility half & \texttt{exists\_survivor\_of\_not\_lcm\_dvd} & sharp \\
+\hline
+\end{tabular}
+\end{center}
+
+What is and is not machine-checked. The list below is the single authoritative inventory; the
+abstract and the table agree with it, and the table lists every declaration referred to here.
+
+\begin{itemize}
+\item \textbf{Formalized:} Lemma~\ref{lem:strip}; Theorem~\ref{thm:cover}; Lemma~\ref{lem:mono};
+Theorem~\ref{thm:unit}; Proposition~\ref{prop:missing}; Proposition~\ref{prop:twosided}; the
+selection of $j_0$ and of $a$; Theorem~\ref{thm:uniform}(i); Theorem~\ref{thm:uncond};
+Theorem~\ref{thm:localize}; Propositions~\ref{prop:divbase} and~\ref{prop:divtriv} in full, and
+the divisibility half of Theorem~\ref{thm:critD}; the abutment half of Theorem~\ref{thm:exact} and its containment
+half in the restricted form described below; Corollary~\ref{cor:window};
+Corollary~\ref{cor:uncond} in all three cases; and \emph{both} displays of
+Corollary~\ref{cor:main}.
+\item \textbf{With a weaker constant.} The formalized strip lemma is proved by a union bound over
+the translates meeting the window rather than by periodicity. The translates that can meet
+$[x,x+\ell]$ are indexed by the integers in an open interval of length $v\ell+2/n$, of which there
+are at most $v\ell+1+2/n$, and each contributes at most $2/(vn)$; so Lean proves
+\[
+  \lambda\bigl(B_v\cap[x,x+\ell]\bigr)\ \le\ \frac{2\ell}{n}+\frac{2+4/n}{vn}
+\]
+in place of the sharp $2\ell/n+2/(vn)$. Everything downstream inherits the constant $2+4/n$ rather
+than $2$. What Lean proves is the second display of Theorem~\ref{thm:cover}, the bound on
+$\min R$; the first display, the inequality for $\sum_{v\in R}1/v$, appears in the development only
+as a hypothesis of \texttt{covering\_forces\_small\_speed} and is not itself formalized. The two
+displays of Corollary~\ref{cor:main} are formalized in the forms $\min R\le(4{+}8/n)k\,n^{3}/(n-2k)$
+and
+$\min R\le(2{+}4/n)k\,n(n-1)/(n-2k)$. Theorem~\ref{thm:uncond} is formalized with $(2+4/n)k$ in
+place of $2k$; the loss is a factor $(n+2)/n$, and reaching $2$ exactly would need the periodicity
+argument.
+\item \textbf{What that costs in reach.} The machine-checked form of Corollary~\ref{cor:window}
+requires $w(n,b,a,M)>(2n+4)k/(n^{2}(n-2k))$ rather than $2k/(n(n-2k))$, and it is not the window
+$w$ of Definition~\ref{def:window} that \texttt{lonely\_of\_window} consumes but a smaller one: its
+hypothesis $\delta_0\ge0$ makes the window one-sided, so it cannot straddle the base point. Its
+offset and far cap are now the sharp ones, $\delta_0\ge1/(jn)$ and $\delta_1\le1/n$; the crude
+$1/(2bn)$ and $1/(nb)$ survive only one level up, in \texttt{Icc\_subset\_uncovered\_of\_j0}, and it
+is there that the $4358$ base points with $\delta^{+}>1/(nb)$, and the $488$ at which $b$ has a
+present multiple and $\delta^{0}<1/(2bn)$, apply. The figures below are for the union of \texttt{lonely\_of\_window},
+\texttt{lonely\_of\_criterion\_c'} and \texttt{lonely\_of\_one\_mem}. Counted exhaustively
+over all $k$-subsets at $n=22,26,30,34,38,42$, what Lean certifies is
+$38.10,32.00,37.93,42.42,35.14,39.02$ per cent at $k=1$; $11.90,18.33,16.50,20.83,19.52,21.83$ at
+$k=2$; and $14.29,12.17,11.82,17.80,16.74,15.43$ at $k=3$, against the criterion's own
+$38.10,36.00,41.38,42.42,37.84,41.46$; $21.43,19.33,23.89,21.78,24.77,22.44$; and
+$14.44,13.13,11.88,18.37,16.82,15.55$.
+\item \textbf{Not assembled in Lean, and formalized only in part.} Three statements of this paper
+are not fully machine-checked, and we set out exactly what is missing.
+Theorem~\ref{thm:exact}: both abutment halves are formalized, \texttt{uncovered\_between} to the
+right and \texttt{uncovered\_between\_left} to the left, and
+\texttt{Icc\_subset\_uncovered\_twosided\_general} assembles them into a two-sided containment with
+no restriction on the regime, the hypothesis being that $b$ has no present multiple rather than
+$n\le2b$. The containment \texttt{Icc\_subset\_uncovered\_missing} now carries the sharp per-speed offset
+$\delta_0\ge1/(jn)$ in place of $1/(2bn)$, and the far cap $\delta_1\le1/n$ in place of $1/(nb)$;
+\texttt{Icc\_subset\_uncovered\_twosided\_direct} gives the two-sided interval from per-speed
+conditions alone whenever $b$ has no present multiple, and \texttt{lonely\_of\_window\_twosided} is
+the resulting criterion. Together these lift the machine-checked reach at $k=2$ from
+$10.00,15.67,14.04,17.61,16.07,18.78$ to the figures above. What remains unformalized on
+Theorem~\ref{thm:exact} is the maximum over base points.
+Corollary~\ref{cor:measure}: the covering statement is formalized, the summation
+$\sum_{q\in M}q\cdot 2/(qn)=2|M|/n$ is not. Theorem~\ref{thm:cover}: the first display is not
+formalized, as noted above. Theorem~\ref{thm:critD}: the divisibility half is
+\texttt{exists\_survivor\_of\_not\_lcm\_dvd}, in full; the numerical assembly against the covering
+bound is not formed in Lean.
+\item \textbf{Not formalized:} parts (ii) and (iii) of Theorem~\ref{thm:uniform}, which rest on
+Chebyshev-type input and on Iwaniec's theorem respectively; Proposition~\ref{prop:ceiling}; the
+elementary implication of Remark~\ref{rem:closed}; the emptiness computation of
+Remark~\ref{rem:cempty}; and the recursion of Section~\ref{sec:open}. Remark~\ref{rem:zhang}
+records a comparison and carries no formal content.
+\end{itemize}
+
+The row \texttt{lonely\_of\_criterion\_c} records the superseded one-sided form of case (c) and is
+provably vacuous; \texttt{lonely\_of\_criterion\_c'} replaces it and is not, though by
+Remark~\ref{rem:cempty} it fires only at $k=1$.
+
+The Lean development depends on no external result beyond Mathlib. In particular
+Proposition~\ref{prop:missing} is proved there from scratch, Theorem~\ref{thm:localize} uses only
+Mathlib's \texttt{Real.exists\_nat\_abs\_mul\_sub\_round\_le}, and Remark~\ref{rem:zhang} is used
+nowhere.
+
+\section{The covering bound away from modifications}\label{sec:beyond}
+
+The covering bound was set up for modifications of $[n-1]$, but nothing in it refers to that
+structure. Stated for an arbitrary family it reads as follows, and this form is machine-checked.
+
+\begin{proposition}[Verified; Lean: \texttt{covered\_interval\_short}]\label{prop:short}
+Let $v>0$ and $0<\delta\le\tfrac12$. If $\nrm{vt}<\delta$ for every $t\in[x,y]$, then
+$(y-x)v<2\delta$.
+\end{proposition}
+
+The times at which a single speed fails to separate form intervals of length exactly $2\delta/v$,
+and an interval inside that union lies in one of them. The proof is the intermediate value theorem:
+otherwise $vt$ takes the value $k+\delta$ somewhere in $[x,y]$, where the distance to the integers is
+exactly $\delta$.
+
+\begin{corollary}[Verified; Lean: \texttt{le\_ML\_of\_interval}]\label{cor:mlbound}
+Let $V$ be a finite family of nonzero integers, $0<\delta\le\tfrac12$, and $j$ an index with
+$V_j>0$. If some interval $[x,y]$ satisfies $\nrm{V_it}\ge\delta$ for every $i\ne j$ and every
+$t\in[x,y]$, and $2\delta\le(y-x)V_j$, then $\LR(V)\ge\delta$.
+\end{corollary}
+
+We record one application, to the four-speed loneliness spectrum. Kravitz \cite{kravitz} conjectured
+that $\LR$ of $n$ speeds is either $s/(ns+1)$ or at least $1/n$, proved it for $n\le3$, and proved it
+for $n=4$ and $n=6$ under the lacunary hypothesis $v_n>4v_{n-1}^{4}$ \cite[Thm.~2.2]{kravitz}; the
+conjecture at $n=4$ is false in general \cite{fansun}. The first gap
+alone, that four speeds have $\LR=\tfrac15$ or $\LR\ge\tfrac29$, is open.
+
+Write $\ell(v_1,v_2,v_3)$ for the longest interval on which all three of $v_1,v_2,v_3$ stay at
+distance $\ge\tfrac29$. Corollary~\ref{cor:mlbound} applied with $\delta=\tfrac29$ and $j=4$ gives:
+if $\LR(v_1,\dots,v_4)<\tfrac29$ then $v_4<\tfrac{4}{9}/\ell$. Computation in exact rational arithmetic over all coprime
+triples with speeds at most $110$ gives $\min\ell\cdot v_3=\tfrac19$, attained only at $(1,2,3)$,
+with second smallest value $\tfrac4{27}$, whence
+$v_4<4v_3$, so the first gap holds throughout $v_4\ge4v_3$. That range is strictly wider than the
+lacunary hypothesis $v_4>4v_3^{4}$ of \cite[Thm.~2.2]{kravitz}, since $4v_3^{4}$ exceeds $4v_3$ for
+$v_3\ge2$; the conclusion, however, is weaker, settling only the first gap and not the full spectrum
+statement. The minimum is a computation, not a theorem, so the constant $4$ is HEURISTIC here.
+
+What the bound does not do is close the remaining range, and the obstruction is sharp rather than
+technical. To force the contradiction $v_4<v_3$ one needs $\ell v_3>\tfrac49$, whereas the median of
+$\ell v_3$ is $\tfrac59$ and the small values are $\tfrac19,\tfrac4{27},\tfrac29$. The triples
+realising them are, with few exceptions, exactly those with $v_3=v_1+v_2$. On such a triple
+$\nrm{tv_3}=\nrm{tv_1+tv_2}$, so with $u=tv_1$ and $w=tv_2$ the three conditions collapse to a single
+condition on one point of $\mathbb{T}^2$, namely membership of
+$\{(u,w):\nrm{u},\nrm{w},\nrm{u+w}\ge\delta\}$. At $\delta=\tfrac29$ that set is two congruent right
+triangles of leg $1-3\delta=\tfrac13$, of total area $(1-3\delta)^2=\tfrac19$, the same constant
+again. Deciding this case is a question about an orbit meeting a fixed planar region, which is the
+subject of the main lemma of \cite{bhk}; we have not carried that out.
+
+\subsection{A barrier for position-uniform covering lemmas}\label{sec:barrier}
+
+The covering lemmas available for this kind of question all share a feature: their conclusion is
+that a group meets \emph{every} rectangle of given dimensions, so the criterion they supply cannot
+depend on where the rectangle sits. That is what makes them convenient, and it is also what limits
+them here.
+
+Fix $\delta=\tfrac29$ and consider four speeds with $v_3=v_1+v_2$. Fixing $tv_2\equiv\delta$ makes
+the second condition automatic and reduces the remaining three to asking whether a translated
+cyclic subgroup of $\mathbb{T}^2$ meets a rectangle. After normalising so that the subgroup is
+generated by $(1/n,c/n)$, the question becomes whether $\{kc \bmod n\}$, as $k$ runs over an
+interval of $L$ consecutive integers, meets an interval of length $M$; here $n,c,L,M$ are exactly
+the data visible to a position-uniform criterion.
+
+\begin{proposition}[Computed]\label{prop:barrier}
+No criterion depending only on $(n,c,L,M)$ decides this question. Explicitly,
+$(v_1,v_2,v_3,v_4)=(1,6,7,11)$ and $(1,6,7,17)$ both give $(n,c,L,M)=(6,5,2,3)$, and the required
+$t$ exists for the second and not for the first. The pairs $(1,6,7,10)$ with $(1,6,7,22)$, and
+$(1,7,8,15)$ with $(1,7,8,22)$, are further witnesses.
+\end{proposition}
+
+\begin{proof}
+Each assertion is a finite check on the four listed pairs: the two members of a pair agree on
+$(n,c,L,M)$ by direct substitution, and the existence or non-existence of the required $t$ is
+decided by scanning the finitely many candidate times, since an optimal $t$ may be taken with
+denominator a sum or difference of two speeds. A criterion depending only on $(n,c,L,M)$ assigns
+the same verdict to both members of a pair and is therefore wrong on one of them.
+\end{proof}
+
+The consequence is that a position-uniform covering lemma cannot decide every instance of this
+construction, whatever its constants. Measured on $147\,099$ instances, the best such criterion we
+found, namely that the largest gap of the point set is smaller than $M$, decides $94.17\%$ of them
+and never errs; the residue is where instances agreeing on $(n,c,L,M)$ disagree in outcome. This
+accounts for a ceiling that four separate arguments met at the same place, and it says what a proof
+must do instead: use the arithmetic of $v_1,v_2,v_4$, or a construction other than fixing
+$tv_2\equiv\delta$.
+
+\subsection{A Fourier criterion, and how it evades the barrier}\label{sec:fourier}
+
+Proposition~\ref{prop:barrier} bounds what a position-uniform covering lemma can do. The following
+criterion is not one, and is not subject to it.
+
+Let $T\subseteq\R/\Z$ be a finite union of $N$ intervals of total measure $\mu$, let $v$ be a
+positive integer, and write $F(k)=\int_T e^{-2\pi ikt}\,dt$. Say $t$ is \emph{good} if
+$\nrm{vt}\ge\delta$.
+
+\begin{proposition}[Proved; single mode]\label{prop:fourier1}
+If no point of $T$ is good, then $\operatorname{Re}F(v)\ \ge\ \cos(2\pi\delta)\,\mu$.
+\end{proposition}
+
+\begin{proof}
+If no point is good then $\nrm{vt}<\delta$ throughout $T$, so for each $t\in T$ the phase $2\pi vt$
+lies within $2\pi\delta$ of a multiple of $2\pi$, whence $\cos(2\pi vt)\ge\cos(2\pi\delta)$ by
+monotonicity of the cosine on $[0,\pi]$. Integrate over $T$. (Lean:
+\texttt{cos\_lt\_cos\_of\_nid\_lt}, the pointwise step; the integration is not formalized.)
+\end{proof}
+
+Its contrapositive is a criterion: if $\operatorname{Re}F(v)<\cos(2\pi\delta)\mu$ then some point of
+$T$ is good. Taking $T$ to be the uncovered set of the three slower speeds and $v=v_4$, this decides
+$95.28\%$ of the instances left open at four speeds, against $70.33\%$ for the best criterion
+obtainable from component lengths alone.
+
+Using all modes rather than one sharpens it. With $g$ the indicator of the good phases,
+\[
+  \bigl|T\cap\{\nrm{vt}\ge\delta\}\bigr|
+   \;=\;\hat g(0)\mu+2\operatorname{Re}\sum_{m\ge1}\hat g(m)\overline{F(mv)},
+\]
+and truncating at $M$ modes costs at most $2N/(\pi^2vM)$, since $|F(k)|\le N/(\pi|k|)$ for a union
+of $N$ intervals and $|\hat g(m)|\le1/(\pi m)$. Positivity of the truncated sum less that tail
+forces a good point. At $M=40$ this decides every one of $49\,121$ instances except
+$(v_1,\dots,v_4)=(3,4,7,11)$, where $\LR=\tfrac29$ exactly, so the intersection has measure zero and
+no criterion demanding positive measure can decide it.
+
+The reason this passes the barrier is that $F$ depends on where $T$ sits, not only on its
+translation-invariant data, so Proposition~\ref{prop:barrier} does not apply. What remains, and is
+not proved here, is a lower bound for the truncated sum valid for every instance. Two structural
+facts bear on it. First, $1_T$ is a product of three indicators, $1_T(t)=h(v_1t)h(v_2t)h(v_3t)$, so
+its Fourier coefficients are a convolution
+$F(k)=\sum_{av_1+bv_2+cv_3=k}\hat h(a)\hat h(b)\hat h(c)$, large only when $k$ is close to a small
+integer combination of the slower speeds. Second, measurement of the margin across the same
+$49\,121$ instances shows it never falls below $0.372\mu$ unless $v_4$ satisfies an integer relation
+with $v_1,v_2$ having coefficients at most $3$; every instance with a small margin satisfies such a
+relation, and those instances are rank two, where a different and elementary argument applies. So
+the difficulty is confined to a case the criterion is not needed for. (The margin statement of this paragraph was measured in a session and its generating program is not archived; HEURISTIC. The counts $147\,099$, $94.17\%$, $49\,121$, $49\,120$ and the single undecided tuple $(3,4,7,11)$ are regenerated by \texttt{code/perturbation/g1\_gap\_criterion.rs} and \texttt{r1\_fourier\_criterion.rs}, which use floating point; $\LR(3,4,7,11)=2/9$ is exact, \texttt{code/obstructions/mlcheck.rs}.)
+
+\section{Limits of the method}\label{sec:limits}
+
+The covering bound is a measure estimate, and measure estimates on this problem are capped. We
+record where the cap sits, because it bounds what any sharpening of Section~\ref{sec:uncond} can
+achieve.
+
+First, at the baseline the bad sets already have full measure. By Dirichlet every $t$ has some
+$q\le n-1$ with $\nrm{qt}\le1/n$, so the set on which every $j\in[n-1]$ is protected is the finite
+set $\{a/n:\gcd(a,n)=1\}$, of measure $0$. Hence $\lambda\bigl(\bigcup_{j\in[n-1]}B_j\bigr)=1$
+exactly, which we verified in exact arithmetic for $n=5,7,11,13,17,23,31,41$. Any argument of the
+shape ``the bad sets cannot cover because their measure is below $1$'' therefore fails at the
+extremal case. This is the classical factor-of-two obstruction, recorded in \cite[Prop.~1.1]{tao}
+and sharpened there by the example of the primes in $(n/4,n/2)$, for which the union bound is tight
+to $1+O(1/n)$.
+
+Second, in the modification setting the inserted speeds have a measure surplus. The $k$ speeds of
+$R$ carry total bad-set measure exactly $2k/n$, while $\lambda(U(n,M))\le2k/n$ with the extremal
+ratio $\lambda(U)\big/(2k/n)$ lying between $0.5139$ and $0.6492$ over all $M$ with $|M|\le3$ and
+$n\in\{16,22,28,34,40\}$, and never reaching $1$. So $R$ always has between $35$ and $49$ per cent
+more measure than the region it must cover, and no refinement of the measure step can force
+non-covering.
+
+Third, the criterion has an explicit ceiling. Its strength is governed by the smallest
+$\ell(n,\{b\})$, and that minimum behaves like $2/(n^{2}P(n-2))$, with $P(m)$ the least prime not
+dividing $m$: at $b=n-2$ one has $s=2$ and the binding unit is the least integer at least $2$
+coprime to $n-2$. Over $n=50,200,800,3200$ the ratio of $\ell(n,\{n-2\})\,n^{2}$ to $2/P(n-2)$ is
+$1.163,\,1.036,\,1.009,\,1.002$. The worst $n$ are those with $n-2$ a primorial, where
+$\ell\,n^{2}\log n$ stays near $1$; this is why Theorem~\ref{thm:uniform}(ii) has the shape it does,
+and it is sharp.
+
+The conclusion we draw is that the results of this paper are the ones the method reaches, and that
+progress on the conjecture itself will not come from sharpening the measure step. The modern
+advances for small numbers of runners \cite{bs,rosenfeld,trak,st} are congruence sieves, a different
+mechanism.
+
+\section{Bounding every inserted speed}\label{sec:open}
+
+Theorem~\ref{thm:cover} bounds $\sum_{v\in R}1/v$, hence $\min R$, but not every element of $R$. For
+$k=1$ these coincide. For $k\ge2$ one would like to recurse: fix the smallest inserted speed $v_1$,
+pass to $U(n,M)\setminus B_{v_1}$, and apply Theorem~\ref{thm:cover} again with $k-1$ speeds. That
+needs a lower bound on the longest component of the residual region.
+
+We tested the recursion with $v_1$ chosen adversarially to fragment the region, over all $M$ with
+$|M|=2$, all $v_1\in[n,6n]$ and $8\le n\le34$, in exact rational arithmetic. In every instance the
+residual region retained a component of positive length, and the minimum of
+$\bigl(\text{longest component of } U(n,M)\setminus B_{v_1}\bigr)\cdot n(n-1)$ was $0.375$, attained
+at $n=8$, $M=\{2,6\}$, $v_1=24$, with no downward trend.
+
+\begin{proposition}[Proved; Ceiling]\label{prop:ceiling}
+Let $n\ge3$. For every $v\ge1$, every connected subset of $[0,1)\setminus B_v$ has length at most
+$(n-2)/(nv)$.
+\end{proposition}
+
+\begin{proof}
+$[0,1)\setminus B_v$ is the disjoint union of the closed intervals
+$\bigl[\tfrac{i+1/n}{v},\ \tfrac{i+1-1/n}{v}\bigr]$, $0\le i<v$, each of length $(1-2/n)/v$. A
+connected set meeting two of them would meet the open gap between.
+\end{proof}
+
+There are thus two hard upper bounds on the longest component $\ell'$ of
+$U(n,M)\setminus B_{v_1}$: the ceiling $(n-2)/(nv_1)$ of Proposition~\ref{prop:ceiling}, and
+$\ell(n,M)$ itself, since the residual is a subset of $U(n,M)$. Neither dominates: for $v_1$ large the ceiling is the smaller, while at $v_1\approx n$ the ceiling
+is about $1/n$ and $\ell(n,M)$ can be as small as order $1/n^{2}$, for instance at
+$M=\{n/2,n-1\}$ with $n$ even. It is not always that small: $\ell(n,\{1,2\})=2/(3n)$ exactly, verified for $5\le n\le40$.
+
+Consequently a conjecture asserting a fixed fraction of $\ell(n,M)$ alone, with no dependence on
+$v_1$, is false: Proposition~\ref{prop:ceiling} forces $\ell'\to0$ as $v_1\to\infty$ while
+$c\,\ell(n,M)$ stays fixed. A lower
+bound independent of $v_1$ fails because the ceiling tends to $0$: at $n=8$, $M=\{2,6\}$ the longest
+component is $6.696\cdot10^{-3}$ at $v_1=24$ and $1.144\cdot10^{-5}$ at $v_1=65536$, the latter
+equal to the ceiling exactly, while the residual keeps positive measure: $0.031548$ at $v_1=24$ and
+$0.054915$ at $v_1=65536$, the latter approximately the limiting value $\tfrac34\lambda(U(8,\{2,6\}))=123/2240=0.0549107$. Taking $v_1=n$ and minimising over $M$ with $|M|=2$, the ratio
+$\ell'\big/\frac{n-2}{n^{2}}$ is $0.1000,0.0900,0.0653,0.0455,0.0383,0.0333,0.0294,0.0263,0.0238$ at
+$n=8,12,\dots,40$, so it decays like $1/n$. This is also what rules out a fixed fraction of the
+ceiling alone, and that we know only from data. The products $n\cdot\text{ratio}$ are
+$0.80,1.08,1.04,0.91,0.92,0.93,0.94,0.95,0.95$. The correct statement compares $\ell'$ with the smaller of
+the two bounds.
+
+\begin{conjecture}[Conjecture]\label{conj:resid}
+Let $k\ge2$. There is $c=c(k)>0$, depending on $k$ alone, such that for every $n$ with $2k<n$, every
+$M$ with $|M|=k$, and every nonempty set $W$ of at most $k-1$ integers each at least $n$,
+\[
+  \ell_W\ \ge\ c\,\min\Bigl(\ell(n,M),\ \frac{n-2}{n\,\max W}\Bigr),
+\]
+where $\ell_W$ is the length of the longest component of
+$U(n,M)\setminus\bigcup_{w\in W}B_w$.
+\end{conjecture}
+
+The quantification over sets $W$, rather than over a single $v_1$, is what the recursion needs: at
+step $j$ the region already has $j$ punctures, and a statement about one puncture does not reach it.
+The ceiling is governed by $\max W$, since a connected subset of the complement of
+$\bigcup_{w\in W}B_w$ lies in the complement of each $B_w$ and Proposition~\ref{prop:ceiling} applies
+to the largest.
+
+Granting it, every inserted speed is bounded. Write $\ell_j$ for the longest component after $j$
+punctures. Theorem~\ref{thm:cover} applied to that region with the remaining $k-j$ speeds gives
+$v_{j+1}\le 2(k-j)/(\ell_j(n-2(k-j)))$, and each branch of the minimum is bounded:
+\[
+  v_{j+1}\ \le\ \frac{2(k-j)\,n\,\max_{i\le j}v_i}{c\,(n-2)\,(n-2k+2j)}
+  \qquad\text{or}\qquad
+  v_{j+1}\ \le\ \frac1c\cdot\frac{2(k-j)}{\ell(n,M)\,\bigl(n-2(k-j)\bigr)} .
+\]
+The second is $1/c$ times the right-hand side of Theorem~\ref{thm:cover} with $k$ replaced by $k-j$,
+so Theorem~\ref{thm:uniform}(i) bounds it by $4(k-j)n^{3}/(c(n-2k+2j))$. The first is bounded by
+induction, since $v_1\le 4kn^{3}/(n-2k)$ by Corollary~\ref{cor:main}. Iterating bounds every element
+of $R$ and makes the classification a finite computation for each $n$, answering for $k$-speed
+modifications a version of \cite[Question~9.3]{zhang}. Theorem~\ref{thm:cover} is stated for
+$U(n,M)$, but its proof uses only that the region is covered by the remaining $B_v$ and has a
+component of length $\ell$, so it applies verbatim.
+
+The cost is not uniform in $k$. Step $j$ multiplies the bound by
+$\frac{2(k-j)\,n}{c\,(n-2)(n-2k+2j)}$, which is about $2(k-j)/(cn)$ when $n\gg k$, and about
+$(k-j)/(cj)$ when $n-2k=O(1)$. The composed product $\prod_{j=1}^{k-1}$ of these is bounded by a
+constant times $c^{-(k-1)}$: numerically, at $n-2k=1$ and $c=0.2$, the product equals
+$0.907,0.698,0.516,0.373$ times $c^{-(k-1)}$ at $k=5,10,20,40$. So the bound on $\max R$ is
+exponential in $k$ through $c^{-(k-1)}$, with no additional factorial.
+
+Evidence, in both regimes and at both puncture depths. With one puncture, over all $M$ with $|M|=2$
+and all $v_1$ from $n$ to $8n$, the ratio $\ell_W\big/\min(\ell(n,M),(n-2)/(nv_1))$ has minimum
+$0.207341$ over $21\le n\le44$, attained at $n=32$, $M=\{18,30\}$, $v_1=36$, and minimum $0.21875$
+over $8\le n\le20$, attained at $n=8$, $M=\{3,4\}$, $v_1=8$. With two punctures, exhaustively over all $M$ with $|M|=3$, all
+$9\le n\le22$ and all pairs $v_1<v_2$ in $[n,3n]$ ($5\,241\,348$ configurations), the minimum is
+$3/22=0.136364$, at $n=13$, $M=\{5,6,7\}$, $W=\{13,14\}$. In no instance did the region lose all positive-length components. The constant falls
+with puncture depth, consistent with the degradation just described.
+
+Positivity alone is weaker than it looks: for $|M|=k\ge2$ the set $([n-1]\setminus M)\cup W$ has at
+most $n-2$ speeds, so the Lonely Runner Conjecture predicts a floor strictly above $1/n$ for it, and
+strictness forces $\ell_W>0$. So the positive-length half of Conjecture~\ref{conj:resid} is a
+consequence of the conjecture this paper is about; only the quantitative half is extra.
+
+The restriction $|W|\le k-1$ is what does the work, not $k\ge2$ as such. For $k=1$ the residual can
+collapse to a finite set of isolated points: for $n\equiv2\pmod 6$, $M=\{n-2\}$ and $v_1=2(n-2)$ it
+is nonempty and has no component of positive length, being $\{1/8,3/8,5/8,7/8\}$ at $n=8$. The
+corresponding modifications $([n-1]\setminus\{n-2\})\cup\{2(n-2)\}$ are tight, verified for
+$n=8,14,20,26,32,38,44,50$, and are members of the Goddyn--Wong families.
+
+In the cases we examined with $k\ge2$, the surviving component sits at a base point $a/q$ with
+$q\in M\cup\{n\}$ and $\gcd(a,q)=1$, displaced when $2q\le n-1$ by the presence of the speed $2q$.
+The number of such base points that can carry a component of the maximal length is up to $2k$, not
+$k+1$: each $b\in M$ coprime to $n$ contributes its own tight point $a/n$ with $a\equiv b^{-1}\pmod n$, as
+well as the points $a/b$. What is missing is an arithmetic criterion showing
+that $k$ inserted speeds cannot block all of them at once.
+
+\begin{thebibliography}{99}
+\bibitem{bhk} T.~Bohman, R.~Holzman and D.~Kleitman, \emph{Six lonely runners}, Electron. J. Combin. \textbf{8} (2001), no.~2, \#R3.
+\bibitem{bp} T.~Bohman and F.~Peng, \emph{Coprime mappings and lonely runners}, Mathematika \textbf{68} (2022), 784--804.
+\bibitem{bs} J.~Barajas and O.~Serra, \emph{The lonely runner with seven runners}, Electron. J. Combin. \textbf{15} (2008), \#R48.
+\bibitem{cusick74} T.~W.~Cusick, \emph{View-obstruction problems in $n$-dimensional geometry}, J. Combin. Theory Ser. A \textbf{16} (1974), 1--11.
+\bibitem{cp} T.~W.~Cusick and C.~Pomerance, \emph{View-obstruction problems III}, J. Number Theory \textbf{19} (1984), 131--139.
+\bibitem{gw} L.~Goddyn and E.~B.~Wong, \emph{Tight instances of the lonely runner}, Integers \textbf{6} (2006), \#A38.
+\bibitem{iwaniec} H.~Iwaniec, \emph{On the problem of Jacobsthal}, Demonstratio Math. \textbf{11} (1978), 225--231.
+\bibitem{kravitz} N.~Kravitz, \emph{Barely lonely runners and very lonely runners: a refined approach to the lonely runner problem}, Comb. Theory \textbf{1} (2021), \#P17.
+\bibitem{fansun} H.~T.~Fan and A.~Sun, \emph{Amending the lonely runner spectrum conjecture}, arXiv:2306.10417.
+\bibitem{ps} G.~Perarnau and O.~Serra, \emph{The Lonely Runner Conjecture turns 60}, Comput. Sci. Rev. \textbf{58} (2025), 100798.
+\bibitem{pomerance} C.~Pomerance, \emph{Coprime matchings}, Integers \textbf{22} (2022), \#A29.
+\bibitem{rosenfeld} M.~Rosenfeld, \emph{The lonely runner conjecture holds for eight runners}, arXiv:2509.14111.
+\bibitem{rs} J.~B.~Rosser and L.~Schoenfeld, \emph{Approximate formulas for some functions of prime numbers}, Illinois J. Math. \textbf{6} (1962), 64--94.
+\bibitem{st} T.~Sungkawichai and T.~Trakulthongchai, \emph{Eleven, twelve, and thirteen lonely runners}, arXiv:2604.23906.
+\bibitem{tao} T.~Tao, \emph{Some remarks on the lonely runner conjecture}, Contrib. Discrete Math. \textbf{13} (2018), 1--31.
+\bibitem{trak} T.~Trakulthongchai, \emph{Nine and ten lonely runners}, Electron. J. Combin. \textbf{33} (2026), \#P2.46.
+\bibitem{zhang} Y.~Zhang, \emph{Tight instances of the Lonely Runner Conjecture: complete classification of one-entry modifications, a new infinite family, and the growth bound}, arXiv:2608.13599v2 (31 August 2026).
+\end{thebibliography}
+
+\end{document}

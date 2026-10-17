@@ -1,0 +1,5 @@
+
+2772478 family members checked over m=4..250
+RESULT: every generated set is the bad set of the explicit time its proposition
+        names, or a superset of one. F_gen is a subset of F_true throughout.
+        The famdec route is SOUND on this range.

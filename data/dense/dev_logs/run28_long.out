@@ -1,0 +1,12 @@
+Thu Oct  1 00:13:01 +07 2026 pool m=28 S=8
+edge-unions: 5419025 saturated=false
+parts incl. extensions: 7028912
+Thu Oct  1 00:14:20 +07 2026 dumpkept
+LP 27.000000000000004 P 7028912
+kept 1565911 of 7028912 min rc -1.1457501614131615e-13
+tight rows (1-based velocities) [30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56] count 27
+Thu Oct  1 00:16:06 +07 2026 mip
+status Optimal obj 27.00000000000004
+SUM 27 SOL [(2, 0), (8, 4), (1, 0), (7, 3), (1, 0), (7, 4), (4, 2), (7, 3), (3, 1), (8, 3), (7, 3), (3, 1), (8, 3)]
+CHECK OK: 13 parts, sum cap 27 <= 27, exact capacities re-verified
+Thu Oct  1 00:33:02 +07 2026 done m=28

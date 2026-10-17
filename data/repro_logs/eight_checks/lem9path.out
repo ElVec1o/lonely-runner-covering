@@ -1,0 +1,6 @@
+m=2 (i) path: 24696 cases, ell>2: 0
+m=2 (ii) j=2 path: 14406 cases, et not in {0,1,6}: 0, ell>2: 0, q(ly) not in {0,5,6}: 0, q(l(y-x)) not in {0,6}: 0
+m=2 (ii) j=3 path: 14406 cases, ell>3: 0, table claims fail: 0
+m=3 (i) path: 3303720 cases, ell>2: 0
+m=3 (ii) j=2 path: 1690500 cases, et not in {0,1,6}: 0, ell>2: 0, q(ly) not in {0,5,6}: 0, q(l(y-x)) not in {0,6}: 0
+m=3 (ii) j=3 path: 1690500 cases, ell>3: 0, table claims fail: 0

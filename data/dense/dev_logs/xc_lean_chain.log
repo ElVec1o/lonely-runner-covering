@@ -1,0 +1,18 @@
+=== AD m=49 Thu Oct  1 18:44:43 +07 2026
+Delta2CoverRangeAD EXIT:0 178s free=7347MB
+ALL OK
+build seconds: 178
+'LRSpectrumFull.dense_floor_m49' depends on axioms: [propext, Classical.choice, Quot.sound] 
+sorry/native/axiom lines: 0
+=== AE m=52 Thu Oct  1 18:47:48 +07 2026
+Delta2CoverRangeAE EXIT:0 178s free=7291MB
+ALL OK
+build seconds: 178
+'LRSpectrumFull.dense_floor_m52' depends on axioms: [propext, Classical.choice, Quot.sound] 
+sorry/native/axiom lines: 0
+=== AF m=58 Thu Oct  1 18:50:58 +07 2026
+Delta2CoverRangeAF EXIT:0 329s free=7428MB
+ALL OK
+build seconds: 329
+'LRSpectrumFull.dense_floor_m58' depends on axioms: [propext, Classical.choice, Quot.sound] 
+sorry/native/axiom lines: 0

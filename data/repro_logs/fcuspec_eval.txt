@@ -1,0 +1,1 @@
+[1, 5, 6, 11, 16, 17] m=6 ML=5/33 (m+1)ML=35/33 maximiser dens=[33] n|speed=false DC=false L1O=true

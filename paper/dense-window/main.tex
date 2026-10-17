@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,array,longtable}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[pdftitle={Lean-verified instances of the lonely runner conjecture for integer speeds in [1,2m]},pdfauthor={Vico Bonfioli}]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\ML}{\mathrm{ML}}
+\newcommand{\gap}{\mathrm{gap}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\lab}[1]{\par\smallskip\noindent\textit{Label: #1.}}
+\title{Lean-verified instances of the lonely runner conjecture\\for integer speeds in $[1,2m]$}
+\author{Vico Bonfioli}
+\date{18 October 2026. Preprint, not peer reviewed.}
+\sloppy\emergencystretch=4em
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a positive integer $m$ let $V\subset[1,2m]$ be a set of $m$ distinct positive integers. We consider the inequality $\ML(V)\ge 1/(m+1)$, the lonely runner conjecture for $m$ speeds restricted to speeds of size at most $2m$. We give a formalization in Lean~4 of this inequality for every $m\ge2$ such that $2m+1$ is prime, for each of the 33 values $m\le62$ with $2m+1$ composite, and for 34 further values $64\le m\le126$ with $2m+1$ composite (listed in Tables~\ref{tab:frac} and~\ref{tab:cc}). Consequently the statement is verified for every $m$ with $2\le m\le126$ except $m\in\{94,97,103,109,115,122\}$, for which no Lean module has been built; nothing is claimed for $m\ge127$ except when $2m+1$ is prime. The prime case is a short consequence of a divisibility lemma of Tao and a coprime-pair witness of Bohman and Peng, used at modulus $2m+1$. The composite cases are certified by finite objects of two kinds: weights on witness times (a fractional blocking certificate) and covers of $[1,2m]$ by parts with capacities (a cover-capacity certificate). The certificates for $m\le62$ were found by integer programming; those for $m\ge64$ by a local search in Rust and were accepted by a second, independent Rust checker before the Lean build. All are checked by the Lean kernel. The window has height $2m$, whereas the known reductions of the conjecture require exponential height, so nothing here bears on the conjecture for all $m$.
+\end{abstract}
+
+\section{Setting, labels and results}\label{sec:setting}
+
+Write $\norm{x}=\operatorname{dist}(x,\Z)$. For $v=(v_1,\dots,v_m)\in\Z_{>0}^m$ put $\gap_v(t)=\min_i\norm{v_it}$ and $\ML(v)=\sup_{t\in\R}\gap_v(t)$. The lonely runner conjecture (LRC) for $m$ speeds is $\ML(v)\ge 1/(m+1)$ for all $v$; there are $m+1$ runners, one of them stationary. The \emph{floor} is the value $1/(m+1)$. The \emph{dense window} statement for $m$ is: $\ML(v)\ge1/(m+1)$ whenever the $v_i$ are distinct and lie in $[1,2m]$. Tao names the window $[1,2m]$ as a natural target \cite{Tao17}; it is Problem~6 of the survey \cite{PS25}. In Lean, \texttt{gap} and \texttt{ML} are as above for \texttt{Fin (k+1) $\to$ $\Z$} with $m=k+1$ (module \texttt{MaxLoneliness}).
+
+\paragraph{Labels.} VERIFIED: formalized in Lean~4 with Mathlib, build clean, no \texttt{sorry}, axioms among \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. PROVED: a complete written proof, not formalized. HEURISTIC: computation or plausibility only. CONJECTURE: no proof. A result has the weakest label in its dependency chain. Where the project record contains no axiom print for a declaration, this is stated.
+
+\paragraph{Results.}
+\begin{itemize}
+\item Theorem~\ref{thm:D}: dense window for $2m+1$ prime. VERIFIED.
+\item Proposition~\ref{prop:frac}: fractional blocking criterion; instances $m=4,7,12,13$. VERIFIED.
+\item Theorem~\ref{thm:cc}: cover-capacity criterion. VERIFIED.
+\item Theorem~\ref{thm:table}: dense window for the composite values of $2m+1$ listed in Table~\ref{tab:cc}. VERIFIED per row. For the rows marked S in the table the raw build and axiom output is archived; for the rows marked L the build and the axiom print are recorded in \texttt{LEAN\_MAP.md} and in development notes only, and were not re-observed when the archive was assembled.
+\item Statements~\ref{st:Y}--\ref{st:irr}: structure used by the certificate search. Labels HEURISTIC, HEURISTIC, PROVED, PROVED respectively. None of them is used by Theorems~\ref{thm:D}--\ref{thm:table}, whose proofs depend only on the Lean-checked certificates.
+\end{itemize}
+Section~\ref{sec:notclaimed} lists what is not claimed. In particular Theorem~\ref{thm:D} is a routine consequence of known ingredients (Section~\ref{sec:prior}).
+
+\section{The prime case}\label{sec:prime}
+
+Let $N=2m+1$, $m\ge2$, with $N$ prime, and let $V$ be a multiset of $m$ integers in $[1,2m]$. No distinctness is needed.
+
+\begin{lemma}[Witnesses, VERIFIED]\label{lem:wit}
+Let $p,q$ be positive integers. If $q\le (m+1)\min\bigl(v_ip\bmod q,\;q-(v_ip\bmod q)\bigr)$ for all $i$, then $\gap_v(p/q)\ge 1/(m+1)$. In particular, if some $q\in[2,m+1]$ divides no $v_i$, then $\ML(v)\ge1/(m+1)$ (take $p=1$).
+\end{lemma}
+\noindent Lean: \texttt{cube\_floor\_of\_witness}, \texttt{floor\_of\_not\_dvd\_le}. The second statement is the case used by Tao's Lemma~5.1(i) \cite{Tao17}: if $\ML(v)<1/(m+1)$ and $v_i\le 2m$, every $j\in[2,m+1]$ divides some $v_i$.
+
+\begin{lemma}[Pair sum at a prime modulus, VERIFIED]\label{lem:pair}
+Let $N=2m+1$ be prime, $v_i\in[1,2m]$, and suppose $v_a+v_b=N$ for two indices $a\ne b$. Then $\ML(v)\ge1/(m+1)$.
+\end{lemma}
+\begin{proof}
+No $v_i$ is divisible by $N$. For $c\in(\Z/N)^\times$ the time $c/N$ satisfies $\norm{v_ic/N}\ge 2/N>1/(m+1)$ unless $v_ic\equiv\pm1\pmod N$, that is unless $c\equiv\pm v_i^{-1}$. Each $v_i$ forbids at most two of the $2m$ nonzero residues $c$. Since $v_b\equiv-v_a$, the indices $a,b$ forbid the same two residues, so at most $2(m-1)$ residues are forbidden and some $c$ survives.
+\end{proof}
+\noindent Lean: \texttt{floor\_of\_pairsum\_prime} (module \texttt{Delta2Pigeonhole}), whose docstring describes this multiplier count. The text above is a rendering of that argument. For $N$ prime the argument is the witness of Bohman and Peng at sum $s+t=N$ (Section~\ref{sec:prior}).
+
+\begin{theorem}[VERIFIED]\label{thm:D}
+Let $m\ge2$ with $2m+1$ prime, and $v_1,\dots,v_m$ integers in $[1,2m]$. Then $\ML(v)\ge1/(m+1)$.
+\end{theorem}
+\noindent Lean: \texttt{dense\_floor\_of\_prime} (module \texttt{Delta2DenseWindow}). The explicit axiom list for this declaration is not among the archived prints; it is obtained by \texttt{\#print axioms LRSpectrumFull.dense\_floor\_of\_prime}.
+\begin{proof}
+If no $v_i$ equals $1$, then $v_i\in[2,2m]$ gives $\norm{v_i/(2m+2)}=\min(v_i,2m+2-v_i)/(2m+2)\ge 2/(2m+2)=1/(m+1)$, so $t=1/(2m+2)$ works. If some $q\in[2,m+1]$ divides no $v_i$, Lemma~\ref{lem:wit} applies. Otherwise $1$ occurs and every $q\in[2,m+1]$ divides some $v_i$. The only multiple of $m+1$ in $[1,2m]$ is $m+1$, so some $v_b=m+1$. The multiples of $m$ in $[1,2m]$ are $m$ and $2m$. If some $v_a=m$, then $v_a+v_b=2m+1$. Otherwise some $v_a=2m$ and $1+2m=2m+1$ with the index of the value $1$. In both cases the indices differ and Lemma~\ref{lem:pair} applies.
+\end{proof}
+
+\section{Certificates for composite $2m+1$}\label{sec:cert}
+
+A velocity set $V\subset[1,2m]$ \emph{has no witness} if for every time $t=p/q$ some $x\in V$ lies in the bad set $B(p/q)=\{x\in[1,2m]:\norm{xp/q}<1/(m+1)\}$. Thus $V$ is a transversal of the hypergraph of bad sets. By Lemma~\ref{lem:wit}, a witness gives the floor, so it suffices to show that no $m$-set is a transversal. In Lean, \texttt{goodAt k x p q} is the Boolean $q\le(k+2)\min(xp\bmod q,\,q-xp\bmod q)$, and certificate times are given as pairs $(p_j,q_j)$ with a finite set \texttt{bad j} that contains every $x\in[1,2m]$ failing \texttt{goodAt} at $(p_j,q_j)$.
+
+\paragraph{Fractional blocking.} For a transversal $V$ of size $m$ and weights $y_j\ge0$ on the times with $\sum_{j}y_j\,[x\in B_j]\le D$ for every $x\in[1,2m]$,
+\[
+\sum_j y_j\le\sum_j y_j\,|B_j\cap V|=\sum_{x\in V}\mathrm{load}(x)\le mD .
+\]
+Hence $\sum_jy_j>mD$ excludes transversals of size $m$. This is weak LP duality for the covering number of the hypergraph, scaled to natural numbers. The principle that an arbitrary weighting of times, that is a finitely supported measure, may be tested against a family is Bedert's Lemma~2.1 \cite{Bed25}, and his Lemma~5.3 and Corollary~5.4 use the uniform measure on the times $j/p$ for a prime $p$ dividing no speed; the weights above are an instance of the former.
+
+\begin{proposition}[VERIFIED]\label{prop:frac}
+Let $k+1=m$, let $y:\{1..N\}\to\mathbb N$, $D\in\mathbb N$, and assume $\mathrm{load}(x)\le D$ for every $x\in[1,2m]$ and $mD<\sum_jy_j$. Then every $v$ with $0<v_i\le 2m$ satisfies $\ML(v)\ge1/(m+1)$. In particular, no distinctness is needed.
+\end{proposition}
+\noindent Lean: \texttt{floor\_of\_frac\_blocking} (module \texttt{Delta2FracBlocking}). Instances \texttt{dense\_floor\_m4}, \texttt{m7}, \texttt{m12}, \texttt{m13} (Table~\ref{tab:frac}).
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rllll}
+\toprule
+$m$ & $2m+1$ & times & denominator $D$ & total weight\\
+\midrule
+4 & $3^2$ & 5 & 1 & $5>4$\\
+7 & $3\cdot5$ & 9 & 2 & $15/2>7$\\
+12 & $5^2$ & 15 & 2 & $25/2>12$\\
+13 & $3^3$ & 21 & 11 & $145/11>13$\\
+\bottomrule
+\end{tabular}
+\caption{Fractional blocking certificates. The columns are regenerated by the exact-integer program \texttt{code/dense/src/fb}, which reads the weights out of the Lean source of \texttt{Delta2FracBlocking}, checks that every load is at most $D$ and that the total weight exceeds $mD$, and rejects four perturbed certificates (\texttt{data/dense/fb\_check.out}, \texttt{fb\_selftest.out}). For $2m+1=21,33,49$ the fractional bound equals $m$ and cannot close the case (docstring of \texttt{Delta2CoverCapacity}); this statement is quoted and was not re-derived.}\label{tab:frac}
+\end{table}
+
+\paragraph{Cover capacity.} Let $W=[1,2m]\setminus V$, so $|W|=m$. If $V$ has no witness then $W$ is \emph{independent}: it contains no bad set $B_j$ (otherwise the time $p_j/q_j$ would be a witness for $V$, since $V\cap B_j=\emptyset$). Let $U_1,\dots,U_t$ cover $[1,2m]$ and let $c_i$ be such that every $T\subseteq U_i$ with $|T|>c_i$ contains some $B_j$. Then
+\[
+m=|W|\le\sum_i|W\cap U_i|\le\sum_ic_i .
+\]
+So $\sum_ic_i<m$ is a contradiction. The $c_i$ are Chv\'atal--Gomory type cuts: a part of six velocities with capacity three is invisible to the LP, which weighs each vertex at $1/2$.
+
+\begin{theorem}[VERIFIED]\label{thm:cc}
+Let $v:\mathrm{Fin}(k+1)\to\Z$, $m=k+1$, be positive and injective with values in $[1,2m]$. Suppose finitely many times $(p_j,q_j)$ with sets $\mathtt{bad}_j$ as above, parts $U_i\subseteq\mathbb N$ with $[1,2m]\subseteq\bigcup_iU_i$, capacities $c_i$ such that every $T\subseteq U_i$ with $|T|>c_i$ contains some $\mathtt{bad}_j$, and $\sum_ic_i<m$. Then $\ML(v)\ge1/(m+1)$.
+\end{theorem}
+\noindent Lean: \texttt{floor\_of\_cover\_capacity} (module \texttt{Delta2CoverCapacity}). Parts may overlap. Injectivity is a hypothesis here (it is used to count $|W|=m$).
+
+\paragraph{Zero slack.} Let $\mathrm{cap}(S)$ be the largest subset of $S$ containing no minimal bad set. By Statement~\ref{st:Y} below (HEURISTIC, per $m$), every cover has $\sum\mathrm{cap}(U_i)\ge m-1$ for the relevant $m$. A certificate therefore has $\sum c_i=m-1$ exactly, which is what every row of Table~\ref{tab:cc} has.
+
+\section{Structure used by the search}\label{sec:search}
+
+Notation: $Y=\{m+2,\dots,2m\}$ ($m-1$ elements), $\mathrm{Low}=\{1,\dots,m+1\}$. Minimal bad sets are the inclusion-minimal sets among the $B(p/q)$. The velocities $1$ and $m+1$ carry singleton minimal bad sets, so they are covered by a part $\{1,m+1\}$ of capacity $0$ and removed; write $\mathrm{Low}'=\{2,\dots,m\}$. These statements guide the search and give no input to Theorems~\ref{thm:D}--\ref{thm:table}.
+
+\begin{proposition}[HEURISTIC]\label{st:Y}
+For each $m$ tested, $Y$ contains no minimal bad set. Hence $y=\mathbf 1_Y$ is a feasible dual, every cover satisfies $\sum_i\mathrm{cap}(U_i)\ge m-1$, and in a cover of cost exactly $m-1$ each $Y$-element is covered once and $\mathrm{cap}(U_i)=|U_i\cap Y|$.
+\end{proposition}
+\noindent The first sentence is an exact integer check on the enumerated list of minimal bad sets. It was repeated for $2\le m\le62$ by the program \texttt{code/dense/src/yind}, which enumerates every bad set exactly (breakpoints and midpoints of the arrangement over all real times) and tests whether any bad set lies inside $Y$, and for $4\le m\le62$ by the test \texttt{y\_independent} of \texttt{code/dense/src/cg} (command \texttt{cg edges M}); the two programs share no code and agree on the number of distinct bad sets, the number of minimal bad sets and the verdict at all 59 values $4\le m\le62$ (\texttt{data/dense/yind\_2\_62.out}, \texttt{cg\_edges\_4\_62.out}; as a negative control \texttt{yind control} finds a bad set inside $\{m+1,\dots,2m\}$). The search programs \texttt{g1} assert the property at run time for each $m\ge64$. I have no proof for general $m$. The consequences follow from it by a short argument that has not been adversarially reviewed and is not reproduced here.
+
+\begin{proposition}[HEURISTIC]\label{st:pack}
+Given Statement~\ref{st:Y}, a cover of cost $m-1$ is a packing of \emph{blocks} $(T_j,L_j)$ with $T_j\subseteq Y$ pairwise disjoint, $L_j\subseteq\mathrm{Low}'$ with $\bigcup L_j=\mathrm{Low}'$, and $\tau(T_j\cup L_j)=|L_j|$, where $\tau$ is the minimum size of a hitting set of the minimal bad sets contained in $T_j\cup L_j$. Leftover $Y$-elements are singleton parts of capacity $1$.
+\end{proposition}
+\noindent Validity of a block is downward closed in $L$ and monotone increasing in $T$ (no separate proof is given here). The equivalence ``$\alpha(S)=|T|$ iff $\tau(S)=|L|$'' is quoted from development notes that are not archived, without a proof.
+
+\begin{proposition}[PROVED, short, plus COMPUTED self-test]\label{st:fam}
+Call a valid block $(T,L)$ \emph{kept} if $L$ is maximal for $T$ and $T$ is minimal for $L$. Every valid block $(T_0,L_0)$ is dominated ($T\subseteq T_0$, $L\supseteq L_0$) by a kept block. Consequently the family of kept blocks with $|T|\le4$ is complete among all valid blocks with $|T|\le4$, with no bound on $|L|$.
+\end{proposition}
+\noindent The proof is short and is recorded in development notes that are not archived; it is not written out here, and the label rests on those notes. A brute-force test enumerated all pairs $(T,L)$ with $|T|\le4$ and $L\subseteq\mathrm{Low}'$ for $m=13$ ($3{,}247{,}335$ pairs, $25{,}106$ valid), $m=16$ ($63{,}567{,}980$; $70{,}412$), $m=17$ ($164{,}886{,}060$; $87{,}151$), total about $2.3\times10^8$ pairs, and found no valid pair undominated by the family. The restriction $|T|\le4$ is a restriction of the searched family, not of the problem: a failure to find a cover in the family says nothing about covers with larger $T$.
+
+\begin{proposition}[PROVED; adversarial review recorded in development notes that are not archived]\label{st:irr}
+Drop every block $(T,L)$ with $T=T_1\sqcup T_2$, $L=L_1\sqcup L_2$, all four nonempty, such that $(T_1,L_1)$ and $(T_2,L_2)$ are valid. The reduced family has a cover iff the full family does.
+\end{proposition}
+\noindent The argument replaces a block by its two halves, each dominated by a kept block with smaller $T$, and terminates on $\sum|T|^2$. Reported effect (logged in development runs, not re-run for the archive; HEURISTIC): for $m=49$, $1{,}992{,}263$ blocks reduce to $26{,}427$; for $m=62$, $6.3\times10^6$ to $50{,}638$. The reduction made the integer program tractable: before it, GLPK on the full family at $m=47$ found no cover in about $12$ minutes.
+
+\section{The verified values}\label{sec:table}
+
+\begin{theorem}[VERIFIED per row]\label{thm:table}
+For every $m$ in Table~\ref{tab:frac} or Table~\ref{tab:cc}, and every set of $m$ distinct integers in $[1,2m]$, $\ML\ge1/(m+1)$. The Lean declaration is \texttt{dense\_floor\_m$m$} in the stated module. Together with Theorem~\ref{thm:D}, the dense window statement is Lean-verified for every $m$ with $2\le m\le62$, and for every $m$ with $63\le m\le126$ except $m\in E=\{94,97,103,109,115,122\}$ (so $2m+1\in\{189,195,207,219,231,245\}$). Hence the statement is \emph{not} verified for all $m\le126$. For $m\in E$ no Lean module has been built. For $m\in\{97,103,109,115,122\}$ a certificate accepted by the independent checker \texttt{v1} is in \texttt{data/dense/certs}; this is COMPUTED and not VERIFIED. For $m=94$ a search of three hours (\texttt{code/dense/src/m94}, log in \texttt{data/dense/m94}) ended without a cover; its exact phases stopped at their node caps, so the status is UNRESOLVED, and the run is a single logged run that was not repeated. It is not a non-existence result. No claim is made for these $m$. (The case $m=1$ is elementary and not formalized here.) For $m\ge64$ the declaration is \texttt{dense\_floor\_m$m$\_split}.
+\end{theorem}
+\noindent The statement for $m\le 62$ is the union of Theorem~\ref{thm:D} (all primes $2m+1$) and the 33 composite values of $2m+1$ in the tables (rows with $m\le62$). For $63\le m\le126$ there are 40 values with $2m+1$ composite, 34 of which are rows of Table~\ref{tab:cc}; the other six are $E$. The lists were compared by a script (\texttt{code/dense/check\_rows.py}): the composite $m\in[2,62]$ coincide with the union of the rows $m\le62$ and Table~\ref{tab:frac}, and the composite $m\in[63,126]$ not in the table are exactly $E$. The same script regenerated the parts, largest part and witness-time counts of the rows $m\ge64$ from the Lean modules and compared parts and largest part with the output of the second checker.
+
+\begin{longtable}{rlrrrllc}
+\caption{Cover-capacity certificates. Parts: number of parts $U_i$; max: largest part; times: number of witness times. In every row $\sum c_i=m-1$. Modules carry the prefix \texttt{Delta2}. For $m\ge64$ the modules are in split style (Remark~\ref{rem:split}); the row $m=64$ is module \texttt{CoverRangeSB}, and $m=62$ was additionally rechecked in split style as \texttt{CoverRangeSA}, same certificate. In these rows, times is the number $N$ of witness times in the module, and the search entry ``g1 local search, v1'' means a Rust local search (\texttt{code/dense/src/g1}) followed by acceptance by the independent checker \texttt{code/dense/src/v1}. Build times and axiom prints for $m\ge64$: \texttt{data/dense/results.tsv}, 45 to 176 s per module for $m\ge66$, 56 s for $m=64$. Search (provenance only: a certificate is accepted or rejected by the checkers independently of how it was found; the entries, including the times, are single logged runs of the development pipeline, HEURISTIC as statements about the searches, and were not re-run): ILP$^\ast$ is an integer program of the earlier pipeline whose tool and time are not recorded; pool+HiGHS is the early pool search (Python, HiGHS), n/r: time not recorded; CG is Rust column generation with a HiGHS master LP through Python; glpsol is the GLPK binary on a Rust-written model over the irreducible block family. Driver output of the CG and glpsol runs for $m\ge27$ is in \texttt{data/dense/dev\_logs}; no log was located for the ILP$^\ast$ rows. Axioms: S, a print equal to \texttt{propext, Classical.choice, Quot.sound} with zero \texttt{sorry} and no \texttt{native\_decide} is archived as raw output (\texttt{data/dense/dev\_logs} for $m\le64$, \texttt{data/dense/results.tsv} for $m\ge66$); L, the same statement is recorded in \texttt{LEAN\_MAP.md} and in development notes, and no raw output was located; --, not built. The raw prints in \texttt{dev\_logs} cover \texttt{dense\_floor\_of\_prime} and $m=4,7,10,12,13,16,17,19,22$ (one Lean process on 2026-10-01 after building \texttt{Delta2Pigeonhole}, \texttt{Delta2DigitGreedy} and \texttt{Delta2DenseWindow}), and $m=49,52,57,58,59,60,61,62,64$. No Lean build was run when the archive was assembled.}\label{tab:cc}\\
+\toprule
+$m$ & $2m+1$ & parts & max & times & search & module & axioms\\
+\midrule
+\endfirsthead
+\toprule
+$m$ & $2m+1$ & parts & max & times & search & module & axioms\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\input{rows.tex}\input{rows_ext.tex}
+\end{longtable}
+
+\paragraph{Notes on the search record.}
+The timings, node counts, seeds and correlations in these notes are single logged runs of the development pipeline; none was re-run for the archive, and as statements about the searches they are HEURISTIC. The certificates themselves do not depend on them.
+(i) The earlier pool-based pipeline used 64-bit masks. For $m\ge33$ the shifts $1\ll(x-1)$ wrap modulo $64$, so every ``infeasible'' reported by that pipeline for $m\in\{34,37,38,40,42,43,45,46,55,57,58,59\}$ is void. The certificates of rows $m\le32$ are unaffected, since each was re-checked by exact capacity and then proved in Lean. (ii) The certificates for $m=49,52,58$ came from \texttt{glpsol}, a binary, run on a model written by Rust; the Rust depth-first search over the same family did not find them within the time spent ($m=49$: about $6.5\times10^7$ nodes in about $1400$ s) and is UNDECIDED there. (iii) The column-generation search used HiGHS from Python for the master LP and the integer step. (iv) Earlier failures at $m=49,52,58$ were limits of the column pool, not properties of the method: all three have covers with $|T|\le4$. (v) A pure Rust local search (weighted, keeping the blocks disjoint on $Y$, on the irreducible $|T|\le4$ family) found covers for $m=46,49,52,58,62$ without any external solver, in $4$ to $44$ seconds on two seeds (one $m=52$ run among three extra seeds found nothing within $300$ s, so the search is heavy-tailed there). Each cover passed the exact capacity check. These covers are COMPUTED and have not been built in Lean; the Lean modules in Table~\ref{tab:cc} use the earlier certificates. A local search cannot decide non-existence, and no non-existence claim is made. (vi) Time to the first cover correlates with the size of the block family (Spearman $0.84$ for GLPK over $22$ values of $m$) and only weakly with the arithmetic invariants tested; no conjecture is stated.
+
+\begin{remark}[Chunked checks, formalization device]\label{rem:split}
+In the split-style modules ($m=62$ recheck and $m\ge64$), the finite checks demanded by Theorem~\ref{thm:cc} are stated as separate lemmas, each closed by \texttt{decide +kernel}: one lemma each for the denominators, the cover and the capacity sum, windows of four witness times for the bad-set inclusions, and one lemma per part for the capacity condition, assembled by case distinction on the index. This is a device for keeping elaboration memory bounded. It changes neither the statements nor the certificates (the $m=62$ certificate is the same in the monolithic module and in its split recheck) and carries no mathematical content. The data are plain lists; no \texttt{native\_decide} and no \texttt{sorry} occur.
+\end{remark}
+
+\section{Reproducibility}\label{sec:repro}
+
+All paths are relative to the root of the accompanying archive; \texttt{README.md} there gives the toolchain. The Rust tools are built by \texttt{bash code/dense/build.sh}. For $m\ge64$ the pipeline is: \texttt{g1} (Rust local search, source \texttt{code/dense/src/g1}) writes \texttt{data/dense/certs/mM.g1.sol}; \texttt{v1 check M mM.g1.sol} (Rust, source \texttt{code/dense/src/v1}, no shared code with the search) must print ACCEPT; \texttt{lg2 gen2 M mM.g1.sol S<M> out} (source \texttt{code/dense/src/lg}) emits the Lean module; the modules are built one at a time and the axioms recorded in \texttt{data/dense/results.tsv}. The split style was introduced because the Lean build of the first module for $m=64$, written in the monolithic style of the earlier rows, was killed by the operating system for memory after 282 s (exit 137); the $m=62$ certificate built in 43 s in split style (monolithic: 130 s), and $m=64$ in 56 s.
+
+After the build, two scripts regenerate checkable content of Table~\ref{tab:cc} from the archive alone.
+\begin{verbatim}
+bash code/dense/build.sh build/dense
+python3 code/dense/check_rows.py build/dense/v1
+bash code/dense/regen_lean.sh build/dense
+\end{verbatim}
+The second command reads the certificate (parts and capacities) out of each shipped Lean module, recomputes the columns parts, max and times, has \texttt{v1} accept the certificate independently, and compares the composite lists. The third regenerates the Lean modules for $m\ge64$ from the certificates and compares them with the shipped modules. Both check exactly the data that the Lean kernel accepted. The output of a run is \texttt{data/dense/check\_rows.out}.
+Two further programs regenerate content of the text. \texttt{code/dense/src/fb} regenerates Table~\ref{tab:frac} from the Lean source, and \texttt{code/dense/src/yind} regenerates the first sentence of Proposition~\ref{st:Y} for $2\le m\le62$:
+\begin{verbatim}
+build/dense/fb check lean/LRSpectrumFull/Delta2FracBlocking.lean
+build/dense/fb selftest lean/LRSpectrumFull/Delta2FracBlocking.lean
+build/dense/yind 2 62
+build/dense/yind control 13
+\end{verbatim}
+What is not regenerated by a script in the archive: the search-method and time column for the rows $m\le62$ and the build times, which are logged values of single runs (partly archived as raw logs in \texttt{data/dense/dev\_logs}); the raw axiom prints of the rows marked L; and the three-hour search for $m=94$ (log archived, not repeated). The searches of the earlier pipeline are in \texttt{code/dense/src} (\texttt{pool}, \texttt{cg}, \texttt{xc}); their commands are
+\begin{verbatim}
+bin/cg run M 1 10 900 60 6000     # seed smax total_s mip_s attempts
+bin/cg check M certs/mM.sol out.lean
+bin/xc blocks M 4 6
+bin/xc reduce M 4
+IRR=1 code/dense/run_glp.sh M 4 2400 -99
+bin/xc selftest M 4               # M <= 17
+\end{verbatim}
+run from \texttt{data/dense}. Lean: one module at a time, \texttt{cd lean \&\& lake build LRSpectrumFull.Delta2CoverRange<LETTER>}; axioms by \texttt{\#print axioms LRSpectrumFull.dense\_floor\_m<M>} in a file with the matching \texttt{import}. A bare whole-tree \texttt{lake build} exhausts memory on a machine with 24\,GB. Toolchain: Lean 4.30.0, Lake 5.0.0, Mathlib as pinned in \texttt{lean/lake-manifest.json}.
+
+\section{What is not claimed}\label{sec:notclaimed}
+
+\begin{itemize}
+\item No new number of runners for the lonely runner conjecture. The window has height $2m$; the known reductions of the conjecture to finite checking require speeds of exponential size, so a statement at height $2m$ is a necessary special case at most.
+\item Nothing for $m$ outside Theorem~\ref{thm:D} and Tables~\ref{tab:frac}, \ref{tab:cc}. No statement is made for $m\ge127$ unless $2m+1$ is prime (Theorem~\ref{thm:D}). For $m\le126$ the values $m\in\{94,97,103,109,115,122\}$ are not verified: no Lean module has been built (for $m=94$ the search ended UNRESOLVED at its node caps, which is evidence about the search only; for the other five a certificate accepted by the independent checker exists and has not been built in Lean), so the dense window statement for all $m\le126$ is not claimed. 
+\item Theorem~\ref{thm:D} is a routine corollary of Tao's Lemma~5.1(i), the Bohman--Peng witness at modulus $2m+1$, and a two-line forcing step. The set of $m$ with $2m+1$ prime has density zero, so it does not answer the question of \cite{Tao17} or Problem~6 of \cite{PS25} for all $m$.
+\item A failed search is not evidence that no certificate exists (Section~\ref{sec:table}, notes (ii) and (iv)).
+\item For $m\le14$ the statement is subsumed by the lonely runner conjecture for up to $14$ speeds announced in preprints (Section~\ref{sec:prior}); for $m\ge16$ with $2m+1$ composite I found no earlier statement, which is a search result and not a proof of novelty.
+\end{itemize}
+
+\section{Prior art}\label{sec:prior}
+
+Statements below were obtained by reading arXiv texts and abstract pages and by web searches; no Google Scholar or MathSciNet access was available.
+
+\paragraph{Window and prime case.} Tao \cite{Tao17} proves the floor for speeds in $[1,1.2m]$ and remarks that $[1,2m]$ is a natural target; Lemma~5.1(i) gives the divisibility statement used in Lemma~\ref{lem:wit}. Bohman and Peng \cite{BP22} prove, for $m$ large, the strict inequality $1/(m+1)<\{v_it\}<m/(m+1)$ for some $t$ when $m<v_m\le 2m-\exp(C(\log\log m)^2)$. In their proof, if $s,t$ are coprime non-speeds with $2m-2k<s+t\le 2m$ and $q=s^{-1}\bmod(s+t)$, then the time $q/(s+t)$ is a witness. The argument uses only that $s,t$ are not speeds, that $\gcd(s,s+t)=1$, and that $s+t$ exceeds the largest speed; it therefore applies verbatim at $s+t=2m+1$, where for $2m+1$ prime coprimality is automatic. Bohman and Peng do not state this case (their hypothesis is $s+t\le2m$). Pomerance \cite{Pomerance22} states in the introduction that the interval $[1,2m]$ remains a challenge; Pandey \cite{Pandey10} treats speeds in arithmetic progressions and excludes exactly the progression with first term and difference both equal to $1$. I read the arXiv version~1 of \cite{BP22}; the published Mathematika text could not be read (HTTP 403 on the publisher site), Crossref lists no erratum, and a later remark in the published text could change the verdict on novelty. Pomerance's ``Coprime matchings'' was not read.
+
+\paragraph{Small $m$.} The conjecture for up to $14$ speeds is claimed in \cite{Ros25,Trak25,Ros25b,ST26,All26}; \cite{All26} (version~2) is an unrefereed preprint whose computation I have not reproduced. This subsumes $m\le14$.
+
+\paragraph{Method.} The integral covering formulation of witness times (a tuple has no witness iff every allowed time is ruled out by some speed) is used computationally in \cite{Ros25,Trak25,Ros25b,ST26,All26}. I found no use of LP duality or capacity cuts for the lonely runner problem; the duality itself is textbook, so the only possible novelty is the application. Status: HEURISTIC (absence of evidence from the searches recorded in the audit).
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

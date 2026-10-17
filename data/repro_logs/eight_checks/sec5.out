@@ -1,0 +1,7 @@
+exact m=1: 148995 multisets, 0 failures
+exact m=2: 317691990 multisets, 0 failures
+F1 (4,len5): 0 / 157351936 fail; F2 (3,len4): 0 / 1404928 fail; F3 (2,len2): 28 / 12544 fail
+NC F3 len1: 6580 fail
+Z2 fails 0
+Z3 fails 14
+NC Z3 with 3 kappas: 56 fail

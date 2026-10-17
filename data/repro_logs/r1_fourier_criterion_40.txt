@@ -1,0 +1,6 @@
+   undecided tuple (v1,v2,v3,v4) = (3,4,7,11)
+MULTI-MODE Fourier criterion, M = 40 modes:
+   pairs      : 49121
+   DECIDES    : 49120  (100.00%)
+   undecided  : 1  (0.00%)
+   CROSS-VALIDATION failures : 0

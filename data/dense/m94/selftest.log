@@ -1,0 +1,8 @@
+family: complete file found (3346 blocks)
+setup m=64 edges 1714 family(p>=0, |T|<=4) 3346 blocks, |T|<=4 sub-family 3346 blocks, lows 63 (free 2), Y 63
+selftest m=64 |R|=3346
+LOAD 12.53: PAUSE (workers sleep)
+LOAD 11.99: RESUME
+selftest dfs nodes 1531904 rate 51046/s depth 7 maxdepth 25 fewest-uncovered-lows 13 memo 1525868 hits 6028 prunes 4632971 elapsed 30s/300s ETA <= 270s (time cap; no completion estimate) rss 0.14GB
+selftest dfs nodes 2990080 rate 49771/s depth 9 maxdepth 25 fewest-uncovered-lows 9 memo 2979340 hits 10730 prunes 9037323 elapsed 60s/300s ETA <= 240s (time cap; no completion estimate) rss 0.14GB
+LOAD 12.39: PAUSE (workers sleep)

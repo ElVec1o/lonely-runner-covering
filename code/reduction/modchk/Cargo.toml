@@ -1,0 +1,12 @@
+[package]
+name = "modchk"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+num-bigint = "0.4"
+num-traits = "0.2"
+rayon = "1"
+
+[profile.release]
+opt-level = 3

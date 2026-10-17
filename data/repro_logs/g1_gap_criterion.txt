@@ -1,0 +1,5 @@
+three-distance gap criterion (sharp and uniform in the translation):
+   cases in normal form : 147099
+   criterion DECIDES    : 138527  (94.17%)
+   undecided            : 8572  (5.83%)
+   GROUND-TRUTH VIOLATIONS (decides but no t exists): 0

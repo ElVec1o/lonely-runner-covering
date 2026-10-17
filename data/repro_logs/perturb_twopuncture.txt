@@ -1,0 +1,4 @@
+referee point n=13 M={5,6,7} W={13,14}: ell=0.02564103 ceiling=0.06043956 ell_W=0.00349650 ratio=0.136364
+EXHAUSTIVE two-puncture, 9<=n<=22, all M, all v1<v2 in [n,3n]: 5241348 configs
+  min ratio = 0.136364  at (n,M,W) = (13, {5,6,7}, {13,14})
+  3/22 = 0.136364

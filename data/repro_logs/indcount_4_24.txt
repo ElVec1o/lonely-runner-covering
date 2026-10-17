@@ -1,0 +1,21 @@
+m= 4 q0=  9 compos. | V=6 E=5 | alpha=3 (m=4) | I(m)=0              | T(m)=0 | nodes=15
+m= 5 q0= 11 prime   | V=8 E=7 | alpha=4 (m=5) | I(m)=0              | T(m)=2 | nodes=19
+m= 6 q0= 13 prime   | V=10 E=11 | alpha=5 (m=6) | I(m)=0              | T(m)=1 | nodes=28
+m= 7 q0= 15 compos. | V=12 E=10 | alpha=7 (m=7) | I(m)=1              | T(m)=7 | nodes=23
+m= 8 q0= 17 prime   | V=14 E=15 | alpha=7 (m=8) | I(m)=0              | T(m)=8 | nodes=52
+m= 9 q0= 19 prime   | V=16 E=16 | alpha=8 (m=9) | I(m)=0              | T(m)=16 | nodes=69
+m=10 q0= 21 compos. | V=18 E=16 | alpha=10 (m=10) | I(m)=9              | T(m)=20 | nodes=96
+m=11 q0= 23 prime   | V=20 E=20 | alpha=10 (m=11) | I(m)=0              | T(m)=30 | nodes=129
+m=12 q0= 25 compos. | V=22 E=23 | alpha=12 (m=12) | I(m)=3              | T(m)=30 | nodes=110
+m=13 q0= 27 compos. | V=24 E=22 | alpha=13 (m=13) | I(m)=41             | T(m)=44 | nodes=266
+m=14 q0= 29 prime   | V=26 E=27 | alpha=13 (m=14) | I(m)=0              | T(m)=50 | nodes=486
+m=15 q0= 31 prime   | V=28 E=31 | alpha=14 (m=15) | I(m)=0              | T(m)=58 | nodes=372
+m=16 q0= 33 compos. | V=30 E=28 | alpha=17 (m=16) | I(m)=310            | T(m)=69 | nodes=477
+m=17 q0= 35 compos. | V=32 E=28 | alpha=18 (m=17) | I(m)=728            | T(m)=93 | nodes=1037
+m=18 q0= 37 prime   | V=34 E=39 | alpha=17 (m=18) | I(m)=0              | T(m)=82 | nodes=674
+m=19 q0= 39 compos. | V=36 E=32 | alpha=21 (m=19) | I(m)=4093           | T(m)=114 | nodes=2178
+m=20 q0= 41 prime   | V=38 E=40 | alpha=19 (m=20) | I(m)=0              | T(m)=118 | nodes=2439
+m=21 q0= 43 prime   | V=40 E=44 | alpha=20 (m=21) | I(m)=0              | T(m)=133 | nodes=2260
+m=22 q0= 45 compos. | V=42 E=38 | alpha=25 (m=22) | I(m)=40493          | T(m)=149 | nodes=7630
+m=23 q0= 47 prime   | V=44 E=46 | alpha=22 (m=23) | I(m)=0              | T(m)=170 | nodes=6336
+m=24 q0= 49 compos. | V=46 E=48 | alpha=24 (m=24) | I(m)=1203           | T(m)=174 | nodes=7037

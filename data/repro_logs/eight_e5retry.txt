@@ -1,0 +1,1 @@
+tests=200000 fails=0 no_lrc6_witness_found=0

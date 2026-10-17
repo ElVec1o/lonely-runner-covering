@@ -1,0 +1,16 @@
+(1) algebraic implication: 4563449 triples, 0 failures
+(1b) of these, triples with b>=2: 4338029
+(2) true ell exceeds threshold: 340 cases, 0 failures; min margin ratio 1.5000 at (n,k,b)=(8, 1, 1)
+(3) fraction of k-subsets containing some admissible b:
+   k=1 n=40    admissible b: 1..5     covered 12.8% of subsets
+   k=1 n=80    admissible b: 1..10    covered 12.7% of subsets
+   k=1 n=160   admissible b: 1..20    covered 12.6% of subsets
+   k=1 n=320   admissible b: 1..40    covered 12.5% of subsets
+   k=2 n=40    admissible b: 1..2     covered 10.1% of subsets
+   k=2 n=80    admissible b: 1..5     covered 12.3% of subsets
+   k=2 n=160   admissible b: 1..10    covered 12.2% of subsets
+   k=2 n=320   admissible b: 1..20    covered 12.2% of subsets
+   k=3 n=40    admissible b: 1..1     covered 7.7% of subsets
+   k=3 n=80    admissible b: 1..3     covered 11.1% of subsets
+   k=3 n=160   admissible b: 1..6     covered 11.0% of subsets
+   k=3 n=320   admissible b: 1..13    covered 11.8% of subsets

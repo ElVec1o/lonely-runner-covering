@@ -1,0 +1,1 @@
+v=[3, 4, 7, 11] m=4 gcd=1 ML=3/14 (m+1)ML=15/14 maximisers=[(1, 14), (13, 14)] least=Some((1, 5)) q0=5 DC=false L1O=true nonSF=true fast=false lemmaP=false taoWin=Some(9)

@@ -1,0 +1,22 @@
+{
+  "title": "Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "publication_date": "2026-10-18",
+  "creators": [
+    {
+      "name": "Bonfioli, Vico",
+      "affiliation": "Independent"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "keywords": [
+    "lonely runner conjecture",
+    "view obstruction",
+    "Lean 4",
+    "formal verification",
+    "covering radius",
+    "exact arithmetic"
+  ],
+  "description": "Six manuscripts on the lonely runner conjecture (dense velocity windows, obstructions to certificate-based proofs, perturbations of the tight instance, a reduction to a single crux, a covering framework, and eight runners), the Lean 4 sources they cite, and the programs and certificates that regenerate their finite computations. Statements carry the labels given in each manuscript: VERIFIED means formalized in Lean 4 in the development repository, carried over to this archive without a rebuild; PROVED means a written proof not formalized; HEURISTIC means computation only; CONJECTURE means no proof. Several results are finite computations. The dense-window statement is not claimed for m = 94, 97, 103, 109, 115 and 122 (certificates for 97, 103, 109, 115 and 122 are accepted by an independent checker but no Lean module is built; m = 94 has no certificate). Counts without an archived generator are marked in CLAIMS.tsv. Several results are known or partly known (Beck-Everett, Zhang, Giri-Kravitz, Czerwinski, Bedert, Tao); attributions are given in the manuscripts. The computations are single-author and have not been independently reproduced."
+}

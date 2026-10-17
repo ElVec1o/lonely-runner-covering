@@ -1,0 +1,9 @@
+Thu Oct  1 02:38:34 +07 2026 pool m=31 S=8
+edge-unions: 9984211 saturated=false
+parts incl. extensions: 12674766
+Thu Oct  1 02:41:20 +07 2026 dumpkept
+LP 30.000000000000004 P 12674766
+kept 2968426 of 12674766 min rc -7.105427357601002e-15
+tight rows (1-based velocities) [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62] count 30
+Thu Oct  1 02:44:58 +07 2026 mip
+Thu Oct  1 03:20:42 +07 2026 done m=31

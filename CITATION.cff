@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners"
+abstract: >-
+  Six manuscripts on the lonely runner conjecture (dense velocity windows, obstructions to certificate-based
+  proofs, perturbations of the tight instance, a reduction to a single crux, a covering framework, and eight
+  runners), with the Lean 4 sources they cite, and the programs and certificates that regenerate their finite
+  computations. Statements carry the labels given in each manuscript; several results are finite
+  computations that are not formalized.
+authors:
+  - family-names: Bonfioli
+    given-names: Vico
+    email: vicobonfioli@gmail.com
+license: CC-BY-4.0
+type: software
+date-released: 2026-10-18
+keywords:
+  - lonely runner conjecture
+  - Lean 4
+  - formal verification

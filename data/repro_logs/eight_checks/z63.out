@@ -1,0 +1,8 @@
+z63w fail=0 | NC(g2 up to 2) fails=28
+z63top1 fail=0 bad e45 values={2, 4}
+h=m (ii.2) offsets (0,1,3): bad (e34,e45) = {(2, 4), (2, 5), (3, 2), (3, 3), (4, 3), (4, 4), (5, 1), (5, 2)}; function of (e34,e45) only: true
+escape fail=0
+z63tab sg=1: 1638 cases fail=0
+z63tab sg=-1: 1638 cases fail=0
+NC table (u=4,dl=1 swapped c3) fails=2
+z63dbl fail=0

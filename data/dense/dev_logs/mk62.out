@@ -1,0 +1,22 @@
+05:09:09 waiting avail=10662 foreign=8051
+05:10:09 waiting avail=11166 foreign=6679
+05:11:09 waiting avail=10444 foreign=8449
+05:12:09 waiting avail=10381 foreign=8392
+05:13:10 waiting avail=10544 foreign=8147
+05:14:10 waiting avail=10760 foreign=7816
+05:15:10 waiting avail=10385 foreign=8451
+05:16:10 waiting avail=10399 foreign=8434
+05:17:10 waiting avail=10474 foreign=8329
+05:18:10 waiting avail=10654 foreign=7995
+05:19:10 waiting avail=10779 foreign=7827
+05:20:10 waiting avail=10720 foreign=7783
+05:21:10 waiting avail=10862 foreign=7504
+05:22:10 waiting avail=11227 foreign=6656
+05:23:10 waiting avail=11166 foreign=6552
+05:24:10 room ok avail=12293 foreign=0: starting build
+Delta2CoverRangeAC EXIT:0 134s free=5667MB
+ALL OK
+build seconds: 134
+'LRSpectrumFull.dense_floor_m62' depends on axioms: [propext, Classical.choice, Quot.sound] 
+sorry/native/axiom lines: 0
+05:26:36 build script exit=0

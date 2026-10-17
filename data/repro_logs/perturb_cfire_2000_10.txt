@@ -1,0 +1,14 @@
+NMAX=2000 KMAX=10
+k= 1: triples tested     999999, condition (c) holds   331291
+k= 2: triples tested     999996, condition (c) holds        0
+k= 3: triples tested     999991, condition (c) holds        0
+k= 4: triples tested     999984, condition (c) holds        0
+k= 5: triples tested     999975, condition (c) holds        0
+k= 6: triples tested     999964, condition (c) holds        0
+k= 7: triples tested     999951, condition (c) holds        0
+k= 8: triples tested     999936, condition (c) holds        0
+k= 9: triples tested     999919, condition (c) holds        0
+k=10: triples tested     999900, condition (c) holds        0
+total over k=1: 331291   total over 2<=k<=KMAX: 0
+control (two expressions agree): true
+control (proof inequality of the Remark, k>=2): violations 0

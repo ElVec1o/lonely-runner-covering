@@ -1,0 +1,24 @@
+22:42:54 building Delta2Pigeonhole
+Delta2Pigeonhole EXIT:0 3s free=5043MB
+ALL OK
+22:42:59 Delta2Pigeonhole rc=0 seconds=5
+22:42:59 building Delta2DigitGreedy
+Delta2DigitGreedy EXIT:0 7s free=5042MB
+ALL OK
+22:43:09 Delta2DigitGreedy rc=0 seconds=10
+22:43:09 building Delta2DenseWindow
+Delta2DenseWindow EXIT:0 9s free=5036MB
+ALL OK
+22:43:19 Delta2DenseWindow rc=0 seconds=10
+=== axioms
+'LRSpectrumFull.dense_floor_of_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.dense_floor_m4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.dense_floor_m7' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.dense_floor_m10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.dense_floor_m12' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.dense_floor_m13' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.dense_floor_m16' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.dense_floor_m17' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.dense_floor_m19' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.dense_floor_m22' depends on axioms: [propext, Classical.choice, Quot.sound]
+=== done

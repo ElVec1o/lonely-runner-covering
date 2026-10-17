@@ -1,0 +1,5 @@
+m in 2..150
+  exact sets whose two smallest are a DBL pair with 3a > 2m : 194811
+  of those, sets with a THIRD member                        : 0
+  => such a pair NEVER extends. The open lemma holds on this range, and the
+     hypothesis is non-vacuous: 194811 pairs of the relevant kind occur.

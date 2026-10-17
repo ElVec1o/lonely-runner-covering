@@ -1,0 +1,699 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\nrm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ML}{\operatorname{ML}}
+\newcommand{\gap}{\operatorname{gap}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lean}[1]{{\def\_{\textunderscore\allowbreak}\def\.{.\allowbreak}\texttt{#1}}}
+\newcommand{\LRC}{\mathrm{LRC}}
+
+\title[A reduction of the lonely runner conjecture]{A machine-checked reduction of the lonely runner conjecture\\ to a single crux, and first-order certificates}
+\author{Vico Bonfioli}
+\email{vicobonfioli@gmail.com}
+\date{}
+
+\begin{document}
+\emergencystretch=3em
+
+\begin{abstract}
+For positive integer speeds $v_1,\dots,v_m$ let $\ML(v)=\sup_{t}\min_i\nrm{v_it}$. The lonely
+runner conjecture asserts $\ML(v)\ge 1/(m+1)$. We give a proof, checked in Lean~4 with Mathlib, that
+the conjecture for all $m$ follows from three finite-range statements, each a consequence of
+published or announced cases of the conjecture, together with one statement $\mathrm{FloorCruxU}$: the bound for
+primitive families with at least $12$ speeds that have primitive leave-one-out subfamilies,
+contain a multiple of every $j\in[2,m+1]$, carry a $\{-1,0,1\}$-relation, and admit no first-moment
+certificate with a Riesz-product weight. We also verify that, given the three finite statements,
+$\mathrm{FloorCruxU}$ is equivalent to the conjecture; the reduction localises the problem and does
+not weaken it. Further verified results: a first-moment criterion for integer families with
+relations, in the form introduced by Bedert; the fact that no absolutely continuous weight certifies a
+tight family; a one-sided perturbation lemma at the times $a/(m+1)$; and the bound
+$\ML\ge (m+1)/(mj+m+1)$ for the families $([1,m]\setminus\{j\})\cup\{j(m+1)\}$,
+$(m+1)/2<j\le m$, $\gcd(j,m+1)=1$. For the one-entry families $([1,m]\setminus\{r\})\cup\{w\}$ we
+verify two sufficient conditions for $\ML\ge 2/(2m+1)$, one at the time $a/(2m+1)$ with
+$ar\equiv1$ and one at the time $1/r$; the second is the argument of Goddyn and Wong. We state
+conjectures on primitive families with a speed
+divisible by $m+1$, with the exact computational ground, and record examples showing that the
+denominator of a certifying time is not bounded by any affine function of $m$ tested.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+\subsection{Conventions}
+Throughout, $\nrm{x}$ is the distance from $x\in\R$ to the nearest integer. A \emph{family} is a
+tuple $v=(v_1,\dots,v_m)$ of integers; $m$ is the number of \emph{speeds}, and the corresponding
+runner problem has $m+1$ runners. We put
+\[
+  \gap(v,t)=\min_{1\le i\le m}\nrm{v_it},\qquad \ML(v)=\sup_{t\in\R}\gap(v,t).
+\]
+The \emph{target} for $m$ speeds is $1/(m+1)$. For $m\ge 1$ let $\LRC(m)$ denote the statement
+\[
+  \ML(v)\ge \frac1{m+1}\quad\text{for every } v\in\Z_{>0}^m .
+\]
+Repeated speeds are allowed. This is equivalent to the usual formulation with distinct speeds,
+since a family with $m'<m$ distinct values has the larger target $1/(m'+1)$. A family is
+\emph{tight} if $\ML(v)=1/(m+1)$.
+
+In the Lean development a family with $m$ speeds is a function $\mathtt{Fin}\,(k+1)\to\Z$ with
+$k=m-1$, and the target is written $1/(k+2)$. We translate every Lean statement to the index $m$;
+the correspondence is recorded in the file \texttt{LEAN\_MAP.md} accompanying this paper, together
+with the output of \verb|#print axioms| for every declaration cited. Every result labelled
+\emph{Lean} below builds with no \texttt{sorry} and depends only on the axioms \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}. Statements without a Lean name are either cited
+from the literature or explicitly labelled as conjectures, computations, or unformalized remarks.
+
+\subsection{Results}
+Section~\ref{sec:reduction} proves (Theorem~\ref{thm:reduction}) that $\LRC(m)$ for all $m\ge3$
+follows from three finite-range atoms $\mathrm{A1}$, $\mathrm{A2}$, $\mathrm{A3}$ and one crux
+$\mathrm{FloorCruxU}$, and (Theorem~\ref{thm:equiv}) that under $\mathrm{A1}$--$\mathrm{A3}$ the
+crux is equivalent to $\LRC(m)$ for all $m\ge 3$. The atoms concern at most $11$ speeds; they are
+consequences of published or announced cases of the conjecture \cite{cp,bhk,bs,ros8,ros9,trak,st}
+but are not formalized here. The conjecture is known, in the literature, for at most $13$ runners
+\cite{st} (at most $14$ by the announcement \cite{allikvere}); the crux restricted to $m\le 12$
+speeds is therefore known, and its open part is exactly the open part of the conjecture.
+
+Section~\ref{sec:moment} treats first-moment certificates. The soundness of an arbitrary measure
+as a certificate is Bedert's Lemma~2.1 \cite{bedert}. We verify a criterion for families with
+$\{-1,0,1\}$-relations (Theorem~\ref{thm:webriesz}) which uses Bedert's Riesz product with an exact
+normaliser, and a barrier (Theorem~\ref{thm:barrier}): if $\ML(v)\le\delta$ the set of times with
+gap at least $\delta$ is countable, so no weight absolutely continuous with respect to Lebesgue
+measure certifies a tight family. The barrier is elementary and we regard it as folklore. A related device appears in the proof
+of \cite[Thm.~2.1]{beckeverett}, where the absence of a time with gap strictly above the target
+makes a product of window functions vanish identically. That a family with no strict lonely time satisfies a bounded integer relation is the relation theorem of \cite{beckeverett}, building on Czerwinski \cite{czerwinski} and Giri and Kravitz \cite{gk}; no relation theorem is claimed here.
+
+Section~\ref{sec:escape} treats certificates at a rational base point $a/q$ shifted by a common
+small time $\varepsilon$. We verify a one-sided perturbation lemma (Theorem~\ref{thm:lemmaP}) and
+the bound $\ML(F(m,j))\ge (m+1)/(mj+m+1)$ for the families
+$F(m,j)=([1,m]\setminus\{j\})\cup\{j(m+1)\}$ (Theorem~\ref{thm:famF}). For $j=m$ the value is
+Kravitz's exact value \cite[Thm.~5.1]{kravitz}; for $j<m$ the strict inequality
+$\ML(F(m,j))>1/(m+1)$ follows from Zhang's classification \cite[Thm.~1.2]{zhang} combined with the
+Goddyn--Wong condition \cite{gw}. What is added is the explicit bound, its witness, and the
+formalization.
+
+Section~\ref{sec:conj} states Conjectures~\ref{conj:T}--\ref{conj:T2} with their computational
+ground. Section~\ref{sec:oneentry} proves (T2) for one-entry modifications of $[1,m]$ under
+explicit residue conditions (Theorems~\ref{thm:oneA} and \ref{thm:oneB}), which cover all but
+$42$ of the $15\,307$ primitive such families with $3\le m\le40$, $w\le 20m$ and $(m+1)\mid w$;
+the remaining $42$ satisfy (T2) by exact computation. Section~\ref{sec:obstruction} records, briefly, why the certificates of
+Sections~\ref{sec:moment} and \ref{sec:escape} do not by themselves reach the crux.
+
+\section{Classes of families}\label{sec:classes}
+
+\begin{definition}\label{def:classes}
+Let $v\in\Z_{>0}^m$.
+\begin{enumerate}
+\item $v$ is \emph{primitive} if $\gcd(v_1,\dots,v_m)=1$.
+\item $v$ is \emph{leave-one-out primitive} if for every $l$ the family $(v_i)_{i\ne l}$ is
+primitive.
+\item $v$ is \emph{divisor-complete} if every integer $j$ with $2\le j\le m+1$ divides some $v_i$.
+\item The \emph{web} of $v$ is
+$W(v)=\{\sigma\in\{-1,0,1\}^m\setminus\{0\}:\ \sum_i\sigma_iv_i=0\}$. The family is
+\emph{strongly free} if $W(v)=\emptyset$ (Lean: \lean{StrongFree}).
+\item $v$ is \emph{two-free} if for every $i$ the family obtained by replacing $v_i$ by $2v_i$ is
+strongly free (Lean: \lean{TwoFree}).
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Riesz-product union bounds]\label{def:UD}
+For $v\in\Z^m$ and $\delta\in\R$ let $B_i(\delta)=\{t\in\R:\nrm{v_it}<\delta\}$ (Lean:
+\lean{badSet}) and $P_v(t)=\prod_{i=1}^m(1-\cos 2\pi v_it)$. For $D\in\N$ we say that
+\emph{$U_D$ fires on $v$} (Lean: \lean{UDFires}) if
+\[
+  \sum_{i=1}^m\int_{[0,1]\cap B_i(1/(m+1))}P_v(t)^D\,dt\ <\ \int_{[0,1]}P_v(t)^D\,dt .
+\]
+\end{definition}
+
+For $D=0$ this is the Lebesgue union bound.
+
+\section{The reduction}\label{sec:reduction}
+
+\subsection{The atoms and the crux}
+The following four statements are Lean \texttt{Prop}s; none is proved in the development.
+
+\begin{definition}[Atoms]\label{def:atoms}
+\begin{itemize}
+\item[A1] (Lean: \lean{StrongFreeWindowTiny}.) For $4\le m\le 7$, every strongly free
+$v\in\Z_{>0}^m$ satisfies $\ML(v)\ge1/(m+1)$.
+\item[A2] (Lean: \lean{DissociatedOctetWitness}.) For every strongly free $v\in\Z_{>0}^8$ that is
+not two-free there are integers $p\ge0$, $q\ge1$ such that for all $i$, with $r_i$ the least
+nonnegative residue of $v_ip$ modulo $q$,
+\[
+  q\ \le\ 9\min(r_i,\ q-r_i),
+\]
+that is, $\nrm{v_ip/q}\ge 1/9$.
+\item[A3] (Lean: hypothesis \lean{hwinB}.) For $1\le m\le 11$, every $v\in\Z_{>0}^m$ that is not
+strongly free satisfies $\ML(v)\ge1/(m+1)$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[The crux; Lean: \lean{RoomA4Compress\.FloorCruxU}]\label{def:crux}
+$\mathrm{FloorCruxU}$ is the statement: for every $m\ge12$, if $\LRC(m')$ holds for all
+$1\le m'<m$, then every $v\in\Z_{>0}^m$ that is primitive, leave-one-out primitive,
+divisor-complete and not strongly free, and on which $U_D$ fires for no $D\in\N$, satisfies
+$\ML(v)\ge1/(m+1)$.
+\end{definition}
+
+\begin{theorem}[Lean: \lean{RoomA4Compress\.universalFloor\_of\_four\_atoms\_U}]\label{thm:reduction}
+$\mathrm{A1}\wedge\mathrm{A2}\wedge\mathrm{A3}\wedge\mathrm{FloorCruxU}$ implies $\LRC(m)$ for
+every $m\ge3$.
+\end{theorem}
+
+The proof is a strong induction on $m$. Strongly free families are handled by a ladder argument
+(Lean: \lean{separationSF\_of\_tiny\_and\_residual}, \lean{ladderSF\_le}) which uses A1 and A2;
+families that are not strongly free and have $m\le11$ are A3. For $m\ge 12$ the induction step
+applies, in order, Lemma~\ref{lem:ros5}, Lemma~\ref{lem:ros4}, Proposition~\ref{prop:UD}, and
+finally the crux. Scale invariance reduces to primitive families.
+
+\begin{theorem}[Lean: \lean{RoomFCUErdos\.floorCruxU\_iff\_universalFloor}]\label{thm:equiv}
+Assume $\mathrm{A1}$, $\mathrm{A2}$ and $\mathrm{A3}$. Then $\mathrm{FloorCruxU}$ holds if and only
+if $\LRC(m)$ holds for every $m\ge 3$.
+\end{theorem}
+
+The reverse implication is immediate, since the conclusion of the crux is an instance of
+$\LRC(m)$. Theorem~\ref{thm:equiv} says that the reduction loses nothing and gains nothing: the
+crux carries the whole difficulty of the conjecture at $m\ge12$ speeds.
+
+\begin{proposition}[Lean: \lean{strongFreeWindowTiny\_of\_456}]\label{prop:A1}
+A1 follows from its restriction to $5\le m\le7$. The case $m=4$ is the verified five-runner
+theorem.
+\end{proposition}
+
+\begin{remark}[Status of the atoms]\label{rem:atoms}
+None of A1 ($m=5,6,7$), A2, A3 is formalized. Each follows from known cases of the conjecture.
+A1 and A3 are instances of $\LRC(m)$ for $m\le 7$ and $m\le 11$ respectively; these are due to
+Cusick and Pomerance \cite{cp} ($m=4$), Bohman, Holzman and Kleitman \cite{bhk} ($m=5$), Barajas
+and Serra \cite{bs} ($m=6$), Rosenfeld \cite{ros8} ($m=7$), Rosenfeld \cite{ros9} and
+Trakulthongchai \cite{trak} ($m=8,9$), and Sungkawichai and Trakulthongchai \cite{st}
+($m=10,11$; preprint). A2 follows from $\LRC(8)$ together with the fact that for rational
+$\delta$ the set $\{t:\gap(v,t)\ge\delta\}$ is a finite union of closed intervals per period with
+rational endpoints, so that $\ML(v)\ge\delta$ is witnessed by a rational time; this last step is
+standard and is not formalized. The case $\ML(v)>\delta$ is Lean
+\lean{RoomFCUCompress\.rational\_point\_of\_lt}. Consequently Theorem~\ref{thm:reduction} is a
+reduction of the conjecture to the crux modulo the cited literature, and a Lean theorem only
+with A1--A3 as hypotheses.
+\end{remark}
+
+\subsection{Uniform lemmas used in the step}
+The following two lemmas are taken from Rosenfeld \cite{ros8}. Lemma~\ref{lem:ros5} is his
+Lemma~5. His Lemma~4 states that a family without the lonely runner property has
+$\operatorname{lcm}(2,\dots,m+1)\mid\prod_iv_i$; Lemma~\ref{lem:ros4} is the time-$1/j$ argument
+behind it, in the form in which $j$ divides a single speed.
+
+\begin{lemma}[Lean: \lean{RoomA4Rosenfeld\.witness\_of\_missing\_divisor}, \lean{RoomFCUErdos\.floor\_of\_not\_D}]\label{lem:ros4}
+Let $v\in\Z_{>0}^m$ and $2\le j\le m+1$ with $j\nmid v_i$ for all $i$. Then
+$q=j$, $p=1$ satisfy $q\le(m+1)\min(r_i,q-r_i)$ for all $i$, where $r_i\equiv v_i\pmod j$,
+$0\le r_i<j$. In particular, if $m+1$ divides no $v_i$ then $\ML(v)\ge1/(m+1)$.
+\end{lemma}
+
+\begin{lemma}[Lean: \lean{RoomA4Rosenfeld\.floor\_of\_leaveOneOut\_imprimitive}]\label{lem:ros5}
+Let $m\ge 3$, assume $\LRC(m-1)$, and let $v\in\Z_{>0}^m$ be primitive with
+$\gcd\big((v_i)_{i\ne l}\big)\ne1$ for some $l$. Then $\ML(v)\ge1/(m+1)$.
+\end{lemma}
+
+Let $\mathcal D$ be the set of families $v\in\Z_{>0}^m$, $m\ge 3$, in which $m+1$ divides some
+speed.
+
+\begin{proposition}[Lean: \lean{RoomFCUErdos\.universalFloor\_iff\_divisible}]\label{prop:D}
+$\LRC(m)$ for all $m\ge3$ is equivalent to the bound $\ML(v)\ge1/(m+1)$ for all $v\in\mathcal D$.
+\end{proposition}
+
+\begin{proposition}[Lean: \lean{RoomFCUModerator\.strictFloorD\_false}]\label{prop:strictD}
+The strict bound $\ML(v)>1/(m+1)$ fails on $\mathcal D$: $v=(4,8,12)$ has $\ML(v)=1/4$.
+\end{proposition}
+
+Proposition~\ref{prop:strictD} is why Conjectures~\ref{conj:T} and \ref{conj:T2} below carry the
+hypothesis $\gcd=1$.
+
+\begin{remark}
+The crux is the weakest of several forms of the last atom recorded in the development. The
+earlier forms \lean{BridgeDisjunctionQPrim} and \lean{RoomA4Rosenfeld\.BridgeDisjunctionQPrimInd2}
+ask, on successively smaller classes, for either the criterion of Theorem~\ref{thm:webriesz} or
+a rational witness; each implies $\mathrm{FloorCruxU}$ (Lean:
+\lean{RoomA4Rosenfeld\.bridgeDisjunctionQPrimInd\_of\_QPrim}, \lean{RoomA4Rosenfeld\.ind\_of\_ind2},
+\lean{RoomA4Compress\.floorCruxU\_of\_ind2}). Theorem~\ref{thm:equiv} shows that no further
+weakening of this type can make the crux easier than the conjecture.
+\end{remark}
+
+\section{First-moment certificates}\label{sec:moment}
+
+\begin{proposition}[Lean: \lean{RoomA4Compress\.floor\_of\_measure\_certificate}]\label{prop:measure}
+Let $v\in\Z^m$, $\delta\in\R$ and let $\nu$ be any measure on $\R$. If
+$\sum_i\nu(B_i(\delta))<\nu(\R)$, then $\delta\le\ML(v)$.
+\end{proposition}
+
+This is Bedert's Lemma~2.1 \cite{bedert}, stated for an arbitrary measure. A Dirac mass recovers
+rational witnesses, counting measure on a coset $t_0+q^{-1}\Z$ recovers Lemma~\ref{lem:ros5}-type
+arguments, and a weight recovers the following.
+
+\begin{proposition}[Lean: \lean{RoomA4Compress\.floor\_of\_integral\_unionBound}, \lean{RoomA4Compress\.floor\_of\_UD}]\label{prop:UD}
+Let $v\in\Z^m$, $\delta\in\R$, and $F:\R\to\R$ continuous and nonnegative. If
+$\sum_i\int_{[0,1]\cap B_i(\delta)}F<\int_{[0,1]}F$ then $\delta\le\ML(v)$. In particular, if $U_D$
+fires on $v$ for some $D\in\N$ then $\ML(v)\ge1/(m+1)$.
+\end{proposition}
+
+\subsection{The web criterion}
+For $v\in\Z^m$ define the rationals
+\[
+  M(v)=1+\sum_{\sigma\in W(v)}\Big(-\frac12\Big)^{|\operatorname{supp}\sigma|},\qquad
+  M_l(v)=1+\sum_{\substack{\sigma\in W(v)\\ \sigma_l=0}}\Big(-\frac12\Big)^{|\operatorname{supp}\sigma|}
+\]
+(Lean: \lean{webMassQ}, \lean{webMassDelQ}). $M(v)$ is the constant Fourier coefficient of $P_v$,
+and $M_l(v)$ that of $P_{(v_i)_{i\ne l}}$.
+
+\begin{theorem}[Lean: \lean{floor\_of\_rieszSharpFiresQ}]\label{thm:webriesz}
+Let $v\in\Z^m$. If $M(v)>0$ and
+\[
+  99225\Big(\sum_{l=1}^m\big(2M_l(v)-M(v)\big)+M(v)\Big)\ \le\ 10000\,(m+1)^2\,M(v),
+\]
+then $\ML(v)\ge1/(m+1)$.
+\end{theorem}
+
+The hypothesis is the predicate \lean{rieszSharpFiresQ}; the constant $99225/10000$ exceeds
+$\pi^2$. The proof applies Proposition~\ref{prop:measure} to the probability measure with density
+$P_v/M(v)$ and bounds the mass of each $B_l$ through the subfamily coefficient $M_l(v)$. The
+method, including the expansion of $P_v$ over $\{-1,0,1\}^m$ with weights
+$(-1/2)^{|\operatorname{supp}\sigma|}$, is Bedert's \cite[Lemma~4.1]{bedert}, where $v$ is
+dissociated and $M(v)=1$. The additions are the normaliser $M(v)$ for families with relations and
+the exact per-coordinate term in place of a supremum bound.
+
+\begin{corollary}[Lean: \lean{rieszSharpFiresQ\_of\_subfamilySum\_le}]\label{cor:web}
+Let $m\ge9$ and $v\in\Z^m$ with $M(v)>0$ and $\sum_lM_l(v)\le m\,M(v)$. Then the hypothesis of
+Theorem~\ref{thm:webriesz} holds, and $\ML(v)\ge1/(m+1)$.
+\end{corollary}
+
+\begin{remark}
+If $v$ is strongly free then $W(v)=\emptyset$, so $M(v)=M_l(v)=1$ and Corollary~\ref{cor:web}
+gives $\ML(v)\ge 1/(m+1)$ for strongly free families with $m\ge 9$. The identification
+$W(v)=\emptyset$ is immediate from the definitions and is not a separate Lean declaration.
+Bedert's supremum bound, read at the target $1/(m+1)$, gives the same conclusion from $m=18$.
+\end{remark}
+
+\subsection{The barrier}
+For $\delta\in\R$ put $G_\delta(v)=\{t\in\R:\ \nrm{v_it}\ge\delta\text{ for all }i\}$.
+
+\begin{theorem}\label{thm:barrier}
+Let $v\in\Z^m$ with all $v_i\ne0$.
+\begin{enumerate}
+\item (Lean: \lean{RoomA4Barrier\.goodSet\_countable}.) If $\ML(v)\le\delta$ then $G_\delta(v)$ is
+countable.
+\item (Lean: \lean{RoomA4Barrier\.integral\_le\_sum\_badSet}.) If $\ML(v)\le\delta$ and $F\ge0$ is
+integrable on $[0,1]$, then $\int_{[0,1]}F\le\sum_i\int_{[0,1]\cap B_i(\delta)}F$.
+\item (Lean: \lean{RoomA4Barrier\.lt\_ML\_of\_UDFires}.) If $U_D$ fires on $v$ then
+$\ML(v)>1/(m+1)$.
+\item (Lean: \lean{RoomA4Barrier\.not\_UDFires\_of\_tight}.) If $v$ is tight, $U_D$ fires on $v$
+for no $D$.
+\item (Lean: \lean{RoomA4Barrier\.not\_UDFires\_consec}.) $U_D$ fires on $(1,2,\dots,m)$ for no $D$.
+\end{enumerate}
+\end{theorem}
+
+Thus every tight family satisfies the last hypothesis of the crux, and Proposition~\ref{prop:UD}
+only ever certifies the strict inequality. Whether a tight family lies in the class of
+Definition~\ref{def:crux} is open; Conjecture~\ref{conj:T} would exclude it.
+
+\section{Escape certificates}\label{sec:escape}
+
+\begin{proposition}[Lean: \lean{RoomFCUModerator\.ML\_ge\_of\_escape}]\label{prop:escape}
+Let $v\in\Z^m$, $q,a\in\Z$ with $q>0$, and $\varepsilon,\delta\in\R$ with $\delta>0$. Suppose that
+for every $i$ there are $N_i,r_i\in\Z$ with $v_ia=qN_i+r_i$ and
+\[
+  \delta\ \le\ \frac{r_i}{q}+v_i\varepsilon\ \le\ 1-\delta .
+\]
+Then $\delta\le\ML(v)$.
+\end{proposition}
+
+The time used is $a/q+\varepsilon$. The statement is elementary and the pattern is standard
+\cite{kravitz}. With $\varepsilon=0$ and $\delta=A/B$ it takes a purely arithmetic form (Lean:
+\lean{RoomFCUCompress\.ML\_ge\_of\_residues}). Its converse also holds with $q=1$ and
+$\varepsilon$ a maximiser (Lean: \lean{RoomFCUCompress\.lonely\_iff\_escape}); the proposition
+therefore has content only together with a bound on $q$, which is the subject of
+Section~\ref{sec:obstruction}.
+
+\begin{theorem}[Lemma P; Lean: \lean{RoomFCUCompress\.lemmaP\_quant}, \lean{RoomFCULemmaP\.lemmaP}]\label{thm:lemmaP}
+Let $m\ge3$, $q=m+1$ and $v\in\Z_{>0}^m$. Suppose there is an index $i_0$ such that
+\begin{enumerate}
+\item $q\mid v_{i_0}$;
+\item for every $i\ne i_0$, $q\nmid v_i$ and $v_i<v_{i_0}$;
+\item there is $u$ with $\gcd(u,q)=1$ and $v_i\not\equiv u\pmod q$ for all $i$.
+\end{enumerate}
+Put $W=v_{i_0}$. Then
+\[
+  \ML(v)\ \ge\ \frac{2W}{q(2W-1)}\ >\ \frac1{m+1}.
+\]
+\end{theorem}
+
+The witness is $t=a/q-2/(q(2W-1))$ with $au\equiv1\pmod q$: the largest speed moves from $0$ to
+distance $2W/(q(2W-1))$, while every other speed has residue $r\in[2,q-2]$ at $a/q$ and moves by
+less than the available margin. We found no statement of this lemma in the literature consulted
+(\cite{kravitz,zhang,ps}).
+
+\begin{theorem}[Lean: \lean{RoomFCUCompress\.famF\_via\_escape}, \lean{RoomFCURamanujan\.famF\_lonely}]\label{thm:famF}
+Let $m,j$ be positive integers with $(m+1)/2<j\le m$ and $\gcd(j,m+1)=1$, and put
+$F(m,j)=([1,m]\setminus\{j\})\cup\{j(m+1)\}$ and $D=mj+m+1$. There is an integer $s\ge0$ such that
+the time $t=(sD+1)/(jD)$ satisfies $\nrm{xt}\ge(m+1)/D$ for every $x\in F(m,j)$. Consequently every
+family $v$ all of whose speeds lie in $F(m,j)$ satisfies
+\[
+  \ML(v)\ \ge\ \frac{m+1}{mj+m+1}\ >\ \frac1{m+1}.
+\]
+\end{theorem}
+
+For $j=m$, $F(m,m)=\{1,\dots,m-1,m(m+1)\}$ and the bound is Kravitz's value
+$\ML(1,\dots,n-1,ns)=s/(ns+1)$ at $n=m$, $s=m+1$, where equality holds \cite[Thm.~5.1]{kravitz}.
+For $j<m$, $F(m,j)$ is $[n-1]$ with $n=m+1$ and the speed $r=j$ replaced by $\mu r$,
+$\mu=m+1$. Goddyn and Wong \cite[Thm.~2.3]{gw} show that such a family is tight only if
+$\gcd(r,b)>1$ for every $b$ with $n-r\le b<\mu(n-r)$; here $b=n-r=m+1-j$ gives
+$\gcd(j,m+1-j)=\gcd(j,m+1)=1$, so $\ML(F(m,j))>1/(m+1)$ was known (see also Zhang's
+classification \cite[Thm.~1.2]{zhang}). Theorem~\ref{thm:famF} makes this
+quantitative. The value has the shape $s/(ns+k)$ with $(n,s,k)=(j,m+1,m+1-j)$, the shape of the
+amended spectrum conjecture of Fan and Sun \cite{fansun}; we have not checked that their
+parameter ranges cover these values.
+
+\begin{conjecture}\label{conj:Feq}
+Under the hypotheses of Theorem~\ref{thm:famF}, $\ML(F(m,j))=(m+1)/(mj+m+1)$.
+\end{conjecture}
+
+Ground: exact rational computation of $\ML(F(m,j))$ agrees in all $499$ admissible pairs with
+$m\le56$ (Appendix~\ref{app:data}).
+
+\begin{proposition}[Lean: \lean{RoomFCUGoddyn\.fast\_runner\_floor}, \lean{RoomFCUGoddyn\.cruxU\_fast}]\label{prop:fast}
+Let $m\ge 2$, $v\in\Z_{>0}^m$ and $l$ an index such that $mv_i\le v_l$ for all $i\ne l$. If
+$\ML\big((v_i)_{i\ne l}\big)\ge1/m$ then $\ML(v)\ge1/(m+1)$.
+\end{proposition}
+
+This is the case $L=1/m$, $\varepsilon=1/(m(m+1))$ of Kravitz's Proposition~8.1 \cite{kravitz}. It gives the crux for every family with one
+speed at least $m$ times all others, for example $F(m,m)$, and it is not an instance of
+Proposition~\ref{prop:escape} with bounded $q$.
+
+\section{Conjectures on the divisible class}\label{sec:conj}
+
+All computations in this section use exact integer arithmetic and the standard fact that
+$\ML(v)$ is attained at a time $c/(v_i+v_j)$ with $i\le j$ and $c\in\Z$; this fact is not
+formalized. A \emph{box} $(m,H)$ is the set of primitive $m$-element subsets of $[1,H]$, enumerated
+completely.
+
+\begin{conjecture}[(T)]\label{conj:T}
+If $v\in\Z_{>0}^m$ is primitive and tight, then $m+1$ divides no $v_i$.
+\end{conjecture}
+
+\begin{conjecture}[(T$'$)]\label{conj:Tprime}
+If $v\in\Z_{>0}^m$ is primitive and tight, then every $t$ with $\gap(v,t)=1/(m+1)$ lies in
+$\frac1{m+1}\Z$.
+\end{conjecture}
+
+(T$'$) implies (T): at $t=a/(m+1)$ a speed divisible by $m+1$ is at distance $0$. For
+$v=(1,\dots,m)$, (T$'$) is contained in Kravitz's Proposition~10.4 \cite{kravitz}: the equality
+times are the $a/(m+1)$ with $\gcd(a,m+1)=1$. By Lemma~\ref{lem:ros4},
+(T) is equivalent to the statement that no primitive tight family is divisor-complete with
+$m+1$ in the divisor set; in particular (T) would exclude tight families from the class of the
+crux. The gcd hypothesis cannot be dropped: $5\cdot(1,2,3,4)$ is tight and every speed is
+divisible by $5$.
+
+\begin{proposition}[Lean: \lean{RoomFCUHilbert\.gw\_not\_dvd}, \lean{RoomFCUHilbert\.gw\_family\_not\_dvd}]\label{prop:gw}
+Let $0<r<n$ and $\mu\ge1$ be integers such that $\gcd(r,b)>1$ for every integer $b$ with
+$n-r\le b<\mu(n-r)$. Then $n\nmid r\mu$.
+\end{proposition}
+
+The hypothesis is the Goddyn--Wong condition for accelerating the runner $r$ of $[n-1]$ to $r\mu$
+\cite[Thm.~2.3]{gw}, and the argument is theirs: it is the last step of the proof of
+\cite[Thm.~3.1]{gw}, which shows $n\nmid m_rr$ for every accelerated speed $m_rr$ in order to use
+the time $1/n$. We have checked every tight instance listed or constructed in \cite{gw} against
+(T). The sporadic list there (all tight vectors with $n\le 20$ and maximum speed at most $40$:
+$\{1,3,4,7\}$, $\{1,3,4,5,9\}$, $\{1,4,5,6,7,11,13\}$, $\{1,2,3,4,5,7,12\}$, $[13]_{12\mapsto24}$,
+$[19]_{18\mapsto36}$) has no speed divisible by $n$; the families of \cite[Thms.~2.3, 3.1]{gw}
+have none by the argument just quoted; the exceptional case $(n,r,\mu)=(3,1,4)$ of
+\cite[Thm.~2.3]{gw} is $(4,2)$, which is not primitive and has no speed divisible by $3$. The
+two further sporadic tight one-entry families of Zhang \cite[Thm.~1.2]{zhang}, $\{1,3,4,7\}$ and
+$\{1,3,4,5,9\}$, are the first two of this list. Hence no published tight family contradicts (T).
+The deduction from Proposition~\ref{prop:gw} to those instances rests on the cited theorems and is
+not formalized.
+
+\begin{conjecture}[T2]\label{conj:T2}
+If $v\in\Z_{>0}^m$, $m\ge 3$, is primitive and $m+1$ divides some $v_i$, then
+$\ML(v)\ge 2/(2m+1)$.
+\end{conjecture}
+
+\begin{remark}\label{rem:T2}
+(T2) implies $\LRC(m)$: for $v\in\Z_{>0}^m$ with $g=\gcd(v)$, $\ML(v)=\ML(v/g)$; if $m+1$ divides
+some $v_i/g$ apply (T2), otherwise Lemma~\ref{lem:ros4}. This argument is short and is not
+formalized. (T2) fails without $\gcd=1$ (Proposition~\ref{prop:strictD}) and fails for primitive
+families outside $\mathcal D$: $\ML(1,5,6,11,16,17)=5/33<2/13$ (computed).
+\end{remark}
+
+\subsection{Computational ground}
+Table~\ref{tab:boxes} lists the complete enumerations. In every box, every primitive family with
+$\ML(v)<1/m$ was retained and its value computed exactly. Since $2/(2m+1)<1/m$, a counterexample
+to (T2) in the box would have been retained.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{rrrl}
+\toprule
+$m$ & $H$ & primitive families & tight families found\\
+\midrule
+3 & 1500 & 467\,278\,456 & $[1,3]$\\
+4 & 500 & 2\,380\,658\,191 & $[1,4]$, $\{1,3,4,7\}$\\
+5 & 200 & 2\,450\,913\,356 & $[1,5]$, $\{1,3,4,5,9\}$\\
+6 & 110 & 2\,110\,853\,351 & $[1,6]$\\
+7 & 60 & 384\,092\,920 & $[1,7]$, $\{1,2,3,4,5,7,12\}$, $\{1,4,5,6,7,11,13\}$\\
+8 & 48 & 376\,600\,645 & $[1,8]$\\
+9 & 40 & 273\,270\,205 & $[1,9]$\\
+10 & 36 & 254\,143\,032 & $[1,10]$\\
+\bottomrule
+\end{tabular}
+\caption{Complete enumerations of primitive $m$-subsets of $[1,H]$.}\label{tab:boxes}
+\end{table}
+
+In all boxes of Table~\ref{tab:boxes}: no family has $\ML(v)<1/(m+1)$; no tight family has a speed
+divisible by $m+1$; every maximiser of every tight family has denominator $m+1$. This is the
+ground for (T) and (T$'$). An independent enumeration with a different program (boxes
+$(4,400)$, $(5,200)$, $(6,100)$, $(7,64)$, $(8,50)$, $(9,42)$, $(10,38)$) found the same tight
+families.
+
+For (T2) the minimum of $\ML$ over the primitive members of $\mathcal D$ in the box is exactly
+$2/(2m+1)$ for $m=3,\dots,7$, and is $4/33$, $4/37$, $3/31$ for $m=8,9,10$, all above
+$2/(2m+1)$. An earlier search at $m=12$ over heights at most $200$ reported $\ML=2/25$ for
+$(1,4,6,7,10,11,12,13,16,17,19,23)$. That value is wrong and the claim that the bound is attained at $m=12$ is withdrawn:
+the program that produced it enumerated the times $c/(v_i+v_j)$ with $c$ coprime to $v_i+v_j$ only, and so missed the maximiser
+$t=1/9$, whose denominator is not a sum of two speeds. The exact value is $\ML=1/9>2/25$ (exact enumeration over all numerators,
+\texttt{code/obstructions/mlcheck}; a scan of all $t=p/q$ with $q<300$ in exact rational arithmetic gives the same value). Equality $\ML=2/(2m+1)$
+in $\mathcal D$ is therefore recorded only for $m=3,\dots,7$ (Table~\ref{tab:boxes}).
+
+For $m=14,16,18,20$ simulated annealing over primitive members of $\mathcal D$ (not complete) ran
+with the parameters of Table~\ref{tab:t2}. No value below $2/(2m+1)$ was found. At height $5000$
+the minimum found was $\ML(F(m,m))=(m+1)/(m^2+m+1)$ in every case.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{rrrrl}
+\toprule
+$m$ & max height & time (s) & evaluations & least $(2m+1)\ML$ found\\
+\midrule
+14 & 5000 & 720 & 70\,353\,611 & $2.0616$ \ ($15/211$)\\
+16 & 5000 & 720 & 25\,184\,829 & $2.0549$ \ ($17/273$)\\
+18 & 5000 & 720 & 15\,945\,569 & $2.0496$ \ ($19/343$)\\
+20 & 5000 & 720 & 13\,549\,085 & $2.0451$ \ ($21/421$)\\
+14 & 60 & 180 & 63\,550\,117 & $2.0714$ \ ($1/14$)\\
+16 & 60 & 180 & 48\,313\,493 & $2.0625$ \ ($1/16$)\\
+18 & 60 & 180 & 37\,979\,054 & $2.0556$ \ ($1/18$)\\
+20 & 60 & 180 & 39\,240\,525 & $2.0500$ \ ($1/20$)\\
+\bottomrule
+\end{tabular}
+\caption{Searches for counterexamples to (T2); one run per row, $4$ threads, fixed seeds.}\label{tab:t2}
+\end{table}
+
+Tight instances in the boxes are few, so the independent evidence for (T) and (T$'$) is thin.
+The value $(2m+1)(m+1)/(m^2+m+1)$ tends to $2$, so (T2), if true, is asymptotically sharp along
+$F(m,m)$.
+
+\section{(T2) on one-entry families}\label{sec:oneentry}
+
+For $1\le r\le m$ and $w\in\Z$ let
+\[
+  V(m,r,w)=\big([1,m]\setminus\{r\}\big)\cup\{w\},
+\]
+the family $(1,\dots,m)$ with the entry $r$ replaced by $w$ (Lean: \lean{T2Sub\.oneEntry}). No
+hypothesis on $w$ other than those stated is needed below; in particular $w$ may coincide with
+an entry, and $(m+1)\mid w$ is not assumed.
+
+\begin{theorem}[Lean: \lean{T2Sub\.oneEntry\_ML\_ge}]\label{thm:oneA}
+Let $1\le r\le m$, and let $q,a$ be integers with $q>m$, $q\mid ar-1$, and $q>m+r$ or $q=2r$. If
+$w\not\equiv 0,\ r,\ -r\pmod q$, then $\ML(V(m,r,w))\ge 2/q$.
+\end{theorem}
+
+\begin{proof}
+Take $t=a/q$. Since $a$ is inverse to $r$ modulo $q$, $xa\equiv 0,\pm1\pmod q$ holds exactly when
+$x\equiv 0,\pm r\pmod q$. For $x\in[1,m]\setminus\{r\}$: $0<x<q$; $x\equiv r$ forces $x=r$
+because $|x-r|<q$; and $x\equiv -r$ forces $x+r=q$, impossible if $q>m+r$ and giving $x=r$ if
+$q=2r$. For $x=w$ the three congruences are excluded by hypothesis. So every $xa$ has residue in
+$[2,q-2]$ and $\nrm{xt}\ge 2/q$. The Lean proof goes through Lean
+\lean{RoomFCUCompress\.ML\_ge\_of\_residues}.
+\end{proof}
+
+\begin{corollary}[Lean: \lean{T2Sub\.oneEntry\_T2}]\label{cor:oneA}
+If $1\le r\le m$, $\gcd(r,2m+1)=1$ and $w\not\equiv 0,\pm r\pmod{2m+1}$, then
+$\ML(V(m,r,w))\ge 2/(2m+1)$.
+\end{corollary}
+
+\begin{theorem}[Lean: \lean{T2Sub\.oneEntry\_ML\_ge\_inv}, \lean{T2Sub\.oneEntry\_T2\_inv}]\label{thm:oneB}
+If $1\le r\le m<2r$ and $r\nmid w$, then $\ML(V(m,r,w))\ge 1/r\ge 2/(2m+1)$.
+\end{theorem}
+
+\begin{proof}
+At $t=1/r$ every speed $x$ has $\nrm{xt}\ge1/r$ unless $r\mid x$; the only multiple of $r$ in
+$[1,m]$ is $r$, which has been removed, and $r\nmid w$. Finally $2r\le 2m<2m+1$.
+\end{proof}
+
+Theorem~\ref{thm:oneB} is not new. It is the first case of the proof of Goddyn and Wong's
+Lemma~2.2 \cite{gw} (a proper subfamily $[n-1]\setminus\{x\}$ with $2x\ge n$ has
+$\ML\ge1/x$, by the time $1/x$), and the same time is used in the proof of Zhang's
+Lemma~2.3 \cite{zhang} (if $2r>n-1$ and $[n-1]_{r\to w}$ is tight then $r\mid w$). We include it
+because it covers residue classes of $w$ that Theorem~\ref{thm:oneA} misses.
+Theorem~\ref{thm:oneA} uses the standard base point $a/q$ with $q$ just above $m$; we did not
+find it stated in \cite{gw,zhang,kravitz}, but it is a base-point argument of the type of
+Lemma~\ref{lem:ros4} and Proposition~\ref{prop:escape}, and we do not claim it as a new method. Zhang
+\cite[Thm.~2.9]{zhang} computes $\ML([n-1]\setminus\{2\})=2/(2\lfloor n/2\rfloor+3)$ exactly;
+Theorem~\ref{thm:oneA} gives only a lower bound, for all $r$.
+
+Combined with the classification of tight one-entry families \cite[Thm.~1.2]{zhang} and
+Proposition~\ref{prop:gw}, no one-entry family with $(m+1)\mid w$ is tight, so (T) holds on this
+class (a consequence of the cited theorem, not formalized). (T2) asks for the quantitative
+bound $2/(2m+1)$.
+
+\subsection*{Computational ground}
+Let $\mathcal O$ be the set of triples $(m,r,w)$ with $3\le m\le 40$, $1\le r\le m$,
+$(m+1)\mid w$, $m+1\le w\le 20m$ and $\gcd V(m,r,w)=1$; $|\mathcal O|=15\,307$. For every triple
+we computed $\ML(V(m,r,w))$ exactly (Appendix~\ref{app:data}). Results:
+\begin{enumerate}
+\item $\min_{\mathcal O}(2m+1)\ML=2$; no member violates (T2).
+\item Equality $\ML=2/(2m+1)$ holds exactly for $\{1,3,4\}$ ($m=3$), $\{1,3,4,5\}$ ($m=4$) and
+$\{1,3,4,5,18\}$ ($m=5$), that is, $(m,r,w)=(3,2,4),(4,2,5),(5,2,18)$.
+\item Theorem~\ref{thm:oneA} with some $q\in[m+2,2m+1]$ or Theorem~\ref{thm:oneB} applies to
+all but $42$ triples. These are listed in Table~\ref{tab:uncov}; for each, (T2) holds by the
+computed value.
+\end{enumerate}
+Thus (T2) on one-entry families follows from Theorems~\ref{thm:oneA} and \ref{thm:oneB} for
+every triple satisfying their residue conditions, for all $m$ and without the bound $w\le 20m$;
+outside those residue classes it is supported by computation only.
+
+\section{Obstructions}\label{sec:obstruction}
+
+\begin{remark}[Base points]
+Lemma~\ref{lem:ros4}, Theorem~\ref{thm:lemmaP} and Theorem~\ref{thm:famF} are instances of
+Proposition~\ref{prop:escape}: a base point $a/q$ and a common shift $\varepsilon$, followed by a
+residue check. By Proposition~\ref{prop:escape} and its converse this form is complete for every
+family, so all content lies in bounding $q$ in terms of $m$. Proposition~\ref{prop:fast} is an
+instance only with $q=1$, and the first-moment certificates of Section~\ref{sec:moment} are not
+of this form; by Theorem~\ref{thm:barrier} the latter cannot certify a tight family.
+\end{remark}
+
+\begin{remark}[Level drift]
+Let $m\ge12$ and let $\mathcal C_m$ be the class of Definition~\ref{def:crux}. Computation shows
+that no affine bound $q\le 2m+c$ with $c\in\{-m+1,1,2\}$ suffices, on $\mathcal C_m$, for
+the variants of Proposition~\ref{prop:escape} tested (window certificates at a single level
+$q$, first-order shifts, exact scans). Examples (membership in
+$\mathcal C_m$ and all levels computed exactly; not formalized):
+\begin{itemize}
+\item $m=12$: $(1,4,5,6,7,9,11,13,40,60,238,2731)$ has no first-order window certificate with
+$q\le m+1=13$, even allowing both signs and an exact scan of the multiples of $q$; the first such
+level is $22$.
+\item $m=16$: $(1,5,6,7,8,9,11,13,17,19,23,25,29,31,366,1680)$ has no exact window certificate
+at a level $q$ with $m+1<q\le 2m+2=34$; the first such level is $35$. This family has a
+certificate at $q=2$, so it bounds only the window variant.
+\item $m=18$: $(1,3,4,5,7,11,13,17,19,23,31,70,74,116,180,272,3986,4943)$ has no certificate,
+first-order or exact, at $q\le 2m+1=37$; the first is a point certificate at $q=38$, and
+$\ML=28/191$.
+\item $m=18$: $(1,3,4,5,7,11,13,16,17,19,23,25,29,31,108,185,210,3685)$ has its first
+certificate at $q=46>2m+2$.
+\end{itemize}
+In each case a certificate exists at a larger level, so $\ML(v)\ge1/(m+1)$. The families
+consist of a small core together with two or three large speeds, and the level at which a
+certificate first appears was not predicted by any of the invariants tested
+(Appendix~\ref{app:data}).
+\end{remark}
+
+\begin{proposition}[Lean: \lean{RoomFCUMss\.halfShift\_not\_lonely}]\label{prop:half}
+There is no $t\in\R$ with
+\[
+  \nrm{t},\ \nrm{2t-\tfrac12},\ \nrm{3t-\tfrac12},\ \nrm{4t-\tfrac12},\ \nrm{6t-\tfrac12},\ \nrm{9t}
+  \ \ge\ \tfrac17 .
+\]
+\end{proposition}
+
+With zero phases the speeds $(1,2,3,4,6,9)$ satisfy $\LRC(6)$ \cite{bs}. Hence an argument for the
+conjecture must use that the starting phases are all zero, not merely that they lie in
+$\frac12\Z$. Counterexamples to the conjecture with general phases are due to Blanco, Criado and
+Santos \cite{bcs}, from $n=5$ in their indexing; see also \cite{poliakova} for their growth. Only the instance
+with phases in $\{0,\frac12\}$ is not taken from the literature.
+
+\appendix
+\section{Computational ground and reproduction}\label{app:data}
+
+All programs are in Rust with exact integer arithmetic and are in
+\texttt{code/reduction/<name>/}; the file \texttt{code/reduction/README.md} gives the exact
+command reproducing each number.
+\begin{itemize}
+\item Table~\ref{tab:boxes}, maximiser denominators, (T2) minima for $m\le10$: \texttt{fcuspec}.
+Independent enumeration: \texttt{gdn}; the smaller boxes of a third program \texttt{ecalc} for
+$m\le8$ agree.
+\item Table~\ref{tab:t2}: \texttt{t2hunt}, seeds $101m+1$ (height $5000$) and $101m+2$ (height
+$60$); logs record the reported minima.
+\item Conjecture~\ref{conj:Feq}: exact $\ML(F(m,j))$ for all admissible $(m,j)$, $m\le 56$:
+\texttt{rmj}.
+\item Level-drift examples: \texttt{mdr}, an independent checker; the values of $\ML$ used in the text are recomputed by
+\texttt{code/obstructions/mlcheck}, which enumerates all numerators (the function \texttt{ml} of \texttt{mdr} originally skipped numerators not coprime
+to the denominator and could return a value below $\ML$; the archived source is corrected); re-checked with \texttt{modchk}. Invariant fits of
+the certificate levels: \texttt{levelfit}.
+\item Section~\ref{sec:oneentry}: \texttt{t2sweep} (sweep of $\mathcal O$, coverage by
+Theorems~\ref{thm:oneA} and \ref{thm:oneB}, Table~\ref{tab:uncov}).
+\end{itemize}
+
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{rrrr@{\qquad}rrrr@{\qquad}rrrr}
+\toprule
+$m$ & $r$ & $w$ & $\ML$ & $m$ & $r$ & $w$ & $\ML$ & $m$ & $r$ & $w$ & $\ML$\\
+\midrule
+$3$ & $1$ & $36$ & $5/13$ & $4$ & $4$ & $40$ & $10/41$ & $7$ & $7$ & $112$ & $16/113$\\
+$3$ & $2$ & $12$ & $2/5$ & $5$ & $2$ & $90$ & $10/47$ & $8$ & $6$ & $108$ & $18/113$\\
+$3$ & $2$ & $16$ & $8/19$ & $5$ & $3$ & $30$ & $5/17$ & $8$ & $8$ & $144$ & $18/145$\\
+$3$ & $2$ & $28$ & $14/31$ & $5$ & $4$ & $48$ & $4/17$ & $9$ & $8$ & $160$ & $20/163$\\
+$3$ & $2$ & $40$ & $20/43$ & $5$ & $4$ & $84$ & $7/29$ & $9$ & $9$ & $180$ & $20/181$\\
+$3$ & $2$ & $44$ & $22/47$ & $5$ & $5$ & $60$ & $12/61$ & $13$ & $12$ & $84$ & $7/89$\\
+$3$ & $2$ & $56$ & $28/59$ & $6$ & $2$ & $119$ & $27/124$ & $13$ & $12$ & $168$ & $14/173$\\
+$3$ & $3$ & $24$ & $8/25$ & $6$ & $6$ & $84$ & $14/85$ & $13$ & $12$ & $252$ & $21/257$\\
+$3$ & $3$ & $60$ & $20/61$ & $7$ & $4$ & $56$ & $14/61$ & $19$ & $18$ & $180$ & $2/37$\\
+$4$ & $1$ & $55$ & $19/59$ & $7$ & $6$ & $24$ & $4/29$ & $19$ & $18$ & $360$ & $4/73$\\
+$4$ & $2$ & $65$ & $19/68$ & $7$ & $6$ & $48$ & $8/53$ & $25$ & $24$ & $312$ & $13/317$\\
+$4$ & $2$ & $70$ & $20/73$ & $7$ & $6$ & $72$ & $12/77$ & $31$ & $30$ & $480$ & $16/487$\\
+$4$ & $3$ & $45$ & $15/47$ & $7$ & $6$ & $96$ & $16/101$ & $32$ & $30$ & $330$ & $11/337$\\
+$4$ & $3$ & $75$ & $25/77$ & $7$ & $6$ & $120$ & $4/25$ & $37$ & $36$ & $684$ & $19/689$\\
+\bottomrule
+\end{tabular}
+\caption{The $42$ triples of $\mathcal O$ covered by neither Theorem~\ref{thm:oneA} ($q\le 2m+1$)
+nor Theorem~\ref{thm:oneB}, with the exact value of $\ML(V(m,r,w))$.}\label{tab:uncov}
+\end{table}
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

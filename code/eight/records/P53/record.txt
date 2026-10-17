@@ -1,0 +1,29 @@
+theorem LRSpectrumFull.EightV4.Cert53.lemma7Check_seven_p53 : lemma7Check 7 53 = true
+'LRSpectrumFull.EightV4.Cert53.lemma7Check_seven_p53' depends on axioms: [propext, Classical.choice, Quot.sound]
+status: all modules EXIT:0, no 'error'/'sorry' in any log; kernel: decide +kernel (no native_decide)
+verified_at: 2026-09-24 18:05:27  total_wall_s: 259
+generator: private/eight/src/l7v4.rs sha256 f467166f10327a49eba12adae2c1a7373cc24963350683a0c1457d5f805a61a1
+generator_cmd: l7v4s 53 stage <dir> 400000 16 bitkey
+checker: lean-mathlib/LRSpectrumFull/EightCheckV4.lean sha256 76166bdc05e1cdd7276d516ac6240e1412c7608d1fb07c4d127bdb2aa15f85a1
+soundness: lean-mathlib/LRSpectrumFull/EightCheckSound.lean sha256 27236b6dbb5b9a777bf5628257918bcf3bfe4566b4446bf71e6e5d79c624c0fb
+toolchain: leanprover/lean4:v4.30.0
+manifest: p 53 delegated 687 groups 4 top_nodes 26 task_nodes 18822 total_nodes 18848 top_fields 9043 tab_chunk 16
+sources_sha256 (sorted file list, then sha256 of the concatenation in that order):
+  Asm.lean 57fd848000fd0da45f0a42e005207954c7c0c504c0f8ca031fb525cebae04358   187264
+  Base.lean 2540bc0795cd1d6422946fa276d7a075acae32d96bf1ec467cbeacb41b861c8e  1079511
+  S0.lean b060654c3f89b09526944722398b7db59cd667e45ceaea993d549c8ed411911b  1630024
+  S1.lean b78a4be9789c2ab47f7bf06894b1eca7dec5cd1d3c1110065df7102c9482e784  1636955
+  S2.lean 71380fc7f9ef364b144e3313587cc668aa596119661fa5b3fca6fdf35f01506d  1642914
+  S3.lean 4205d791ae5fc96c15f6797c865754623ee9887024fdef97b1f5ddbf87263730   156545
+  Tab.lean 902adadc503249c53d4a8e3e98f43453c0340890dadaa385cd58f6dfca063295     5355
+  Top.lean f4b330fa3afe7e7ba728098f08252fe4637f71d121f28685cc715e5779c13377      518
+combined_sha256 5ab6f9ba3623f31fcce0d49e4283add0a0d111209891398b794448994f09df73
+per-module (wall, user, footprint):
+  Base EXIT:0 wall=19s user=14.17s fp=1.21GB
+  Tab EXIT:0 wall=30s user=20.78s fp=1.00GB
+  Top EXIT:0 wall=8s user=3.75s fp=1.06GB
+  S0 EXIT:0 wall=98s user=73.58s fp=1.03GB
+  S1 EXIT:0 wall=92s user=69.34s fp=1.00GB
+  S2 EXIT:0 wall=102s user=64.11s fp=0.98GB
+  S3 EXIT:0 wall=16s user=8.26s fp=0.91GB
+  Asm EXIT:0 wall=24s user=12.85s fp=1.05GB

@@ -1,0 +1,7 @@
+L5 fail 0000001 0001000 0010100
+L5 fail 0000001 0001000 0011100
+L5 fail 0000001 0100000 1000010
+L5 fail 0000001 0100000 1000011
+Lemma 5: 7694 configs, 56 fail outside the stated exception, 28 in exception
+Lemma 6: configs (i),(ii),(iii) = [70, 52, 28], failures = [0, 0, 0]
+Lemma 12 (as sets, |q(A1)|<=3, |q(A2)|<=2): configs [784, 126], failures [0, 0]

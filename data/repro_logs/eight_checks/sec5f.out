@@ -1,0 +1,7 @@
+F1 Farey (4,len5,j<=5): (0, 24010000)
+F1 Farey (4,len5,j<=4): (0, 24010000)
+F2 Farey (3,len4,j<=5): (0, 343000)
+F2 Farey (3,len4,j<=4): (0, 343000)
+F3 Farey (2,len2,j<=5): (0, 4900)
+NC F3 Farey (2,len2,j<=4): (112, 4900)
+NC F3 Farey (2,len1,j<=5): (2520, 4900)

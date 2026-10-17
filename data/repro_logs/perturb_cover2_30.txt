@@ -1,0 +1,38 @@
+== positive controls for `strip` ==
+  contained interval fully removed : true  (expect empty, got 0 pieces)
+  partial overlap trimmed to [.28,.29]: true  (got [(7, 25, 29, 100)])
+  disjoint interval survives       : true  (1 pieces)
+  straddling interval splits in two: true  (2 pieces)
+  isolated point 1/4 is coverable  : true  (expect true)
+  isolated point 1/2 is coverable  : true  (expect true)
+
+== k=2 falsification search, 9 <= n <= 30 ==
+A COVER would be a counterexample to LRC at n runners.
+v1 bound from the Covering Lemma; v2 bound from connectivity. v2 cap 2000000.
+
+   n    sets      (M,v1)    v2 tested     COVERS  iso cases    capped
+   9      28         375         1370          0          0         0
+  10      36         459         1049          0          0         0
+  11      45         546         1385          0          0         0
+  12      55         768         2524          0          0         0
+  13      66         833         2142          0          0         0
+  14      78        1128         4441          0          0         0
+  15      91        1382         5925          0          0         0
+  16     105        1556         5698          0          0         0
+  17     120        1708         5653          0          0         0
+  18     136        2191         8188          0          0         0
+  19     153        2339         8493          0          0         0
+  20     171        3092        17003          0          0         0
+  21     190        3426        19649          0          0         0
+  22     210        3519        16216          0          0         0
+  23     231        3978        17361          0          0         0
+  24     253        4897        27871          0          0         0
+  25     276        5223        28756          0          0         0
+  26     300        6109        38041          0          0         0
+  27     325        6676        39729          0          0         0
+  28     351        7222        42542          0          0         0
+  29     378        7578        42953          0          0         0
+  30     406        8932        57849          0          0         0
+
+total v2 tested: 394838
+COVERS FOUND: 0   isolated-residual cases: 0   capped (UNDECIDED): 0

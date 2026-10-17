@@ -1,0 +1,6 @@
+m=2 L4(ii): 469910 pairs, fail=0 fail(eq r, {0,1})=34384
+m=2 L4(i): 1259496 (pair,lam) cases, fail=0
+m=2 L7(i): 4889808 (pair,X) cases fail=57624; L7(ii): 677376 cases fail=0 mech-fail=0
+m=3 L4(ii): 6004950 pairs, fail=0 fail(eq r, {0,1})=491459
+m=3 L4(i): 16084425 (pair,lam) cases, fail=0
+m=3 L7(i): 68457312 (pair,X) cases fail=126224; L7(ii): 1185408 cases fail=0 mech-fail=0

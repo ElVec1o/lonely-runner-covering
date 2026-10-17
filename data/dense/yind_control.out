@@ -1,0 +1,4 @@
+control m=4 Y'={m+1..2m}: bad sets inside Y' = 1; singleton minimal sets = 2; expected: >= 1 (answer 'not independent')
+control m=13 Y'={m+1..2m}: bad sets inside Y' = 1; singleton minimal sets = 2; expected: >= 1 (answer 'not independent')
+control m=31 Y'={m+1..2m}: bad sets inside Y' = 1; singleton minimal sets = 2; expected: >= 1 (answer 'not independent')
+control m=62 Y'={m+1..2m}: bad sets inside Y' = 1; singleton minimal sets = 2; expected: >= 1 (answer 'not independent')

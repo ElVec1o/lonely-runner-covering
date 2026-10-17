@@ -1,0 +1,18 @@
+control n=4 M={2}: components 3 (expect 3), windows 1 (expect 1): true
+  n       #M degenerate comp!=window window!=comp naive_sum!=lam dedup_sum!=lam
+  3        2          0            0            0              0            0
+  4        6          1            0            0              2            0
+  5       14          6            0            0              7            0
+  6       30          7            0            0             18            0
+  7       62         36            0            0             43            0
+  8      126         55            0            0             90            0
+  9      254        147            0            0            205            0
+ 10      510        223            0            0            439            0
+ 11     1022        780            0            0            923            0
+ 12     2046        895            0            0           1870            0
+ 13     4094       3366            0            0           3845            0
+ 14     8190       4735            0            0           7674            0
+ 15    16382      11199            0            0          15757            0
+ 16    32766      22399            0            0          31943            0
+TOTAL 3<=n<=16: M 65504 ; with degenerate component 43849 ; positive component not a window 0 ; window not a component 0 ; naive sum != lambda 62816 ; deduplicated sum != lambda 0
+controls (subset counts equal 2^(n-1)-2 for every n, n=4 structure): true

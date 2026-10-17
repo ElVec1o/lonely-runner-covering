@@ -1,0 +1,10 @@
+  m     q  type    |  V    E   nu  def | KE? | check
+ 10    21  compos.  |  18   16    8    2 | yes | cover 8 = nu, alpha = 10   [7/60 elapsed 0s eta 3s]
+ 20    41  prime    |  38   40   19    0 | yes | cover 19 = nu, alpha = 19   [17/60 elapsed 0s eta 1s]
+ 30    61  prime    |  58   67   29    0 | yes | cover 29 = nu, alpha = 29   [27/60 elapsed 0s eta 0s]
+ 40    81  compos.  |  78   77   34   10 | yes | cover 34 = nu, alpha = 44   [37/60 elapsed 0s eta 0s]
+ 50   101  prime    |  98  105   49    0 | yes | cover 49 = nu, alpha = 49   [47/60 elapsed 0s eta 0s]
+ 60   121  compos.  | 118  132   57    4 | yes | cover 57 = nu, alpha = 61   [57/60 elapsed 0s eta 0s]
+ 63   127  prime    | 124  143   62    0 | yes | cover 62 = nu, alpha = 62   [60/60 elapsed 0s eta -0s]
+
+Koenig-Egervary FAILS at: []

@@ -1,0 +1,6 @@
+round 1	|R| 31253	verdict ABORTED (cap), no verdict	nodes 12132352	memo_hits 1374978	fewest_uncovered_lows_in_dfs 17	secs 481
+round 2	|R| 34213	verdict ABORTED (cap), no verdict	nodes 11223040	memo_hits 2289822	fewest_uncovered_lows_in_dfs 15	secs 481
+round 3	|R| 36120	verdict ABORTED (cap), no verdict	nodes 10248192	memo_hits 1972965	fewest_uncovered_lows_in_dfs 13	secs 482
+round 4	|R| 38225	verdict ABORTED (cap), no verdict	nodes 4128768	memo_hits 684686	fewest_uncovered_lows_in_dfs 25	secs 482
+round 5	|R| 40884	verdict ABORTED (cap), no verdict	nodes 3956736	memo_hits 339767	fewest_uncovered_lows_in_dfs 27	secs 482
+phase4 maxneg 1	|R| 210169	verdict ABORTED (cap), no verdict	nodes 753664	memo_hits 47153	fewest_uncovered_lows_in_dfs 22	secs 264

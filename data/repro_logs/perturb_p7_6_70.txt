@@ -1,0 +1,4 @@
+n range 6..70
+min ell*n(n-1)*P(b) = 1.65254  at (n,b)=(66, 63)
+min ell*n(n-1)      = 0.32884  at (n,b)=(62, 60)
+closed form (b<=n/2): tested=1219 exact=1186 valid-lower=33 OVERSHOOT=0

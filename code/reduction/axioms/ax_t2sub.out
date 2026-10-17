@@ -1,0 +1,5 @@
+'LRSpectrumFull.T2Sub.oneEntry_ML_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.T2Sub.oneEntry_T2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.T2Sub.oneEntry_ML_ge_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.T2Sub.oneEntry_T2_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.T2Sub.ML_ge_two_div_of_unit' depends on axioms: [propext, Classical.choice, Quot.sound]

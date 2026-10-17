@@ -1,0 +1,4 @@
+  m     q  type    |  V    E   nu  def | KE? | check
+150   301  compos.  | 298  323  139   20 | *NO* | -   [1/1 elapsed 0s eta -0s]
+
+Koenig-Egervary FAILS at: [150]

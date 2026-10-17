@@ -1,0 +1,32 @@
+== A. TEXTBOOK VALUES.  A verifier that disagrees with a known case is broken. ==
+  [PASS] LR([n-1]) = 1/n for 3 <= n <= 26                     0 failures []
+  [PASS] known tight sets have LR = 1/n exactly               0 failures
+
+== A2. strip_closed.  The routine that DECIDES TIGHTNESS had no unit test. ==
+  [PASS] strip_closed retains endpoints touched exactly (conservative direction) 1 seg(s), endpoints kept
+  [PASS] strip_closed can empty a region (branch is live)     0 seg(s) left
+  [PASS] strip_closed leaves no more than strip (open)        closed 0.800000 vs open 0.800000
+  [PASS] tight sets from the k=2 sweep have LR = 1/n via lr() both exact
+
+== B. SWEEP COMPLETENESS.  A sampled sweep prints like an exhaustive one. ==
+  [PASS] subset counts equal C(n-1,k)                         []
+
+== C. POSITIVE CONTROL, strict mode.  Isolated survivors must be RETAINED. ==
+  [PASS] 1/8 and 7/8 survive R={11,13} at n=8                 residual has 2 pieces
+  [PASS] residual is nonempty (no spurious cover)             
+
+== D. POSITIVE CONTROL, the stripper must be able to remove things. ==
+  [PASS] contained interval fully removed                     
+  [PASS] partial overlap trimmed to the exact endpoint        
+  [PASS] straddling interval splits in two                    
+  [PASS] disjoint interval survives                           
+
+== E. NON-VACUITY.  A criterion that never fires is not a theorem about anything. ==
+  [PASS] covering criterion fires at k=1                      34 instances
+  [PASS] covering criterion fires at k=2                      307 instances
+  [PASS] covering criterion fires at k=3                      1933 instances
+
+== F. CROSS-CHECK.  Two computations of ell must agree. ==
+  [PASS] sweep and window formula agree on ell                0 of 1965 disagree
+
+ALL CHECKS PASSED

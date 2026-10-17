@@ -1,0 +1,6 @@
+m=16 q0= 33 | ground=30 need 5 blocks | (6,3)-blocks found=2800 | nodes=3931605 | TEMPLATE: EXISTS
+     block [2, 4, 5, 27, 28, 31]
+     block [3, 6, 10, 20, 23, 29]
+     block [7, 11, 12, 22, 24, 26]
+     block [8, 9, 16, 18, 25, 32]
+     block [13, 14, 15, 19, 21, 30]

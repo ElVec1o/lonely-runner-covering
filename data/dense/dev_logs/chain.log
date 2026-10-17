@@ -1,0 +1,15 @@
+2026-10-01 14:01:24 m=58 CG start (seed 19)
+2026-10-01 15:01:28 m=58 NO CERT: TIME LIMIT 3600s reached: UNDECIDED (pool 400000, last LP obj 0)
+2026-10-01 15:01:28 m=59 CG start (seed 23)
+2026-10-01 15:03:09 m=59 CERT: CERTIFICATE m=59 time 100s peak RSS 0.02GB rounds 20 pool 33923 CHECK OK: 29 parts, sum cap 58 <= 58, max part size 10, 88 witness times, capacities brute-forced against 1485 minimal bad sets
+2026-10-01 15:07:11 m=59 build: Delta2CoverRangeZ EXIT:0 224s free=7226MB ALL OK build seconds: 224 'LRSpectrumFull.dense_floor_m59' depends on axioms: [propext, Classical.choice, Quot.sound]  sorry/native/axiom lines: 0 
+2026-10-01 15:07:11 m=60 CG start (seed 29)
+2026-10-01 15:07:19 m=60 CERT: CERTIFICATE m=60 time 8s peak RSS 0.01GB rounds 5 pool 9815 CHECK OK: 38 parts, sum cap 59 <= 59, max part size 10, 84 witness times, capacities brute-forced against 1471 minimal bad sets
+2026-10-01 15:10:37 m=60 build: Delta2CoverRangeAA EXIT:0 187s free=7167MB ALL OK build seconds: 187 'LRSpectrumFull.dense_floor_m60' depends on axioms: [propext, Classical.choice, Quot.sound]  sorry/native/axiom lines: 0 
+2026-10-01 15:10:37 m=61 CG start (seed 31)
+2026-10-01 15:25:12 m=61 CERT: CERTIFICATE m=61 time 875s peak RSS 0.02GB rounds 74 pool 109435 CHECK OK: 26 parts, sum cap 60 <= 60, max part size 11, 93 witness times, capacities brute-forced against 1559 minimal bad sets
+2026-10-01 15:31:55 m=61 build: Delta2CoverRangeAB EXIT:0 385s free=7111MB ALL OK build seconds: 385 'LRSpectrumFull.dense_floor_m61' depends on axioms: [propext, Classical.choice, Quot.sound]  sorry/native/axiom lines: 0 
+2026-10-01 15:31:55 m=62 CG start (seed 37)
+2026-10-01 15:56:13 m=62 CERT: CERTIFICATE m=62 time 1458s peak RSS 0.03GB rounds 64 pool 121355 CHECK OK: 25 parts, sum cap 61 <= 61, max part size 15, 105 witness times, capacities brute-forced against 1607 minimal bad sets
+2026-10-01 16:20:19 m=62 build: 977-- LRSpectrumFull.Delta2CoverRangeAC 978:error: build failed build seconds: 1441 <dev-logs>/ax_cr_AC.lean:1:0: error: object file '<lean-tree>/.lake/build/lib/lean/LRSpectrumFull/Delta2CoverRangeAC.olean' o
+2026-10-01 16:20:19 chain done

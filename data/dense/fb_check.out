@@ -1,0 +1,6 @@
+name	m	2m+1	times	D	maxload	sum_y	total_weight(sum_y/D)	m	verdict
+dense_floor_m4	4	9	5	1	1	5	5/1	4	ACCEPT
+dense_floor_m7	7	15	9	2	2	15	15/2	7	ACCEPT
+dense_floor_m12	12	25	15	2	2	25	25/2	12	ACCEPT
+dense_floor_m13	13	27	21	11	11	145	145/11	13	ACCEPT
+certificates found: 4; all accepted: true

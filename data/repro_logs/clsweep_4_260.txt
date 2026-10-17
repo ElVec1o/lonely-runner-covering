@@ -1,0 +1,270 @@
+m=   7 minimal size<=3 bad sets=   19 unclassified=1
+m=   8 minimal size<=3 bad sets=   25 unclassified=1
+m=   9 minimal size<=3 bad sets=   34 unclassified=3
+m=  10 minimal size<=3 bad sets=   38 unclassified=3
+m=  11 minimal size<=3 bad sets=   52 unclassified=4
+m=  12 minimal size<=3 bad sets=   55 unclassified=5
+m=  13 minimal size<=3 bad sets=   68 unclassified=8
+m=  14 minimal size<=3 bad sets=   79 unclassified=7
+m=  15 minimal size<=3 bad sets=   91 unclassified=7
+m=  16 minimal size<=3 bad sets=   99 unclassified=9
+m=  17 minimal size<=3 bad sets=  123 unclassified=14
+m=  18 minimal size<=3 bad sets=  123 unclassified=12
+m=  19 minimal size<=3 bad sets=  148 unclassified=18
+m=  20 minimal size<=3 bad sets=  160 unclassified=17
+m=  21 minimal size<=3 bad sets=  179 unclassified=19
+m=  22 minimal size<=3 bad sets=  189 unclassified=21
+m=  23 minimal size<=3 bad sets=  218 unclassified=25
+m=  24 minimal size<=3 bad sets=  224 unclassified=24
+m=  25 minimal size<=3 bad sets=  247 unclassified=28
+m=  26 minimal size<=3 bad sets=  268 unclassified=27
+m=  27 minimal size<=3 bad sets=  298 unclassified=33
+m=  28 minimal size<=3 bad sets=  305 unclassified=34
+m=  29 minimal size<=3 bad sets=  349 unclassified=41
+m=  30 minimal size<=3 bad sets=  353 unclassified=38
+m=  31 minimal size<=3 bad sets=  389 unclassified=48
+m=  32 minimal size<=3 bad sets=  405 unclassified=51
+m=  33 minimal size<=3 bad sets=  435 unclassified=52
+m=  34 minimal size<=3 bad sets=  459 unclassified=56
+m=  35 minimal size<=3 bad sets=  501 unclassified=57
+m=  36 minimal size<=3 bad sets=  499 unclassified=54
+m=  37 minimal size<=3 bad sets=  548 unclassified=67
+m=  38 minimal size<=3 bad sets=  576 unclassified=68
+m=  39 minimal size<=3 bad sets=  614 unclassified=69
+m=  40 minimal size<=3 bad sets=  627 unclassified=70
+m=  41 minimal size<=3 bad sets=  682 unclassified=80
+m=  42 minimal size<=3 bad sets=  690 unclassified=79
+m=  43 minimal size<=3 bad sets=  743 unclassified=93
+m=  44 minimal size<=3 bad sets=  771 unclassified=93
+m=  45 minimal size<=3 bad sets=  813 unclassified=96
+m=  46 minimal size<=3 bad sets=  830 unclassified=98
+m=  47 minimal size<=3 bad sets=  902 unclassified=112
+m=  48 minimal size<=3 bad sets=  901 unclassified=107
+m=  49 minimal size<=3 bad sets=  963 unclassified=123
+m=  50 minimal size<=3 bad sets=  994 unclassified=120
+m=  51 minimal size<=3 bad sets= 1044 unclassified=123
+m=  52 minimal size<=3 bad sets= 1070 unclassified=131
+m=  53 minimal size<=3 bad sets= 1132 unclassified=142
+m=  54 minimal size<=3 bad sets= 1155 unclassified=138
+m=  55 minimal size<=3 bad sets= 1215 unclassified=148
+m=  56 minimal size<=3 bad sets= 1241 unclassified=145
+m=  57 minimal size<=3 bad sets= 1305 unclassified=154
+m=  58 minimal size<=3 bad sets= 1323 unclassified=158
+m=  59 minimal size<=3 bad sets= 1414 unclassified=176
+m=  60 minimal size<=3 bad sets= 1399 unclassified=167
+m=  61 minimal size<=3 bad sets= 1482 unclassified=188
+m=  62 minimal size<=3 bad sets= 1527 unclassified=191
+m=  63 minimal size<=3 bad sets= 1579 unclassified=189
+m=  64 minimal size<=3 bad sets= 1627 unclassified=198
+m=  65 minimal size<=3 bad sets= 1702 unclassified=204
+m=  66 minimal size<=3 bad sets= 1715 unclassified=201
+m=  67 minimal size<=3 bad sets= 1801 unclassified=224
+m=  68 minimal size<=3 bad sets= 1831 unclassified=221
+m=  69 minimal size<=3 bad sets= 1911 unclassified=229
+m=  70 minimal size<=3 bad sets= 1934 unclassified=230
+m=  71 minimal size<=3 bad sets= 2043 unclassified=250
+m=  72 minimal size<=3 bad sets= 2031 unclassified=247
+m=  73 minimal size<=3 bad sets= 2119 unclassified=272
+m=  74 minimal size<=3 bad sets= 2179 unclassified=273
+m=  75 minimal size<=3 bad sets= 2251 unclassified=274
+m=  76 minimal size<=3 bad sets= 2300 unclassified=284
+m=  77 minimal size<=3 bad sets= 2387 unclassified=300
+m=  78 minimal size<=3 bad sets= 2390 unclassified=288
+m=  79 minimal size<=3 bad sets= 2503 unclassified=318
+m=  80 minimal size<=3 bad sets= 2543 unclassified=318
+m=  81 minimal size<=3 bad sets= 2616 unclassified=321
+m=  82 minimal size<=3 bad sets= 2657 unclassified=333
+m=  83 minimal size<=3 bad sets= 2779 unclassified=351
+m=  84 minimal size<=3 bad sets= 2782 unclassified=344
+m=  85 minimal size<=3 bad sets= 2872 unclassified=360
+m=  86 minimal size<=3 bad sets= 2925 unclassified=359
+m=  87 minimal size<=3 bad sets= 3027 unclassified=373
+m=  88 minimal size<=3 bad sets= 3048 unclassified=375
+m=  89 minimal size<=3 bad sets= 3186 unclassified=398
+m=  90 minimal size<=3 bad sets= 3202 unclassified=388
+m=  91 minimal size<=3 bad sets= 3301 unclassified=410
+m=  92 minimal size<=3 bad sets= 3356 unclassified=416
+m=  93 minimal size<=3 bad sets= 3449 unclassified=424
+m=  94 minimal size<=3 bad sets= 3513 unclassified=437
+m=  95 minimal size<=3 bad sets= 3615 unclassified=444
+m=  96 minimal size<=3 bad sets= 3612 unclassified=434
+m=  97 minimal size<=3 bad sets= 3754 unclassified=475
+m=  98 minimal size<=3 bad sets= 3814 unclassified=468
+m=  99 minimal size<=3 bad sets= 3916 unclassified=473
+m= 100 minimal size<=3 bad sets= 3951 unclassified=477
+m= 101 minimal size<=3 bad sets= 4094 unclassified=508
+m= 102 minimal size<=3 bad sets= 4106 unclassified=502
+m= 103 minimal size<=3 bad sets= 4239 unclassified=536
+m= 104 minimal size<=3 bad sets= 4300 unclassified=542
+m= 105 minimal size<=3 bad sets= 4383 unclassified=533
+m= 106 minimal size<=3 bad sets= 4427 unclassified=544
+m= 107 minimal size<=3 bad sets= 4594 unclassified=577
+m= 108 minimal size<=3 bad sets= 4583 unclassified=568
+m= 109 minimal size<=3 bad sets= 4735 unclassified=608
+m= 110 minimal size<=3 bad sets= 4814 unclassified=604
+m= 111 minimal size<=3 bad sets= 4931 unclassified=611
+m= 112 minimal size<=3 bad sets= 4981 unclassified=623
+m= 113 minimal size<=3 bad sets= 5114 unclassified=649
+m= 114 minimal size<=3 bad sets= 5151 unclassified=639
+m= 115 minimal size<=3 bad sets= 5281 unclassified=669
+m= 116 minimal size<=3 bad sets= 5332 unclassified=668
+m= 117 minimal size<=3 bad sets= 5452 unclassified=681
+m= 118 minimal size<=3 bad sets= 5513 unclassified=692
+m= 119 minimal size<=3 bad sets= 5687 unclassified=710
+m= 120 minimal size<=3 bad sets= 5674 unclassified=694
+m= 121 minimal size<=3 bad sets= 5831 unclassified=731
+m= 122 minimal size<=3 bad sets= 5907 unclassified=742
+m= 123 minimal size<=3 bad sets= 6024 unclassified=748
+m= 124 minimal size<=3 bad sets= 6101 unclassified=762
+m= 125 minimal size<=3 bad sets= 6258 unclassified=780
+m= 126 minimal size<=3 bad sets= 6262 unclassified=769
+m= 127 minimal size<=3 bad sets= 6436 unclassified=816
+m= 128 minimal size<=3 bad sets= 6494 unclassified=812
+m= 129 minimal size<=3 bad sets= 6657 unclassified=833
+m= 130 minimal size<=3 bad sets= 6689 unclassified=833
+m= 131 minimal size<=3 bad sets= 6877 unclassified=865
+m= 132 minimal size<=3 bad sets= 6884 unclassified=862
+m= 133 minimal size<=3 bad sets= 7026 unclassified=892
+m= 134 minimal size<=3 bad sets= 7145 unclassified=894
+m= 135 minimal size<=3 bad sets= 7259 unclassified=893
+m= 136 minimal size<=3 bad sets= 7323 unclassified=911
+m= 137 minimal size<=3 bad sets= 7508 unclassified=955
+m= 138 minimal size<=3 bad sets= 7517 unclassified=933
+m= 139 minimal size<=3 bad sets= 7728 unclassified=989
+m= 140 minimal size<=3 bad sets= 7762 unclassified=974
+m= 141 minimal size<=3 bad sets= 7909 unclassified=982
+m= 142 minimal size<=3 bad sets= 7998 unclassified=1007
+m= 143 minimal size<=3 bad sets= 8181 unclassified=1033
+m= 144 minimal size<=3 bad sets= 8182 unclassified=1021
+m= 145 minimal size<=3 bad sets= 8338 unclassified=1051
+m= 146 minimal size<=3 bad sets= 8460 unclassified=1052
+m= 147 minimal size<=3 bad sets= 8611 unclassified=1064
+m= 148 minimal size<=3 bad sets= 8667 unclassified=1077
+m= 149 minimal size<=3 bad sets= 8875 unclassified=1120
+m= 150 minimal size<=3 bad sets= 8877 unclassified=1102
+m= 151 minimal size<=3 bad sets= 9061 unclassified=1151
+m= 152 minimal size<=3 bad sets= 9168 unclassified=1160
+m= 153 minimal size<=3 bad sets= 9323 unclassified=1167
+m= 154 minimal size<=3 bad sets= 9411 unclassified=1178
+m= 155 minimal size<=3 bad sets= 9623 unclassified=1196
+m= 156 minimal size<=3 bad sets= 9595 unclassified=1177
+m= 157 minimal size<=3 bad sets= 9813 unclassified=1243
+m= 158 minimal size<=3 bad sets= 9892 unclassified=1236
+m= 159 minimal size<=3 bad sets=10086 unclassified=1256
+m= 160 minimal size<=3 bad sets=10159 unclassified=1264
+m= 161 minimal size<=3 bad sets=10347 unclassified=1293
+m= 162 minimal size<=3 bad sets=10369 unclassified=1287
+m= 163 minimal size<=3 bad sets=10577 unclassified=1338
+m= 164 minimal size<=3 bad sets=10687 unclassified=1352
+m= 165 minimal size<=3 bad sets=10815 unclassified=1341
+m= 166 minimal size<=3 bad sets=10895 unclassified=1359
+m= 167 minimal size<=3 bad sets=11158 unclassified=1414
+m= 168 minimal size<=3 bad sets=11136 unclassified=1387
+m= 169 minimal size<=3 bad sets=11376 unclassified=1448
+m= 170 minimal size<=3 bad sets=11491 unclassified=1443
+m= 171 minimal size<=3 bad sets=11653 unclassified=1454
+m= 172 minimal size<=3 bad sets=11725 unclassified=1476
+m= 173 minimal size<=3 bad sets=11948 unclassified=1515
+m= 174 minimal size<=3 bad sets=12026 unclassified=1505
+m= 175 minimal size<=3 bad sets=12211 unclassified=1541
+m= 176 minimal size<=3 bad sets=12269 unclassified=1534
+m= 177 minimal size<=3 bad sets=12461 unclassified=1557
+m= 178 minimal size<=3 bad sets=12530 unclassified=1577
+m= 179 minimal size<=3 bad sets=12800 unclassified=1621
+m= 180 minimal size<=3 bad sets=12778 unclassified=1597
+m= 181 minimal size<=3 bad sets=13055 unclassified=1669
+m= 182 minimal size<=3 bad sets=13154 unclassified=1667
+m= 183 minimal size<=3 bad sets=13333 unclassified=1672
+m= 184 minimal size<=3 bad sets=13451 unclassified=1696
+m= 185 minimal size<=3 bad sets=13656 unclassified=1728
+m= 186 minimal size<=3 bad sets=13686 unclassified=1705
+m= 187 minimal size<=3 bad sets=13921 unclassified=1764
+m= 188 minimal size<=3 bad sets=14030 unclassified=1769
+m= 189 minimal size<=3 bad sets=14224 unclassified=1776
+m= 190 minimal size<=3 bad sets=14290 unclassified=1782
+m= 191 minimal size<=3 bad sets=14577 unclassified=1828
+m= 192 minimal size<=3 bad sets=14576 unclassified=1832
+m= 193 minimal size<=3 bad sets=14804 unclassified=1889
+m= 194 minimal size<=3 bad sets=14961 unclassified=1894
+m= 195 minimal size<=3 bad sets=15150 unclassified=1898
+m= 196 minimal size<=3 bad sets=15217 unclassified=1908
+m= 197 minimal size<=3 bad sets=15517 unclassified=1972
+m= 198 minimal size<=3 bad sets=15503 unclassified=1940
+m= 199 minimal size<=3 bad sets=15799 unclassified=2025
+m= 200 minimal size<=3 bad sets=15861 unclassified=2010
+m= 201 minimal size<=3 bad sets=16074 unclassified=2029
+m= 202 minimal size<=3 bad sets=16203 unclassified=2060
+m= 203 minimal size<=3 bad sets=16442 unclassified=2094
+m= 204 minimal size<=3 bad sets=16451 unclassified=2071
+m= 205 minimal size<=3 bad sets=16677 unclassified=2117
+m= 206 minimal size<=3 bad sets=16850 unclassified=2128
+m= 207 minimal size<=3 bad sets=17058 unclassified=2148
+m= 208 minimal size<=3 bad sets=17153 unclassified=2163
+m= 209 minimal size<=3 bad sets=17454 unclassified=2205
+m= 210 minimal size<=3 bad sets=17452 unclassified=2168
+m= 211 minimal size<=3 bad sets=17733 unclassified=2244
+m= 212 minimal size<=3 bad sets=17819 unclassified=2260
+m= 213 minimal size<=3 bad sets=18040 unclassified=2274
+m= 214 minimal size<=3 bad sets=18175 unclassified=2305
+m= 215 minimal size<=3 bad sets=18444 unclassified=2327
+m= 216 minimal size<=3 bad sets=18428 unclassified=2310
+m= 217 minimal size<=3 bad sets=18696 unclassified=2377
+m= 218 minimal size<=3 bad sets=18848 unclassified=2377
+m= 219 minimal size<=3 bad sets=19108 unclassified=2394
+m= 220 minimal size<=3 bad sets=19210 unclassified=2408
+m= 221 minimal size<=3 bad sets=19434 unclassified=2442
+m= 222 minimal size<=3 bad sets=19478 unclassified=2433
+m= 223 minimal size<=3 bad sets=19773 unclassified=2510
+m= 224 minimal size<=3 bad sets=19901 unclassified=2504
+m= 225 minimal size<=3 bad sets=20105 unclassified=2509
+m= 226 minimal size<=3 bad sets=20194 unclassified=2529
+m= 227 minimal size<=3 bad sets=20573 unclassified=2613
+m= 228 minimal size<=3 bad sets=20526 unclassified=2572
+m= 229 minimal size<=3 bad sets=20865 unclassified=2666
+m= 230 minimal size<=3 bad sets=21016 unclassified=2653
+m= 231 minimal size<=3 bad sets=21216 unclassified=2646
+m= 232 minimal size<=3 bad sets=21330 unclassified=2680
+m= 233 minimal size<=3 bad sets=21635 unclassified=2734
+m= 234 minimal size<=3 bad sets=21695 unclassified=2724
+m= 235 minimal size<=3 bad sets=21943 unclassified=2771
+m= 236 minimal size<=3 bad sets=22095 unclassified=2779
+m= 237 minimal size<=3 bad sets=22378 unclassified=2815
+m= 238 minimal size<=3 bad sets=22429 unclassified=2817
+m= 239 minimal size<=3 bad sets=22804 unclassified=2880
+m= 240 minimal size<=3 bad sets=22758 unclassified=2851
+m= 241 minimal size<=3 bad sets=23114 unclassified=2947
+m= 242 minimal size<=3 bad sets=23242 unclassified=2953
+m= 243 minimal size<=3 bad sets=23474 unclassified=2960
+m= 244 minimal size<=3 bad sets=23667 unclassified=2998
+m= 245 minimal size<=3 bad sets=23923 unclassified=3014
+m= 246 minimal size<=3 bad sets=23985 unclassified=3000
+m= 247 minimal size<=3 bad sets=24292 unclassified=3083
+m= 248 minimal size<=3 bad sets=24383 unclassified=3085
+m= 249 minimal size<=3 bad sets=24655 unclassified=3100
+m= 250 minimal size<=3 bad sets=24752 unclassified=3111
+m= 251 minimal size<=3 bad sets=25150 unclassified=3176
+m= 252 minimal size<=3 bad sets=25134 unclassified=3163
+m= 253 minimal size<=3 bad sets=25425 unclassified=3230
+m= 254 minimal size<=3 bad sets=25638 unclassified=3235
+m= 255 minimal size<=3 bad sets=25867 unclassified=3240
+m= 256 minimal size<=3 bad sets=25975 unclassified=3264
+m= 257 minimal size<=3 bad sets=26323 unclassified=3344
+m= 258 minimal size<=3 bad sets=26385 unclassified=3323
+m= 259 minimal size<=3 bad sets=26713 unclassified=3397
+m= 260 minimal size<=3 bad sets=26806 unclassified=3375
+
+unclassified by size: singletons=0 pairs=0 (rest are triples)
+2341337 minimal bad sets of size <= 3 checked over m=4..260
+RESULT: *** UNCLASSIFIED SETS FOUND -- Theorem 4.1 is FALSE as stated ***
+  m=7 UNCLASSIFIED size 3 [3, 7, 10]
+  m=8 UNCLASSIFIED size 3 [3, 8, 11]
+  m=9 UNCLASSIFIED size 3 [6, 12, 18]
+  m=9 UNCLASSIFIED size 3 [4, 9, 13]
+  m=9 UNCLASSIFIED size 3 [5, 8, 13]
+  m=10 UNCLASSIFIED size 3 [6, 12, 18]
+  m=10 UNCLASSIFIED size 3 [5, 9, 14]
+  m=10 UNCLASSIFIED size 3 [3, 10, 13]
+  m=11 UNCLASSIFIED size 3 [7, 14, 21]
+  m=11 UNCLASSIFIED size 3 [5, 11, 16]
+  m=11 UNCLASSIFIED size 3 [4, 11, 15]
+  m=11 UNCLASSIFIED size 3 [3, 11, 14]

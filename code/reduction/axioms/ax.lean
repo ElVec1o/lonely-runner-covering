@@ -1,0 +1,48 @@
+import LRSpectrumFull.Delta2Connect
+import LRSpectrumFull.Delta2WindowK3
+import LRSpectrumFull.RoomA4_rosenfeld
+import LRSpectrumFull.RoomA4_compress
+import LRSpectrumFull.RoomA4_barrier
+import LRSpectrumFull.RoomFCU_erdos
+import LRSpectrumFull.RoomFCU_lemmaP
+import LRSpectrumFull.RoomFCU_ramanujan
+import LRSpectrumFull.RoomFCU_compress
+import LRSpectrumFull.RoomFCU_moderator
+import LRSpectrumFull.RoomFCU_hilbert
+import LRSpectrumFull.RoomFCU_goddyn
+import LRSpectrumFull.RoomFCU_mss
+open LRSpectrumFull
+#print axioms LRSpectrumFull.universalFloor_of_four_atoms_QWprim
+#print axioms LRSpectrumFull.strongFreeWindowTiny_of_456
+#print axioms LRSpectrumFull.RoomA4Compress.universalFloor_of_four_atoms_U
+#print axioms LRSpectrumFull.RoomA4Compress.floorCruxU_of_ind2
+#print axioms LRSpectrumFull.RoomFCUErdos.floorCruxU_iff_universalFloor
+#print axioms LRSpectrumFull.RoomFCUErdos.universalFloor_iff_divisible
+#print axioms LRSpectrumFull.RoomFCUErdos.floor_of_not_D
+#print axioms LRSpectrumFull.RoomA4Rosenfeld.floor_of_leaveOneOut_imprimitive
+#print axioms LRSpectrumFull.RoomA4Rosenfeld.witness_of_missing_divisor
+#print axioms LRSpectrumFull.RoomA4Rosenfeld.universalFloor_of_four_atoms_ind2
+#print axioms LRSpectrumFull.RoomA4Compress.floor_of_measure_certificate
+#print axioms LRSpectrumFull.RoomA4Compress.floor_of_integral_unionBound
+#print axioms LRSpectrumFull.RoomA4Compress.floor_of_UD
+#print axioms LRSpectrumFull.RoomA4Barrier.goodSet_countable
+#print axioms LRSpectrumFull.RoomA4Barrier.integral_le_sum_badSet
+#print axioms LRSpectrumFull.RoomA4Barrier.lt_ML_of_UDFires
+#print axioms LRSpectrumFull.RoomA4Barrier.not_UDFires_of_tight
+#print axioms LRSpectrumFull.RoomA4Barrier.not_UDFires_consec
+#print axioms LRSpectrumFull.floor_of_rieszSharpFiresQ
+#print axioms LRSpectrumFull.rieszSharpFiresQ_of_subfamilySum_le
+#print axioms LRSpectrumFull.RoomFCULemmaP.lemmaP
+#print axioms LRSpectrumFull.RoomFCUCompress.lemmaP_quant
+#print axioms LRSpectrumFull.RoomFCUCompress.lemmaP_via_escape
+#print axioms LRSpectrumFull.RoomFCURamanujan.famF_lonely
+#print axioms LRSpectrumFull.RoomFCUCompress.famF_via_escape
+#print axioms LRSpectrumFull.RoomFCUModerator.ML_ge_of_escape
+#print axioms LRSpectrumFull.RoomFCUModerator.strictFloorD_false
+#print axioms LRSpectrumFull.RoomFCUCompress.ML_ge_of_residues
+#print axioms LRSpectrumFull.RoomFCUCompress.lonely_iff_escape
+#print axioms LRSpectrumFull.RoomFCUCompress.rational_point_of_lt
+#print axioms LRSpectrumFull.RoomFCUHilbert.gw_not_dvd
+#print axioms LRSpectrumFull.RoomFCUGoddyn.cruxU_fast
+#print axioms LRSpectrumFull.RoomFCUGoddyn.fast_runner_floor
+#print axioms LRSpectrumFull.RoomFCUMss.halfShift_not_lonely

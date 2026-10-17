@@ -1,0 +1,30 @@
+Thu Oct  1 03:39:35 +07 2026 pool m=32 S=8
+edge-unions: 10319648 saturated=false
+parts incl. extensions: 10319648
+Thu Oct  1 03:39:54 +07 2026 dumpkept
+LP 31.000000000000007 P 10319648
+kept 2007626 of 10319648 min rc -1.0054179711005418e-12
+tight rows (1-based velocities) [30, 32, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 61, 62, 63] count 31
+Thu Oct  1 03:42:23 +07 2026 mip
+status Optimal obj 31.0
+SUM 31 SOL [(2, 1), (2, 1), (2, 1), (2, 1), (2, 1), (1, 0), (2, 1), (2, 1), (2, 1), (6, 3), (8, 4), (2, 1), (8, 4), (2, 1), (1, 0), (8, 4), (6, 3), (2, 1), (2, 1), (2, 1)]
+CHECK OK: 20 parts, sum cap 31 <= 31, exact capacities re-verified
+Thu Oct  1 03:50:10 +07 2026 done m=32
+      634.73 real       723.39 user        20.05 sys
+         10809131008  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             9309579  page reclaims
+                 206  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 563  voluntary context switches
+              142226  involuntary context switches
+            31390230  instructions retired
+            17481402  cycles elapsed
+             1376688  peak memory footprint

@@ -1,0 +1,43 @@
+2026-10-01 02:38:34 driver start
+2026-10-01 02:38:34 m=31 start
+2026-10-01 03:20:42 m=31 no certificate (2528s): Thu Oct  1 02:44:58 +07 2026 mip Thu Oct  1 03:20:42 +07 2026 done m=31 
+2026-10-01 03:20:42 STOP low disk 526MB before m=32
+2026-10-01 03:39:35 driver (v2) start
+2026-10-01 03:39:35 m=32 start
+2026-10-01 03:50:10 m=32 CERTIFICATE FOUND (635s, peak RSS 10.8091 GB): CHECK OK: 20 parts, sum cap 31 <= 31, exact capacities re-verified
+2026-10-01 03:50:10 m=34 start
+2026-10-01 03:50:47 m=34 no certificate (37s, peak RSS 10.7066 GB): status Infeasible obj inf 
+2026-10-01 03:50:47 m=37 start
+2026-10-01 03:53:02 m=37 no certificate (135s, peak RSS 11.1434 GB): status Infeasible obj inf 
+2026-10-01 03:53:02 m=38 start
+2026-10-01 03:55:22 m=38 no certificate (140s, peak RSS 11.2322 GB): status Infeasible obj inf 
+2026-10-01 03:55:22 m=40 start
+2026-10-01 03:59:17 m=40 no certificate (235s, peak RSS 11.4584 GB): status Infeasible obj inf 
+2026-10-01 03:59:17 m=42 start
+2026-10-01 04:06:07 m=42 no certificate (410s, peak RSS 11.4461 GB): status Infeasible obj inf 
+2026-10-01 04:06:07 m=43 start
+2026-10-01 04:17:02 m=43 no certificate (655s, peak RSS 13.3621 GB): status Infeasible obj inf 
+2026-10-01 04:17:02 m=45 start
+2026-10-01 04:30:30 m=45 no certificate (808s, peak RSS 13.9703 GB): status Infeasible obj inf 
+2026-10-01 04:30:31 m=46 start
+2026-10-01 04:45:39 m=46 no certificate (908s, peak RSS 14.8774 GB): status Infeasible obj inf 
+2026-10-01 04:45:39 WAIT disk 1017MB before m=47
+2026-10-01 04:48:39 m=47 start
+2026-10-01 05:07:45 m=47 no certificate (1146s, peak RSS 11.763 GB): 
+2026-10-01 05:07:45 WAIT disk 1420MB before m=49
+2026-10-01 05:10:45 m=49 start
+2026-10-01 05:36:30 m=49 no certificate (1545s, peak RSS 12.4094 GB): 
+2026-10-01 05:36:30 m=52 start
+2026-10-01 06:07:39 m=52 no certificate (1869s, peak RSS 12.2977 GB): 
+2026-10-01 06:07:39 m=55 start
+2026-10-01 06:34:11 m=55 no certificate (1592s, peak RSS 12.5103 GB): status Infeasible obj inf 
+2026-10-01 06:34:11 m=57 start
+2026-10-01 07:12:14 m=57 no certificate (2283s, peak RSS 11.8632 GB): status Infeasible obj inf 
+2026-10-01 07:12:14 WAIT disk 1946MB before m=58
+2026-10-01 07:15:14 m=58 start
+2026-10-01 07:50:35 m=58 no certificate (2121s, peak RSS 13.4441 GB): status Infeasible obj inf 
+2026-10-01 07:50:35 WAIT disk 1624MB before m=59
+2026-10-01 07:53:35 m=59 start
+2026-10-01 08:44:30 m=59 no certificate (3055s, peak RSS 13.1032 GB): status Infeasible obj inf 
+2026-10-01 08:44:30 WAIT disk 797MB before m=60
+2026-10-01 08:47:04 driver killed by orchestrator (user approved column-generation fix; m=59 Infeasible, m=60.. not run)

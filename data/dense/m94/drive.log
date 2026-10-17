@@ -1,0 +1,772 @@
+drive m=94 wall left 10800s of 10800s; state {"start_ep": 1791037948.0}
+family: complete file found (5389 blocks)
+family: complete file found (50759 blocks)
+setup m=94 edges 3724 family(p>=0, |T|<=5) 50759 blocks, |T|<=4 sub-family 5389 blocks, lows 93 (free 2), Y 93
+PHASE 1: pool harvest, budget 2400s active (already 0s), LS on |T|<=5 p>=0 (full) and |T|<=4 families alternating, trial 60 s, record <=3 uncovered
+p1 ls trials 0 pool 16 (3unc 16 le2 0) thread0 unc 18 best 99 elapsed 30s/2400s ETA 2370s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 2 pool 18 (3unc 18 le2 0) thread0 unc 18 best 2 elapsed 60s/2400s ETA 2340s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 3 pool 23 (3unc 23 le2 0) thread0 unc 9 best 2 elapsed 90s/2400s ETA 2310s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 6 pool 26 (3unc 26 le2 0) thread0 unc 15 best 2 elapsed 120s/2400s ETA 2280s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 6 pool 34 (3unc 34 le2 0) thread0 unc 21 best 2 elapsed 150s/2400s ETA 2250s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 9 pool 44 (3unc 44 le2 0) thread0 unc 19 best 2 elapsed 180s/2400s ETA 2220s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 9 pool 52 (3unc 52 le2 0) thread0 unc 10 best 2 elapsed 210s/2400s ETA 2190s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 12 pool 62 (3unc 60 le2 2) thread0 unc 22 best 2 elapsed 240s/2400s ETA 2160s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 12 pool 71 (3unc 69 le2 2) thread0 unc 14 best 2 elapsed 270s/2400s ETA 2130s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 15 pool 82 (3unc 80 le2 2) thread0 unc 15 best 2 elapsed 300s/2400s ETA 2100s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 15 pool 92 (3unc 90 le2 2) thread0 unc 21 best 2 elapsed 330s/2400s ETA 2070s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 18 pool 100 (3unc 98 le2 2) thread0 unc 20 best 2 elapsed 360s/2400s ETA 2040s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 18 pool 109 (3unc 107 le2 2) thread0 unc 15 best 2 elapsed 390s/2400s ETA 2010s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 21 pool 121 (3unc 119 le2 2) thread0 unc 19 best 2 elapsed 420s/2400s ETA 1980s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 21 pool 130 (3unc 128 le2 2) thread0 unc 12 best 2 elapsed 450s/2400s ETA 1950s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 24 pool 135 (3unc 133 le2 2) thread0 unc 18 best 2 elapsed 480s/2400s ETA 1920s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 24 pool 148 (3unc 146 le2 2) thread0 unc 15 best 2 elapsed 510s/2400s ETA 1890s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 27 pool 158 (3unc 156 le2 2) thread0 unc 15 best 2 elapsed 541s/2400s ETA 1859s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 27 pool 175 (3unc 173 le2 2) thread0 unc 16 best 2 elapsed 571s/2400s ETA 1829s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 30 pool 180 (3unc 178 le2 2) thread0 unc 19 best 2 elapsed 601s/2400s ETA 1799s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 30 pool 195 (3unc 193 le2 2) thread0 unc 15 best 2 elapsed 631s/2400s ETA 1769s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 33 pool 199 (3unc 197 le2 2) thread0 unc 16 best 2 elapsed 661s/2400s ETA 1739s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 33 pool 214 (3unc 212 le2 2) thread0 unc 17 best 2 elapsed 691s/2400s ETA 1709s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 36 pool 222 (3unc 220 le2 2) thread0 unc 13 best 2 elapsed 721s/2400s ETA 1679s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 36 pool 234 (3unc 232 le2 2) thread0 unc 20 best 2 elapsed 751s/2400s ETA 1649s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 39 pool 247 (3unc 245 le2 2) thread0 unc 14 best 2 elapsed 781s/2400s ETA 1619s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 39 pool 257 (3unc 254 le2 3) thread0 unc 13 best 2 elapsed 811s/2400s ETA 1589s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 42 pool 264 (3unc 261 le2 3) thread0 unc 15 best 2 elapsed 841s/2400s ETA 1559s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 42 pool 274 (3unc 271 le2 3) thread0 unc 10 best 2 elapsed 871s/2400s ETA 1529s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 45 pool 285 (3unc 282 le2 3) thread0 unc 23 best 2 elapsed 901s/2400s ETA 1499s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 45 pool 290 (3unc 287 le2 3) thread0 unc 19 best 2 elapsed 931s/2400s ETA 1469s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 48 pool 297 (3unc 294 le2 3) thread0 unc 11 best 2 elapsed 961s/2400s ETA 1439s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 48 pool 308 (3unc 305 le2 3) thread0 unc 13 best 2 elapsed 991s/2400s ETA 1409s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 51 pool 319 (3unc 316 le2 3) thread0 unc 14 best 2 elapsed 1021s/2400s ETA 1379s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 51 pool 329 (3unc 324 le2 5) thread0 unc 25 best 2 elapsed 1051s/2400s ETA 1349s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.07: PAUSE (workers sleep)
+LOAD 11.92: RESUME
+p1 ls trials 54 pool 338 (3unc 333 le2 5) thread0 unc 20 best 2 elapsed 1080s/2400s ETA 1320s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.10: PAUSE (workers sleep)
+LOAD 11.54: RESUME
+p1 ls trials 54 pool 345 (3unc 340 le2 5) thread0 unc 11 best 2 elapsed 1100s/2400s ETA 1300s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.00: PAUSE (workers sleep)
+LOAD 11.39: RESUME
+p1 ls trials 57 pool 348 (3unc 343 le2 5) thread0 unc 23 best 2 elapsed 1120s/2400s ETA 1280s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.05: PAUSE (workers sleep)
+LOAD 11.87: RESUME
+LOAD 12.19: PAUSE (workers sleep)
+LOAD 11.54: RESUME
+p1 ls trials 57 pool 353 (3unc 348 le2 5) thread0 unc 14 best 2 elapsed 1140s/2400s ETA 1260s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 60 pool 362 (3unc 356 le2 6) thread0 unc 13 best 2 elapsed 1170s/2400s ETA 1230s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 13.67: PAUSE (workers sleep)
+LOAD 11.52: RESUME
+p1 ls trials 60 pool 362 (3unc 356 le2 6) thread0 unc 20 best 2 elapsed 1180s/2400s ETA 1220s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.47: PAUSE (workers sleep)
+LOAD 11.55: RESUME
+p1 ls trials 63 pool 366 (3unc 360 le2 6) thread0 unc 17 best 2 elapsed 1200s/2400s ETA 1200s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.47: PAUSE (workers sleep)
+LOAD 11.55: RESUME
+p1 ls trials 63 pool 370 (3unc 364 le2 6) thread0 unc 18 best 2 elapsed 1220s/2400s ETA 1180s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 66 pool 379 (3unc 373 le2 6) thread0 unc 19 best 2 elapsed 1250s/2400s ETA 1150s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 66 pool 383 (3unc 377 le2 6) thread0 unc 18 best 2 elapsed 1280s/2400s ETA 1120s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 69 pool 389 (3unc 383 le2 6) thread0 unc 16 best 2 elapsed 1310s/2400s ETA 1090s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.10: PAUSE (workers sleep)
+LOAD 11.54: RESUME
+p1 ls trials 69 pool 398 (3unc 392 le2 6) thread0 unc 17 best 2 elapsed 1331s/2400s ETA 1069s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.15: PAUSE (workers sleep)
+LOAD 11.83: RESUME
+LOAD 13.43: PAUSE (workers sleep)
+LOAD 11.87: RESUME
+p1 ls trials 72 pool 400 (3unc 393 le2 7) thread0 unc 17 best 2 elapsed 1351s/2400s ETA 1049s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 75 pool 400 (3unc 393 le2 7) thread0 unc 15 best 2 elapsed 1381s/2400s ETA 1019s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.33: PAUSE (workers sleep)
+LOAD 11.65: RESUME
+p1 ls trials 75 pool 406 (3unc 399 le2 7) thread0 unc 13 best 2 elapsed 1401s/2400s ETA 999s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 13.78: PAUSE (workers sleep)
+LOAD 11.97: RESUME
+p1 ls trials 78 pool 406 (3unc 399 le2 7) thread0 unc 22 best 2 elapsed 1401s/2400s ETA 999s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.21: PAUSE (workers sleep)
+LOAD 11.49: RESUME
+p1 ls trials 78 pool 422 (3unc 414 le2 8) thread0 unc 13 best 2 elapsed 1421s/2400s ETA 979s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.26: PAUSE (workers sleep)
+LOAD 11.77: RESUME
+LOAD 12.09: PAUSE (workers sleep)
+LOAD 11.69: RESUME
+p1 ls trials 81 pool 423 (3unc 415 le2 8) thread0 unc 17 best 1 elapsed 1441s/2400s ETA 959s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 13.77: PAUSE (workers sleep)
+LOAD 11.92: RESUME
+p1 ls trials 84 pool 424 (3unc 416 le2 8) thread0 unc 20 best 1 elapsed 1451s/2400s ETA 949s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.39: PAUSE (workers sleep)
+LOAD 11.75: RESUME
+p1 ls trials 86 pool 425 (3unc 417 le2 8) thread0 unc 24 best 1 elapsed 1461s/2400s ETA 939s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 14.63: PAUSE (workers sleep)
+LOAD 11.62: RESUME
+p1 ls trials 88 pool 425 (3unc 417 le2 8) thread0 unc 19 best 1 elapsed 1471s/2400s ETA 929s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.14: PAUSE (workers sleep)
+LOAD 11.50: RESUME
+p1 ls trials 90 pool 429 (3unc 421 le2 8) thread0 unc 10 best 1 elapsed 1501s/2400s ETA 899s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.63: PAUSE (workers sleep)
+LOAD 11.54: RESUME
+p1 ls trials 93 pool 432 (3unc 424 le2 8) thread0 unc 18 best 1 elapsed 1513s/2400s ETA 887s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 13.14: PAUSE (workers sleep)
+LOAD 11.47: RESUME
+p1 ls trials 93 pool 433 (3unc 425 le2 8) thread0 unc 14 best 1 elapsed 1533s/2400s ETA 867s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.21: PAUSE (workers sleep)
+LOAD 11.56: RESUME
+p1 ls trials 94 pool 437 (3unc 429 le2 8) thread0 unc 22 best 1 elapsed 1553s/2400s ETA 847s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.01: PAUSE (workers sleep)
+LOAD 11.78: RESUME
+p1 ls trials 96 pool 441 (3unc 433 le2 8) thread0 unc 16 best 1 elapsed 1573s/2400s ETA 827s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.57: PAUSE (workers sleep)
+LOAD 11.92: RESUME
+LOAD 13.63: PAUSE (workers sleep)
+LOAD 11.68: RESUME
+p1 ls trials 100 pool 446 (3unc 438 le2 8) thread0 unc 22 best 1 elapsed 1583s/2400s ETA 817s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 13.57: PAUSE (workers sleep)
+LOAD 11.97: RESUME
+p1 ls trials 103 pool 451 (3unc 443 le2 8) thread0 unc 18 best 1 elapsed 1593s/2400s ETA 807s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.13: PAUSE (workers sleep)
+LOAD 11.79: RESUME
+LOAD 12.54: PAUSE (workers sleep)
+LOAD 11.93: RESUME
+p1 ls trials 103 pool 455 (3unc 447 le2 8) thread0 unc 16 best 1 elapsed 1613s/2400s ETA 787s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 13.86: PAUSE (workers sleep)
+LOAD 11.97: RESUME
+p1 ls trials 106 pool 458 (3unc 450 le2 8) thread0 unc 18 best 1 elapsed 1623s/2400s ETA 777s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.10: PAUSE (workers sleep)
+LOAD 11.36: RESUME
+p1 ls trials 106 pool 459 (3unc 451 le2 8) thread0 unc 22 best 1 elapsed 1633s/2400s ETA 767s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 109 pool 465 (3unc 456 le2 9) thread0 unc 15 best 1 elapsed 1663s/2400s ETA 737s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.12: PAUSE (workers sleep)
+LOAD 11.64: RESUME
+LOAD 12.32: PAUSE (workers sleep)
+LOAD 11.80: RESUME
+p1 ls trials 112 pool 471 (3unc 462 le2 9) thread0 unc 15 best 1 elapsed 1683s/2400s ETA 717s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.34: PAUSE (workers sleep)
+LOAD 11.58: RESUME
+p1 ls trials 112 pool 476 (3unc 467 le2 9) thread0 unc 12 best 1 elapsed 1703s/2400s ETA 697s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.05: PAUSE (workers sleep)
+LOAD 11.73: RESUME
+LOAD 12.01: PAUSE (workers sleep)
+LOAD 11.54: RESUME
+p1 ls trials 115 pool 486 (3unc 476 le2 10) thread0 unc 19 best 1 elapsed 1723s/2400s ETA 677s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 13.12: PAUSE (workers sleep)
+LOAD 11.44: RESUME
+p1 ls trials 115 pool 494 (3unc 484 le2 10) thread0 unc 20 best 1 elapsed 1743s/2400s ETA 657s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 14.34: PAUSE (workers sleep)
+LOAD 11.33: RESUME
+p1 ls trials 118 pool 497 (3unc 487 le2 10) thread0 unc 15 best 1 elapsed 1754s/2400s ETA 646s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 121 pool 507 (3unc 496 le2 11) thread0 unc 14 best 1 elapsed 1784s/2400s ETA 616s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 13.54: PAUSE (workers sleep)
+LOAD 11.57: RESUME
+p1 ls trials 121 pool 507 (3unc 496 le2 11) thread0 unc 13 best 1 elapsed 1784s/2400s ETA 616s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.59: PAUSE (workers sleep)
+LOAD 11.73: RESUME
+p1 ls trials 124 pool 516 (3unc 505 le2 11) thread0 unc 16 best 1 elapsed 1804s/2400s ETA 596s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 124 pool 524 (3unc 513 le2 11) thread0 unc 12 best 1 elapsed 1834s/2400s ETA 566s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 127 pool 535 (3unc 524 le2 11) thread0 unc 12 best 1 elapsed 1864s/2400s ETA 536s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 127 pool 543 (3unc 532 le2 11) thread0 unc 13 best 1 elapsed 1894s/2400s ETA 506s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 130 pool 546 (3unc 534 le2 12) thread0 unc 15 best 1 elapsed 1924s/2400s ETA 476s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.61: PAUSE (workers sleep)
+LOAD 11.20: RESUME
+p1 ls trials 130 pool 546 (3unc 534 le2 12) thread0 unc 15 best 1 elapsed 1924s/2400s ETA 476s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.10: PAUSE (workers sleep)
+LOAD 11.24: RESUME
+p1 ls trials 133 pool 553 (3unc 541 le2 12) thread0 unc 13 best 1 elapsed 1954s/2400s ETA 446s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.64: PAUSE (workers sleep)
+LOAD 11.84: RESUME
+p1 ls trials 134 pool 560 (3unc 548 le2 12) thread0 unc 29 best 1 elapsed 1974s/2400s ETA 426s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 13.15: PAUSE (workers sleep)
+LOAD 11.92: RESUME
+p1 ls trials 136 pool 564 (3unc 552 le2 12) thread0 unc 15 best 1 elapsed 1984s/2400s ETA 416s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.74: PAUSE (workers sleep)
+LOAD 11.77: RESUME
+p1 ls trials 138 pool 565 (3unc 553 le2 12) thread0 unc 17 best 1 elapsed 1994s/2400s ETA 406s (budget-bound; success is stochastic) rss 0.02GB
+LOAD 12.18: PAUSE (workers sleep)
+LOAD 11.84: RESUME
+p1 ls trials 139 pool 567 (3unc 555 le2 12) thread0 unc 18 best 1 elapsed 2014s/2400s ETA 386s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 142 pool 577 (3unc 565 le2 12) thread0 unc 17 best 1 elapsed 2044s/2400s ETA 356s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 142 pool 584 (3unc 572 le2 12) thread0 unc 22 best 1 elapsed 2074s/2400s ETA 326s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 145 pool 595 (3unc 583 le2 12) thread0 unc 18 best 1 elapsed 2104s/2400s ETA 296s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 145 pool 604 (3unc 592 le2 12) thread0 unc 16 best 1 elapsed 2134s/2400s ETA 266s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 148 pool 609 (3unc 597 le2 12) thread0 unc 15 best 1 elapsed 2164s/2400s ETA 236s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 148 pool 624 (3unc 611 le2 13) thread0 unc 11 best 1 elapsed 2194s/2400s ETA 206s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 151 pool 638 (3unc 625 le2 13) thread0 unc 18 best 1 elapsed 2224s/2400s ETA 176s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 151 pool 649 (3unc 636 le2 13) thread0 unc 13 best 1 elapsed 2254s/2400s ETA 146s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 154 pool 663 (3unc 650 le2 13) thread0 unc 13 best 1 elapsed 2284s/2400s ETA 116s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 154 pool 672 (3unc 659 le2 13) thread0 unc 23 best 1 elapsed 2314s/2400s ETA 86s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 157 pool 686 (3unc 673 le2 13) thread0 unc 15 best 1 elapsed 2344s/2400s ETA 56s (budget-bound; success is stochastic) rss 0.02GB
+p1 ls trials 157 pool 693 (3unc 680 le2 13) thread0 unc 12 best 1 elapsed 2374s/2400s ETA 26s (budget-bound; success is stochastic) rss 0.02GB
+PHASE 1 done: pool: 699 distinct near-solutions (3 unc: 686, 2 unc: 13, 1 unc: 0), 2847 distinct blocks of 50759, uncovered-low frequencies (velocity:count, top 12) 45:153 24:107 9:82 33:73 32:59 26:59 38:55 35:52 46:50 20:46 6:45 92:44, distinct lows ever uncovered 92
+PHASE 2 round 1: restricted exact solve; pooled-block cap 5000
+p2r1: R base 6830 blocks (2847 pooled from 699 states, |T|<=4 family included)
+p2r1: drop/swap neighbours 0/2847 blocks, R 6839 (0s)
+p2r1: drop/swap neighbours 2000/2847 blocks, R 13064 (0s)
+p2r1: drop/swap done for 2847/2847 pooled blocks, R 15658
+p2r1: add-free-Y neighbours from 22607/22607 (block,y) pairs, R 31253 (+15595), total build 1s
+p2r1 dfs nodes 385024 rate 12664/s depth 7 maxdepth 14 fewest-uncovered-lows 31 memo 357705 hits 27311 prunes 2089566 elapsed 30s/480s ETA <= 450s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 688128 rate 11286/s depth 7 maxdepth 14 fewest-uncovered-lows 30 memo 647592 hits 40528 prunes 3794187 elapsed 61s/480s ETA <= 419s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 1130496 rate 12395/s depth 10 maxdepth 16 fewest-uncovered-lows 22 memo 1052872 hits 77613 prunes 6469239 elapsed 91s/480s ETA <= 389s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 1523712 rate 12429/s depth 8 maxdepth 17 fewest-uncovered-lows 22 memo 1410223 hits 113480 prunes 9250438 elapsed 123s/480s ETA <= 357s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 1916928 rate 12530/s depth 7 maxdepth 17 fewest-uncovered-lows 22 memo 1763726 hits 153194 prunes 12508997 elapsed 153s/480s ETA <= 327s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 2777088 rate 15175/s depth 11 maxdepth 17 fewest-uncovered-lows 22 memo 2536868 hits 240208 prunes 17104633 elapsed 183s/480s ETA <= 297s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 3506176 rate 16443/s depth 11 maxdepth 17 fewest-uncovered-lows 22 memo 3190036 hits 316128 prunes 20798814 elapsed 213s/480s ETA <= 267s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 4104192 rate 16865/s depth 13 maxdepth 17 fewest-uncovered-lows 21 memo 3709625 hits 394553 prunes 24487070 elapsed 243s/480s ETA <= 237s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 4931584 rate 18038/s depth 13 maxdepth 18 fewest-uncovered-lows 20 memo 4444162 hits 487408 prunes 29111881 elapsed 273s/480s ETA <= 207s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 5832704 rate 19209/s depth 13 maxdepth 18 fewest-uncovered-lows 19 memo 5252328 hits 580362 prunes 34195892 elapsed 304s/480s ETA <= 176s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 6914048 rate 20722/s depth 12 maxdepth 18 fewest-uncovered-lows 19 memo 6160183 hits 753852 prunes 41098688 elapsed 334s/480s ETA <= 146s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 7905280 rate 21727/s depth 13 maxdepth 18 fewest-uncovered-lows 19 memo 7027109 hits 878157 prunes 46517279 elapsed 364s/480s ETA <= 116s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 8871936 rate 22527/s depth 12 maxdepth 18 fewest-uncovered-lows 19 memo 7883727 hits 988196 prunes 51863858 elapsed 394s/480s ETA <= 86s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 9986048 rate 23557/s depth 11 maxdepth 18 fewest-uncovered-lows 19 memo 8870468 hits 1115568 prunes 57673277 elapsed 424s/480s ETA <= 56s (time cap; no completion estimate) rss 0.55GB
+p2r1 dfs nodes 11173888 rate 24608/s depth 12 maxdepth 18 fewest-uncovered-lows 17 memo 9921559 hits 1252316 prunes 64156566 elapsed 454s/480s ETA <= 26s (time cap; no completion estimate) rss 0.55GB
+round 1	|R| 31253	verdict ABORTED (cap), no verdict	nodes 12132352	memo_hits 1374978	fewest_uncovered_lows_in_dfs 17	secs 481
+PHASE 2 round 1: growing pool, kicks of 5-15 blocks, 240s
+p2r1g: growth, 13 seed states for kicks
+p2r1g ls trials 3 pool 708 (3unc 695 le2 13) thread0 unc 19 best 3 elapsed 30s/240s ETA 210s (budget-bound; success is stochastic) rss 0.55GB
+p2r1g ls trials 6 pool 719 (3unc 705 le2 14) thread0 unc 9 best 2 elapsed 60s/240s ETA 180s (budget-bound; success is stochastic) rss 0.55GB
+p2r1g ls trials 9 pool 732 (3unc 718 le2 14) thread0 unc 14 best 2 elapsed 90s/240s ETA 150s (budget-bound; success is stochastic) rss 0.55GB
+p2r1g ls trials 12 pool 737 (3unc 723 le2 14) thread0 unc 19 best 2 elapsed 120s/240s ETA 120s (budget-bound; success is stochastic) rss 0.55GB
+p2r1g ls trials 15 pool 745 (3unc 731 le2 14) thread0 unc 16 best 2 elapsed 150s/240s ETA 90s (budget-bound; success is stochastic) rss 0.55GB
+p2r1g ls trials 18 pool 748 (3unc 733 le2 15) thread0 unc 14 best 2 elapsed 180s/240s ETA 60s (budget-bound; success is stochastic) rss 0.55GB
+p2r1g ls trials 21 pool 753 (3unc 738 le2 15) thread0 unc 19 best 2 elapsed 210s/240s ETA 30s (budget-bound; success is stochastic) rss 0.55GB
+after round 1: pool: 762 distinct near-solutions (3 unc: 747, 2 unc: 15, 1 unc: 0), 3145 distinct blocks of 50759, uncovered-low frequencies (velocity:count, top 12) 45:160 24:109 9:91 33:80 32:64 26:63 38:60 39:55 35:54 46:53 20:50 92:48, distinct lows ever uncovered 92
+PHASE 2 round 2: restricted exact solve; pooled-block cap 10000
+p2r2: R base 7104 blocks (3145 pooled from 762 states, |T|<=4 family included)
+p2r2: drop/swap neighbours 0/3145 blocks, R 7104 (0s)
+p2r2: drop/swap neighbours 2000/3145 blocks, R 13613 (0s)
+p2r2: drop/swap done for 3145/3145 pooled blocks, R 17095
+p2r2: add-free-Y neighbours from 24555/24555 (block,y) pairs, R 34213 (+17118), total build 1s
+p2r2 dfs nodes 499712 rate 16536/s depth 11 maxdepth 17 fewest-uncovered-lows 22 memo 433737 hits 65963 prunes 4395651 elapsed 30s/480s ETA <= 450s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 1056768 rate 17496/s depth 12 maxdepth 17 fewest-uncovered-lows 21 memo 907343 hits 149412 prunes 8909870 elapsed 60s/480s ETA <= 420s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 1531904 rate 16889/s depth 11 maxdepth 17 fewest-uncovered-lows 21 memo 1314968 hits 216924 prunes 12633342 elapsed 91s/480s ETA <= 389s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 2031616 rate 16828/s depth 13 maxdepth 17 fewest-uncovered-lows 21 memo 1777681 hits 253921 prunes 16147750 elapsed 121s/480s ETA <= 359s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 2482176 rate 16442/s depth 9 maxdepth 17 fewest-uncovered-lows 21 memo 2168631 hits 313535 prunes 20561843 elapsed 151s/480s ETA <= 329s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 3170304 rate 17498/s depth 14 maxdepth 19 fewest-uncovered-lows 16 memo 2709922 hits 460367 prunes 27041129 elapsed 181s/480s ETA <= 299s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 3973120 rate 18793/s depth 14 maxdepth 19 fewest-uncovered-lows 16 memo 3345050 hits 628055 prunes 34020536 elapsed 211s/480s ETA <= 269s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 4702208 rate 19468/s depth 13 maxdepth 19 fewest-uncovered-lows 16 memo 3908356 hits 793838 prunes 41181702 elapsed 242s/480s ETA <= 238s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 5636096 rate 20748/s depth 14 maxdepth 19 fewest-uncovered-lows 16 memo 4663289 hits 972792 prunes 49140617 elapsed 272s/480s ETA <= 208s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 6578176 rate 21798/s depth 16 maxdepth 19 fewest-uncovered-lows 16 memo 5387192 hits 1190967 prunes 57285699 elapsed 302s/480s ETA <= 178s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 7528448 rate 22683/s depth 13 maxdepth 19 fewest-uncovered-lows 16 memo 6102505 hits 1425929 prunes 65260291 elapsed 332s/480s ETA <= 148s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 8503296 rate 23490/s depth 13 maxdepth 19 fewest-uncovered-lows 16 memo 6854709 hits 1648573 prunes 73929682 elapsed 362s/480s ETA <= 118s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 9265152 rate 23621/s depth 14 maxdepth 19 fewest-uncovered-lows 16 memo 7477835 hits 1787302 prunes 79787715 elapsed 392s/480s ETA <= 88s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 9977856 rate 23623/s depth 16 maxdepth 20 fewest-uncovered-lows 15 memo 7997626 hits 1980213 prunes 86955045 elapsed 422s/480s ETA <= 58s (time cap; no completion estimate) rss 0.56GB
+p2r2 dfs nodes 10616832 rate 23463/s depth 15 maxdepth 20 fewest-uncovered-lows 15 memo 8475818 hits 2140998 prunes 93017697 elapsed 452s/480s ETA <= 28s (time cap; no completion estimate) rss 0.56GB
+round 2	|R| 34213	verdict ABORTED (cap), no verdict	nodes 11223040	memo_hits 2289822	fewest_uncovered_lows_in_dfs 15	secs 481
+PHASE 2 round 2: growing pool, kicks of 5-15 blocks, 240s
+p2r2g: growth, 15 seed states for kicks
+p2r2g ls trials 3 pool 764 (3unc 749 le2 15) thread0 unc 24 best 3 elapsed 30s/240s ETA 210s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 13.34: PAUSE (workers sleep)
+LOAD 11.45: RESUME
+p2r2g ls trials 6 pool 764 (3unc 749 le2 15) thread0 unc 17 best 3 elapsed 33s/240s ETA 207s (budget-bound; success is stochastic) rss 0.56GB
+p2r2g ls trials 9 pool 768 (3unc 752 le2 16) thread0 unc 18 best 2 elapsed 63s/240s ETA 177s (budget-bound; success is stochastic) rss 0.56GB
+p2r2g ls trials 12 pool 779 (3unc 760 le2 19) thread0 unc 19 best 1 elapsed 94s/240s ETA 146s (budget-bound; success is stochastic) rss 0.56GB
+p2r2g ls trials 15 pool 784 (3unc 764 le2 20) thread0 unc 18 best 1 elapsed 124s/240s ETA 116s (budget-bound; success is stochastic) rss 0.56GB
+p2r2g ls trials 18 pool 790 (3unc 770 le2 20) thread0 unc 18 best 1 elapsed 154s/240s ETA 86s (budget-bound; success is stochastic) rss 0.56GB
+p2r2g ls trials 21 pool 797 (3unc 777 le2 20) thread0 unc 29 best 1 elapsed 184s/240s ETA 56s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 13.61: PAUSE (workers sleep)
+LOAD 11.49: RESUME
+p2r2g ls trials 24 pool 802 (3unc 782 le2 20) thread0 unc 19 best 1 elapsed 214s/240s ETA 26s (budget-bound; success is stochastic) rss 0.56GB
+after round 2: pool: 806 distinct near-solutions (3 unc: 786, 2 unc: 20, 1 unc: 0), 3315 distinct blocks of 50759, uncovered-low frequencies (velocity:count, top 12) 45:165 24:110 9:91 33:82 32:72 38:63 26:63 39:60 35:57 27:57 46:54 20:50, distinct lows ever uncovered 92
+PHASE 2 round 3: restricted exact solve; pooled-block cap 15000
+p2r3: R base 7255 blocks (3315 pooled from 806 states, |T|<=4 family included)
+p2r3: drop/swap neighbours 0/3315 blocks, R 7328 (0s)
+p2r3: drop/swap neighbours 2000/3315 blocks, R 14021 (0s)
+p2r3: drop/swap done for 3315/3315 pooled blocks, R 17949
+p2r3: add-free-Y neighbours from 25948/25948 (block,y) pairs, R 36120 (+18171), total build 2s
+p2r3 dfs nodes 409600 rate 13409/s depth 12 maxdepth 16 fewest-uncovered-lows 16 memo 379914 hits 29673 prunes 2627221 elapsed 31s/480s ETA <= 449s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 868352 rate 14239/s depth 10 maxdepth 16 fewest-uncovered-lows 16 memo 788436 hits 79905 prunes 5429365 elapsed 61s/480s ETA <= 419s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 1359872 rate 14922/s depth 10 maxdepth 16 fewest-uncovered-lows 16 memo 1232140 hits 127721 prunes 8321660 elapsed 91s/480s ETA <= 389s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 1769472 rate 14580/s depth 11 maxdepth 16 fewest-uncovered-lows 16 memo 1600700 hits 168760 prunes 10789488 elapsed 121s/480s ETA <= 359s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 2236416 rate 14714/s depth 15 maxdepth 16 fewest-uncovered-lows 16 memo 2003223 hits 233177 prunes 13191375 elapsed 152s/480s ETA <= 328s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 3137536 rate 17236/s depth 15 maxdepth 18 fewest-uncovered-lows 16 memo 2658443 hits 479077 prunes 19198111 elapsed 182s/480s ETA <= 298s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 4317184 rate 20349/s depth 13 maxdepth 20 fewest-uncovered-lows 15 memo 3530143 hits 787027 prunes 28695664 elapsed 212s/480s ETA <= 268s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 5357568 rate 22113/s depth 16 maxdepth 20 fewest-uncovered-lows 14 memo 4313866 hits 1043685 prunes 35837983 elapsed 242s/480s ETA <= 238s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 6062080 rate 22241/s depth 12 maxdepth 20 fewest-uncovered-lows 14 memo 4883812 hits 1178255 prunes 41059932 elapsed 273s/480s ETA <= 207s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 6660096 rate 21997/s depth 10 maxdepth 20 fewest-uncovered-lows 14 memo 5362841 hits 1297244 prunes 47095826 elapsed 303s/480s ETA <= 177s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 8003584 rate 24031/s depth 12 maxdepth 20 fewest-uncovered-lows 13 memo 6270439 hits 1733132 prunes 56819722 elapsed 333s/480s ETA <= 147s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 8470528 rate 23306/s depth 12 maxdepth 20 fewest-uncovered-lows 13 memo 6675399 hits 1795116 prunes 59532574 elapsed 363s/480s ETA <= 117s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 9019392 rate 22900/s depth 11 maxdepth 20 fewest-uncovered-lows 13 memo 7171376 hits 1848004 prunes 62375952 elapsed 394s/480s ETA <= 86s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 9412608 rate 22186/s depth 12 maxdepth 20 fewest-uncovered-lows 13 memo 7521849 hits 1890746 prunes 64332917 elapsed 424s/480s ETA <= 56s (time cap; no completion estimate) rss 0.56GB
+p2r3 dfs nodes 9846784 rate 21656/s depth 10 maxdepth 20 fewest-uncovered-lows 13 memo 7913017 hits 1933756 prunes 66897262 elapsed 455s/480s ETA <= 25s (time cap; no completion estimate) rss 0.56GB
+round 3	|R| 36120	verdict ABORTED (cap), no verdict	nodes 10248192	memo_hits 1972965	fewest_uncovered_lows_in_dfs 13	secs 482
+PHASE 2 round 3: growing pool, kicks of 5-15 blocks, 240s
+p2r3g: growth, 20 seed states for kicks
+p2r3g ls trials 3 pool 813 (3unc 793 le2 20) thread0 unc 21 best 2 elapsed 30s/240s ETA 210s (budget-bound; success is stochastic) rss 0.56GB
+p2r3g ls trials 6 pool 823 (3unc 803 le2 20) thread0 unc 21 best 2 elapsed 60s/240s ETA 180s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.10: PAUSE (workers sleep)
+LOAD 11.31: RESUME
+p2r3g ls trials 9 pool 823 (3unc 803 le2 20) thread0 unc 13 best 2 elapsed 72s/240s ETA 168s (budget-bound; success is stochastic) rss 0.56GB
+p2r3g ls trials 12 pool 834 (3unc 814 le2 20) thread0 unc 26 best 2 elapsed 102s/240s ETA 138s (budget-bound; success is stochastic) rss 0.56GB
+p2r3g ls trials 15 pool 842 (3unc 822 le2 20) thread0 unc 22 best 2 elapsed 132s/240s ETA 108s (budget-bound; success is stochastic) rss 0.56GB
+p2r3g ls trials 18 pool 846 (3unc 826 le2 20) thread0 unc 18 best 2 elapsed 162s/240s ETA 78s (budget-bound; success is stochastic) rss 0.56GB
+p2r3g ls trials 21 pool 851 (3unc 831 le2 20) thread0 unc 19 best 2 elapsed 192s/240s ETA 48s (budget-bound; success is stochastic) rss 0.56GB
+p2r3g ls trials 24 pool 855 (3unc 835 le2 20) thread0 unc 22 best 2 elapsed 222s/240s ETA 18s (budget-bound; success is stochastic) rss 0.56GB
+after round 3: pool: 858 distinct near-solutions (3 unc: 838, 2 unc: 20, 1 unc: 0), 3533 distinct blocks of 50759, uncovered-low frequencies (velocity:count, top 12) 45:168 24:113 9:95 33:84 32:78 39:66 26:66 38:64 27:63 35:60 46:58 92:53, distinct lows ever uncovered 92
+PHASE 2 round 4: restricted exact solve; pooled-block cap 20000
+p2r4: R base 7451 blocks (3533 pooled from 858 states, |T|<=4 family included)
+p2r4: drop/swap neighbours 0/3533 blocks, R 7524 (0s)
+p2r4: drop/swap neighbours 2000/3533 blocks, R 14345 (0s)
+p2r4: drop/swap done for 3533/3533 pooled blocks, R 18952
+p2r4: add-free-Y neighbours from 27517/27517 (block,y) pairs, R 38225 (+19273), total build 1s
+p2r4 dfs nodes 221184 rate 7278/s depth 8 maxdepth 12 fewest-uncovered-lows 38 memo 214073 hits 7102 prunes 1109101 elapsed 30s/480s ETA <= 450s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 450560 rate 7312/s depth 7 maxdepth 12 fewest-uncovered-lows 34 memo 424765 hits 25787 prunes 2723220 elapsed 62s/480s ETA <= 418s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 729088 rate 7906/s depth 9 maxdepth 13 fewest-uncovered-lows 34 memo 683616 hits 45462 prunes 4311680 elapsed 92s/480s ETA <= 388s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 966656 rate 7847/s depth 10 maxdepth 13 fewest-uncovered-lows 33 memo 902248 hits 64397 prunes 6043582 elapsed 123s/480s ETA <= 357s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 1171456 rate 7616/s depth 11 maxdepth 13 fewest-uncovered-lows 30 memo 1073571 hits 97873 prunes 8424247 elapsed 154s/480s ETA <= 326s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 1433600 rate 7790/s depth 12 maxdepth 14 fewest-uncovered-lows 30 memo 1314248 hits 119339 prunes 10310996 elapsed 184s/480s ETA <= 296s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 1736704 rate 8115/s depth 13 maxdepth 16 fewest-uncovered-lows 25 memo 1557495 hits 179195 prunes 13948079 elapsed 214s/480s ETA <= 266s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 2031616 rate 8318/s depth 11 maxdepth 16 fewest-uncovered-lows 25 memo 1772926 hits 258678 prunes 17186947 elapsed 244s/480s ETA <= 236s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 2367488 rate 8620/s depth 10 maxdepth 17 fewest-uncovered-lows 25 memo 2019414 hits 348063 prunes 20391299 elapsed 275s/480s ETA <= 205s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 2670592 rate 8744/s depth 14 maxdepth 17 fewest-uncovered-lows 25 memo 2243511 hits 427066 prunes 23597613 elapsed 305s/480s ETA <= 175s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 2940928 rate 8763/s depth 14 maxdepth 17 fewest-uncovered-lows 25 memo 2437208 hits 503705 prunes 26411236 elapsed 336s/480s ETA <= 144s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 3244032 rate 8860/s depth 8 maxdepth 17 fewest-uncovered-lows 25 memo 2683597 hits 560426 prunes 29168935 elapsed 366s/480s ETA <= 114s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 3473408 rate 8759/s depth 12 maxdepth 17 fewest-uncovered-lows 25 memo 2872944 hits 600451 prunes 31210890 elapsed 397s/480s ETA <= 83s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 3710976 rate 8677/s depth 10 maxdepth 17 fewest-uncovered-lows 25 memo 3059947 hits 651018 prunes 33265444 elapsed 428s/480s ETA <= 52s (time cap; no completion estimate) rss 0.56GB
+p2r4 dfs nodes 3964928 rate 8649/s depth 9 maxdepth 17 fewest-uncovered-lows 25 memo 3292581 hits 672337 prunes 35384299 elapsed 458s/480s ETA <= 22s (time cap; no completion estimate) rss 0.56GB
+round 4	|R| 38225	verdict ABORTED (cap), no verdict	nodes 4128768	memo_hits 684686	fewest_uncovered_lows_in_dfs 25	secs 482
+PHASE 2 round 4: growing pool, kicks of 5-15 blocks, 240s
+p2r4g: growth, 20 seed states for kicks
+p2r4g ls trials 3 pool 862 (3unc 842 le2 20) thread0 unc 18 best 3 elapsed 30s/240s ETA 210s (budget-bound; success is stochastic) rss 0.56GB
+p2r4g ls trials 6 pool 875 (3unc 854 le2 21) thread0 unc 21 best 1 elapsed 60s/240s ETA 180s (budget-bound; success is stochastic) rss 0.56GB
+p2r4g ls trials 9 pool 891 (3unc 870 le2 21) thread0 unc 12 best 1 elapsed 90s/240s ETA 150s (budget-bound; success is stochastic) rss 0.56GB
+p2r4g ls trials 12 pool 900 (3unc 879 le2 21) thread0 unc 18 best 1 elapsed 120s/240s ETA 120s (budget-bound; success is stochastic) rss 0.56GB
+p2r4g ls trials 15 pool 903 (3unc 882 le2 21) thread0 unc 17 best 1 elapsed 150s/240s ETA 90s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.56: PAUSE (workers sleep)
+LOAD 11.84: RESUME
+p2r4g ls trials 18 pool 906 (3unc 885 le2 21) thread0 unc 16 best 1 elapsed 172s/240s ETA 68s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.09: PAUSE (workers sleep)
+LOAD 11.58: RESUME
+p2r4g ls trials 21 pool 906 (3unc 885 le2 21) thread0 unc 24 best 1 elapsed 182s/240s ETA 58s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.38: PAUSE (workers sleep)
+LOAD 11.73: RESUME
+p2r4g ls trials 22 pool 907 (3unc 886 le2 21) thread0 unc 16 best 1 elapsed 192s/240s ETA 48s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.30: PAUSE (workers sleep)
+LOAD 11.87: RESUME
+LOAD 12.19: PAUSE (workers sleep)
+LOAD 11.70: RESUME
+p2r4g ls trials 27 pool 918 (3unc 897 le2 21) thread0 unc 18 best 1 elapsed 212s/240s ETA 28s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.34: PAUSE (workers sleep)
+LOAD 11.62: RESUME
+p2r4g ls trials 30 pool 918 (3unc 897 le2 21) thread0 unc 17 best 1 elapsed 222s/240s ETA 18s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 13.08: PAUSE (workers sleep)
+LOAD 11.29: RESUME
+p2r4g ls trials 33 pool 921 (3unc 900 le2 21) thread0 unc 19 best 1 elapsed 232s/240s ETA 8s (budget-bound; success is stochastic) rss 0.56GB
+after round 4: pool: 924 distinct near-solutions (3 unc: 903, 2 unc: 21, 1 unc: 0), 3753 distinct blocks of 50759, uncovered-low frequencies (velocity:count, top 12) 45:182 24:113 9:98 33:91 32:80 39:72 26:71 38:67 27:66 35:63 46:62 20:57, distinct lows ever uncovered 93
+PHASE 2 round 5: restricted exact solve; pooled-block cap 25000
+p2r5: R base 7647 blocks (3753 pooled from 924 states, |T|<=4 family included)
+p2r5: drop/swap neighbours 0/3753 blocks, R 7667 (0s)
+p2r5: drop/swap neighbours 2000/3753 blocks, R 14834 (0s)
+p2r5: drop/swap done for 3753/3753 pooled blocks, R 19983
+p2r5: add-free-Y neighbours from 29474/29474 (block,y) pairs, R 40884 (+20901), total build 2s
+p2r5 dfs nodes 221184 rate 7072/s depth 7 maxdepth 12 fewest-uncovered-lows 38 memo 213696 hits 7480 prunes 1129245 elapsed 31s/480s ETA <= 449s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 458752 rate 7361/s depth 8 maxdepth 14 fewest-uncovered-lows 31 memo 427731 hits 31012 prunes 2929786 elapsed 62s/480s ETA <= 418s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 679936 rate 7311/s depth 9 maxdepth 15 fewest-uncovered-lows 31 memo 619754 hits 60172 prunes 4812507 elapsed 93s/480s ETA <= 387s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 892928 rate 7214/s depth 11 maxdepth 15 fewest-uncovered-lows 30 memo 802317 hits 90599 prunes 6629887 elapsed 124s/480s ETA <= 356s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 1122304 rate 7242/s depth 9 maxdepth 15 fewest-uncovered-lows 30 memo 1008372 hits 113922 prunes 8355587 elapsed 155s/480s ETA <= 325s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 1368064 rate 7392/s depth 9 maxdepth 15 fewest-uncovered-lows 30 memo 1240514 hits 127540 prunes 9904181 elapsed 185s/480s ETA <= 295s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 1679360 rate 7796/s depth 12 maxdepth 15 fewest-uncovered-lows 30 memo 1536539 hits 142808 prunes 11779880 elapsed 215s/480s ETA <= 265s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 2015232 rate 8200/s depth 13 maxdepth 16 fewest-uncovered-lows 28 memo 1839116 hits 176102 prunes 13863113 elapsed 246s/480s ETA <= 234s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 2244608 rate 8128/s depth 9 maxdepth 16 fewest-uncovered-lows 28 memo 2056090 hits 188508 prunes 15235941 elapsed 276s/480s ETA <= 204s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 2531328 rate 8260/s depth 10 maxdepth 16 fewest-uncovered-lows 28 memo 2318672 hits 212645 prunes 16942771 elapsed 306s/480s ETA <= 174s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 2834432 rate 8416/s depth 9 maxdepth 16 fewest-uncovered-lows 28 memo 2598237 hits 236185 prunes 18931142 elapsed 337s/480s ETA <= 143s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 3137536 rate 8548/s depth 9 maxdepth 16 fewest-uncovered-lows 28 memo 2870495 hits 267031 prunes 20751904 elapsed 367s/480s ETA <= 113s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 3424256 rate 8604/s depth 10 maxdepth 16 fewest-uncovered-lows 28 memo 3132465 hits 291780 prunes 22300076 elapsed 398s/480s ETA <= 82s (time cap; no completion estimate) rss 0.56GB
+p2r5 dfs nodes 3629056 rate 8447/s depth 9 maxdepth 16 fewest-uncovered-lows 28 memo 3320413 hits 308633 prunes 23392433 elapsed 430s/480s ETA <= 50s (time cap; no completion estimate) rss 0.56GB
+LOAD 12.42: PAUSE (workers sleep)
+LOAD 11.91: RESUME
+p2r5 dfs nodes 3817472 rate 8304/s depth 10 maxdepth 16 fewest-uncovered-lows 27 memo 3490567 hits 326894 prunes 24465387 elapsed 460s/480s ETA <= 20s (time cap; no completion estimate) rss 0.56GB
+round 5	|R| 40884	verdict ABORTED (cap), no verdict	nodes 3956736	memo_hits 339767	fewest_uncovered_lows_in_dfs 27	secs 482
+PHASE 2 round 5: growing pool, kicks of 5-15 blocks, 240s
+p2r5g: growth, 21 seed states for kicks
+LOAD 12.12: PAUSE (workers sleep)
+LOAD 11.72: RESUME
+LOAD 13.07: PAUSE (workers sleep)
+LOAD 11.61: RESUME
+p2r5g ls trials 3 pool 924 (3unc 903 le2 21) thread0 unc 20 best 2 elapsed 12s/240s ETA 228s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.30: PAUSE (workers sleep)
+LOAD 11.92: RESUME
+p2r5g ls trials 6 pool 931 (3unc 910 le2 21) thread0 unc 21 best 2 elapsed 41s/240s ETA 199s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.10: PAUSE (workers sleep)
+LOAD 11.54: RESUME
+p2r5g ls trials 9 pool 944 (3unc 923 le2 21) thread0 unc 20 best 2 elapsed 61s/240s ETA 179s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.86: PAUSE (workers sleep)
+LOAD 11.79: RESUME
+p2r5g ls trials 12 pool 945 (3unc 924 le2 21) thread0 unc 15 best 2 elapsed 71s/240s ETA 169s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.44: PAUSE (workers sleep)
+LOAD 11.86: RESUME
+p2r5g ls trials 15 pool 946 (3unc 925 le2 21) thread0 unc 16 best 2 elapsed 82s/240s ETA 158s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.19: PAUSE (workers sleep)
+LOAD 11.91: RESUME
+LOAD 12.15: PAUSE (workers sleep)
+LOAD 11.90: RESUME
+p2r5g ls trials 18 pool 949 (3unc 928 le2 21) thread0 unc 21 best 2 elapsed 102s/240s ETA 138s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.14: PAUSE (workers sleep)
+LOAD 11.68: RESUME
+p2r5g ls trials 21 pool 963 (3unc 941 le2 22) thread0 unc 19 best 2 elapsed 122s/240s ETA 118s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 18.70: PAUSE (workers sleep)
+LOAD 11.58: RESUME
+p2r5g ls trials 24 pool 969 (3unc 947 le2 22) thread0 unc 22 best 2 elapsed 152s/240s ETA 88s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.64: PAUSE (workers sleep)
+LOAD 11.69: RESUME
+p2r5g ls trials 27 pool 977 (3unc 954 le2 23) thread0 unc 19 best 2 elapsed 182s/240s ETA 58s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.71: PAUSE (workers sleep)
+LOAD 11.84: RESUME
+p2r5g ls trials 30 pool 977 (3unc 954 le2 23) thread0 unc 23 best 2 elapsed 192s/240s ETA 48s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.90: PAUSE (workers sleep)
+LOAD 11.88: RESUME
+p2r5g ls trials 33 pool 979 (3unc 956 le2 23) thread0 unc 14 best 2 elapsed 202s/240s ETA 38s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 12.14: PAUSE (workers sleep)
+LOAD 11.88: RESUME
+LOAD 12.44: PAUSE (workers sleep)
+LOAD 11.91: RESUME
+p2r5g ls trials 36 pool 990 (3unc 966 le2 24) thread0 unc 18 best 2 elapsed 222s/240s ETA 18s (budget-bound; success is stochastic) rss 0.56GB
+LOAD 13.41: PAUSE (workers sleep)
+LOAD 11.99: RESUME
+p2r5g ls trials 39 pool 992 (3unc 968 le2 24) thread0 unc 19 best 2 elapsed 232s/240s ETA 8s (budget-bound; success is stochastic) rss 0.56GB
+after round 5: pool: 994 distinct near-solutions (3 unc: 970, 2 unc: 24, 1 unc: 0), 3972 distinct blocks of 50759, uncovered-low frequencies (velocity:count, top 12) 45:188 24:118 9:105 33:92 32:82 39:77 38:75 26:74 27:72 46:67 35:66 92:60, distinct lows ever uncovered 93
+wall budget nearly spent, skipping to report
+PHASE 3: targeted larger blocks (|T|<=6) through uncovered lows, budget 300s
+p3: 24 best states (<=2 uncovered) used
+p3: target lows (velocity:states) [(27, 5), (46, 3), (39, 3), (32, 3), (8, 3), (67, 2), (47, 2), (45, 2), (25, 2), (88, 1), (75, 1), (74, 1), (73, 1), (69, 1), (63, 1), (61, 1), (60, 1), (59, 1), (51, 1), (38, 1), (37, 1), (36, 1), (35, 1), (33, 1), (29, 1), (26, 1), (24, 1), (20, 1), (14, 1), (11, 1), (6, 1), (2, 1)]
+LOAD 12.24: PAUSE (workers sleep)
+gen_cands low 27: 93297 T-sets generated (93297), 7605 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (3s)
+p3: low 27: 5 states with it uncovered, options per state [7140, 7003, 7003, 7008, 6860] (blockers<=5)
+LOAD 11.89: RESUME
+p3 low 27 pass 1 attempts 2000 sub-nodes 0 elapsed 3s/300s ETA <= 297s (budget-bound)
+p3 low 27 pass 3 attempts 4000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 5 attempts 6000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 7 attempts 8000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 9 attempts 10000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 11 attempts 12000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 13 attempts 14000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 15 attempts 16000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 17 attempts 18000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 19 attempts 20000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 21 attempts 22000 sub-nodes 1 elapsed 4s/300s ETA <= 296s (budget-bound)
+p3 low 27 pass 23 attempts 24000 sub-nodes 1 elapsed 5s/300s ETA <= 295s (budget-bound)
+p3 low 27 pass 25 attempts 26000 sub-nodes 1 elapsed 5s/300s ETA <= 295s (budget-bound)
+p3 low 27 pass 27 attempts 28000 sub-nodes 1 elapsed 5s/300s ETA <= 295s (budget-bound)
+p3 low 27 pass 29 attempts 30000 sub-nodes 1 elapsed 5s/300s ETA <= 295s (budget-bound)
+p3 low 27 pass 31 attempts 32000 sub-nodes 1 elapsed 5s/300s ETA <= 295s (budget-bound)
+p3 low 27 pass 33 attempts 34000 sub-nodes 1 elapsed 5s/300s ETA <= 295s (budget-bound)
+gen_cands low 46: 119616 T-sets generated (119616), 11547 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (3s)
+p3: low 46: 3 states with it uncovered, options per state [10761, 10679, 10617] (blockers<=5)
+p3 low 46 pass 1 attempts 36000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 4 attempts 38000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 8 attempts 40000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 11 attempts 42000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 14 attempts 44000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 18 attempts 46000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 21 attempts 48000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 24 attempts 50000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 28 attempts 52000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 31 attempts 54000 sub-nodes 1 elapsed 9s/300s ETA <= 291s (budget-bound)
+p3 low 46 pass 34 attempts 56000 sub-nodes 1 elapsed 10s/300s ETA <= 290s (budget-bound)
+p3 low 46 pass 38 attempts 58000 sub-nodes 1 elapsed 10s/300s ETA <= 290s (budget-bound)
+p3 low 46 pass 41 attempts 60000 sub-nodes 1 elapsed 10s/300s ETA <= 290s (budget-bound)
+p3 low 46 pass 44 attempts 62000 sub-nodes 1 elapsed 10s/300s ETA <= 290s (budget-bound)
+p3 low 46 pass 48 attempts 64000 sub-nodes 1 elapsed 10s/300s ETA <= 290s (budget-bound)
+p3 low 46 pass 51 attempts 66000 sub-nodes 1 elapsed 10s/300s ETA <= 290s (budget-bound)
+gen_cands low 39: 97015 T-sets generated (97015), 9084 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (3s)
+p3: low 39: 3 states with it uncovered, options per state [8452, 8456, 8468] (blockers<=5)
+p3 low 39 pass 1 attempts 68000 sub-nodes 1 elapsed 14s/300s ETA <= 286s (budget-bound)
+p3 low 39 pass 4 attempts 70000 sub-nodes 1 elapsed 14s/300s ETA <= 286s (budget-bound)
+p3 low 39 pass 8 attempts 72000 sub-nodes 1 elapsed 14s/300s ETA <= 286s (budget-bound)
+p3 low 39 pass 11 attempts 74000 sub-nodes 1 elapsed 14s/300s ETA <= 286s (budget-bound)
+p3 low 39 pass 14 attempts 76000 sub-nodes 1 elapsed 14s/300s ETA <= 286s (budget-bound)
+p3 low 39 pass 18 attempts 78000 sub-nodes 3 elapsed 14s/300s ETA <= 286s (budget-bound)
+p3 low 39 pass 21 attempts 80000 sub-nodes 3 elapsed 14s/300s ETA <= 286s (budget-bound)
+p3 low 39 pass 24 attempts 82000 sub-nodes 3 elapsed 14s/300s ETA <= 286s (budget-bound)
+p3 low 39 pass 28 attempts 84000 sub-nodes 4 elapsed 15s/300s ETA <= 285s (budget-bound)
+p3 low 39 pass 31 attempts 86000 sub-nodes 4 elapsed 15s/300s ETA <= 285s (budget-bound)
+p3 low 39 pass 34 attempts 88000 sub-nodes 6 elapsed 15s/300s ETA <= 285s (budget-bound)
+p3 low 39 pass 38 attempts 90000 sub-nodes 8 elapsed 15s/300s ETA <= 285s (budget-bound)
+p3 low 39 pass 41 attempts 92000 sub-nodes 9 elapsed 15s/300s ETA <= 285s (budget-bound)
+gen_cands low 32: 94397 T-sets generated (94397), 8819 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (3s)
+p3: low 32: 3 states with it uncovered, options per state [7795, 7599, 7761] (blockers<=5)
+p3 low 32 pass 2 attempts 94000 sub-nodes 9 elapsed 19s/300s ETA <= 281s (budget-bound)
+p3 low 32 pass 5 attempts 96000 sub-nodes 9 elapsed 19s/300s ETA <= 281s (budget-bound)
+p3 low 32 pass 9 attempts 98000 sub-nodes 9 elapsed 19s/300s ETA <= 281s (budget-bound)
+p3 low 32 pass 12 attempts 100000 sub-nodes 9 elapsed 19s/300s ETA <= 281s (budget-bound)
+p3 low 32 pass 15 attempts 102000 sub-nodes 9 elapsed 19s/300s ETA <= 281s (budget-bound)
+p3 low 32 pass 19 attempts 104000 sub-nodes 9 elapsed 19s/300s ETA <= 281s (budget-bound)
+p3 low 32 pass 22 attempts 106000 sub-nodes 9 elapsed 19s/300s ETA <= 281s (budget-bound)
+p3 low 32 pass 25 attempts 108000 sub-nodes 9 elapsed 19s/300s ETA <= 281s (budget-bound)
+p3 low 32 pass 29 attempts 110000 sub-nodes 9 elapsed 19s/300s ETA <= 281s (budget-bound)
+p3 low 32 pass 32 attempts 112000 sub-nodes 9 elapsed 20s/300s ETA <= 280s (budget-bound)
+p3 low 32 pass 35 attempts 114000 sub-nodes 9 elapsed 20s/300s ETA <= 280s (budget-bound)
+gen_cands low 8: 99376 T-sets generated (99376), 9507 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 8: 3 states with it uncovered, options per state [9397, 9245, 9476] (blockers<=5)
+p3 low 8 pass 0 attempts 116000 sub-nodes 9 elapsed 23s/300s ETA <= 277s (budget-bound)
+p3 low 8 pass 3 attempts 118000 sub-nodes 9 elapsed 23s/300s ETA <= 277s (budget-bound)
+p3 low 8 pass 7 attempts 120000 sub-nodes 9 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 10 attempts 122000 sub-nodes 9 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 13 attempts 124000 sub-nodes 9 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 17 attempts 126000 sub-nodes 9 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 20 attempts 128000 sub-nodes 9 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 23 attempts 130000 sub-nodes 9 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 27 attempts 132000 sub-nodes 9 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 30 attempts 134000 sub-nodes 9 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 33 attempts 136000 sub-nodes 10 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 37 attempts 138000 sub-nodes 10 elapsed 24s/300s ETA <= 276s (budget-bound)
+p3 low 8 pass 40 attempts 140000 sub-nodes 10 elapsed 25s/300s ETA <= 275s (budget-bound)
+p3 low 8 pass 43 attempts 142000 sub-nodes 10 elapsed 25s/300s ETA <= 275s (budget-bound)
+gen_cands low 67: 102797 T-sets generated (102797), 10217 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 67: 2 states with it uncovered, options per state [10149, 10187] (blockers<=5)
+p3 low 67 pass 0 attempts 144000 sub-nodes 11 elapsed 28s/300s ETA <= 272s (budget-bound)
+p3 low 67 pass 5 attempts 146000 sub-nodes 11 elapsed 29s/300s ETA <= 271s (budget-bound)
+p3 low 67 pass 10 attempts 148000 sub-nodes 11 elapsed 29s/300s ETA <= 271s (budget-bound)
+p3 low 67 pass 15 attempts 150000 sub-nodes 11 elapsed 29s/300s ETA <= 271s (budget-bound)
+p3 low 67 pass 20 attempts 152000 sub-nodes 11 elapsed 29s/300s ETA <= 271s (budget-bound)
+p3 low 67 pass 25 attempts 154000 sub-nodes 11 elapsed 29s/300s ETA <= 271s (budget-bound)
+p3 low 67 pass 30 attempts 156000 sub-nodes 11 elapsed 29s/300s ETA <= 271s (budget-bound)
+p3 low 67 pass 35 attempts 158000 sub-nodes 11 elapsed 29s/300s ETA <= 271s (budget-bound)
+p3 low 67 pass 40 attempts 160000 sub-nodes 11 elapsed 29s/300s ETA <= 271s (budget-bound)
+p3 low 67 pass 45 attempts 162000 sub-nodes 11 elapsed 30s/300s ETA <= 270s (budget-bound)
+p3 low 67 pass 50 attempts 164000 sub-nodes 11 elapsed 30s/300s ETA <= 270s (budget-bound)
+gen_cands low 47: 99183 T-sets generated (99183), 11973 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 47: 2 states with it uncovered, options per state [11409, 11474] (blockers<=5)
+p3 low 47 pass 4 attempts 166000 sub-nodes 11 elapsed 33s/300s ETA <= 267s (budget-bound)
+p3 low 47 pass 9 attempts 168000 sub-nodes 11 elapsed 33s/300s ETA <= 267s (budget-bound)
+p3 low 47 pass 14 attempts 170000 sub-nodes 11 elapsed 34s/300s ETA <= 266s (budget-bound)
+p3 low 47 pass 19 attempts 172000 sub-nodes 11 elapsed 34s/300s ETA <= 266s (budget-bound)
+p3 low 47 pass 24 attempts 174000 sub-nodes 11 elapsed 34s/300s ETA <= 266s (budget-bound)
+p3 low 47 pass 29 attempts 176000 sub-nodes 11 elapsed 34s/300s ETA <= 266s (budget-bound)
+p3 low 47 pass 34 attempts 178000 sub-nodes 11 elapsed 34s/300s ETA <= 266s (budget-bound)
+p3 low 47 pass 39 attempts 180000 sub-nodes 11 elapsed 34s/300s ETA <= 266s (budget-bound)
+p3 low 47 pass 44 attempts 182000 sub-nodes 11 elapsed 34s/300s ETA <= 266s (budget-bound)
+p3 low 47 pass 49 attempts 184000 sub-nodes 11 elapsed 34s/300s ETA <= 266s (budget-bound)
+p3 low 47 pass 54 attempts 186000 sub-nodes 11 elapsed 35s/300s ETA <= 265s (budget-bound)
+gen_cands low 45: 109917 T-sets generated (109917), 117 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 45: 2 states with it uncovered, options per state [113, 113] (blockers<=5)
+LOAD 12.19: PAUSE (workers sleep)
+gen_cands low 25: 98515 T-sets generated (98515), 3552 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 25: 2 states with it uncovered, options per state [3420, 3475] (blockers<=5)
+LOAD 11.93: RESUME
+p3 low 25 pass 2 attempts 188000 sub-nodes 12 elapsed 42s/300s ETA <= 258s (budget-bound)
+p3 low 25 pass 7 attempts 190000 sub-nodes 12 elapsed 42s/300s ETA <= 258s (budget-bound)
+p3 low 25 pass 12 attempts 192000 sub-nodes 12 elapsed 43s/300s ETA <= 257s (budget-bound)
+p3 low 25 pass 17 attempts 194000 sub-nodes 12 elapsed 43s/300s ETA <= 257s (budget-bound)
+gen_cands low 88: 172303 T-sets generated (172303), 58672 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 88: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 88 pass 9 attempts 196000 sub-nodes 15 elapsed 47s/300s ETA <= 253s (budget-bound)
+p3 low 88 pass 19 attempts 198000 sub-nodes 16 elapsed 47s/300s ETA <= 253s (budget-bound)
+p3 low 88 pass 29 attempts 200000 sub-nodes 22 elapsed 47s/300s ETA <= 253s (budget-bound)
+p3 low 88 pass 39 attempts 202000 sub-nodes 23 elapsed 47s/300s ETA <= 253s (budget-bound)
+p3 low 88 pass 49 attempts 204000 sub-nodes 25 elapsed 47s/300s ETA <= 253s (budget-bound)
+p3 low 88 pass 59 attempts 206000 sub-nodes 33 elapsed 47s/300s ETA <= 253s (budget-bound)
+p3 low 88 pass 69 attempts 208000 sub-nodes 38 elapsed 47s/300s ETA <= 253s (budget-bound)
+p3 low 88 pass 79 attempts 210000 sub-nodes 46 elapsed 48s/300s ETA <= 252s (budget-bound)
+p3 low 88 pass 89 attempts 212000 sub-nodes 55 elapsed 48s/300s ETA <= 252s (budget-bound)
+p3 low 88 pass 99 attempts 214000 sub-nodes 81 elapsed 48s/300s ETA <= 252s (budget-bound)
+gen_cands low 75: 168111 T-sets generated (168111), 34137 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 75: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 75 pass 9 attempts 216000 sub-nodes 83 elapsed 52s/300s ETA <= 248s (budget-bound)
+p3 low 75 pass 19 attempts 218000 sub-nodes 83 elapsed 52s/300s ETA <= 248s (budget-bound)
+p3 low 75 pass 29 attempts 220000 sub-nodes 83 elapsed 52s/300s ETA <= 248s (budget-bound)
+LOAD 12.50: PAUSE (workers sleep)
+LOAD 11.97: RESUME
+p3 low 75 pass 39 attempts 222000 sub-nodes 83 elapsed 52s/300s ETA <= 248s (budget-bound)
+p3 low 75 pass 49 attempts 224000 sub-nodes 88 elapsed 52s/300s ETA <= 248s (budget-bound)
+p3 low 75 pass 59 attempts 226000 sub-nodes 88 elapsed 52s/300s ETA <= 248s (budget-bound)
+p3 low 75 pass 69 attempts 228000 sub-nodes 88 elapsed 53s/300s ETA <= 247s (budget-bound)
+p3 low 75 pass 79 attempts 230000 sub-nodes 88 elapsed 53s/300s ETA <= 247s (budget-bound)
+p3 low 75 pass 89 attempts 232000 sub-nodes 88 elapsed 53s/300s ETA <= 247s (budget-bound)
+p3 low 75 pass 99 attempts 234000 sub-nodes 88 elapsed 53s/300s ETA <= 247s (budget-bound)
+gen_cands low 74: 170131 T-sets generated (170131), 38482 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 74: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 74 pass 9 attempts 236000 sub-nodes 88 elapsed 57s/300s ETA <= 243s (budget-bound)
+p3 low 74 pass 19 attempts 238000 sub-nodes 88 elapsed 57s/300s ETA <= 243s (budget-bound)
+p3 low 74 pass 29 attempts 240000 sub-nodes 88 elapsed 57s/300s ETA <= 243s (budget-bound)
+p3 low 74 pass 39 attempts 242000 sub-nodes 88 elapsed 57s/300s ETA <= 243s (budget-bound)
+p3 low 74 pass 49 attempts 244000 sub-nodes 88 elapsed 57s/300s ETA <= 243s (budget-bound)
+p3 low 74 pass 59 attempts 246000 sub-nodes 88 elapsed 58s/300s ETA <= 242s (budget-bound)
+p3 low 74 pass 69 attempts 248000 sub-nodes 88 elapsed 58s/300s ETA <= 242s (budget-bound)
+p3 low 74 pass 79 attempts 250000 sub-nodes 88 elapsed 58s/300s ETA <= 242s (budget-bound)
+p3 low 74 pass 89 attempts 252000 sub-nodes 88 elapsed 58s/300s ETA <= 242s (budget-bound)
+p3 low 74 pass 99 attempts 254000 sub-nodes 88 elapsed 58s/300s ETA <= 242s (budget-bound)
+LOAD 13.51: PAUSE (workers sleep)
+gen_cands low 73: 119461 T-sets generated (119461), 9196 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 73: 1 states with it uncovered, options per state [9185] (blockers<=5)
+LOAD 11.29: RESUME
+p3 low 73 pass 9 attempts 256000 sub-nodes 88 elapsed 63s/300s ETA <= 237s (budget-bound)
+p3 low 73 pass 19 attempts 258000 sub-nodes 88 elapsed 63s/300s ETA <= 237s (budget-bound)
+p3 low 73 pass 29 attempts 260000 sub-nodes 88 elapsed 63s/300s ETA <= 237s (budget-bound)
+p3 low 73 pass 39 attempts 262000 sub-nodes 88 elapsed 63s/300s ETA <= 237s (budget-bound)
+gen_cands low 69: 199003 T-sets generated (199003), 41859 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 69: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 69 pass 3 attempts 264000 sub-nodes 88 elapsed 68s/300s ETA <= 232s (budget-bound)
+p3 low 69 pass 13 attempts 266000 sub-nodes 88 elapsed 68s/300s ETA <= 232s (budget-bound)
+p3 low 69 pass 23 attempts 268000 sub-nodes 88 elapsed 68s/300s ETA <= 232s (budget-bound)
+p3 low 69 pass 33 attempts 270000 sub-nodes 88 elapsed 68s/300s ETA <= 232s (budget-bound)
+p3 low 69 pass 43 attempts 272000 sub-nodes 88 elapsed 68s/300s ETA <= 232s (budget-bound)
+p3 low 69 pass 53 attempts 274000 sub-nodes 88 elapsed 68s/300s ETA <= 232s (budget-bound)
+p3 low 69 pass 63 attempts 276000 sub-nodes 88 elapsed 68s/300s ETA <= 232s (budget-bound)
+p3 low 69 pass 73 attempts 278000 sub-nodes 88 elapsed 68s/300s ETA <= 232s (budget-bound)
+p3 low 69 pass 83 attempts 280000 sub-nodes 88 elapsed 69s/300s ETA <= 231s (budget-bound)
+p3 low 69 pass 93 attempts 282000 sub-nodes 88 elapsed 69s/300s ETA <= 231s (budget-bound)
+gen_cands low 63: 186469 T-sets generated (186469), 31628 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (4s)
+p3: low 63: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 63 pass 3 attempts 284000 sub-nodes 88 elapsed 73s/300s ETA <= 227s (budget-bound)
+p3 low 63 pass 13 attempts 286000 sub-nodes 88 elapsed 73s/300s ETA <= 227s (budget-bound)
+p3 low 63 pass 23 attempts 288000 sub-nodes 88 elapsed 73s/300s ETA <= 227s (budget-bound)
+p3 low 63 pass 33 attempts 290000 sub-nodes 88 elapsed 74s/300s ETA <= 226s (budget-bound)
+p3 low 63 pass 43 attempts 292000 sub-nodes 88 elapsed 74s/300s ETA <= 226s (budget-bound)
+p3 low 63 pass 53 attempts 294000 sub-nodes 90 elapsed 74s/300s ETA <= 226s (budget-bound)
+p3 low 63 pass 63 attempts 296000 sub-nodes 92 elapsed 74s/300s ETA <= 226s (budget-bound)
+p3 low 63 pass 73 attempts 298000 sub-nodes 92 elapsed 74s/300s ETA <= 226s (budget-bound)
+p3 low 63 pass 83 attempts 300000 sub-nodes 92 elapsed 74s/300s ETA <= 226s (budget-bound)
+p3 low 63 pass 93 attempts 302000 sub-nodes 92 elapsed 74s/300s ETA <= 226s (budget-bound)
+gen_cands low 61: 136845 T-sets generated (136845), 8876 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (5s)
+p3: low 61: 1 states with it uncovered, options per state [8841] (blockers<=5)
+p3 low 61 pass 3 attempts 304000 sub-nodes 92 elapsed 79s/300s ETA <= 221s (budget-bound)
+p3 low 61 pass 13 attempts 306000 sub-nodes 92 elapsed 79s/300s ETA <= 221s (budget-bound)
+p3 low 61 pass 23 attempts 308000 sub-nodes 92 elapsed 79s/300s ETA <= 221s (budget-bound)
+p3 low 61 pass 33 attempts 310000 sub-nodes 92 elapsed 79s/300s ETA <= 221s (budget-bound)
+p3 low 61 pass 43 attempts 312000 sub-nodes 92 elapsed 79s/300s ETA <= 221s (budget-bound)
+gen_cands low 60: 173869 T-sets generated (173869), 281 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (5s)
+p3: low 60: 1 states with it uncovered, options per state [280] (blockers<=5)
+gen_cands low 59: 130969 T-sets generated (130969), 15178 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (5s)
+p3: low 59: 1 states with it uncovered, options per state [14781] (blockers<=5)
+p3 low 59 pass 8 attempts 314000 sub-nodes 92 elapsed 89s/300s ETA <= 211s (budget-bound)
+p3 low 59 pass 18 attempts 316000 sub-nodes 92 elapsed 89s/300s ETA <= 211s (budget-bound)
+p3 low 59 pass 28 attempts 318000 sub-nodes 92 elapsed 89s/300s ETA <= 211s (budget-bound)
+p3 low 59 pass 38 attempts 320000 sub-nodes 92 elapsed 89s/300s ETA <= 211s (budget-bound)
+p3 low 59 pass 48 attempts 322000 sub-nodes 92 elapsed 90s/300s ETA <= 210s (budget-bound)
+p3 low 59 pass 58 attempts 324000 sub-nodes 92 elapsed 90s/300s ETA <= 210s (budget-bound)
+p3 low 59 pass 68 attempts 326000 sub-nodes 92 elapsed 90s/300s ETA <= 210s (budget-bound)
+gen_cands low 51: 139150 T-sets generated (139150), 11182 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (5s)
+p3: low 51: 1 states with it uncovered, options per state [10744] (blockers<=5)
+p3 low 51 pass 4 attempts 328000 sub-nodes 93 elapsed 95s/300s ETA <= 205s (budget-bound)
+p3 low 51 pass 14 attempts 330000 sub-nodes 93 elapsed 95s/300s ETA <= 205s (budget-bound)
+p3 low 51 pass 24 attempts 332000 sub-nodes 93 elapsed 95s/300s ETA <= 205s (budget-bound)
+p3 low 51 pass 34 attempts 334000 sub-nodes 94 elapsed 95s/300s ETA <= 205s (budget-bound)
+p3 low 51 pass 44 attempts 336000 sub-nodes 96 elapsed 95s/300s ETA <= 205s (budget-bound)
+gen_cands low 38: 160025 T-sets generated (160025), 14333 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (6s)
+p3: low 38: 1 states with it uncovered, options per state [12450] (blockers<=5)
+p3 low 38 pass 0 attempts 338000 sub-nodes 97 elapsed 101s/300s ETA <= 199s (budget-bound)
+p3 low 38 pass 10 attempts 340000 sub-nodes 97 elapsed 101s/300s ETA <= 199s (budget-bound)
+p3 low 38 pass 20 attempts 342000 sub-nodes 97 elapsed 101s/300s ETA <= 199s (budget-bound)
+p3 low 38 pass 30 attempts 344000 sub-nodes 97 elapsed 101s/300s ETA <= 199s (budget-bound)
+p3 low 38 pass 40 attempts 346000 sub-nodes 97 elapsed 102s/300s ETA <= 198s (budget-bound)
+p3 low 38 pass 50 attempts 348000 sub-nodes 101 elapsed 102s/300s ETA <= 198s (budget-bound)
+p3 low 38 pass 60 attempts 350000 sub-nodes 102 elapsed 102s/300s ETA <= 198s (budget-bound)
+gen_cands low 37: 171227 T-sets generated (171227), 12456 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (6s)
+p3: low 37: 1 states with it uncovered, options per state [11368] (blockers<=5)
+p3 low 37 pass 8 attempts 352000 sub-nodes 102 elapsed 108s/300s ETA <= 192s (budget-bound)
+p3 low 37 pass 18 attempts 354000 sub-nodes 102 elapsed 108s/300s ETA <= 192s (budget-bound)
+p3 low 37 pass 28 attempts 356000 sub-nodes 102 elapsed 108s/300s ETA <= 192s (budget-bound)
+p3 low 37 pass 38 attempts 358000 sub-nodes 102 elapsed 108s/300s ETA <= 192s (budget-bound)
+p3 low 37 pass 48 attempts 360000 sub-nodes 102 elapsed 108s/300s ETA <= 192s (budget-bound)
+gen_cands low 36: 189127 T-sets generated (189127), 968 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (6s)
+p3: low 36: 1 states with it uncovered, options per state [921] (blockers<=5)
+p3 low 36 pass 1 attempts 362000 sub-nodes 102 elapsed 114s/300s ETA <= 186s (budget-bound)
+gen_cands low 35: 182437 T-sets generated (182437), 706 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (7s)
+p3: low 35: 1 states with it uncovered, options per state [667] (blockers<=5)
+gen_cands low 33: 184963 T-sets generated (184963), 14905 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (7s)
+p3: low 33: 1 states with it uncovered, options per state [13121] (blockers<=5)
+p3 low 33 pass 3 attempts 364000 sub-nodes 102 elapsed 128s/300s ETA <= 172s (budget-bound)
+p3 low 33 pass 13 attempts 366000 sub-nodes 103 elapsed 128s/300s ETA <= 172s (budget-bound)
+p3 low 33 pass 23 attempts 368000 sub-nodes 104 elapsed 128s/300s ETA <= 172s (budget-bound)
+p3 low 33 pass 33 attempts 370000 sub-nodes 104 elapsed 128s/300s ETA <= 172s (budget-bound)
+p3 low 33 pass 43 attempts 372000 sub-nodes 104 elapsed 128s/300s ETA <= 172s (budget-bound)
+p3 low 33 pass 53 attempts 374000 sub-nodes 104 elapsed 128s/300s ETA <= 172s (budget-bound)
+p3 low 33 pass 63 attempts 376000 sub-nodes 104 elapsed 128s/300s ETA <= 172s (budget-bound)
+gen_cands low 29: 208029 T-sets generated (208029), 20632 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (8s)
+p3: low 29: 1 states with it uncovered, options per state [18829] (blockers<=5)
+p3 low 29 pass 7 attempts 378000 sub-nodes 104 elapsed 136s/300s ETA <= 164s (budget-bound)
+p3 low 29 pass 17 attempts 380000 sub-nodes 104 elapsed 136s/300s ETA <= 164s (budget-bound)
+p3 low 29 pass 27 attempts 382000 sub-nodes 104 elapsed 136s/300s ETA <= 164s (budget-bound)
+p3 low 29 pass 37 attempts 384000 sub-nodes 105 elapsed 136s/300s ETA <= 164s (budget-bound)
+p3 low 29 pass 47 attempts 386000 sub-nodes 106 elapsed 136s/300s ETA <= 164s (budget-bound)
+p3 low 29 pass 57 attempts 388000 sub-nodes 106 elapsed 137s/300s ETA <= 163s (budget-bound)
+p3 low 29 pass 67 attempts 390000 sub-nodes 107 elapsed 137s/300s ETA <= 163s (budget-bound)
+p3 low 29 pass 77 attempts 392000 sub-nodes 108 elapsed 137s/300s ETA <= 163s (budget-bound)
+p3 low 29 pass 87 attempts 394000 sub-nodes 109 elapsed 137s/300s ETA <= 163s (budget-bound)
+gen_cands low 26: 243336 T-sets generated (243336), 51097 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (8s)
+p3: low 26: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 26 pass 3 attempts 396000 sub-nodes 109 elapsed 145s/300s ETA <= 155s (budget-bound)
+p3 low 26 pass 13 attempts 398000 sub-nodes 109 elapsed 145s/300s ETA <= 155s (budget-bound)
+p3 low 26 pass 23 attempts 400000 sub-nodes 109 elapsed 145s/300s ETA <= 155s (budget-bound)
+p3 low 26 pass 33 attempts 402000 sub-nodes 109 elapsed 146s/300s ETA <= 154s (budget-bound)
+p3 low 26 pass 43 attempts 404000 sub-nodes 109 elapsed 146s/300s ETA <= 154s (budget-bound)
+p3 low 26 pass 53 attempts 406000 sub-nodes 109 elapsed 146s/300s ETA <= 154s (budget-bound)
+p3 low 26 pass 63 attempts 408000 sub-nodes 109 elapsed 146s/300s ETA <= 154s (budget-bound)
+p3 low 26 pass 73 attempts 410000 sub-nodes 109 elapsed 146s/300s ETA <= 154s (budget-bound)
+p3 low 26 pass 83 attempts 412000 sub-nodes 109 elapsed 146s/300s ETA <= 154s (budget-bound)
+p3 low 26 pass 93 attempts 414000 sub-nodes 109 elapsed 146s/300s ETA <= 154s (budget-bound)
+gen_cands low 24: 248164 T-sets generated (248164), 466 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (9s)
+p3: low 24: 1 states with it uncovered, options per state [406] (blockers<=5)
+gen_cands low 20: 289518 T-sets generated (289518), 97723 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (10s)
+p3: low 20: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 20 pass 1 attempts 416000 sub-nodes 109 elapsed 165s/300s ETA <= 135s (budget-bound)
+p3 low 20 pass 11 attempts 418000 sub-nodes 109 elapsed 165s/300s ETA <= 135s (budget-bound)
+p3 low 20 pass 21 attempts 420000 sub-nodes 109 elapsed 166s/300s ETA <= 134s (budget-bound)
+p3 low 20 pass 31 attempts 422000 sub-nodes 109 elapsed 166s/300s ETA <= 134s (budget-bound)
+p3 low 20 pass 41 attempts 424000 sub-nodes 109 elapsed 166s/300s ETA <= 134s (budget-bound)
+p3 low 20 pass 51 attempts 426000 sub-nodes 109 elapsed 166s/300s ETA <= 134s (budget-bound)
+p3 low 20 pass 61 attempts 428000 sub-nodes 109 elapsed 166s/300s ETA <= 134s (budget-bound)
+p3 low 20 pass 71 attempts 430000 sub-nodes 109 elapsed 166s/300s ETA <= 134s (budget-bound)
+p3 low 20 pass 81 attempts 432000 sub-nodes 109 elapsed 166s/300s ETA <= 134s (budget-bound)
+p3 low 20 pass 91 attempts 434000 sub-nodes 109 elapsed 166s/300s ETA <= 134s (budget-bound)
+gen_cands low 14: 306728 T-sets generated (306728), 85777 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (12s)
+p3: low 14: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 14 pass 1 attempts 436000 sub-nodes 109 elapsed 178s/300s ETA <= 122s (budget-bound)
+p3 low 14 pass 11 attempts 438000 sub-nodes 109 elapsed 178s/300s ETA <= 122s (budget-bound)
+p3 low 14 pass 21 attempts 440000 sub-nodes 109 elapsed 178s/300s ETA <= 122s (budget-bound)
+p3 low 14 pass 31 attempts 442000 sub-nodes 109 elapsed 178s/300s ETA <= 122s (budget-bound)
+p3 low 14 pass 41 attempts 444000 sub-nodes 109 elapsed 178s/300s ETA <= 122s (budget-bound)
+p3 low 14 pass 51 attempts 446000 sub-nodes 109 elapsed 179s/300s ETA <= 121s (budget-bound)
+p3 low 14 pass 61 attempts 448000 sub-nodes 109 elapsed 179s/300s ETA <= 121s (budget-bound)
+p3 low 14 pass 71 attempts 450000 sub-nodes 109 elapsed 179s/300s ETA <= 121s (budget-bound)
+p3 low 14 pass 81 attempts 452000 sub-nodes 109 elapsed 179s/300s ETA <= 121s (budget-bound)
+p3 low 14 pass 91 attempts 454000 sub-nodes 109 elapsed 179s/300s ETA <= 121s (budget-bound)
+gen_cands low 11: 407698 T-sets generated (407698), 78694 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (14s)
+p3: low 11: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 11 pass 1 attempts 456000 sub-nodes 109 elapsed 193s/300s ETA <= 107s (budget-bound)
+p3 low 11 pass 11 attempts 458000 sub-nodes 109 elapsed 193s/300s ETA <= 107s (budget-bound)
+p3 low 11 pass 21 attempts 460000 sub-nodes 109 elapsed 193s/300s ETA <= 107s (budget-bound)
+p3 low 11 pass 31 attempts 462000 sub-nodes 111 elapsed 193s/300s ETA <= 107s (budget-bound)
+p3 low 11 pass 41 attempts 464000 sub-nodes 112 elapsed 193s/300s ETA <= 107s (budget-bound)
+p3 low 11 pass 51 attempts 466000 sub-nodes 113 elapsed 194s/300s ETA <= 106s (budget-bound)
+p3 low 11 pass 61 attempts 468000 sub-nodes 114 elapsed 194s/300s ETA <= 106s (budget-bound)
+p3 low 11 pass 71 attempts 470000 sub-nodes 115 elapsed 194s/300s ETA <= 106s (budget-bound)
+p3 low 11 pass 81 attempts 472000 sub-nodes 116 elapsed 194s/300s ETA <= 106s (budget-bound)
+p3 low 11 pass 91 attempts 474000 sub-nodes 117 elapsed 194s/300s ETA <= 106s (budget-bound)
+gen_cands low 6: 595365 T-sets generated (595365), 113798 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (19s)
+p3: low 6: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 6 pass 1 attempts 476000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+p3 low 6 pass 11 attempts 478000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+p3 low 6 pass 21 attempts 480000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+p3 low 6 pass 31 attempts 482000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+p3 low 6 pass 41 attempts 484000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+p3 low 6 pass 51 attempts 486000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+p3 low 6 pass 61 attempts 488000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+p3 low 6 pass 71 attempts 490000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+p3 low 6 pass 81 attempts 492000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+p3 low 6 pass 91 attempts 494000 sub-nodes 119 elapsed 213s/300s ETA <= 87s (budget-bound)
+gen_cands low 2: 990281 T-sets generated (990281), 100952 valid candidate blocks (|L|>=|T|, T minimal), stopped_by_cap true (30s)
+p3: low 2: 1 states with it uncovered, options per state [20000] (blockers<=5)
+p3 low 2 pass 1 attempts 496000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3 low 2 pass 11 attempts 498000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3 low 2 pass 21 attempts 500000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3 low 2 pass 31 attempts 502000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3 low 2 pass 41 attempts 504000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3 low 2 pass 51 attempts 506000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3 low 2 pass 61 attempts 508000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3 low 2 pass 71 attempts 510000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3 low 2 pass 81 attempts 512000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3 low 2 pass 91 attempts 514000 sub-nodes 119 elapsed 244s/300s ETA <= 56s (budget-bound)
+p3: finished without a cover: 515653 attempts, 119 sub-DFS nodes, 244s
+PHASE 4: allow profit -1 blocks (at most 1, then 2) in the restricted exact solve
+p4: R base 7847 blocks (3972 pooled from 994 states, |T|<=4 family included)
+p4: drop/swap neighbours 0/3972 blocks, R 7971 (0s)
+p4: drop/swap neighbours 2000/3972 blocks, R 102854 (1s)
+p4: drop/swap done for 3972/3972 pooled blocks, R 188088
+p4: add-free-Y neighbours from 31175/31175 (block,y) pairs, R 210169 (+22081), total build 3s
+p4: |R| = 210169 (including profit -1 blocks)
+p4n1 dfs nodes 98304 rate 3259/s depth 9 maxdepth 13 fewest-uncovered-lows 30 memo 93624 hits 4670 prunes 916498 elapsed 30s/263s ETA <= 233s (time cap; no completion estimate) rss 0.68GB
+p4n1 dfs nodes 180224 rate 2751/s depth 9 maxdepth 15 fewest-uncovered-lows 27 memo 167738 hits 12476 prunes 2571850 elapsed 66s/263s ETA <= 197s (time cap; no completion estimate) rss 0.71GB
+p4n1 dfs nodes 270336 rate 2823/s depth 9 maxdepth 17 fewest-uncovered-lows 26 memo 254193 hits 16133 prunes 4083720 elapsed 96s/263s ETA <= 167s (time cap; no completion estimate) rss 0.72GB
+p4n1 dfs nodes 360448 rate 2843/s depth 10 maxdepth 17 fewest-uncovered-lows 26 memo 340483 hits 19954 prunes 5631075 elapsed 127s/263s ETA <= 136s (time cap; no completion estimate) rss 0.72GB
+p4n1 dfs nodes 450560 rate 2830/s depth 10 maxdepth 17 fewest-uncovered-lows 26 memo 427099 hits 23450 prunes 6932911 elapsed 159s/263s ETA <= 104s (time cap; no completion estimate) rss 0.72GB
+p4n1 dfs nodes 524288 rate 2767/s depth 9 maxdepth 17 fewest-uncovered-lows 26 memo 497923 hits 26355 prunes 7973196 elapsed 189s/263s ETA <= 74s (time cap; no completion estimate) rss 0.72GB
+p4n1 dfs nodes 614400 rate 2788/s depth 11 maxdepth 17 fewest-uncovered-lows 26 memo 582626 hits 31762 prunes 9011955 elapsed 220s/263s ETA <= 43s (time cap; no completion estimate) rss 0.72GB
+p4n1 dfs nodes 712704 rate 2835/s depth 12 maxdepth 17 fewest-uncovered-lows 26 memo 672682 hits 40009 prunes 10347494 elapsed 251s/263s ETA <= 12s (time cap; no completion estimate) rss 0.72GB
+phase4 maxneg 1	|R| 210169	verdict ABORTED (cap), no verdict	nodes 753664	memo_hits 47153	fewest_uncovered_lows_in_dfs 22	secs 264
+FINAL: UNDECIDED (no cover found; no impossibility claimed). pool: 994 distinct near-solutions (3 unc: 970, 2 unc: 24, 1 unc: 0), 3972 distinct blocks of 50759, uncovered-low frequencies (velocity:count, top 12) 45:188 24:118 9:105 33:92 32:82 39:77 38:75 26:74 27:72 46:67 35:66 92:60, distinct lows ever uncovered 93

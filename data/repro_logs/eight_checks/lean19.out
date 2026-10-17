@@ -1,0 +1,17 @@
+z65w mu=1 fail=0 | NC(o outside set) fails=42
+z65w mu=2 fail=0 | NC(o outside set) fails=182
+z65w mu=3 fail=0 | NC(o outside set) fails=406
+top A1 offsets [0, 1, 2]: A4 offsets o failing for some (a,p): [3, 4]
+top A1 offsets [0, 1, 5]: A4 offsets o failing for some (a,p): [2, 3, 4, 5]
+top A1 offsets [0, 2, 4]: A4 offsets o failing for some (a,p): [0, 1, 2, 3, 4, 5, 6]
+(b) A1 [0, 1, 2], A4 offset 4: bad e = {3, 4}, inconsistent (a,p) = 0
+(b) A1 [0, 2, 4], A4 offset 1: bad e = {2, 4, 6}, inconsistent (a,p) = 0
+m=2 range lemma fail=0 | NC(no mu=3) fail=49
+m=2 window pair trick: 30118144 configs fail=0 | NC(mu = 1 only) fail=518616
+m=2 6.5(ii.2) nu(e45)=h: 2058 configs, q(lam e45) notin {5,6,0,1}: 0, lemma9-three diff claims fail: 0
+m=2 6.5: 25510625 fail=0 | NC(Lambda0 only) fail=3479049
+m=2 6.6: 73530625 fail=0 | NC(Lambda0 only) fail=9983358
+m=2 6.3: 50000825 fail=0 | NC(Lambda0 only) fail=7042133
+m=3 range lemma fail=0 | NC(no mu=3) fail=343
+m=3 window pair trick: 105413504 configs fail=0 | NC(mu = 1 only) fail=1699908
+m=3 6.5(ii.2) nu(e45)=h: 141588 configs, q(lam e45) notin {5,6,0,1}: 0, lemma9-three diff claims fail: 0

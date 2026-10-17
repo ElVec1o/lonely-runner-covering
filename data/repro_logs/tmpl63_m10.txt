@@ -1,0 +1,4 @@
+m=10 q0= 21 | ground=18 need 3 blocks | (6,3)-blocks found=460 | nodes=838 | TEMPLATE: EXISTS
+     block [2, 3, 6, 13, 15, 19]
+     block [4, 5, 8, 12, 16, 17]
+     block [7, 9, 10, 14, 18, 20]

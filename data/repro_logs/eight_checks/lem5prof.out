@@ -1,0 +1,3 @@
+profile (l1,l2,l4)=(1, 1, 3): 28 failing set-triples, min cardinalities (1, 1, 2)
+profile (l1,l2,l4)=(1, 3, 1): 28 failing set-triples, min cardinalities (1, 2, 1)
+profile (l1,l2,l4)=(3, 1, 1): 28 failing set-triples, min cardinalities (2, 1, 1)

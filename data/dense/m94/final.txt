@@ -1,0 +1,1 @@
+UNDECIDED pool: 994 distinct near-solutions (3 unc: 970, 2 unc: 24, 1 unc: 0), 3972 distinct blocks of 50759, uncovered-low frequencies (velocity:count, top 12) 45:188 24:118 9:105 33:92 32:82 39:77 38:75 26:74 27:72 46:67 35:66 92:60, distinct lows ever uncovered 93

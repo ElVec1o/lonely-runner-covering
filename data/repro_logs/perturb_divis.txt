@@ -1,0 +1,17 @@
+(1) covering a/b  <=>  b | v
+    range: 3 <= n <= 40, 1 <= b < n, a a unit mod b, 1 <= v <= 3n
+    593442 instances, 0 violations
+(2) covering j/n  <=>  n | v
+    range: 3 <= n <= 60, j a unit mod n, 1 <= v <= 3n
+    132684 instances, 0 violations
+(3) j/n in U(n,M) for every M
+    range: 3 <= n <= 14, ALL 2^(n-1) subsets M, j a unit mod n
+    121368 instances, 0 violations
+(4) criterion D vs the measure criterion at k=1, over b with 2b >= n
+       n    b's   measure crit   criterion D     truth
+      20     10          30.0%        100.0%    100.0%
+      26     13          30.8%        100.0%    100.0%
+      32     16          37.5%        100.0%    100.0%
+      38     19          31.6%        100.0%    100.0%
+      44     22          40.9%        100.0%    100.0%
+      50     25          40.0%        100.0%    100.0%

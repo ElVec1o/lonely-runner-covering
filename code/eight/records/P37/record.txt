@@ -1,0 +1,23 @@
+theorem LRSpectrumFull.EightV4.Cert37.lemma7Check_seven_p37 : lemma7Check 7 37 = true
+'LRSpectrumFull.EightV4.Cert37.lemma7Check_seven_p37' depends on axioms: [propext, Classical.choice, Quot.sound]
+status: all modules EXIT:0, no 'error'/'sorry' in any log; kernel: decide +kernel (no native_decide)
+verified_at: 2026-09-24 17:04:59  total_wall_s: 127
+generator: private/eight/src/l7v4.rs sha256 18f58606955296e1efa2bd1b5b4b7a3fb0388ead5ac8ab0e901c1e69909c7f17
+generator_cmd: l7v4s 37 stage <dir> 400000 16 bitkey
+checker: lean-mathlib/LRSpectrumFull/EightCheckV4.lean sha256 76166bdc05e1cdd7276d516ac6240e1412c7608d1fb07c4d127bdb2aa15f85a1
+soundness: lean-mathlib/LRSpectrumFull/EightCheckSound.lean sha256 27236b6dbb5b9a777bf5628257918bcf3bfe4566b4446bf71e6e5d79c624c0fb
+toolchain: leanprover/lean4:v4.30.0
+manifest: p 37 delegated 309 groups 1 top_nodes 18 task_nodes 6732 total_nodes 6750 top_fields 3609 tab_chunk 16
+sources_sha256 (sorted file list, then sha256 of the concatenation in that order):
+  Asm.lean 890628551a5672d752a96f7d0b1bc73b7eec27d46df347c841cdf138d90dad9e    83606
+  Base.lean 403cf1c3013eb280f508e84adc5df89d428f56f2046cf303e7f81d9d975cf68a   424285
+  S0.lean 19079c608830cda6abecefc71b3bad0c17f2af0b2e915b2888dd540f86df3db5  1225230
+  Tab.lean 34850c1f0ee533e0884185ab33c36b4342d21f06fbc08306a0acc7a899478cb6     4159
+  Top.lean 7cda3bf19ffedad7d44481f79dcde12f0ff8a8bf02f49f9860e1f4a824f87289      518
+combined_sha256 94704f6cd52050168dfea28781822287b0d1bdd09116a1af536f16d8b85353b0
+per-module (wall, user, footprint):
+  Base EXIT:0 wall=16s user=7.33s fp=1.04GB
+  Tab EXIT:0 wall=23s user=10.94s fp=0.96GB
+  Top EXIT:0 wall=9s user=2.90s fp=0.93GB
+  S0 EXIT:0 wall=81s user=42.72s fp=0.98GB
+  Asm EXIT:0 wall=14s user=6.23s fp=0.94GB
