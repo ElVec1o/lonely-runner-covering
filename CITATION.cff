@@ -13,8 +13,11 @@ authors:
     email: vicobonfioli@gmail.com
 license: CC-BY-4.0
 version: 1.0.3
-doi: 10.5281/zenodo.23439967
+doi: 10.5281/zenodo.23445368
 identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23445368
+    description: Version 1.0.3
   - type: doi
     value: 10.5281/zenodo.23439967
     description: Version 1.0.2
