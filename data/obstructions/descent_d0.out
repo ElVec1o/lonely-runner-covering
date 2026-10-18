@@ -1,0 +1,2 @@
+d0: 1500 random vectors (seed 20261018, 2 to 7 speeds in [1,60], dilation factors 2 to 9): 0 failures
+d0 control (deletion lowers ML, false): fires 0 times of 200 (must be 0)

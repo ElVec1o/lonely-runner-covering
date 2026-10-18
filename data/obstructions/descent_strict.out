@@ -1,0 +1,15 @@
+m, witness V (loo above sigma bound), sigma bound = ML of the (m-1)-speed vector, jump lower bound
+m=7: V=[1, 4, 5, 6, 7, 11, 13] loo=2/13, W=[1, 5, 6, 11, 16, 17] ML=5/33, loo - ML(W) = 1/429  [recomputed]
+m=31: GW1 n=32 r=30 mu=3 ML=1/32 (tight: True), ML(V minus 31) = 3/91 (table loo 3/91), sigma bound 2/(2m-1)=2/61, loo > bound: True loo recomputed over all 31 removals = 3/91
+m=61: GW1 n=62 r=60 mu=3 ML=1/62 (tight: True), ML(V minus 61) = 3/181 (table loo 3/181), sigma bound 2/(2m-1)=2/121, loo > bound: True loo recomputed over all 61 removals = 3/181
+m=73: GWmulti n=74 acc=[70, 72] ML=1/74 (tight: True), ML(V minus 144) = 1/72 (table loo 1/72), sigma bound 2/(2m-1)=2/145, loo > bound: True loo recomputed over all 73 removals = 1/72
+m=91: GW1 n=92 r=90 mu=3 ML=1/92 (tight: True), ML(V minus 91) = 3/271 (table loo 3/271), sigma bound 2/(2m-1)=2/181, loo > bound: True
+m=121: GW1 n=122 r=120 mu=3 ML=1/122 (tight: True), ML(V minus 121) = 3/361 (table loo 3/361), sigma bound 2/(2m-1)=2/241, loo > bound: True
+m=143: GW1 n=144 r=140 mu=2 ML=1/144 (tight: True), ML(V minus 142) = 1/142 (table loo 1/142), sigma bound 2/(2m-1)=2/285, loo > bound: True
+m=151: GW1 n=152 r=150 mu=3 ML=1/152 (tight: True), ML(V minus 151) = 3/451 (table loo 3/451), sigma bound 2/(2m-1)=2/301, loo > bound: True
+m=181: GW1 n=182 r=180 mu=3 loo=3/541 (table), sigma bound 2/(2m-1)=2/361 (recomputed), loo > bound: True  [ML(V) and loo taken from the table]
+m=211: GW1 n=212 r=210 mu=3 loo=3/631 (table), sigma bound 2/(2m-1)=2/421 (recomputed), loo > bound: True  [ML(V) and loo taken from the table]
+m=211: GW1 n=212 r=210 mu=4 loo=4/841 (table), sigma bound 2/(2m-1)=2/421 (recomputed), loo > bound: True  [ML(V) and loo taken from the table]
+m=211: GW1 n=212 r=210 mu=5 loo=5/1051 (table), sigma bound 2/(2m-1)=2/421 (recomputed), loo > bound: True  [ML(V) and loo taken from the table]
+m=241: GW1 n=242 r=240 mu=3 loo=3/721 (table), sigma bound 2/(2m-1)=2/481 (recomputed), loo > bound: True  [ML(V) and loo taken from the table]
+strict: OK (48.3 s)

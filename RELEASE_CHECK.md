@@ -201,6 +201,7 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `code/lean_build/gbound_build.sh` | sequential Lean build script (all papers with Lean content) |
 | `code/obstructions/README.md` | obstruction reproduction (obstructions) |
 | `code/obstructions/cornercheck.py` | obstructions tool or script (obstructions) |
+| `code/obstructions/descent_check.py` | exact checks for Section 8 of the obstruction note (obstructions) |
 | `code/obstructions/mlcheck.rs` | obstruction reproduction (obstructions) |
 | `code/obstructions/repro_O4.sh` | obstruction reproduction (obstructions) |
 | `code/obstructions/shift_grid.py` | obstruction reproduction (obstructions) |
@@ -415,6 +416,13 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `data/obstructions/cert_resid_m14_h22.out` | output of a rerun (obstructions) |
 | `data/obstructions/chainparity.out` | obstructions data (obstructions) |
 | `data/obstructions/cornercheck.out` | obstructions data (obstructions) |
+| `data/obstructions/descent_controls.out` | output of a run: control battery of the exact ML routine (obstructions) |
+| `data/obstructions/descent_d0.out` | output of a run: Lemma 20 on random vectors (obstructions) |
+| `data/obstructions/descent_gw.out` | output of a run: Goddyn-Wong triples from the GCD condition (obstructions) |
+| `data/obstructions/descent_gw_loo.tsv` | input table: leave-one-out values of the 67 Goddyn-Wong type tight vectors (generator not archived) (obstructions) |
+| `data/obstructions/descent_instances.out` | output of a run: exact instances and near-tight sets (obstructions) |
+| `data/obstructions/descent_strict.out` | output of a run: strict values of m (obstructions) |
+| `data/obstructions/descent_table.out` | output of a run: the 70 tight vectors (obstructions) |
 | `data/obstructions/enumw_m10_h30.out` | output of a rerun (obstructions) |
 | `data/obstructions/enumw_m12_h26.out` | output of a rerun (obstructions) |
 | `data/obstructions/enumw_m14_h24.out` | output of a rerun (obstructions) |
@@ -763,3 +771,12 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 * The dense-window manuscript compiles with latexmk, no undefined references or citations; build files (`aux`, `log`, `out`, `fls`, `fdb_latexmk`, `blg`, `toc`, `bbl`) deleted afterwards.
 * Pattern scan (`grep -rIil`, `.git`, `MANIFEST.tsv` and this file excluded) for `/Users/`, `anvilstack`, `Claude`, `Anthropic`, `ChatGPT`, `HANDOFF`, `Co-Authored`, `Generated with`, `ghp_`, `gho_`, `github_pat`: 0 hits for every pattern. No file above 5 MB; no LaTeX build files.
 * Open before release: `.zenodo.json` says version 1.0.1 and must be set to 1.0.2; `CITATION.cff` has no version field and `date-released: 2026-10-18` must be updated; no DOI exists for 1.0.2; the README version line says draft, unreleased and must be changed at release; the repository identity must be ElVec1o <vicobonfioli@gmail.com> before the commit; no Lean rebuild or axiom print was made for `dense_floor_of_prime`, and the fresh-session reader test of the conceptual abstract of Theorem 3 has not been run.
+
+## Scan for version 1.0.3 (draft, unreleased, 18 October 2026)
+
+* 710 files in the tree excluding `.DS_Store`; `MANIFEST.tsv` hashes all except itself (709 rows), each file once, regenerated after the last edit of this file. Added: `code/obstructions/descent_check.py`, `data/obstructions/descent_{controls,d0,gw,instances,strict,table}.out`, `data/obstructions/descent_gw_loo.tsv`. Changed: `README.md`, `CLAIMS.tsv`, `MANIFEST.tsv`, this file, `code/reproduce.sh`, `code/obstructions/README.md`, `paper/obstructions/{main.tex,main.pdf,main.bbl,LEAN_MAP.md}`. Present from the exact-`ML` audit and kept: regression tests in `code/reduction/mdr/src/main.rs` and `code/reduction/levelfit/src/mdr_base.rs`, one row of `paper/reduction/LEAN_MAP.md`. No Lean file changed, no Lean build run, `cargo test` not run, nothing committed or pushed. `refs.bib` unchanged.
+* Sync coupling walked for the new statements (items 20 to 33 of the obstruction note): README (version line, changes, idea in words, results, file map, reproduction row and runtime, formalization rows, data provenance), `CLAIMS.tsv` (13 rows), `paper/obstructions/LEAN_MAP.md` (all new items: ABSENT), `code/obstructions/README.md`, `code/reproduce.sh` (six commands added, runtime line 40 to 43 minutes), section 4 of this file. Items 1 to 19 of the note and their numbers are unchanged.
+* The obstruction note compiles with latexmk, no undefined references or citations; build files (`aux`, `log`, `out`, `fls`, `fdb_latexmk`, `blg`, `toc`) deleted afterwards; `main.bbl` kept as before.
+* Pattern scan (`grep -rIil`, `.git`, `MANIFEST.tsv` and this file excluded) for `/Users/`, `anvilstack`, `Claude`, `Anthropic`, `ChatGPT`, `HANDOFF`, `Co-Authored`, `Generated with`, `ghp_`, `gho_`, `github_pat`: 0 hits for every pattern; the text of `main.pdf` has 0 hits for `Claude`, `Anthropic`, `/Users/`, `anvilstack`. No file above 5 MB; no LaTeX build files; no `.DS_Store` in the tree.
+* Checks run for this version (Python, exact, one process each, all under 2 minutes; outputs in `data/obstructions/descent_*.out`): control battery PASS; Lemma 20 on 1500 random vectors, 0 failures; instances and near-tight sets; 66 Goddyn-Wong triples regenerated with a negative control; 70-vector table (21 rows recomputed, 49 from the table); strict values (m <= 151 recomputed in part). The table `descent_gw_loo.tsv` comes from an exact job whose source is not archived.
+* Open before release: `.zenodo.json` says version 1.0.2 and must be set to 1.0.3; `CITATION.cff` carries `version: 1.0.2`, the DOI of 1.0.2 and `date-released: 2026-10-18` and must be updated; no DOI exists for 1.0.3 and none is stated; the README version line says draft, unreleased; the repository identity must be ElVec1o <vicobonfioli@gmail.com> before the commit; the proofs of Propositions 29 and 31 were reviewed in REVIEW_SEC8.md (accepted with fixes) and the fixes were applied afterwards by the author, whose check of the changed text is the only one so far (Corollary 30 and Proposition 31 now have lifting proofs, Remark 33 is new); the generator of `descent_gw_loo.tsv` is not archived.

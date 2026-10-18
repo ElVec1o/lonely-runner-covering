@@ -26,3 +26,14 @@ and `mlcheck` agrees with it on all quoted values.
 
 Added in 1.0.1: `python3 -I cornercheck.py` (exact check of the tight-corner proposition on boxes `m = 2..5`, output `data/obstructions/cornercheck.out`) and
 `python3 -I chainparity.py 20001` (output `data/obstructions/chainparity.out`).
+
+Added in 1.0.3: `descent_check.py`, the exact checks for Section 8 of the note (descent and topological obstructions). It contains the function `ml` and the control battery of the standard exact routine unchanged (every numerator `k` of `k/L`, `L = v_i + v_j`; earlier variants skipped numerators not coprime to `L`). Python glue, exact fractions, bounded memory, every mode under 2 minutes. From the archive root:
+
+    python3 -I code/obstructions/descent_check.py controls > data/obstructions/descent_controls.out     # SELFTEST PASS (300 random vectors; 2000 if numpy is importable)
+    python3 -I code/obstructions/descent_check.py d0 > data/obstructions/descent_d0.out                 # Lemma 20 on 1500 random vectors, with a negative control
+    python3 -I code/obstructions/descent_check.py instances > data/obstructions/descent_instances.out   # m = 7 values, second-level witnesses m = 3..100, three near-tight sets (12 s)
+    python3 -I code/obstructions/descent_check.py gw > data/obstructions/descent_gw.out                 # 66 Goddyn-Wong triples n <= 260 from the GCD condition, with a negative control
+    python3 -I code/obstructions/descent_check.py table 73 > data/obstructions/descent_table.out        # the 70 tight vectors: full recomputation for m <= 73 (75 s), counts 11 / 59 / 46 / 13 / 0
+    python3 -I code/obstructions/descent_check.py strict 151 > data/obstructions/descent_strict.out     # the eleven strict values of m (50 s)
+
+Input: `data/obstructions/descent_gw_loo.tsv`, the leave-one-out values of the 67 Goddyn-Wong type tight vectors from an exact Rust job of 18 October 2026 (source not archived). Rows with `m > 73` are used from the table without recomputation (`table`), and in `strict` the vectors with `m > 151` are used from the table; the output files state which entries are recomputed. Exit status is 0 only if every check and control passes.

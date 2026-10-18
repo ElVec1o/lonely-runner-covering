@@ -1,0 +1,25 @@
+GW1 n=8 r=6 mu=2                     m=  7 ML=1/8 loo=2/13 removed=[7] table=2/13@7 OK
+GW1 n=14 r=12 mu=2                   m= 13 ML=1/14 loo=2/25 removed=[13] table=2/25@13 OK
+GW1 n=20 r=18 mu=2                   m= 19 ML=1/20 loo=2/37 removed=[19] table=2/37@19 OK
+GW1 n=26 r=24 mu=2                   m= 25 ML=1/26 loo=2/49 removed=[25] table=2/49@25 OK
+GW1 n=32 r=30 mu=2                   m= 31 ML=1/32 loo=2/61 removed=[31] table=2/61@31 OK
+GW1 n=32 r=30 mu=3                   m= 31 ML=1/32 loo=3/91 removed=[31] table=3/91@31 OK
+GW1 n=33 r=30 mu=2                   m= 32 ML=1/33 loo=1/32 removed=[32] table=1/32@32 OK
+GW1 n=38 r=36 mu=2                   m= 37 ML=1/38 loo=2/73 removed=[37] table=2/73@37 OK
+GW1 n=44 r=42 mu=2                   m= 43 ML=1/44 loo=2/85 removed=[43] table=2/85@43 OK
+GW1 n=50 r=48 mu=2                   m= 49 ML=1/50 loo=2/97 removed=[49] table=2/97@49 OK
+GW1 n=56 r=54 mu=2                   m= 55 ML=1/56 loo=2/109 removed=[55] table=2/109@55 OK
+GW1 n=62 r=60 mu=2                   m= 61 ML=1/62 loo=2/121 removed=[61] table=2/121@61 OK
+GW1 n=62 r=60 mu=3                   m= 61 ML=1/62 loo=3/181 removed=[61] table=3/181@61 OK
+GW1 n=63 r=60 mu=2                   m= 62 ML=1/63 loo=1/62 removed=[62] table=1/62@62 OK
+GW1 n=68 r=66 mu=2                   m= 67 ML=1/68 loo=2/133 removed=[67] table=2/133@67 OK
+GW1 n=74 r=70 mu=2                   m= 73 ML=1/74 loo=1/72 removed=[72] table=1/72@72 OK
+GW1 n=74 r=72 mu=2                   m= 73 ML=1/74 loo=2/145 removed=[73] table=2/145@73 OK
+GWmulti n=74 acc=[70, 72]            m= 73 ML=1/74 loo=1/72 removed=[144] table=1/72@144 OK
+vectors: 70 (67 Goddyn-Wong type + 3 sporadic); rows recomputed here: 21 (m <= 73 and the sporadics), taken from the table: 49
+tight leave-one-out: 11; none: 59
+among the 59 without: loo = 2/(2m-1): 46; loo > 2/(2m-1): 13; loo < 2/(2m-1): 0
+among the 56 Goddyn-Wong type without: equal 43, above 13; sporadic: 3 (all equal: True)
+strictly above, by m: [(31, '3/91'), (61, '3/181'), (73, '1/72'), (73, '1/72'), (91, '3/271'), (121, '3/361'), (143, '1/142'), (151, '3/451'), (181, '3/541'), (211, '3/631'), (211, '4/841'), (211, '5/1051'), (241, '3/721')]
+m with tight leave-one-out: [32, 62, 92, 122, 152, 182, 212, 212, 213, 214, 242]
+table: OK (75.0 s)

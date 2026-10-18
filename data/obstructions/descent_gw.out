@@ -1,0 +1,4 @@
+GCD-condition triples (n, r, mu), 3 <= n <= 260, mu >= 2: 66; single-acceleration rows of the table: 66
+in generator, not in table: []; in table, not in generator: []
+control (gcd(n, b) > 1 instead of gcd(r, b) > 1): 66 triples, differs from the table: True
+gw: OK

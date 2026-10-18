@@ -465,3 +465,40 @@ fn mdr_main() {
         _ => panic!("mode"),
     }
 }
+
+// ---- regression tests for `ml` (added 2026-10-18, ML audit): the original `ml` skipped numerators c with
+// gcd(c, s) != 1 and underestimated ML.  `cargo test --release` must pass before any release. ----
+#[cfg(test)]
+mod ml_regression_tests {
+    use super::*;
+    fn ml_of(a: &[I]) -> (I, I) { ml(a).0 }
+    #[test]
+    fn controls_all_numerators() {
+        assert_eq!(ml_of(&[1, 2, 3, 4, 5]), (1, 6));
+        assert_eq!(ml_of(&[1, 3, 4, 7]), (1, 5));
+        assert_eq!(ml_of(&[7, 19]), (1, 2));                                   // t = 1/2; coprime-only gave 17/38
+        assert_eq!(ml_of(&[3, 4, 7, 11]), (2, 9));                             // t = 1/9; coprime-only gave 3/14
+        assert_eq!(ml_of(&[1, 4, 6, 7, 10, 11, 12, 13, 16, 17, 19, 23]), (1, 9)); // coprime-only gave 2/25
+        assert_eq!(ml_of(&[1, 5, 6, 11, 16, 17]), (5, 33));
+        assert_eq!(ml_of(&[1, 2, 3, 4, 5, 7, 12]), (1, 8));
+        assert_eq!(ml_of(&[2, 3, 6]), (1, 3));
+    }
+    #[test]
+    fn matches_rational_grid() {
+        // 300 pseudo-random families (xorshift, fixed seed), m = 2..5, speeds <= 25: every maximiser has denominator <= 50,
+        // so the grid t = p/q, q <= 60, all p in 0..=q (no gcd filter) must reproduce ML exactly.
+        let mut s: u64 = 0x9E3779B97F4A7C15;
+        let mut nx = || { s ^= s << 13; s ^= s >> 7; s ^= s << 17; s };
+        for _ in 0..300 {
+            let m = 2 + (nx() % 4) as usize; let mut v: Vec<I> = vec![];
+            while v.len() < m { let x = 1 + (nx() % 25) as I; if !v.contains(&x) { v.push(x); } }
+            v.sort();
+            let (mut gn, mut gd): (I, I) = (0, 1);
+            for q in 1..=60 as I { for p in 0..=q {
+                let mut d = q; for &x in &v { let r = (x * p) % q; d = d.min(r.min(q - r)); }
+                if d * gd > gn * q { gn = d; gd = q; } } }
+            let g = gcd(gn, gd).max(1);
+            assert_eq!(ml_of(&v), (gn / g, gd / g), "family {:?}", v);
+        }
+    }
+}

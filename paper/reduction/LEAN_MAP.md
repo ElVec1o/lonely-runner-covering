@@ -92,7 +92,7 @@ Sources (source + Cargo.toml/Cargo.lock only) are in `code/reduction/<name>/`; e
 | Independent enumeration (4,400) ... (10,38) | `code/reduction/gdn` (`gdn tight M H 0`) |
 | Third enumeration m <= 8 | `code/reduction/ecalc` (`ecalc enum M H OUT`) |
 | Table 2 (T2 hunts) | `code/reduction/t2hunt` (`driver.sh`, seeds 101m+1, 101m+2) |
-| T2 equality at m = 12 | `code/reduction/mdr` (`mdr ml ...`; search seed not recorded) |
+| T2 equality at m = 12 (WITHDRAWN: the exact value is ML = 1/9, see CLAIMS.tsv) | `code/reduction/mdr` (`mdr ml ...`, corrected; `code/obstructions/mlcheck.rs`) |
 | Conj 5.4 (499 pairs, m <= 56) | `code/reduction/rmj` (`rmj thmF 2 400 40`, `rmj thmF 41 56 56`) |
 | Remark 8.2 families | `code/reduction/mdr` (`mdr certv 60 V`; m = 16 with `MDR_QMIN=18`), `code/reduction/modchk`, `code/reduction/levelfit` |
 | ML(1,5,6,11,16,17) = 5/33 | `code/reduction/fcuspec` (`fcuspec eval 1,5,6,11,16,17`) |

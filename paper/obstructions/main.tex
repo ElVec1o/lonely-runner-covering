@@ -16,6 +16,7 @@
 \newcommand{\norm}[1]{\lVert #1\rVert}
 \newcommand{\ML}{\mathrm{ML}}
 \newcommand{\gap}{\mathrm{gap}}
+\newcommand{\loo}{\mathrm{loo}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\lab}[1]{\par\smallskip\noindent\textit{Label: #1.}}
@@ -27,7 +28,7 @@
 \maketitle
 
 \begin{abstract}
-We study which standard methods cannot prove the lonely runner inequality $\ML(v)\ge 1/(m+1)$ for positive integer speed vectors, and why. (i) At the target level, no integrable weight certifies a vector with $\ML(v)\le1/(m+1)$, so first-moment and Riesz-product certificates are blind to tight vectors; this is a formalized restatement of a lemma of Bedert. (ii) Five explicit families with $12$ to $18$ speeds defeat bounded-level base-point certificates of the kinds tested, and without a leave-one-out hypothesis no bound on denominators of lonely times depending only on $m$ exists. (iii) For tight vectors of Goddyn--Wong type, $m+1$ divides no speed; a conjecture (T) extends this to all tight primitive vectors, and at a maximiser of a tight vector the denominator is $m+1$ times a divisor of the gcd of a corner pair. (iv) The doubling graph on the non-units in the window $[1,2m]$ has an isolated vertex whenever $2m+1$ is composite and exceeds $9$, hence no perfect matching. (v) Covering-radius bounds at the target value are false. Each statement carries a label; attributions to prior work are listed in Section~\ref{sec:attr}. No progress on the conjecture is claimed.
+We study which standard methods cannot prove the lonely runner inequality $\ML(v)\ge 1/(m+1)$ for positive integer speed vectors, and why. (i) At the target level, no integrable weight certifies a vector with $\ML(v)\le1/(m+1)$, so first-moment and Riesz-product certificates are blind to tight vectors; this is a formalized restatement of a lemma of Bedert. (ii) Five explicit families with $12$ to $18$ speeds defeat bounded-level base-point certificates of the kinds tested, and without a leave-one-out hypothesis no bound on denominators of lonely times depending only on $m$ exists. (iii) For tight vectors of Goddyn--Wong type, $m+1$ divides no speed; a conjecture (T) extends this to all tight primitive vectors, and at a maximiser of a tight vector the denominator is $m+1$ times a divisor of the gcd of a corner pair. (iv) The doubling graph on the non-units in the window $[1,2m]$ has an isolated vertex whenever $2m+1$ is composite and exceeds $9$, hence no perfect matching. (v) Covering-radius bounds at the target value are false. (vi) An inequality $\min_v\ML(V\setminus v)\le F(\ML(V))$ with $F$ continuous at the floor cannot send counterexamples to tight subsets: at $11$ values of $m$, exact tight vectors have all leave-one-out values above the threshold that $F$ would have to respect (HEURISTIC, finite exact computation). The leave-one-out values of $70$ known tight vectors are tabulated and a general lower bound is conjectured. (vii) The bad region has the first homology of the torus for $m\ge2$ and its fundamental group for $m\ge3$, so topological necessary conditions obtained from the inclusion are satisfied by every speed vector with not all speeds odd (the topological statements are PROVED; that this delimits a method is HEURISTIC). Each statement carries a label; attributions to prior work are listed in Section~\ref{sec:attr}. No progress on the conjecture is claimed.
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
@@ -60,13 +61,21 @@ Prop~\ref{prop:corner} & \ref{sec:corner} & At a maximiser $k/L$ of $v$ with $\M
 Conj~\ref{conj:T}, \ref{conj:T2} & \ref{sec:corner} & (T), (T$'$), (T2) & CONJECTURE\\
 Prop~\ref{prop:chain} & \ref{sec:doubling} & Isolated vertex in the doubling graph on the non-units of $[1,2m]$ for composite $2m+1>9$ & PROVED\\
 Prop~\ref{prop:phase}, Rem~\ref{rem:cr} & \ref{sec:phase} & Half-phase statement false; covering-radius target false & VERIFIED, carried over; cited computation\\
+Lem~\ref{lem:D0}, Rem~\ref{rem:D0} & \ref{sec:descent} & Deleting a speed does not lower $\ML$; $\ML(cV)=\ML(V)$; no consequence for subsets of counterexamples & PROVED\\
+Lem~\ref{lem:desc} & \ref{sec:descent} & A descent function $F$ at $m$ has $F(1/(m+1))\ge\loo(V)$ for tight $V$ & PROVED\\
+Obs~\ref{obs:inst}, Prop~\ref{prop:nogo} & \ref{sec:descent} & At $m\in\{7,31,61,73,91,121,143,151,181,211,241\}$ a sub-floor descent function jumps at the floor & HEURISTIC (deduction PROVED; instances exact, not formalized)\\
+Obs~\ref{obs:tight70} & \ref{sec:descent} & Leave-one-out values of $70$ known tight vectors: $11$ tight, $46$ at $2/(2m-1)$, $13$ above, $0$ below & HEURISTIC\\
+Conj~\ref{conj:C1} & \ref{sec:descent} & Tight primitive vectors without a tight leave-one-out have $\loo\ge2/(2m-1)$ & CONJECTURE\\
+Obs~\ref{obs:near} & \ref{sec:descent} & $\ML(V)<1/m$ does not imply a tight leave-one-out ($m=5,8,10$) & FALSE (statement), exact witnesses\\
+Prop~\ref{prop:bad}, Cor~\ref{cor:vac}, Prop~\ref{prop:equiv} & \ref{sec:topology} & $U_\delta\to\mathbb T^m$ is an isomorphism on $H_1$ ($m\ge2$) and $\pi_1$ ($m\ge3$); an equivariant loop is homotopic into $U_\delta$ if and only if not all $v_i$ are odd & PROVED\\
+Rem~\ref{rem:desc-ground}, \ref{rem:topo} & \ref{sec:descent} & Scope of the two obstructions & HEURISTIC\\
 \bottomrule
 \end{tabular}
 \end{center}
 Theorem~\ref{thm:barrier} and the escape lemma are known in substance (Tao, Bedert, Rosenfeld); Proposition~\ref{prop:dc} is known; Theorem~\ref{thm:O6} is, to the extent read, not stated in the literature, but its proof is a few lines. What is attributed and what is not is itemized in Section~\ref{sec:attr}.
 
 \subsection{Conceptual abstract}
-The note tests five standard routes to the floor on the vectors where it is sharp. Averaging a fixed weight over the circle cannot certify a tight vector at the target level: its good set is a finite union of tent-function level sets, hence countable and without mass. Certificates of bounded denominator fail without a leave-one-out hypothesis, because a speed divisible by $\operatorname{lcm}(1,\dots,Q)$ vanishes at every time of denominator at most $Q$. Pairing by doubling fails because, for odd composite $2m+1$ above $9$, the non-unit $2m+1-2p$, with $p$ the least prime factor, has no doubling or halving partner in the window. Local corner analysis fails because the maximum at a corner depends on the residues of all other speeds. Covering-radius bounds fail because the shifted statement they imply is false. What remains is an explicit rational time or a classification of the tight vectors.
+The note tests seven standard routes to the floor at tight vectors. A fixed integrable weight cannot certify a tight vector: its good set is countable and without mass. Bounded-denominator certificates fail without a leave-one-out hypothesis, because a speed divisible by $\operatorname{lcm}(1,\dots,Q)$ vanishes at every time of denominator at most $Q$. Doubling pairings fail because, for odd composite $2m+1$ above $9$, the non-unit $2m+1-2p$, with $p$ the least prime factor, has no partner in the window. Corner analysis fails because a corner maximum depends on the residues of all other speeds. Covering-radius bounds fail because the shifted statement is false. Descent through leave-one-out subsets fails because some tight vectors have every leave-one-out value above the next value attained by $m-1$ speeds. Topological conditions fail because the bad region has the first homology of the torus. What remains is an explicit rational time or a classification of tight vectors.
 
 \subsection{Zoom map for Theorem~\ref{thm:barrier} and Corollary~\ref{cor:tight}}
 \begin{itemize}
@@ -292,6 +301,198 @@ By the dictionary above, a bound $\mu(Z(v))\le (n-1)/(n+1)$ for all $v$ with $n$
 
 \paragraph{Obstruction for covering-radius methods.} Any argument whose steps remain valid when the zero phase is replaced by a phase vector in $\{0,\frac12\}^m$ proves a false statement for $v=(1,2,3,4,6,9)$, so a proof of the conjecture must use the zero phase, that is the common starting point of all runners. The covering radius is a translation-invariant quantity and is the right invariant for the shifted problem only; the target quantity is the first minimum. The mechanism is the failure of the shifted statement, proved above for one explicit instance.
 
+\section{Descent and topological obstructions}\label{sec:descent}
+
+This section records two classes of arguments that do not reach the floor. The first is an induction on the number of speeds that passes from a set to its leave-one-out subsets through an inequality between values of $\ML$. The second is a topological necessary condition for the straight line $t\mapsto tv$ to avoid the cube $[\delta,1-\delta]^m$ in the torus. In this section $V$ is a set of $m$ distinct positive integers, identified with the vector of its elements, and $V\setminus v$ is $V$ without the element $v$. For $m\ge2$ put
+\[\loo(V)=\min_{v\in V}\ML(V\setminus v).\]
+A \emph{tight leave-one-out} of $V$ is an element $v$ with $\ML(V\setminus v)=1/m$, the value of the floor for $m-1$ speeds. For $k\ge1$ put
+\[\sigma(k)=\inf\{\ML(W):\ W\text{ a set of }k\text{ distinct positive integers},\ \ML(W)>1/(k+1)\}.\]
+No value of $\ML$ at $k$ speeds lies strictly between $1/(k+1)$ and $\sigma(k)$.
+
+\subsection{Deletion and dilation}
+
+\begin{lemma}\label{lem:D0}
+Let $V$ be a finite multiset of positive integers with at least two elements and let $c\ge1$ be an integer. (a) For every element $v$ of $V$, $\ML(V\setminus v)\ge\ML(V)$. (b) $\ML(cV)=\ML(V)$.
+\end{lemma}
+\begin{proof}
+(a) For every $t$, $\gap_{V\setminus v}(t)$ is a minimum over a subset of the terms of $\gap_V(t)$, so $\gap_{V\setminus v}(t)\ge\gap_V(t)$; take the maximum over $t$. (b) $\gap_{cV}(t)=\gap_V(ct)$, and $t\mapsto ct$ maps $\R$ onto $\R$, so the two functions have the same range.
+\end{proof}
+\lab{PROVED. Idea: deleting a speed removes a constraint, and dilating all speeds reparametrizes time. Zoom map: L1.1 pointwise inequality of the gaps; L1.2 surjectivity of $t\mapsto ct$. Not formalized (a Lean statement of (b) for tuples exists in the source tree as \texttt{ML\_smul}, see \texttt{LEAN\_MAP.md}; (a) is absent). Elementary; the corresponding deletion statement for the shifted problem is \cite[Lemma~7.14]{Zhang26}, a citation that was not re-checked in this revision}
+
+\begin{remark}\label{rem:D0}
+Lemma~\ref{lem:D0} bounds $\ML$ of a subset from below by $\ML$ of the whole set. It does not give $\ML(V\setminus v)\ge1/m$, which is the floor for $m-1$ speeds. In particular it does not show that a subset of a counterexample with $m$ speeds is not a counterexample with $m-1$ speeds; that is the conjecture at $m-1$ speeds applied to the subset.
+\end{remark}
+
+\subsection{Leave-one-out descent}
+
+For $m\ge2$ a \emph{descent function at $m$} is a function $F:(0,\tfrac12]\to\R$ such that
+\begin{equation}\label{eq:DI}
+\loo(V)\le F(\ML(V))\qquad\text{for every set }V\text{ of }m\text{ distinct positive integers.}
+\end{equation}
+It is \emph{sub-floor} if $F(x)<\sigma(m-1)$ for all $0<x<1/(m+1)$. The point of the definition is the following. Suppose the floor holds for $m-1$ speeds and $F$ is a sub-floor descent function at $m$. If $\ML(V)<1/(m+1)$, then some $v$ has $\ML(V\setminus v)<\sigma(m-1)$, hence $\ML(V\setminus v)=1/m$ because $\ML(V\setminus v)\ge1/m$ and no value lies in $(1/m,\sigma(m-1))$. So a sub-floor descent function would send every counterexample with $m$ speeds to a tight set with $m-1$ speeds.
+
+\begin{lemma}[Descent lemma]\label{lem:desc}
+If $F$ is a descent function at $m$, then $F(1/(m+1))\ge\loo(V)$ for every tight $V$ with $m$ speeds.
+\end{lemma}
+\begin{proof}
+Apply \eqref{eq:DI} to $V$, for which $\ML(V)=1/(m+1)$.
+\end{proof}
+\lab{PROVED. Idea: a descent function is also required to be correct on the tight sets, and there it must be at least as large as their leave-one-out values. Zoom map: L1.1 the defining inequality at $V$. Not formalized. The quantifier is over all sets of $m$ distinct speeds, tight ones included; it is not a statement about all tight sets, only about each one}
+
+\begin{observation}[Exact instances]\label{obs:inst}
+(a) $V=(1,4,5,6,7,11,13)$ and $(1,2,3,4,5,7,12)$ satisfy $\ML(V)=1/8$ and $\loo(V)=2/13$ (removing $13$, respectively $7$). $W=(1,5,6,11,16,17)$ has six speeds and $\ML(W)=5/33$, and $1/7<5/33<2/13$; hence $\sigma(6)\le5/33<2/13$.\\
+(b) For $3\le m\le100$ and for $m\in\{121,143,151,181,211,241\}$, the set $[m-2]\cup\{2(m-1)\}$ has $m-1$ speeds and $\ML=2/(2m-1)>1/m$; hence $\sigma(m-1)\le2/(2m-1)$.\\
+(c) For each $m\in M=\{7,31,61,73,91,121,143,151,181,211,241\}$ there is a tight $V_m$ with $m$ speeds and $\loo(V_m)>\sigma(m-1)$, listed in Table~\ref{tab:strict}: $V_7$ as in (a) with $\sigma(6)\le5/33$, and for $m\ne7$ a set $[m]\setminus\{r\}\cup\{w\}$ with $\loo(V_m)>2/(2m-1)\ge\sigma(m-1)$.
+\end{observation}
+\lab{HEURISTIC. Exact rational computation with a routine that enumerates every numerator $k$ of the candidate times $k/(v_i+v_j)$ (script \texttt{code/obstructions/descent\_check.py}, modes \texttt{controls}, \texttt{instances}, \texttt{strict}; outputs in \texttt{data/obstructions}); not formalized; the case $m=7$ can be upgraded to VERIFIED by a kernel computation. Ground: in Table~\ref{tab:strict}, $\ML(V_m)=1/(m+1)$ and $\loo(V_m)$ over all $m$ removals are recomputed for $m\le73$; $\ML(V_m)$ and one removal value for $m\le151$; the remaining entries are taken from a table of an exact job whose source is not archived (generator not archived). Termination: RESOLVED (finite evaluation). Earlier variants of the routine omitted numerators not coprime to the denominator and are not used}
+
+\begin{table}[h]
+\centering\scriptsize
+\begin{tabular}{@{}rlllll@{}}
+\toprule
+$m$ & $V_m$ & $\loo(V_m)$ & $2/(2m-1)$ & upper bound for $\sigma(m-1)$ & recomputed\\
+\midrule
+7 & $(1,4,5,6,7,11,13)$ & $2/13$ & $2/13$ & $5/33$ & all removals\\
+31 & $[31]\setminus\{30\}\cup\{90\}$ & $3/91$ & $2/61$ & $2/61$ & all removals\\
+61 & $[61]\setminus\{60\}\cup\{180\}$ & $3/181$ & $2/121$ & $2/121$ & all removals\\
+73 & $[73]\setminus\{70\}\cup\{140\}$ & $1/72$ & $2/145$ & $2/145$ & all removals\\
+91 & $[91]\setminus\{90\}\cup\{270\}$ & $3/271$ & $2/181$ & $2/181$ & $V$, one removal\\
+121 & $[121]\setminus\{120\}\cup\{360\}$ & $3/361$ & $2/241$ & $2/241$ & $V$, one removal\\
+143 & $[143]\setminus\{140\}\cup\{280\}$ & $1/142$ & $2/285$ & $2/285$ & $V$, one removal\\
+151 & $[151]\setminus\{150\}\cup\{450\}$ & $3/451$ & $2/301$ & $2/301$ & $V$, one removal\\
+181 & $[181]\setminus\{180\}\cup\{540\}$ & $3/541$ & $2/361$ & $2/361$ & table only\\
+211 & $[211]\setminus\{210\}\cup\{630\}$ & $3/631$ & $2/421$ & $2/421$ & table only\\
+241 & $[241]\setminus\{240\}\cup\{720\}$ & $3/721$ & $2/481$ & $2/481$ & table only\\
+\bottomrule
+\end{tabular}
+\caption{Tight sets $V_m$ with $\loo(V_m)>\sigma(m-1)$. The last column states what was recomputed in this archive. At $m=73$ the set with the two entries $70,72$ replaced by $140,144$ has the same $\loo$; at $m=211$ the replacements $210\to840$ and $210\to1050$ give $4/841$ and $5/1051$. The last column of upper bounds is Observation~\ref{obs:inst}(b), except at $m=7$.}\label{tab:strict}
+\end{table}
+
+\begin{proposition}[Descent discontinuity]\label{prop:nogo}
+Let $m\in M$ and let $F$ be a sub-floor descent function at $m$. Then
+\[\sup_{0<x<1/(m+1)}F(x)\le\sigma(m-1)<\loo(V_m)\le F\!\left(\tfrac1{m+1}\right).\]
+In particular $F$ is not left-continuous at $1/(m+1)$, and its jump there is at least $\loo(V_m)-\sigma(m-1)>0$; at $m=7$ this is at least $1/429$.
+\end{proposition}
+\begin{proof}
+The first inequality is the definition of sub-floor, the second is Observation~\ref{obs:inst}(c), the third is Lemma~\ref{lem:desc} for $V_m$.
+\end{proof}
+\lab{HEURISTIC (effective label). The deduction from Lemma~\ref{lem:desc} and Observation~\ref{obs:inst}(c) is PROVED; each listed $m$ rests on the exact computations of the observation, which are not formalized. Zoom map: L1.1 Lemma~\ref{lem:desc}; L1.2 a tight set with $\loo$ above $\sigma(m-1)$ (Observation~\ref{obs:inst}); L1.3 comparison of the two sides. The proposition is not asserted at other $m$; at $m=4,5,13,19$ the sets found have $\loo(V)=2/(2m-1)$ and the comparison with $\sigma(m-1)$ was not decided here}
+
+\paragraph{Class excluded and class not excluded.} The proposition concerns functions of $\ML(V)$ alone that satisfy \eqref{eq:DI} for all sets of $m$ distinct speeds, tight sets included, that stay below $\sigma(m-1)$ under the floor and that are left-continuous at the floor, and it concerns deletion of one speed. It does not exclude: inequalities with structural hypotheses on $V$ (leave-one-out primitivity, divisor-completeness, a given relation); inequalities whose right-hand side uses other invariants of $V$; inequalities with a threshold above $\sigma(m-1)$ followed by a classification of the sets that are near the floor; deletion of two or more speeds (the first two near-tight sets of Observation~\ref{obs:near} contain tight subsets of several smaller sizes); functions with a jump at the floor, which satisfy \eqref{eq:DI} vacuously below the floor if the floor holds for $m$ speeds and carry no information about counterexamples. The left side of \eqref{eq:DI} is itself a value of $\ML$ of subsets; what is excluded is a function of $\ML(V)$ alone with the stated properties.
+
+\paragraph{Conceptual abstract.} The move: to run an induction on the number of speeds, ask for an inequality that sends a hypothetical counterexample with $m$ speeds to a subset with $m-1$ speeds forced to be tight, namely $\min_v\ML(V\setminus v)$ is below the least value above the floor that $m-1$ speeds can take, whenever $\ML(V)$ is below the floor, with a bound that depends on $V$ only through $\ML(V)$ and is continuous at the floor. The exchange: an existence statement becomes an inequality between two numbers. The mechanism that defeats it: some tight sets (Goddyn--Wong sets with one fast speed, and the $m=7$ set $(1,4,5,6,7,11,13)$) have every leave-one-out value strictly above that value, so the bound must jump exactly at the floor. Left open: inequalities that look at lonely times, or at structure, or delete two speeds.
+
+\subsection{Leave-one-out values of the known tight sets}
+
+\begin{observation}[Seventy tight sets]\label{obs:tight70}
+Consider the following $70$ tight sets: the $66$ sets $[n-1]$ with one entry $r$ replaced by $\mu r$ under the GCD condition for $3\le n\le260$ (regenerated by \texttt{descent\_check.py gw}), the set $[73]\setminus\{70,72\}\cup\{140,144\}$ with two replaced entries, and the sporadic sets $(1,3,4,7)$, $(1,3,4,5,9)$, $(1,4,5,6,7,11,13)$; call the first $67$ the Goddyn--Wong type sets. Then:
+\begin{center}\footnotesize
+\begin{tabular}{@{}p{5.6cm}rp{5.6cm}@{}}
+\toprule
+Class & Number & Values of $m$ or composition\\
+\midrule
+with a tight leave-one-out ($\loo=1/m$) & 11 & $32,62,92,122,152,182,212$ (twice), $213,214,242$\\
+without a tight leave-one-out & 59 & $=56$ Goddyn--Wong type $+\,3$ sporadic\\
+\quad $\loo(V)=2/(2m-1)$ & 46 & $=43$ Goddyn--Wong type $+\,3$ sporadic\\
+\quad $\loo(V)>2/(2m-1)$ & 13 & $31,61,73$ (twice), $91,121,143,151,181,211$ (three), $241$\\
+\quad $\loo(V)<2/(2m-1)$ & 0 & \\
+\bottomrule
+\end{tabular}
+\end{center}
+The number $43$ counts the Goddyn--Wong type sets only; $46$ includes the three sporadic sets. The $13$ sets above $2/(2m-1)$ are all of Goddyn--Wong type.
+\end{observation}
+\lab{HEURISTIC. Exact computation (\texttt{descent\_check.py table}; output \texttt{data/obstructions/descent\_table.out}). Ground: the $70$ sets; the leave-one-out values are recomputed here for $m\le73$ (21 sets) and taken from a table of an exact job whose source is not archived for the other $49$ (generator not archived); tightness is recomputed for the 21 sets with $m\le73$ and for the sets of Table~\ref{tab:strict} up to $m=151$, and otherwise rests on \cite[Thm.~3.1]{GW06} (single replacement under the GCD condition) and on \cite{Zhang26} (the double replacement). The list is not a classification: it is the list of known tight sets with a bounded number of replaced entries. Termination: RESOLVED}
+
+\begin{conjecture}[(C1)]\label{conj:C1}
+Let $m\ge2$ and let $V$ be a tight set of $m$ distinct positive integers with $\gcd(V)=1$ and no tight leave-one-out. Then $\loo(V)\ge2/(2m-1)$.
+\end{conjecture}
+\lab{CONJECTURE. Provenance: observation on the table above. Evidence: the $59$ sets without a tight leave-one-out in Observation~\ref{obs:tight70} satisfy it, in three structurally different classes (single acceleration, double acceleration, sporadic), and the exhaustive boxes of Section~\ref{sec:evidence} ($m=3,\dots,8$) contain no tight set other than $[m]$ and sets of Observation~\ref{obs:tight70}. Consequence: any descent function at $m$ satisfies $F(1/(m+1))\ge2/(2m-1)$ for every $m$ at which such a set exists. The universal statement ``every tight set has $\loo(V)\ge2/(2m-1)$'' is false: the $11$ sets with a tight leave-one-out and the sets $[m]$ have $\loo=1/m$. Proposition~\ref{prop:nogo} does not use (C1)}
+
+\begin{observation}[Near-tight sets without a tight leave-one-out]\label{obs:near}
+The statement ``if $\ML(V)<1/m$ then $\ML(V\setminus v)=1/m$ for some $v$'' is false. Each of the following has $1/(m+1)<\ML(V)<1/m$ and no tight leave-one-out:
+\begin{center}\scriptsize
+\begin{tabular}{@{}rp{4.0cm}llp{4.6cm}@{}}
+\toprule
+$m$ & $V$ & $\ML(V)$ & $\loo(V)$ (removed) & tight subsets of size $2,\dots,m-1$\\
+\midrule
+5 & $(1,2,3,5,8)$ & $2/11$ & $2/9$ ($5$) & $(1,2)$, $(1,2,3)$; 2 of 25\\
+8 & $(1,2,3,4,5,7,18,40)$ & $5/41$ & $3/23$ ($40$) & $(1,2)$, $(2,4)$, $(1,2,3)$, $(1,2,3,4)$, $(1,3,4,7)$, $(1,2,3,4,5)$; 6 of 246\\
+10 & $(1,5,6,7,8,11,13,19,20,27)$ & $3/31$ & $2/17$ ($20$) & none; 0 of 1012\\
+\bottomrule
+\end{tabular}
+\end{center}
+The first two sets have tight subsets with fewer elements, so for them the corresponding statement for subsets of any size $2,\dots,m-1$ is not refuted. The third set has no tight subset of any size $2,\dots,9$.
+\end{observation}
+\lab{FALSE (the quoted statement), witnessed by the three exact computations above (\texttt{descent\_check.py instances}; output \texttt{data/obstructions/descent\_instances.out}); the computations are not formalized. The same statement with ``leave-one-out'' replaced by ``subset of size $2,\dots,m-1$'' is refuted by the third set only}
+
+\begin{remark}\label{rem:desc-ground}
+A descent carried by lonely times of the subsets, rather than by values of $\ML$, is outside Proposition~\ref{prop:nogo}. Whether such a descent exists is not known. Label: HEURISTIC, as this delimits a method.
+\end{remark}
+
+\subsection{Topology of the bad region}\label{sec:topology}
+
+Let $\mathbb T^m=\R^m/\Z^m$ and $q:\R^m\to\mathbb T^m$ the quotient map. For $0<\delta\le\frac12$ put
+\[U_\delta=\{x\in\mathbb T^m:\ \norm{x_i}<\delta\text{ for some }i\},\qquad C_\delta=\mathbb T^m\setminus U_\delta=q([\delta,1-\delta]^m).\]
+$U_\delta$ is the union of the $m$ open slabs around the coordinate subtori; $C_\delta$ is one closed cube (a point if $\delta=\frac12$) in the open fundamental cube $q((0,1)^m)$. For $v\in\Z^m$ let $\gamma_v:\R/\Z\to\mathbb T^m$, $\gamma_v(t)=q(tv)$. Then $t\in G_\delta$ if and only if $\gamma_v(t)\in C_\delta$, so $\ML(v)\ge\delta$ if and only if $\gamma_v$ meets $C_\delta$.
+
+\begin{proposition}[Bad region]\label{prop:bad}
+Let $0<\delta\le\frac12$ and let $i:U_\delta\to\mathbb T^m$ be the inclusion.\\
+(a) For $m\ge2$, $i_*:H_1(U_\delta;\Z)\to H_1(\mathbb T^m;\Z)=\Z^m$ is an isomorphism.\\
+(b) For $m\ge3$, $i_*:\pi_1(U_\delta,x_0)\to\pi_1(\mathbb T^m,x_0)$ is an isomorphism for every $x_0\in U_\delta$. For $m=2$ and every $x_0\in U_\delta$ it is surjective and not injective.\\
+(c) For $m=1$, $U_\delta$ is an open arc and $i_*$ on $H_1$ is not an isomorphism.
+\end{proposition}
+\begin{proof}
+Write $c=(\frac12,\dots,\frac12)$, $\rho(x)=\norm{x-c}_\infty$ for $x\in[0,1]^m$, and identify $(0,1)^m$ with its image under $q$. Then $C_\delta=\{\rho\le\frac12-\delta\}$. Put $B=\{x\in(0,1)^m:\rho(x)<\frac12-\frac\delta2\}$, an open cube. Since $\delta>0$, $C_\delta\subset B$, so $\mathbb T^m=U_\delta\cup B$, and $U_\delta\cap B=\{\frac12-\delta<\rho<\frac12-\frac\delta2\}$. Since $\rho>\frac12-\delta\ge0$ on $U_\delta\cap B$, $c\notin U_\delta\cap B$, and $x\mapsto\bigl((x-c)/\rho(x),\rho(x)\bigr)$ is a homeomorphism of $U_\delta\cap B$ onto $S\times(\frac12-\delta,\frac12-\frac\delta2)$, where $S=\{y:\norm{y}_\infty=1\}\cong S^{m-1}$. The set $U_\delta$ is path connected: each slab is connected and contains $0$. The set $B$ is contractible.
+
+(a) and (b), $m\ge3$. $S^{m-1}$ is connected and has $H_1=0$ and $\pi_1=1$. The Mayer--Vietoris sequence of the open cover $\{U_\delta,B\}$ contains
+\[H_1(U_\delta\cap B)\to H_1(U_\delta)\oplus H_1(B)\to H_1(\mathbb T^m)\to\widetilde H_0(U_\delta\cap B),\]
+in which $H_1(U_\delta\cap B)=H_1(S^{m-1})=0$, $\widetilde H_0(U_\delta\cap B)=0$ and $H_1(B)=0$; the middle map is $i_*$ on the first summand. Hence $i_*$ is an isomorphism on $H_1$. By the van Kampen theorem for the open path-connected sets $U_\delta$, $B$ with path-connected intersection, $\pi_1(\mathbb T^m)$ is the amalgam of $\pi_1(U_\delta)$ and $\pi_1(B)=1$ over $\pi_1(U_\delta\cap B)=1$, that is $\pi_1(U_\delta)$, the identification being induced by $i$. Path connectedness of $U_\delta$ makes the statement independent of the base point.
+
+(a) and (b), $m=2$. Let $\lambda(x)=2\rho(x)\in(0,1]$ on $[0,1]^2\setminus\{c\}$ and $h_s(x)=c+(1-s+s/\lambda(x))(x-c)$, $s\in[0,1]$. Then $\lambda(h_s(x))=(1-s)\lambda(x)+s\ge\lambda(x)$, $h_s$ is the identity on $\partial[0,1]^2$ (where $\lambda=1$), and $h_1$ maps into $\partial[0,1]^2$. Since $U_\delta=q(\{\lambda>1-2\delta\})$ and $q$ identifies only points of $\partial[0,1]^2$, $h_s$ induces a strong deformation retraction of $U_\delta$ onto $Z=q(\partial[0,1]^2)=\{x_1=0\}\cup\{x_2=0\}\subset U_\delta$. The set $Z$ is a wedge of two circles $a_1=\{x_2=0\}$, $a_2=\{x_1=0\}$; $H_1(Z)=\Z^2$ with basis $[a_1],[a_2]$, and $\pi_1(Z)$ is free on $a_1,a_2$. The loops $a_1,a_2$ represent the standard generators of $H_1(\mathbb T^2)=\pi_1(\mathbb T^2)=\Z^2$. So $i_*$ is an isomorphism on $H_1$. On $\pi_1(U_\delta,0)=F(a_1,a_2)$ it is the abelianization $F_2\to\Z^2$, hence surjective, and not injective because the commutator of $a_1,a_2$ is nontrivial in $F_2$; for another base point $x_0$ use a path in $U_\delta$ from $0$ to $x_0$.
+
+(c) $\mathbb T^1=\R/\Z$ and $U_\delta=q((-\delta,\delta))$ is an arc, $H_1(U_\delta)=0\ne\Z=H_1(\mathbb T^1)$.
+\end{proof}
+\lab{PROVED. Hypotheses used: $\delta>0$ for $C_\delta\subset B$; $\frac12-\delta\ge0$ so that the shell $U_\delta\cap B$ is bounded away from the centre $c$ ($\delta<\frac12$ is not needed: the statement and proof hold for $0<\delta\le\frac12$, and for $\delta>\frac12$ the set $U_\delta$ is the whole torus); $m\ge2$ for the connectedness of the shell; $m\ge3$ for its simple connectivity Prior art: removing a ball from a manifold of dimension at least $3$ does not change $\pi_1$, and from a torus of dimension at least $2$ does not change $H_1$; this is standard, and no novelty is claimed for it or for its application here; no literature search was made for the lonely runner formulation}
+
+\paragraph{Conceptual abstract.} The central idea is to ask what the inclusion of the bad region into the torus can detect about a speed vector. The bad region, where some runner is within $\delta$ of the origin, is the torus minus one cube; the sphere around the cube is connected, and simply connected from dimension three, so the inclusion is an isomorphism on first homology in dimension at least two and on the fundamental group in dimension at least three. Hence the curve traced by a speed vector is homotopic into the bad region, as lifting also shows. For curves symmetric under negation the one remaining obstruction is the midpoint, a fixed point in the cube exactly when all speeds are odd; otherwise half the curve is a path between fixed points, pushed in by lifting. So such conditions detect only the all-odd vectors, where the maximum is already $\frac12$.
+
+\paragraph{Zoom map for Propositions~\ref{prop:bad} and~\ref{prop:equiv}.}
+\begin{itemize}
+\item[L1.1] The bad region is the torus minus one closed cube $C_\delta$ (definition of $U_\delta$; $C_\delta\subset B$, $U_\delta\cap B\cong S^{m-1}\times$ interval).
+\item[L1.2] The inclusion $U_\delta\to\mathbb T^m$ is an isomorphism on $H_1$ for $m\ge2$ and on $\pi_1$ for $m\ge3$, and is onto on $\pi_1$ for $m=2$ (Mayer--Vietoris for $m\ge3$; van Kampen for $m\ge3$; deformation retraction onto the wedge of two circles for $m=2$).
+\item[L1.3] The only obstruction to an equivariant push of $\gamma_v$ into $U_\delta$ is the position of $\gamma_v(\frac12)=v/2\bmod1$, which equals $p$ if and only if all $v_i$ are odd (equivariant loops are paths between fixed points; path lifting in $\R^m$, one coordinate at a time, with another coordinate at an integer).
+\end{itemize}
+
+\begin{corollary}\label{cor:vac}
+Let $m\ge2$, $v\in\Z^m$ and $0<\delta\le\frac12$. There is a loop in $U_\delta$ based at $0$ that is homotopic to $\gamma_v$ in $\mathbb T^m$ rel the base point $0$; in particular $[\gamma_v]\in\operatorname{im}(i_*:H_1(U_\delta)\to H_1(\mathbb T^m))$.
+\end{corollary}
+\begin{proof}
+$\gamma_v$ is the image under $q$ of the segment from $0$ to $v$. Let $\sigma$ be the path in $\R^m$ that first moves $x_1$ from $0$ to $v_1$, with $x_2=0$, and then moves $x_k$ from $0$ to $v_k$ for $k=2,\dots,m$ in turn, with $x_1=v_1\in\Z$. Every point of $\sigma$ has a coordinate that is an integer, so $q\circ\sigma$ lies in $U_\delta$; the first leg uses $m\ge2$. The straight-line homotopy in $\R^m$ from $\sigma$ to the segment fixes the endpoints $0$ and $v$, and its image under $q$ is a homotopy rel $0$ in $\mathbb T^m$ from $q\circ\sigma$ to $\gamma_v$.
+\end{proof}
+\lab{PROVED. The proof does not use Proposition~\ref{prop:bad}; it uses $\delta>0$ and $m\ge2$ only (for $m=1$ and $v=2$ the statement fails, as $U_\delta$ is an arc). Positivity and primitivity of $v$ are not used and not claimed}
+
+An \emph{equivariant loop} is a loop $\gamma:\R/\Z\to\mathbb T^m$ with $\gamma(-t)=-\gamma(t)$; an \emph{equivariant homotopy} is a homotopy through equivariant loops. The loop $\gamma_v$ is equivariant. The fixed points of $x\mapsto-x$ on $\mathbb T^m$ are the $2^m$ points of $(\frac12\Z/\Z)^m$; exactly one of them, $p=(\frac12,\dots,\frac12)$, lies in $C_\delta$.
+
+\begin{proposition}[Parity]\label{prop:equiv}
+Let $m\ge2$, $0<\delta\le\frac12$ and $v\in\Z^m$. The loop $\gamma_v$ is equivariantly homotopic to an equivariant loop with image in $U_\delta$ if and only if not all $v_i$ are odd.
+\end{proposition}
+\begin{proof}
+Let $F$ be the set of fixed points of $x\mapsto-x$, a finite set. An equivariant loop $\gamma$ has $\gamma(0),\gamma(\frac12)\in F$, because $t=0$ and $t=\frac12$ are fixed by $t\mapsto-t$, so equivariance gives $\gamma(t)=-\gamma(t)$ there. During an equivariant homotopy these two points move continuously in the finite set $F$, so they are constant.
+
+If all $v_i$ are odd, then $\gamma_v(\frac12)=p\notin U_\delta$, so every equivariantly homotopic loop passes through $p$.
+
+Suppose not all $v_i$ are odd, and choose $i$ with $v_i$ even. Then $b=\gamma_v(\frac12)=v/2\bmod 1$ has $i$-th coordinate $0$, so $b\in F\setminus\{p\}$ and $b\in U_\delta$. Let $\beta=\gamma_v|_{[0,1/2]}$, the image under $q$ of the segment from $0$ to $v/2$. Let $\sigma$ be the path in $\R^m$ that first moves $x_i$ from $0$ to $v_i/2\in\Z$, with another coordinate $x_j=0$ (this uses $m\ge2$), and then moves each other coordinate $x_k$ from $0$ to $v_k/2$ in turn, with $x_i\in\Z$. Every point of $\sigma$ has a coordinate that is an integer, so $\beta'=q\circ\sigma$ lies in $U_\delta$, and the straight-line homotopy in $\R^m$ from $\sigma$ to the segment, composed with $q$, is a homotopy rel endpoints in $\mathbb T^m$ from $\beta$ to $\beta'$; let $H:[0,\frac12]\times[0,1]\to\mathbb T^m$ be it, $H(\cdot,0)=\beta$, $H(\cdot,1)=\beta'$. Define $\gamma_s(t)=H(t,s)$ for $t\in[0,\frac12]$ and $\gamma_s(t)=-H(-t,s)$ for $t\in[-\frac12,0]$. The two definitions agree at $t=0$ ($H(0,s)=0=-0$) and at $t=\pm\frac12$ ($-b=b$), so each $\gamma_s$ is an equivariant loop, $\gamma_0=\gamma_v$, and the image of $\gamma_1$ is $\beta'([0,\frac12])\cup-\beta'([0,\frac12])\subset U_\delta$, since $U_\delta=-U_\delta$.
+\end{proof}
+\lab{PROVED. Idea: an equivariant loop is a path between two fixed points, and fixed points cannot move; a path between two fixed points in $\mathbb T^m$ is lifted to $\R^m$, where it can be replaced by a path through the slabs that is homotopic to it rel endpoints. Zoom map: L1.1 equivariant loops correspond to paths between fixed points; L1.2 the endpoint $\gamma_v(\frac12)$ is $p$ exactly for all $v_i$ odd; L1.3 path lifting in $\R^m$. The proof does not use Proposition~\ref{prop:bad} or Corollary~\ref{cor:vac}. Hypotheses used: $m\ge2$ in the first leg of $\sigma$ (fails for $m=1$, $v=2$); $\delta\le\frac12$ only for $p\notin U_\delta$ and for $p$ being the only fixed point in $C_\delta$; positivity, distinctness, primitivity and gcd of $v$ are not used and not claimed If all $v_i$ are odd then $\ML(v)=\frac12$ (the parity trick). The same argument for phase shifts in $\{0,\frac12\}^m$ is not stated here}
+
+\begin{remark}[What the topology excludes]\label{rem:topo}
+Corollary~\ref{cor:vac} and Proposition~\ref{prop:equiv} say that a necessary condition for $\gamma_v\subset U_\delta$ obtained from the inclusion $U_\delta\to\mathbb T^m$ (membership of $[\gamma_v]$ in the image of $H_1$ or $\pi_1$, or the equivariant version) holds for every $v$ with not all $v_i$ odd, so such a condition never yields a contradiction with $\ML(v)<\delta$. The statement is about arguments of this form. It is not the statement that no function of the class $[\gamma_v]=v$ distinguishes $\ML(v)\ge\delta$ from $\ML(v)<\delta$: $\ML$ is a function of $v$. What is absent from the topological data is the straight-line parametrization of $\gamma_v$. For $v$ with all $v_i$ odd the equivariant condition fails, and $\ML(v)=\frac12\ge\delta$, so no contradiction is available there either. No statement is made here about degrees, Euler classes or other invariants. Label: HEURISTIC, as this delimits a method; the propositions it rests on are PROVED.
+\end{remark}
+
+\begin{remark}[Parity and the value $\frac12$]\label{rem:twoadic}
+For $v\in\Z_{>0}^m$, $\ML(v)=\frac12$ if and only if all $v_i$ have the same $2$-adic valuation. Proof. If $v_i=2^ku_i$ with $u_i$ odd for all $i$, then at $t=2^{-k-1}$ every $v_it=u_i/2$ has $\norm{v_it}=\frac12$. Conversely, if $\ML(v)=\frac12$, a time $t$ with $\norm{v_it}=\frac12$ for all $i$ satisfies $v_it\in\frac12+\Z$, so $t=r/s$ in lowest terms and $2v_ir=(2a_i+1)s$ with $a_i\in\Z$; comparing $2$-adic valuations, $1+\nu_2(v_i)+\nu_2(r)=\nu_2(s)$ for every $i$, so $\nu_2(v_i)$ does not depend on $i$. The parity condition of Proposition~\ref{prop:equiv} is not invariant under $v\mapsto cv$, while $\ML$ is (Lemma~\ref{lem:D0}(b)); there is no conflict, since Proposition~\ref{prop:equiv} concerns one necessary condition. Example: $\ML(2,6)=\frac12$. Label: PROVED (two lines; checked by the author only; also computed with the standard routine for $200$ random vectors, $104$ with $\ML=\frac12$, no mismatch).
+\end{remark}
+
 \section{Evidence and regeneration}\label{sec:evidence}
 
 All commands are run from the archive root; searches report RESOLVED or UNRESOLVED. Cases counted are independent vectors in distinct boxes.
@@ -310,6 +511,9 @@ Minimum of $\ML$ on DC vectors (T2) & \texttt{python3 code/obstructions/t2box.py
 Goddyn--Wong type vectors & \texttt{python3 code/obstructions/gwcheck.py} & RESOLVED\\
 Chain parity & \texttt{python3 code/obstructions/chainparity.py 20001} & RESOLVED, $q\le20001$\\
 Shifted supremum & \texttt{python3 code/obstructions/shift\_grid.py} & RESOLVED\\
+Controls of the $\ML$ routine; Lemma~\ref{lem:D0} on random vectors & \texttt{descent\_check.py controls}, \texttt{d0} (in \texttt{code/obstructions}) & RESOLVED\\
+Observations~\ref{obs:inst}, \ref{obs:near} & \texttt{descent\_check.py instances}, \texttt{strict} & RESOLVED\\
+Observation~\ref{obs:tight70} & \texttt{descent\_check.py gw}, \texttt{table} & RESOLVED; $49$ of $70$ rows from a table, see label\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -338,8 +542,9 @@ In every box, no tight vector has a speed divisible by $m+1$, and every maximizi
 \begin{itemize}
 \item (T) and (T$'$), Conjecture~\ref{conj:T}. Evidence: the exhaustive boxes above and every tight vector of Goddyn--Wong type (Corollary~\ref{cor:GWDC}). Consequence: (T) is equivalent to the statement that no tight primitive vector is DC (Conjecture~\ref{conj:T} and Proposition~\ref{prop:dc}); (T$'$) implies (T) (Proposition~\ref{prop:T}).
 \item (T2), Conjecture~\ref{conj:T2}. Evidence: equality $2/(2m+1)$ is the minimum on DC vectors in the boxes for $m=3,\dots,7$. Consequence: strict floor for primitive vectors with $(m+1)\mid v_i$.
+\item (C1), Conjecture~\ref{conj:C1}. Evidence: the $59$ known tight vectors without a tight leave-one-out. Consequence: every descent function at $m$ is at least $2/(2m-1)$ at the floor wherever such a vector exists.
 \end{itemize}
-Whether the class of the crux contains a tight vector is open. Neither statement is used elsewhere in this note.
+Whether the class of the crux contains a tight vector is open. None of the three statements is used elsewhere in this note.
 
 \section{Attribution and prior art}\label{sec:attr}
 
@@ -363,6 +568,9 @@ Conj~\ref{conj:T}, \ref{conj:T2} & ours & see above; \cite[Cor.~2.3 for $E_m$]{K
 Prop~\ref{prop:chain} & ours & elementary; no prior statement located\\
 Prop~\ref{prop:phase} & ours (instance) & the shifted conjecture is false: \cite[Thm.~1.8]{BCS26}; the instance $(1,2,3,4,6,9)$ with half-phases is a second, independently checked counterexample, not claimed as new in kind\\
 Rem~\ref{rem:cr} & known & \cite[Prop.~1.7]{BCS26}, \cite[Prop.~2.7, Lemma~2.5]{MSS25}\\
+Lem~\ref{lem:D0} & elementary & shifted deletion statement \cite[Lemma~7.14]{Zhang26} (not re-checked); scaling invariance is folklore\\
+Lem~\ref{lem:desc}, Obs~\ref{obs:inst}, Prop~\ref{prop:nogo}, Obs~\ref{obs:tight70}, \ref{obs:near}, Conj~\ref{conj:C1} & ours (as stated) & no statement on leave-one-out values of tight vectors or on descent inequalities located in \cite{GK25}, \cite{Cordella26}, \cite{Zhang26}, \cite{BE26}, \cite{Cz12} as read; no web search; tightness of the vectors is \cite[Thm.~3.1]{GW06}, \cite{Zhang26}\\
+Prop~\ref{prop:bad}, Cor~\ref{cor:vac}, Prop~\ref{prop:equiv} & standard topology & removal of a ball from a torus; no novelty claimed; no literature search for the lonely runner formulation\\
 \bottomrule
 \end{tabular}
 \end{center}

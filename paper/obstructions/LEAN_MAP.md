@@ -22,3 +22,12 @@ Observed on 2026-10-18 in the live repository (not re-built): each module below 
 | Prop 16 (chain parity) | PROVED | none |
 | Prop 18 (half-phase) | VERIFIED, carried over | RoomFCU_mss: halfShift_not_lonely |
 | Rem (covering radius) | known / cited | none |
+| Lem 20 (deletion and dilation) | PROVED; ABSENT for part (a); for part (b) `ML(cV) = ML(V)` for tuples is a declaration `ML_smul` in `Delta2Scaling.lean` of the source tree, not read for the label and not rebuilt, so the paper does not claim VERIFIED | none claimed (related: Delta2Scaling: `gap_smul`, `ML_smul`) |
+| Lem 22 (descent lemma) | PROVED; ABSENT | none |
+| Obs 23, Prop 24 (exact instances, descent discontinuity) | HEURISTIC; ABSENT (the m = 7 instance could be stated and decided by kernel computation; not done) | none |
+| Obs 25, Conj 26 (C1), Obs 27 | HEURISTIC, CONJECTURE, FALSE (statement); ABSENT | none |
+| Prop 29 (bad region and the torus) | PROVED; ABSENT (the required algebraic topology, Mayer-Vietoris and van Kampen for the torus minus a cube, was not checked for availability in Mathlib) | none |
+| Cor 30 (loop in the bad region; proved by lifting, independent of Prop 29) | PROVED; ABSENT | none |
+| Prop 31 (parity) | PROVED; ABSENT | none |
+| Rem 33 (ML = 1/2 iff equal 2-adic valuations) | PROVED; ABSENT | none |
+| Rem 21, 28, 32 | HEURISTIC or prose | none |
