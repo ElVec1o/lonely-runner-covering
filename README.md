@@ -1,19 +1,19 @@
-# Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners
+# Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners, with leave-one-out values of tight Goddyn-Wong vectors
 
-Version 1.0.3. Archived at Zenodo: version 1.0.3 [10.5281/zenodo.23445368](https://doi.org/10.5281/zenodo.23445368); version 1.0.2 [10.5281/zenodo.23439967](https://doi.org/10.5281/zenodo.23439967); version 1.0.1 [10.5281/zenodo.23436538](https://doi.org/10.5281/zenodo.23436538); version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
-Author: Vico Bonfioli (vicobonfioli@gmail.com). License: CC-BY-4.0 (`LICENSE.md`). Snapshot of 18 October 2026, matching the
-`\date` line of the manuscripts. The manuscripts are preprints and have not been peer reviewed.
+Version 1.0.4 (31 October 2026; the DOI of this version is assigned at deposit). Archived at Zenodo: version 1.0.3 [10.5281/zenodo.23445368](https://doi.org/10.5281/zenodo.23445368); version 1.0.2 [10.5281/zenodo.23439967](https://doi.org/10.5281/zenodo.23439967); version 1.0.1 [10.5281/zenodo.23436538](https://doi.org/10.5281/zenodo.23436538); version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
+Author: Vico Bonfioli (vicobonfioli@gmail.com). License: CC-BY-4.0 (`LICENSE.md`). Snapshot of 31 October 2026. The six earlier manuscripts carry the
+`\date` line of 18 October 2026 (two have none); the new note carries 31 October 2026. The manuscripts are preprints and have not been peer reviewed.
 
 ## Abstract
 
 For positive integer speeds `v_1,...,v_m` let `ML(v) = sup_t min_i dist(v_i t, Z)`. The lonely runner conjecture (LRC) is
-`ML(v) >= 1/(m+1)` for all `v`. This archive contains six manuscripts and the material behind their computed statements:
+`ML(v) >= 1/(m+1)` for all `v`. This archive contains seven manuscripts and the material behind their computed statements:
 (1) the inequality for speeds in `[1,2m]`, formalized in Lean 4 for every `m` with `2m+1` prime and for 67 values of `m <= 126`
 with `2m+1` composite; (2) a covering framework for bounded velocity windows with a classification of the small bad sets;
 (3) a catalogue of obstructions to certificate-based proofs for divisor-complete families, with a section on leave-one-out descent and on the topology of the bad region; (4) a covering bound for
 modifications of the tight instance `[1,n-1]` and its consequences; (5) a Lean-checked reduction of LRC for all `m` to
 three finite-range statements and one remaining statement (`FloorCruxU`) that is equivalent to LRC given the other three;
-(6) a Lean formalization of the case of eight runners. No proof of LRC is claimed.
+(6) a Lean formalization of the case of eight runners; (7) exact leave-one-out values of tight Goddyn-Wong vectors in three regimes, with written proofs that rest on two quoted results and are not formalized. No proof of LRC is claimed.
 
 ## Idea in words
 
@@ -24,6 +24,12 @@ whole window is a finite hitting-set statement: no `m` velocities hit all bad se
 fractional weighting of times (weak LP duality), by a cover of the window by parts with capacities, or by exhaustive search. The
 Lean files check the certificates with the kernel. The other manuscripts study the limits of this method (barrier theorem, level drift),
 a measure argument for single and multiple modifications of `[1,n-1]`, the reduction to one crux, and the case of eight runners.
+
+## Changes since version 1.0.3
+
+* New note `paper/goddyn-wong-loo`: leave-one-out values of the Goddyn-Wong vectors `V = ([n-1] \ {r}) u {mu r}`. PROVED (hand proofs, relative to two quoted results, not formalized): Theorem A (`n = r+2`, `r` even and at least 34, `2 <= mu <= r-1`: `loo(V) = mu/(mu r+1)`, attained at the deletion of `n-1`); Theorem B (tight `V`, `n >= 31`: `loo(V) = 1/(n-1)` exactly when `gcd(r,n-1) > 1`, otherwise `loo(V) > 1/(n-1)`); Theorem C (tight `V`, `n-r >= 4`, `gcd(r,n-1) = 1`, `n >= 33`: `loo(V) = 1/(n-2)`, unique minimiser `n-2`). COMPUTED: the cases below the thresholds (`r <= 32` in Theorem A, `n < 31` in Theorem B) and the vectors with `n <= 300` in Theorem C. The quoted results are Theorem 2.3 of Goddyn and Wong (Integers 6, 2006) and the prime-counting bounds of Dusart (arXiv:1002.0442, Theorem 6.9). No Lean statement exists for these items (`paper/goddyn-wong-loo/LEAN_MAP.md`).
+* New programs `code/goddyn-wong-loo/` (Rust and two short Python scripts, README there) and outputs `data/goddyn-wong-loo/`; 17 rows added to `CLAIMS.tsv`, several marked UNVERIFIED.
+* No Lean file changed and the Lean build was not run for 1.0.4. The other manuscripts are unchanged.
 
 ## Changes since version 1.0.2 (draft, unreleased)
 
@@ -122,6 +128,13 @@ The effective label is the weakest label in the dependency chain.
 * Conjecture 26 (C1), CONJECTURE. A tight set with `gcd = 1` and no tight leave-one-out has `loo >= 2/(2m-1)`. Evidence: the 59 vectors above and the exhaustive boxes of the note. Consequence: every descent function is at least `2/(2m-1)` at the floor wherever such a set exists.
 * Observation 27, FALSE (the statement), exact witnesses. `ML(V) < 1/m` does not imply that some `V \ v` has `ML = 1/m`: `(1,2,3,5,8)` (`ML = 2/11`, `loo = 2/9`), `(1,2,3,4,5,7,18,40)` (`5/41`, `3/23`), `(1,5,6,7,8,11,13,19,20,27)` (`3/31`, `2/17`). The first two have tight subsets with fewer elements; the third has none of size 2 to 9.
 
+### `paper/goddyn-wong-loo`
+
+* Theorem A, PROVED over a prime-window lemma (Dusart bounds for `N >= 10^5`, exact sieve to `10^7`); even `r <= 32`, 240 vectors, COMPUTED. `V = {1,...,r-1} u {r+1, mu r}`, `r` even, `r >= 34`, `2 <= mu <= r-1`: `loo(V) = mu/(mu r+1)`; with `m = r+1` speeds this exceeds `2/(2m-1)` exactly when `mu >= 3`.
+* Theorem B, PROVED over Goddyn-Wong Theorem 2.3 and the prime-window lemma; `n < 31` COMPUTED (four triples). For `n >= 31` and the Goddyn-Wong condition, `loo(V) = 1/(n-1)` iff `gcd(r,n-1) > 1`.
+* Theorem C, PROVED over the same two results; three vectors with `n <= 300` COMPUTED, thirteen triples with `n <= 1100` listed (the loo values of the ten with `n > 300` are not recomputed here). `loo(V) = 1/(n-2)`.
+* Not claimed: vectors with more than one replaced entry; the case `n-r = 3`. Provenance and evidence status are in Sections 1.2 and 11 of the note.
+
 ### `paper/perturbation`
 
 * Theorem (covering bound), PROVED. If `V` is a `k`-speed modification of `[n-1]` with `2k < n` and `LR(V) <= 1/n`, then `sum_{v in R} 1/v >= ell(n,M)(n-2k)/2`; no upper bound on the inserted speeds is assumed.
@@ -150,6 +163,7 @@ All HEURISTIC and CONJECTURE statements are those marked as such above and in `C
 | `paper/dense-window/` | `main.tex`, `rows.tex`, `rows_ext.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
 | `paper/lrc_covering/` | `lrc_covering.tex`, `lrc_covering.pdf` |
 | `paper/obstructions/` | `main.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
+| `paper/goddyn-wong-loo/` | `main.tex`, `refs.bib`, `main.bbl`, `LEAN_MAP.md`, `main.pdf` |
 | `paper/perturbation/` | `perturbation.tex`, `perturbation.pdf` |
 | `paper/reduction/` | `main.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
 | `paper/eight/` | `main.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
@@ -157,6 +171,7 @@ All HEURISTIC and CONJECTURE statements are those marked as such above and in `C
 | `code/reproduce.sh` | entry point regenerating the finite computations that have a program here |
 | `code/dense/` | `thmd` (exact checks for Theorem 3: `dense_check.rs`, `cross_check.py`, `class_check.rs`, `case_recount.rs`), `v1` (independent certificate checker), `g1`, `lg`, `cg`, `xc`, `pool` (searches), `fb` (fractional blocking checker), `yind` (Y-independence), `st89` (brute-force check of Statements 8, 9), `m94` (search driver), `build.sh`, `check_rows.py`, `regen_lean.sh`, `run_glp.sh` |
 | `code/obstructions/` | `repro_O4.sh`, `mlcheck.rs` (exact `ML`), `shift_grid.py` (exact rational scan of the shifted gap), `mlexact.py`, `gwcheck.py`, `tightscan.py`, `t2box.py`, `chainparity.py`, `cornercheck.py` (check of the tight-corner proposition), `descent_check.py` (exact checks for the descent and topology section, with the standard `ML` routine and its controls), `README.md` |
+| `code/goddyn-wong-loo/` | `mlcore.rs` (exact `ML`), `loo_tables.rs`, `fixchk/`, `chkL.rs`, `chkC.rs`, `review/`, `example_check.py`, `enum_coprime_case.py`, `README.md` |
 | `code/perturbation/` | 33 Rust programs and `README.md` (commands and observed outputs) |
 | `code/reduction/` | cargo projects `mdr`, `levelfit`, `fcuspec`, `gdn`, `ecalc`, `t2hunt`, `t2sweep`, `rmj`, `modchk`; `axioms/` |
 | `code/covering/` | Rust programs for the covering paper and `README.md` |
@@ -164,6 +179,7 @@ All HEURISTIC and CONJECTURE statements are those marked as such above and in `C
 | `code/lean_build/` | sequential single-module Lean build script |
 | `data/dense/` | `thmd/` (outputs of the Theorem 3 checks: `window_2m.out`, `window_higher.out`, `steps.out`, `cross_check.out`, `class_check.out`, `case_recount.out`), certificates `certs/`, `results.tsv`, `check_rows.out`, `regen_lean.out`, `fb_check.out`, `yind_2_62.out`, `st89_check.out`, `dev_logs/` (raw development logs), `m94/` |
 | `data/obstructions/` | `seeds/` and `census/` input lists, outputs of the reruns, `cornercheck.out`, `chainparity.out`, `descent_gw_loo.tsv` (input table), `descent_controls.out`, `descent_d0.out`, `descent_instances.out`, `descent_gw.out`, `descent_table.out`, `descent_strict.out` |
+| `data/goddyn-wong-loo/` | outputs of the programs of `code/goddyn-wong-loo/` and a `README.md` |
 | `data/repro_logs/` | outputs of reproduction runs |
 | `MANIFEST.tsv`, `CLAIMS.tsv`, `RELEASE_CHECK.md`, `CITATION.cff`, `LICENSE.md` | file list with SHA-256, claim-to-evidence map, release check, citation metadata, license |
 
@@ -188,6 +204,7 @@ Individual steps (run from the archive root; outputs of the runs made for this s
 | tight corner, chain parity | `python3 -I code/obstructions/cornercheck.py`; `python3 -I code/obstructions/chainparity.py 20001` | 0 failures on 10,642 maximisers; control `L == b` fails on 4,264; no mismatch for odd `q <= 20001` |
 | descent and topology section | `python3 -I code/obstructions/descent_check.py controls`; `d0`; `instances`; `gw`; `table 73`; `strict 151` (about 3 minutes in total; `table 73` takes 75 s, `strict 151` 50 s) | `SELFTEST PASS`; 0 failures on 1500 random vectors; the three instances of Observation 27 and the `m = 7` values; the 66 single-replacement triples regenerated, control differs; 70 vectors, 11 / 59 / 46 / 13 / 0 and 56 / 43; strict witnesses for the 11 values of `m`. Outputs `data/obstructions/descent_*.out` |
 | obstruction table | `bash code/obstructions/repro_O4.sh build/obs` | ML `14/121, 11/84, 168/1697, 28/191, 30/203`; U1, U2 as in the table; levels 22, 13, 35, 38, 39 |
+| leave-one-out values (Goddyn-Wong) | commands in `code/goddyn-wong-loo/README.md`; e.g. `loo_tables selftest`, `loo_tables thmA`, `loo_tables triples 160`, `python3 example_check.py` (not in `reproduce.sh`) | `SELFTEST PASS`; 240 vectors, 0 mismatches (4 s); 38 triples, `FAILS 0` (30 s); `OK`. Outputs `data/goddyn-wong-loo/` |
 | perturbation | see `code/perturbation/README.md` (`perturb_coverk 2 5 100` is not in `reproduce.sh`; about 2 hours) | e.g. `perturb_degen`: 65504 / 43849 / 62816; `perturb_cfire 2000 10`: 331291 at `k = 1`, 0 for `k = 2..10` |
 | covering | see `code/covering/README.md` | e.g. `identchk 4 90`: 11528 instances, control fires 3280 times; `tmpl63 19`: 969154513 nodes, template does not exist |
 | eight hashes | `bash code/eight/stage/build_generator.sh; bash code/eight/stage/repro_all.sh` | `P<p> REPRODUCED <sha256>` for 27 primes |
@@ -198,7 +215,7 @@ Manuscripts: `cd paper/<name> && latexmk -pdf main.tex` (`lrc_covering.tex`, `pe
 ## Formalization status
 
 The complete tables (paper item, label, Lean declaration, module) are `paper/dense-window/LEAN_MAP.md`, `paper/obstructions/LEAN_MAP.md`,
-`paper/reduction/LEAN_MAP.md`, `paper/eight/LEAN_MAP.md`, and the Formalization sections of `paper/perturbation/perturbation.tex` and
+`paper/reduction/LEAN_MAP.md`, `paper/eight/LEAN_MAP.md`, `paper/goddyn-wong-loo/LEAN_MAP.md` (all rows ABSENT), and the Formalization sections of `paper/perturbation/perturbation.tex` and
 `paper/lrc_covering/lrc_covering.tex`. Principal rows:
 
 | Paper item | Lean declaration (module) | State |
@@ -214,6 +231,7 @@ The complete tables (paper item, label, Lean declaration, module) are `paper/den
 | obstructions, T statements | `tightNoDvd_of_strong` (`RoomFCU_f5`) | stated with `sorry`; CONJECTURE |
 | dense Statements 8, 9; obstructions Propositions 7, 13, 14, 16, Lemmas 20, 22, Propositions 29, 31, Corollary 30, Remark 33 | none (ABSENT; a Lean statement of `ML(cV) = ML(V)` for tuples, `ML_smul` in `Delta2Scaling`, is in the source tree and was not checked for this version) | PROVED, not formalized |
 | obstructions Observations 23, 25, 27, Proposition 24, Conjecture 26 | none (ABSENT) | HEURISTIC, FALSE (statement) or CONJECTURE; exact computations, not formalized |
+| goddyn-wong-loo, Lemmas 1 to 12, Theorems A, B, C | none (ABSENT) | PROVED over quoted results, COMPUTED for small cases; not formalized |
 | perturbation | `exists_interval_uncovered`, `exists_lonely_time`, `lonely_of_criterion_c'`, `exists_deleted_fraction` | VERIFIED (declaration list in the paper) |
 | reduction | `universalFloor_of_four_atoms_U` (`RoomA4Compress`), `floorCruxU_iff_universalFloor` (`RoomFCUErdos`) | VERIFIED |
 | eight | `eight_runners_unconditional` (`EightRunners`) | VERIFIED modulo 27 axioms `lemma7Check_seven_p<p>_verified` (`EightCert27`) |
@@ -227,5 +245,6 @@ tree builds as archived (comments rewritten, 196 of the development modules) is 
 * `data/dense/results.tsv`: build seconds and axiom prints for `m >= 66`, from the development batch driver.
 * `data/dense/dev_logs/`, `data/dense/m94/`: raw development logs (build output with axiom prints, column-generation driver outputs, the `m = 94` search). Paths were rewritten to `<dev-tree>`; content otherwise unchanged. Not regenerated by this archive.
 * `data/obstructions/descent_gw_loo.tsv`: leave-one-out values of the 67 Goddyn-Wong type tight vectors (66 single replacement, 1 double), from an exact Rust job of 18 October 2026 whose source is not archived (generator not archived). The 66 single-replacement triples are regenerated from the GCD condition by `descent_check.py gw`; the rows with `m <= 73` are recomputed by `descent_check.py table 73`; the other rows are not recomputed in this archive. Label HEURISTIC.
+* `data/goddyn-wong-loo/`: outputs of the programs in `code/goddyn-wong-loo/`, regenerated on 31 October 2026; `loo_gw160.log`, `dusart_sanity.log`, `witA_34_160.log` and `witA_4_32.log` are byte-identical to the logs of the earlier runs (`thmA_small.log` and `primes_check.log` differ in labels only). The vectors of Theorem C with `n > 300` and the table of vectors with `n <= 1100` used in the working notes are not archived.
 * `data/obstructions/seeds/`, `census/`: seed lists of the exact-scan hunt and the 1067 census residual and 147 adversarial families used by `mdr cert`.
 * `data/repro_logs/`: outputs of the runs made for the 17 and 18 October 2026 snapshots, including `perturb_coverk_k3_7_40_original.log`, the log of the original `k = 3` run.

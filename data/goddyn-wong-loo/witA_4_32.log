@@ -1,0 +1,3 @@
+NO WITNESS r=4 mu=2 j=1
+NO WITNESS r=6 mu=4 j=2
+witA r in [4,32] even, mu in 2..r-1, mode=any: removals 5440 (j != r+1), failures 2; witness kinds [1/r or 1/j, 1/j+delta, proof a/q, fallback a/q] = [2420, 300, 2688, 30]

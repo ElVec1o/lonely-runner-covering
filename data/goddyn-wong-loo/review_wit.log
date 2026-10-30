@@ -1,0 +1,9 @@
+window (floor(1.5n),2n-5], n in [33,1e7]: min count 3 at n=33, last n with <3: 0
+ n=28 count=2
+ n=29 count=2
+ n=30 count=2
+ n=31 count=2
+ n=32 count=2
+ n=33 count=3
+ n=34 count=3
+witness checks total 9613877 bad 0

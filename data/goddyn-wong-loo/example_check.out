@@ -1,0 +1,22 @@
+V = [1, 2, 3, 4, 5, 7, 12] ; criterion (1): gcd(6,b) > 1 for b in [2,3]
+ML(V) = 1/8 (grid: 1/8 )
+delete  1: ML = 2/9
+delete  2: ML = 2/11
+delete  3: ML = 4/17
+delete  4: ML = 3/17
+delete  5: ML = 1/5
+delete  7: ML = 2/13
+delete 12: ML = 1/6
+loo = 2/13 ; mu/(mu r+1) = 2/13 ; minimisers: [7]
+deleting 7: t* = 2/13, min over W = 2/13
+deleting 12: t = 1/6, min = 1/6
+deleting  5: t = 1/5, min = 1/5
+deleting  4: t = 1/4 + 1/78 = 41/156, min = 2/13
+   x= 1  ||x t|| = 41/156
+   x= 2  ||x t|| = 37/78
+   x= 3  ||x t|| = 11/52
+   x= 5  ||x t|| = 49/156
+   x= 7  ||x t|| = 25/156
+   x=12  ||x t|| = 2/13
+n=74: Q = 143, a = 47, min over V minus {73} of ||x a/Q|| = 2/143; 2/Q = 2/143; 1/(n-2) = 1/72
+OK

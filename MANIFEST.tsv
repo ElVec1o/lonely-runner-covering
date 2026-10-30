@@ -1,11 +1,11 @@
 file	role	sha256	needed_by
 .gitignore	archive metadata	874cbba6bfcf26cc82c83adc2ff2bdbcc80b19143b07897afec77ac5be657f57	all
-.zenodo.json	archive metadata	a5250478e660a6be49e527887970fb812065744429591144d92a567175986e63	all
-CITATION.cff	archive metadata	92b2591caefb471eceee26d6156c8a6ef6fbfb29179b0ec4a76f0d751538651e	all
-CLAIMS.tsv	archive metadata	ccc6281662bd3dccd3f6aebe6584e65283b7931746f2285e73d626eef9b1aa1a	all
+.zenodo.json	archive metadata	9a1292e43eeac6669c779ef6aa2f0a282d049e666abb4b9d610b9d1b889ee336	all
+CITATION.cff	archive metadata	9d53b28c2520632bed411376528e3ab1a75916daf5760b792d89756961a52d07	all
+CLAIMS.tsv	archive metadata	ac5f8c0e33d554e6cde5795c8e44deda64534a0d651d6e632a540aac52c6959e	all
 LICENSE.md	archive metadata	580f3e12d5eb0e2bced0d37849ab7e5feb300d61ace4602438ed8348eea1e809	all
-README.md	archive metadata	30f7ad3e42d30dd94283f0162e645a9820ede0926dfb3fe98a7109073f382dd5	all
-RELEASE_CHECK.md	archive metadata	587a8fc23f3ea1d6e44ef5a3d9ce2313ea9f5ce20edf7fb6ac0eb88c42655bfe	all
+README.md	archive metadata	73d6212e7c6d876d5685c99c7b146e658ed08a0aa4ad8d51b680fb89682f9d04	all
+RELEASE_CHECK.md	archive metadata	d6e3b3cdba1968b31c2a6037150040d54d40760bc3729cd8b6b7c1fbaa92f1b7	all
 code/covering/README.md	covering-paper program	e94aabe38ff994e82df30aa02ed308fd7e5fd31fbfba2c6f6b286ef446ff2bab	lrc_covering
 code/covering/alphaex.rs	covering-paper program	0c146b10567d57f007c73035cf5f795ddbad7a30561db8a51b6809c79d202cd7	lrc_covering
 code/covering/bad_triple_classify.rs	covering-paper program	f46ec0b46c092d67ed47e099e867017c896025e47c2d622eb82cdd4064143ca2	lrc_covering
@@ -152,6 +152,18 @@ code/eight/stage/repro_check.sh	eight-runner tool, script or checker	206341c1708
 code/eight/stage/run_campaign.sh	eight-runner tool, script or checker	85d335f0aa46364308d1f8c7b222dcb425244d681328820079574bde5a5b072e	eight
 code/eight/stage/run_prime.sh	eight-runner tool, script or checker	81defd4bdf97c073c82ddb741f129a8fbfb24f62a64daa6753ed73b41fa2b553	eight
 code/eight/stage/status.sh	eight-runner tool, script or checker	129a3db72df996bbe83d1ddd925ae84a69c5dd89e58ce07f58e58398d54e687a	eight
+code/goddyn-wong-loo/README.md	leave-one-out note program or script (added 2026-10-31)	a1462bb03a18b1c12c5d8c760464063422149f6d63c0afe64704bd879ebbb88c	goddyn-wong-loo
+code/goddyn-wong-loo/chkC.rs	leave-one-out note program or script (added 2026-10-31)	895d9615f987721fd69151cf34c9634d7a2d6843fe515c29dcd47cad3015e538	goddyn-wong-loo
+code/goddyn-wong-loo/chkL.rs	leave-one-out note program or script (added 2026-10-31)	2efa6194d2d44cad8824bd4cc40c1aebddb4d6cec3886d81d2c4b1df6055c10b	goddyn-wong-loo
+code/goddyn-wong-loo/enum_coprime_case.py	leave-one-out note program or script (added 2026-10-31)	287c44d4740c62355da082519f4132061928384807864db5db413587e962d9ff	goddyn-wong-loo
+code/goddyn-wong-loo/example_check.py	leave-one-out note program or script (added 2026-10-31)	0d4df374a4bc674773993f6d4037e2cc8888f96c35ecece1c3ad4c7891cf0db4	goddyn-wong-loo
+code/goddyn-wong-loo/fixchk/dus.rs	leave-one-out note program or script (added 2026-10-31)	3506108539e1269f7868082e2f213e9be25a82cc0c380f2e002eb97449172dca	goddyn-wong-loo
+code/goddyn-wong-loo/fixchk/fixchk.rs	leave-one-out note program or script (added 2026-10-31)	b78200e6103c59e2c24f616a1c26a80f840399d3e75cc0136615ccafaa921964	goddyn-wong-loo
+code/goddyn-wong-loo/fixchk/win.rs	leave-one-out note program or script (added 2026-10-31)	801975d9f2ccdc3e13f906658aa1e7d13211023ea49081726b322df670363d56	goddyn-wong-loo
+code/goddyn-wong-loo/loo_tables.rs	leave-one-out note program or script (added 2026-10-31)	a6adaf8f321b731271bd91914c218255adeddbfb57dbbb07aa9e353ac1c20435	goddyn-wong-loo
+code/goddyn-wong-loo/mlcore.rs	leave-one-out note program or script (added 2026-10-31)	631ab1332c499c875a3aa1d28701c7ed34f00fd81737509daed1a78f50b3d28d	goddyn-wong-loo
+code/goddyn-wong-loo/review/drv.rs	leave-one-out note program or script (added 2026-10-31)	f045e5e43ada2883e6d158b6134c94b428518e7bee1a3c1422bd26ec59b51a2f	goddyn-wong-loo
+code/goddyn-wong-loo/review/wit.rs	leave-one-out note program or script (added 2026-10-31)	7aa9f1d99b3b27c36f3a602cf5b234ebcc2ec8f0e799d010cbd27ceadd5c6032	goddyn-wong-loo
 code/lean_build/gbound_build.sh	sequential Lean build script	5b260f80b8d825921e6793cf64b1e4e38ed676ac35485d957715ac71ab3437e2	all papers with Lean content
 code/obstructions/README.md	obstruction reproduction	d098b94e8876cb1ab59e9942c28c344522aa966a091694fea5f2e29c221dbad1	obstructions
 code/obstructions/chainparity.py	added 2026-10-18 (revision/regeneration)	dfd7ac06869e23cb243ddb9fb86d99874b913d3eabcf0e5f625b654490e7f673	paper/obstructions
@@ -370,6 +382,22 @@ data/dense/thmd/window_2m.out	dense-window result record (added 1.0.2)	d0dfb5b43
 data/dense/thmd/window_higher.out	dense-window result record (added 1.0.2)	c55fb738d4c8ddf52a743eb7b7d8cebf5b254d447d538cf520b423e1dcd4ed5a	dense-window
 data/dense/yind_2_62.out	dense-window result record	e17f44d80c8b582523e1739a0b7d6be4df4ea1a0f9a3d20441797695130e121e	dense-window
 data/dense/yind_control.out	dense-window result record	b4bffe4dab2aaa2893d0c67c96f8748b994eb69576c8bcd138005e9333623fc3	dense-window
+data/goddyn-wong-loo/README.md	leave-one-out note output (added 2026-10-31)	f1a14eb450bdb2de9d8a62c6a9e4a8521e6e5b44eca9579685806b7bb24ec601	goddyn-wong-loo
+data/goddyn-wong-loo/chkC_33_260.log	leave-one-out note output (added 2026-10-31)	e8ab60ff830b7aaeeda2d3e79e534a30663dc6c0018e5d7bfb1d16c17a6848cd	goddyn-wong-loo
+data/goddyn-wong-loo/chkL_31_140.log	leave-one-out note output (added 2026-10-31)	b4929029ae5b56df9988b7193037126553e458462247164cc0c60dbb526de9c9	goddyn-wong-loo
+data/goddyn-wong-loo/classc_review_33_300.log	leave-one-out note output (added 2026-10-31)	278b3054bbe4ad2c63c115c2383fe3e624969ea4d4132a4bb7160f6ace944ec1	goddyn-wong-loo
+data/goddyn-wong-loo/coprime_case_triples.out	leave-one-out note output (added 2026-10-31)	a099e857ba5fbb2d1f60babed72b8af7d349ee39918eba6ff5508d875ce66dc1	goddyn-wong-loo
+data/goddyn-wong-loo/dusart_sanity.log	leave-one-out note output (added 2026-10-31)	9b6c05aa8459b9cc043b8664ae598517bb16fee4bb2c5f0fee416249a5cd4298	goddyn-wong-loo
+data/goddyn-wong-loo/example_check.out	leave-one-out note output (added 2026-10-31)	04eda4a275fd001721bd00de4567600c5ad905c44adf6e6cc36417f28f0d1f4e	goddyn-wong-loo
+data/goddyn-wong-loo/example_n8.out	leave-one-out note output (added 2026-10-31)	a313c775dbfe3d42b468e59c1434c98828beadf78650cf2858ce8229913b4c3a	goddyn-wong-loo
+data/goddyn-wong-loo/loo_gw160.log	leave-one-out note output (added 2026-10-31)	b2f91747d0942d012045981d87ccb8612c3d3fbf1800b2f79de76c86046a1635	goddyn-wong-loo
+data/goddyn-wong-loo/primes_check.log	leave-one-out note output (added 2026-10-31)	0a4bbb9cfd481eeff19bff3e0e4582e34fcfb07013c5269abde16ea6bce82ffb	goddyn-wong-loo
+data/goddyn-wong-loo/review_wit.log	leave-one-out note output (added 2026-10-31)	0d8ccebf5fb24eba276b234147a7cdaad0917ef924bb3a9b2b831521c3e23d2b	goddyn-wong-loo
+data/goddyn-wong-loo/thmA_small.log	leave-one-out note output (added 2026-10-31)	5a189695f91d0f65aefa7b7bc977e35d755a15f8efb5b20bbe729ad0b8f616f9	goddyn-wong-loo
+data/goddyn-wong-loo/vec_74_70_2.out	leave-one-out note output (added 2026-10-31)	8192ce49be15a7a0d03a4338770f562a926a6c2933b5cc100d4eec74bdfb0d67	goddyn-wong-loo
+data/goddyn-wong-loo/window_c_n33.log	leave-one-out note output (added 2026-10-31)	e33ce312aa9ed55633b1921c25151d95d192736d90c9fd4f6fc24ec4773ef7bf	goddyn-wong-loo
+data/goddyn-wong-loo/witA_34_160.log	leave-one-out note output (added 2026-10-31)	225fe5c1068bdeb8a70413de19133f5da16261b9f9e9eac800849f799708915e	goddyn-wong-loo
+data/goddyn-wong-loo/witA_4_32.log	leave-one-out note output (added 2026-10-31)	5e8965e4759b898661d2977f0e157f15796edf6e11645ba8049b40007b3aab3a	goddyn-wong-loo
 data/obstructions/census/adversarial_147.txt	census or adversarial family list	92a8318c646b463aa6779e4d6cdef89e7788340f3124029dcb258c2062e4d275	obstructions
 data/obstructions/census/resid_m12_h22.txt	census or adversarial family list	48af9fa6a48a674c2f1e0dbf1d9267784b7bc34e1585a57e857592f7e850945e	obstructions
 data/obstructions/census/resid_m12_h26_gt24.txt	census or adversarial family list	a221f9bd431d631c1e5d2a3368efe7153979ccb46079a35872c454f0193a7933	obstructions
@@ -695,6 +723,11 @@ paper/eight/LEAN_MAP.md	Lean map (label to declaration)	309d3fa45b3cfa1ae56644de
 paper/eight/main.pdf	manuscript PDF	1a396de5947f19e26351e90ae557680faec0b235cd7973f74284b2f4b8fcc803	eight
 paper/eight/main.tex	manuscript source	b1bcae7c803d2dd51ecd3d5865b68b4e76a5c975a7b14bef6dc75964e8a81ab4	eight
 paper/eight/refs.bib	bibliography	35cf7c2ba1be5e3925284648a2f7f6219cf28c2208c409b2b5f7e188eae9492d	eight
+paper/goddyn-wong-loo/LEAN_MAP.md	Lean map (label to declaration)	fac64205373bc44ba79317c940cf64818d8d2fd8b57bfcc06618c249b6516b8f	goddyn-wong-loo
+paper/goddyn-wong-loo/main.bbl	bibliography (compiled)	ddd5748c5836d3e48eea5f9be447a4ce9fee4aab5e3ede7186b34ba5528a9ff9	goddyn-wong-loo
+paper/goddyn-wong-loo/main.pdf	manuscript PDF	8ddad4a635f6b7f2ea84ecc5cab7f4c03dc97f36b89303e2ad7e3b0801516e26	goddyn-wong-loo
+paper/goddyn-wong-loo/main.tex	manuscript source	df4b4049e99989e5d3bab49145f6c2759cb17f0c78c4aa10cafdac59a377df3b	goddyn-wong-loo
+paper/goddyn-wong-loo/refs.bib	bibliography	22f95bf23987c2ead5a1925adf799d64be19f27afd95d0c0f11229c3b0919c50	goddyn-wong-loo
 paper/lrc_covering/lrc_covering.pdf	manuscript PDF	684f09a1c50b23db2140e00673b6dcd7216d790adaf4c9df54b2d06ab823fba2	lrc_covering
 paper/lrc_covering/lrc_covering.tex	manuscript source	23af0bdaf159002e6c5d53035a79ecc0c5ae111ff73dd1fd1dea95f20a9833f5	lrc_covering
 paper/obstructions/LEAN_MAP.md	Lean map (label to declaration)	37285998832b27e1a31f729058a2b077ba1d7fa1c140b042dc3f91423f0e7f31	obstructions

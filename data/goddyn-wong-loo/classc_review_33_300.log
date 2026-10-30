@@ -1,0 +1,6 @@
+CLASSC n=74 r=70 s=4 mu=2 MLV=1/74 loo=1/72 argmin=72 tied=0 second=2/143@73 ratio2=1.006993
+CLASSC n=144 r=140 s=4 mu=2 MLV=1/144 loo=1/142 argmin=142 tied=0 second=2/283@143 ratio2=1.003534
+CONTROL n=214 r=210 s=4 mu=2 MLV=1/214 loo=1/213 argmin=213 tied=0 second=1/212@212 ratio2=1.004717
+CONTROL n=215 r=210 s=5 mu=2 MLV=1/215 loo=1/214 argmin=214 tied=0 second=1/213@213 ratio2=1.004695
+CLASSC n=284 r=280 s=4 mu=2 MLV=1/284 loo=1/282 argmin=282 tied=0 second=2/563@283 ratio2=1.001776
+DONE classC=3 bad=0

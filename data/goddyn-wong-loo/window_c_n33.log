@@ -1,0 +1,2 @@
+min count over n in [33,1e7] = 3 at n=33; largest n>=33 with count<3: 0
+largest n in [20,32] with count<3: 32

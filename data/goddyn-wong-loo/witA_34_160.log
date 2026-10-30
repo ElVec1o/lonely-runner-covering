@@ -1,0 +1,1 @@
+witA r in [34,160] even, mu in 2..r-1, mode=proof: removals 677120 (j != r+1), failures 0; witness kinds [1/r or 1/j, 1/j+delta, proof a/q, fallback a/q] = [326080, 12480, 338560, 0]

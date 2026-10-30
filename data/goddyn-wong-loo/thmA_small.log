@@ -1,0 +1,1 @@
+even r in 4..32, all 2<=mu<=r-1: 240 vectors; mismatches 0

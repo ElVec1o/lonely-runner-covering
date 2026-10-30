@@ -1,0 +1,10 @@
+n=8 r=6 mu=2 V=[1, 2, 3, 4, 5, 7, 12] criterion(1)=true
+ML(V)=1/8
+delete   1: ML=2/9
+delete   2: ML=2/11
+delete   3: ML=4/17
+delete   4: ML=3/17
+delete   5: ML=1/5
+delete   7: ML=2/13
+delete  12: ML=1/6
+loo=2/13 attained at [7]

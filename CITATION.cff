@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this software or its results, please cite it as below."
-title: "Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners"
+title: "Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners, with leave-one-out values of tight Goddyn-Wong vectors"
 abstract: >-
-  Six manuscripts on the lonely runner conjecture (dense velocity windows, obstructions to certificate-based
-  proofs, perturbations of the tight instance, a reduction to a single crux, a covering framework, and eight
-  runners), with the Lean 4 sources they cite, and the programs and certificates that regenerate their finite
+  Seven manuscripts on the lonely runner conjecture (dense velocity windows, obstructions to certificate-based
+  proofs, perturbations of the tight instance, a reduction to a single crux, a covering framework, eight
+  runners, and leave-one-out values of tight Goddyn-Wong vectors), with the Lean 4 sources they cite, and the programs and certificates that regenerate their finite
   computations. Statements carry the labels given in each manuscript; several results are finite
   computations that are not formalized.
 authors:
@@ -12,9 +12,10 @@ authors:
     given-names: Vico
     email: vicobonfioli@gmail.com
 license: CC-BY-4.0
-version: 1.0.3
-doi: 10.5281/zenodo.23445368
+version: 1.0.4
+doi: 10.5281/zenodo.23435304
 identifiers:
+  # the DOI of version 1.0.4 is inserted here and in the field above after the Zenodo deposit
   - type: doi
     value: 10.5281/zenodo.23445368
     description: Version 1.0.3
@@ -31,7 +32,7 @@ identifiers:
     value: 10.5281/zenodo.23435304
     description: All versions (concept DOI)
 type: software
-date-released: 2026-10-18
+date-released: 2026-10-31
 keywords:
   - lonely runner conjecture
   - Lean 4

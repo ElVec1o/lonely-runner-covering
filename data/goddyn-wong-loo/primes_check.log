@@ -1,0 +1,6 @@
+window (b) (floor(1.5r),2r], r<=10^7 (sieve to 2e7): even r with <4 primes: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 26, 28, 30, 32]
+largest r (any parity) with <4: 33; largest even r with <5: 50; min count over even r in [34,1e7]: 4 at r=34
+window (a) (floor(1.5n),2n-3], n<=10^7: n in [4,1e7] with <3 primes: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 29, 30]; min count for n>=31: 3 at n=31
+largest n>=31 with <4 primes in window (a): 49
+f64 evidence: min over log grid n in [1e5,1e15] of Dusart lower(2n-3) - upper(1.5n) = 3981.9
+largest n in [40123,1e7] where Dusart difference D(n)<4: 0

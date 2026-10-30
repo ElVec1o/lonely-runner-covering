@@ -198,6 +198,18 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `code/eight/stage/run_campaign.sh` | eight-runner tool, script or checker (eight) |
 | `code/eight/stage/run_prime.sh` | eight-runner tool, script or checker (eight) |
 | `code/eight/stage/status.sh` | eight-runner tool, script or checker (eight) |
+| `code/goddyn-wong-loo/README.md` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/chkC.rs` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/chkL.rs` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/enum_coprime_case.py` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/example_check.py` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/fixchk/dus.rs` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/fixchk/fixchk.rs` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/fixchk/win.rs` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/loo_tables.rs` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/mlcore.rs` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/review/drv.rs` | leave-one-out note program or script (goddyn-wong-loo) |
+| `code/goddyn-wong-loo/review/wit.rs` | leave-one-out note program or script (goddyn-wong-loo) |
 | `code/lean_build/gbound_build.sh` | sequential Lean build script (all papers with Lean content) |
 | `code/obstructions/README.md` | obstruction reproduction (obstructions) |
 | `code/obstructions/cornercheck.py` | obstructions tool or script (obstructions) |
@@ -406,6 +418,22 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `data/dense/thmd/window_higher.out` | dense-window data (dense-window) |
 | `data/dense/yind_2_62.out` | dense-window result record (dense-window) |
 | `data/dense/yind_control.out` | dense-window result record (dense-window) |
+| `data/goddyn-wong-loo/README.md` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/chkC_33_260.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/chkL_31_140.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/classc_review_33_300.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/coprime_case_triples.out` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/dusart_sanity.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/example_check.out` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/example_n8.out` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/loo_gw160.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/primes_check.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/review_wit.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/thmA_small.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/vec_74_70_2.out` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/window_c_n33.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/witA_34_160.log` | leave-one-out note program output (goddyn-wong-loo) |
+| `data/goddyn-wong-loo/witA_4_32.log` | leave-one-out note program output (goddyn-wong-loo) |
 | `data/obstructions/census/adversarial_147.txt` | census or adversarial family list (obstructions) |
 | `data/obstructions/census/resid_m12_h22.txt` | census or adversarial family list (obstructions) |
 | `data/obstructions/census/resid_m12_h26_gt24.txt` | census or adversarial family list (obstructions) |
@@ -726,6 +754,11 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 | `paper/eight/main.pdf` | manuscript PDF |
 | `paper/eight/main.tex` | manuscript source |
 | `paper/eight/refs.bib` | bibliography |
+| `paper/goddyn-wong-loo/LEAN_MAP.md` | leave-one-out note, manuscript file (goddyn-wong-loo) |
+| `paper/goddyn-wong-loo/main.bbl` | leave-one-out note, manuscript file (goddyn-wong-loo) |
+| `paper/goddyn-wong-loo/main.pdf` | leave-one-out note, manuscript file (goddyn-wong-loo) |
+| `paper/goddyn-wong-loo/main.tex` | leave-one-out note, manuscript file (goddyn-wong-loo) |
+| `paper/goddyn-wong-loo/refs.bib` | leave-one-out note, manuscript file (goddyn-wong-loo) |
 | `paper/lrc_covering/lrc_covering.pdf` | manuscript PDF |
 | `paper/lrc_covering/lrc_covering.tex` | manuscript source |
 | `paper/obstructions/LEAN_MAP.md` | Lean map (label to declaration) |
@@ -780,3 +813,13 @@ Every file is listed in `MANIFEST.tsv` with its SHA-256. One line per file:
 * Pattern scan (`grep -rIil`, `.git`, `MANIFEST.tsv` and this file excluded) for `/Users/`, `anvilstack`, `Claude`, `Anthropic`, `ChatGPT`, `HANDOFF`, `Co-Authored`, `Generated with`, `ghp_`, `gho_`, `github_pat`: 0 hits for every pattern; the text of `main.pdf` has 0 hits for `Claude`, `Anthropic`, `/Users/`, `anvilstack`. No file above 5 MB; no LaTeX build files; no `.DS_Store` in the tree.
 * Checks run for this version (Python, exact, one process each, all under 2 minutes; outputs in `data/obstructions/descent_*.out`): control battery PASS; Lemma 20 on 1500 random vectors, 0 failures; instances and near-tight sets; 66 Goddyn-Wong triples regenerated with a negative control; 70-vector table (21 rows recomputed, 49 from the table); strict values (m <= 151 recomputed in part). The table `descent_gw_loo.tsv` comes from an exact job whose source is not archived.
 * Open before release: `.zenodo.json` says version 1.0.2 and must be set to 1.0.3; `CITATION.cff` carries `version: 1.0.2`, the DOI of 1.0.2 and `date-released: 2026-10-18` and must be updated; no DOI exists for 1.0.3 and none is stated; the README version line says draft, unreleased; the repository identity must be ElVec1o <vicobonfioli@gmail.com> before the commit; the proofs of Propositions 29 and 31 were reviewed in REVIEW_SEC8.md (accepted with fixes) and the fixes were applied afterwards by the author, whose check of the changed text is the only one so far (Corollary 30 and Proposition 31 now have lifting proofs, Remark 33 is new); the generator of `descent_gw_loo.tsv` is not archived.
+
+## Scan for version 1.0.4 (draft, unreleased, 31 October 2026)
+
+* Tree: 743 files excluding `.git` (no `.DS_Store`); `MANIFEST.tsv` hashes all except itself (742 rows), each file once, regenerated after the last edit of this file. Added (33 files): `paper/goddyn-wong-loo/{main.tex,main.pdf,main.bbl,refs.bib,LEAN_MAP.md}`, `code/goddyn-wong-loo/` (README, `mlcore.rs`, `loo_tables.rs`, `chkL.rs`, `chkC.rs`, `example_check.py`, `enum_coprime_case.py`, `fixchk/{fixchk,dus,win}.rs`, `review/{drv,wit}.rs`), `data/goddyn-wong-loo/` (README and 15 outputs). Changed: `README.md`, `CLAIMS.tsv` (17 rows), `CITATION.cff`, `.zenodo.json`, `MANIFEST.tsv`, this file. No Lean file changed, no Lean build run, other manuscripts unchanged, nothing committed, pushed or uploaded.
+* Authorship fields: `CITATION.cff` version 1.0.4, `date-released: 2026-10-31`; the field `doi` temporarily carries the concept DOI and the identifier list has no entry for 1.0.4 (no DOI exists yet); `.zenodo.json` version 1.0.4, publication date 2026-10-31.
+* AI attribution: the new manuscript contains one provenance paragraph naming the AI system (`Claude`, `Anthropic`), in `main.tex` and `main.pdf`, marked in the source by the comment `% H6: pending author approval`; the wording has no clause on what the author checked. This is the only file besides this one with those two words. The README and metadata contain no such statement yet.
+* Pattern scan (`grep -rIil`, `.git` excluded, this file included for the count) for `/Users/`, `private/`, `Claude`, `Anthropic`, `ChatGPT`, `GPT`, `TODO`, `HANDOFF`, `RESEARCH_LOG`, `api_key`, `token`, `secret`, `password`, `Co-Authored`, `Generated with`, `sonnet`, `fable`, `anvilstack`, `ghp_`, `gho_`, `github_pat`, and the internal labels `Zoom map`, `RESOLVED-TRUE`, `GWLOO`, `Class C`, `Theorem U`, `Lemma D`, `W5`, `ML_AUDIT`: identical hit lists to version 1.0.3 for every pattern, except `Claude` and `Anthropic` (the new manuscript, expected, see above). The text of `paper/goddyn-wong-loo/main.pdf` has 1 hit each for `Claude` and `Anthropic` and 0 for `/Users/`, `private`, `anvilstack`, `gmail`, the internal labels. Hits found during the scan and fixed: internal lemma labels in comments and printed strings of `fixchk.rs`, `chkL.rs`, `chkC.rs`, `review/wit.rs` (renamed; comments and labels only, the arithmetic is unchanged; `witA_34_160.log` reproduced byte for byte after the rename) and a log file name containing an internal label.
+* The new manuscript compiles with latexmk (rc 0, no undefined references or citations, 11 pages); build files deleted afterwards; `main.bbl` kept as in 1.0.0. No file above 5 MB.
+* Checks run for this version (Rust `-O`, standard library only, all under 1 minute each): `loo_tables selftest` PASS; `thmA` 240 vectors, 0 mismatches; `triples 160` 38 triples, FAILS 0 (log identical to the earlier one); `drv 33 300 12`, three triples and two controls as stated in the note; `chkL`, `chkC`, `review/wit` 0 failures; prime-window and Dusart sieves; `example_check.py` OK; `enum_coprime_case.py 1100` 13 triples.
+* Open before release: user approval of the provenance paragraph (and the README and Zenodo texts); commit identity ElVec1o; the DOI of 1.0.4 after deposit; no human reading of the new note yet (the reader gate of Part H is not run); the proofs were checked by AI sessions only; Dusart and Goddyn-Wong statements are quoted, not re-proved; the unified witness lemma was not reviewed again as a unit; ten of the thirteen triples of the coprime case have no recomputed values.
