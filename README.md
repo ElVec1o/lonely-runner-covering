@@ -1,6 +1,6 @@
 # Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners, with leave-one-out values of tight Goddyn-Wong vectors
 
-Version 1.0.4 (31 October 2026; the DOI of this version is assigned at deposit). Archived at Zenodo: version 1.0.3 [10.5281/zenodo.23445368](https://doi.org/10.5281/zenodo.23445368); version 1.0.2 [10.5281/zenodo.23439967](https://doi.org/10.5281/zenodo.23439967); version 1.0.1 [10.5281/zenodo.23436538](https://doi.org/10.5281/zenodo.23436538); version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
+Version 1.0.4 (31 October 2026; archived at Zenodo as [10.5281/zenodo.23823736](https://doi.org/10.5281/zenodo.23823736)). Earlier versions: version 1.0.3 [10.5281/zenodo.23445368](https://doi.org/10.5281/zenodo.23445368); version 1.0.2 [10.5281/zenodo.23439967](https://doi.org/10.5281/zenodo.23439967); version 1.0.1 [10.5281/zenodo.23436538](https://doi.org/10.5281/zenodo.23436538); version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
 Author: Vico Bonfioli (vicobonfioli@gmail.com). License: CC-BY-4.0 (`LICENSE.md`). Snapshot of 31 October 2026. The six earlier manuscripts carry the
 `\date` line of 18 October 2026 (two have none); the new note carries 31 October 2026. The manuscripts are preprints and have not been peer reviewed.
 
