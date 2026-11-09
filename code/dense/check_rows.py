@@ -75,7 +75,7 @@ have = sorted(r[0] for r in rows)
 frac = [4, 7, 12, 13]
 low_ok = sorted([m for m in have if m <= 62] + frac) == comp(2, 62)
 exc = [m for m in comp(63, 126) if m not in have]
-exc_ok = exc == [94, 97, 103, 109, 115, 122]
+exc_ok = exc == [94]   # m = 94 has no cover-capacity row: it is closed by the pinned tree of Section 8 (data/dense/m94_lean)
 print(f'composite m in [2,62]: {len(comp(2,62))}, covered by rows+Table1: {low_ok}; composite in [63,126]: {len(comp(63,126))}, exceptions {exc}: {exc_ok}')
 bad += (not low_ok) + (not exc_ok)
 print(f'rows {len(rows)}, failures {bad}')

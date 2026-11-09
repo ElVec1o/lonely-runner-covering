@@ -47,15 +47,19 @@ import LRSpectrumFull.Delta2CoverRangeS
 import LRSpectrumFull.Delta2CoverRangeS100
 import LRSpectrumFull.Delta2CoverRangeS101
 import LRSpectrumFull.Delta2CoverRangeS102
+import LRSpectrumFull.Delta2CoverRangeS103
 import LRSpectrumFull.Delta2CoverRangeS104
 import LRSpectrumFull.Delta2CoverRangeS106
 import LRSpectrumFull.Delta2CoverRangeS107
 import LRSpectrumFull.Delta2CoverRangeS108
+import LRSpectrumFull.Delta2CoverRangeS109
 import LRSpectrumFull.Delta2CoverRangeS110
 import LRSpectrumFull.Delta2CoverRangeS112
+import LRSpectrumFull.Delta2CoverRangeS115
 import LRSpectrumFull.Delta2CoverRangeS117
 import LRSpectrumFull.Delta2CoverRangeS118
 import LRSpectrumFull.Delta2CoverRangeS121
+import LRSpectrumFull.Delta2CoverRangeS122
 import LRSpectrumFull.Delta2CoverRangeS123
 import LRSpectrumFull.Delta2CoverRangeS124
 import LRSpectrumFull.Delta2CoverRangeS126
@@ -77,6 +81,8 @@ import LRSpectrumFull.Delta2CoverRangeS88
 import LRSpectrumFull.Delta2CoverRangeS91
 import LRSpectrumFull.Delta2CoverRangeS92
 import LRSpectrumFull.Delta2CoverRangeS93
+import LRSpectrumFull.Delta2CoverRangeS94
+import LRSpectrumFull.Delta2CoverRangeS97
 import LRSpectrumFull.Delta2CoverRangeSA
 import LRSpectrumFull.Delta2CoverRangeSB
 import LRSpectrumFull.Delta2CoverRangeT
@@ -91,6 +97,7 @@ import LRSpectrumFull.Delta2DigitGreedy
 import LRSpectrumFull.Delta2FracBlocking
 import LRSpectrumFull.Delta2FreeGrowth
 import LRSpectrumFull.Delta2Pigeonhole
+import LRSpectrumFull.Delta2PinnedCover
 import LRSpectrumFull.Delta2SeparationWindow
 import LRSpectrumFull.Delta2WindowK3
 import LRSpectrumFull.EightCert27

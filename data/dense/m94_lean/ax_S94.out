@@ -1,0 +1,3 @@
+'LRSpectrumFull.dense_floor_m94' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.floor_of_pinned_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LRSpectrumFull.pinned_tree_three' depends on axioms: [propext, Quot.sound]

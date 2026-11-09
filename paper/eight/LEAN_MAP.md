@@ -68,6 +68,8 @@ Output on 2026-09-30: both declarations depend on `[propext, Classical.choice, Q
 Control: `EightRunners.eight_runners_unconditional` in the same environment still lists the 27
 `EightCert27` axioms. The `E8Stage.P<p>.Asm` theorems are `EightV4.Cert<p>.lemma7Check_seven_p<p>`.
 
+Re-observed 2026-11-01 (raw `lean` 4.30.0 through `code/eight/stage/assemble_real.sh`, one process, 50.43 s, peak memory footprint 1.08 GB, maximum resident set 7.08 GB, mostly memory-mapped object files): both declarations print `[propext, Classical.choice, Quot.sound]`; the same environment prints standard-only for the 27 theorems `EightV4.Cert<p>.lemma7Check_seven_p<p>` and the intermediate theorems (`data/eight/recheck_2026_11_01/chk_parsed.txt`), prints `sorryAx` for three declarations whose bodies are `sorry` and which the target does not use (`BarajasSerra.primeFilteringCor3`, `EightMSS.bridge31`, `EightPlan.e5_sum_STUB_SUPERSEDED`), and prints the 27 `EightCert27` axioms for `EightRunners.eight_runners_unconditional` (negative control). The hashes of the regenerated certificate sources equal the recorded ones; the 27 kernel proofs were not rebuilt. This is a raw `lean` compilation outside `lake build`; no whole-lake rebuild was run for this release.
+
 Reproduction material: `code/eight/` (see `code/eight/README.md`).
 
 ## Statements
@@ -76,6 +78,7 @@ Reproduction material: `code/eight/` (see `code/eight/README.md`).
 |---|---|---|---|
 | Thm 1.1 (eight runners) | `EightRunners.eight_runners_unconditional` | EightRunners.lean | C27 (2026-09-27) |
 | Thm 1.1, same proof | `EightE5.eight_runners_unconditional` | EightE5.lean | C27 (2026-09-27) |
+| Thm 1.1, standard axioms only (raw `lean`, outside `lake build`) | `EightRunnersReal.eight_runners_unconditional_real`, `EightRunnersReal.hchk_all_real` | EightRunnersReal.lean (imports `E8Stage.P<p>.Asm`, not in the archive) | standard (2026-09-30, re-observed 2026-11-01) |
 | Thm 1.2 (seven runners) | `BarajasSerra.LRC6_barajasSerra`; `BarajasSerra.Sec5.lrc6` | BarajasSerraLRC6Plan.lean, BarajasSerraLRC6.lean | standard (2026-09-27) |
 | Table 1, all 27 primes | `EightCert27.hchk_all` | EightCert27.lean | C27 (2026-09-27) |
 | Sec 3.2, the 27 axioms | `EightCert27.lemma7Check_seven_p<p>_verified` (docstrings carry the SHA-256) | EightCert27.lean | are axioms |

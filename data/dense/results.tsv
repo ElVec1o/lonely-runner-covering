@@ -31,3 +31,8 @@
 123	BUILT	176s	sorryish=0	'LRSpectrumFull.dense_floor_m123_split' depends on axioms: [propext, Classical.choice, Quot.sound] 
 124	BUILT	135s	sorryish=0	'LRSpectrumFull.dense_floor_m124_split' depends on axioms: [propext, Classical.choice, Quot.sound] 
 126	BUILT	156s	sorryish=0	'LRSpectrumFull.dense_floor_m126_split' depends on axioms: [propext, Classical.choice, Quot.sound] 
+97	BUILT	581s	sorryish=0	'LRSpectrumFull.dense_floor_m97_split' depends on axioms: [propext, Classical.choice, Quot.sound] 
+103	BUILT	266s	sorryish=0	'LRSpectrumFull.dense_floor_m103_split' depends on axioms: [propext, Classical.choice, Quot.sound] 
+109	BUILT	115s	sorryish=0	'LRSpectrumFull.dense_floor_m109_split' depends on axioms: [propext, Classical.choice, Quot.sound] 
+115	BUILT	125s	sorryish=0	'LRSpectrumFull.dense_floor_m115_split' depends on axioms: [propext, Classical.choice, Quot.sound] 
+122	BUILT	141s	sorryish=0	'LRSpectrumFull.dense_floor_m122_split' depends on axioms: [propext, Classical.choice, Quot.sound] 

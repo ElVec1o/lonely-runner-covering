@@ -30,6 +30,10 @@ cd lean && lake env lean ../code/eight/print_axioms.lean
 Expected for `EightRunners.eight_runners_unconditional`: `propext`, `Classical.choice`,
 `Quot.sound` and the 27 axioms `EightCert27.lemma7Check_seven_p<p>_verified`.
 
+## Eight runners from the standard axioms (outside `lake build`)
+
+`lean/LRSpectrumFull/EightRunnersReal.lean` proves `eight_runners_unconditional_real` from the kept kernel proofs `E8Stage.P<p>.Asm` (27 primes, about 2.6 GB of object files, produced by `stage/real27_driver.sh`, about 12 h; not in this archive) and is compiled with raw `lean` by `stage/assemble_real.sh`, never by `lake build`. It was re-observed on 2026-11-01 (50 s, memory footprint 1.08 GB): both `eight_runners_unconditional_real` and `hchk_all_real` print `[propext, Classical.choice, Quot.sound]`. Raw outputs: `data/eight/recheck_2026_11_01`. The 27 kernel proofs were not rebuilt and no whole-lake rebuild was run for this release. Do not run a bare `lake build`.
+
 ## The 27 certificates
 
 ```
@@ -82,7 +86,7 @@ Negative controls (`NC`) are expected to report failures.
 
 ## Removing the 27 axioms (real-proof variant, added 2026-09-30)
 
-The default build carries the 27 compacted axioms `EightCert27.lemma7Check_seven_p<p>_verified`.
+The module `EightRunners` carries the 27 compacted axioms `EightCert27.lemma7Check_seven_p<p>_verified`.
 `lean/LRSpectrumFull/EightRunnersReal.lean` proves the same theorem with the 27 facts as real kernel
 theorems. It is outside the lake build. Steps:
 

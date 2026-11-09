@@ -1,0 +1,49 @@
+'LRSpectrumFull.EightRunners.eight_runners_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p101_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p103_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p107_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p109_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p113_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p127_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p131_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p137_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p139_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p149_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p151_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p157_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p163_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p31_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p37_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p43_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p47_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p53_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p59_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p61_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p67_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p71_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p73_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p79_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p83_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p89_verified,
+ LRSpectrumFull.EightCert27.lemma7Check_seven_p97_verified]
+'LRSpectrumFull.EightV4.Cert163.lemma7Check_seven_p163' depends on axioms: [propext, Classical.choice, Quot.sound]
+       11.84 real         2.86 user         2.88 sys
+          5764169728  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              392342  page reclaims
+               37036  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                2770  voluntary context switches
+               40062  involuntary context switches
+         43126723977  instructions retired
+         19899266393  cycles elapsed
+           894675008  peak memory footprint

@@ -1,19 +1,19 @@
 # Lonely runner conjecture: dense windows and the covering framework, an obstruction catalogue, a perturbation bound, a reduction, and eight runners, with leave-one-out values of tight Goddyn-Wong vectors
 
-Version 1.0.4 (31 October 2026; archived at Zenodo as [10.5281/zenodo.23823736](https://doi.org/10.5281/zenodo.23823736)). Earlier versions: version 1.0.3 [10.5281/zenodo.23445368](https://doi.org/10.5281/zenodo.23445368); version 1.0.2 [10.5281/zenodo.23439967](https://doi.org/10.5281/zenodo.23439967); version 1.0.1 [10.5281/zenodo.23436538](https://doi.org/10.5281/zenodo.23436538); version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
-Author: Vico Bonfioli (vicobonfioli@gmail.com). License: CC-BY-4.0 (`LICENSE.md`). Snapshot of 31 October 2026. The six earlier manuscripts carry the
-`\date` line of 18 October 2026 (two have none); the new note carries 31 October 2026. The manuscripts are preprints and have not been peer reviewed.
+Version 1.1.0 (9 November 2026; the Zenodo version DOI is pending and is recorded in a follow-up commit after deposit). Earlier versions: version 1.0.4 [10.5281/zenodo.23823736](https://doi.org/10.5281/zenodo.23823736); version 1.0.3 [10.5281/zenodo.23445368](https://doi.org/10.5281/zenodo.23445368); version 1.0.2 [10.5281/zenodo.23439967](https://doi.org/10.5281/zenodo.23439967); version 1.0.1 [10.5281/zenodo.23436538](https://doi.org/10.5281/zenodo.23436538); version 1.0.0 [10.5281/zenodo.23435305](https://doi.org/10.5281/zenodo.23435305); all versions [10.5281/zenodo.23435304](https://doi.org/10.5281/zenodo.23435304).
+Author: Vico Bonfioli (vicobonfioli@gmail.com). License: CC-BY-4.0 (`LICENSE.md`). Snapshot of 9 November 2026. The earlier manuscripts carry the
+`\date` line of 18 October 2026 (two have none), the note on leave-one-out values 31 October 2026, the dense-window manuscript 9 November 2026. The manuscripts are preprints and have not been peer reviewed.
 
 ## Abstract
 
 For positive integer speeds `v_1,...,v_m` let `ML(v) = sup_t min_i dist(v_i t, Z)`. The lonely runner conjecture (LRC) is
 `ML(v) >= 1/(m+1)` for all `v`. This archive contains seven manuscripts and the material behind their computed statements:
-(1) the inequality for speeds in `[1,2m]`, formalized in Lean 4 for every `m` with `2m+1` prime and for 67 values of `m <= 126`
-with `2m+1` composite; (2) a covering framework for bounded velocity windows with a classification of the small bad sets;
+(1) the inequality for speeds in `[1,2m]`, formalized in Lean 4 for every `m` with `2m+1` prime and for all 73 values of `m <= 126`
+with `2m+1` composite (so for every `2 <= m <= 126`), including `m = 94` by a tree of three pinned cover-capacity certificates; (2) a covering framework for bounded velocity windows with a classification of the small bad sets;
 (3) a catalogue of obstructions to certificate-based proofs for divisor-complete families, with a section on leave-one-out descent and on the topology of the bad region; (4) a covering bound for
 modifications of the tight instance `[1,n-1]` and its consequences; (5) a Lean-checked reduction of LRC for all `m` to
 three finite-range statements and one remaining statement (`FloorCruxU`) that is equivalent to LRC given the other three;
-(6) a Lean formalization of the case of eight runners; (7) exact leave-one-out values of tight Goddyn-Wong vectors in three regimes, with written proofs that rest on two quoted results and are not formalized. No proof of LRC is claimed.
+(6) a Lean formalization of the case of eight runners, with a theorem that depends on the standard axioms only, compiled outside the lake build; (7) exact leave-one-out values of tight Goddyn-Wong vectors in three regimes, with written proofs that rest on two quoted results and are not formalized. No proof of LRC is claimed.
 
 ## Idea in words
 
@@ -24,6 +24,25 @@ whole window is a finite hitting-set statement: no `m` velocities hit all bad se
 fractional weighting of times (weak LP duality), by a cover of the window by parts with capacities, or by exhaustive search. The
 Lean files check the certificates with the kernel. The other manuscripts study the limits of this method (barrier theorem, level drift),
 a measure argument for single and multiple modifications of `[1,n-1]`, the reduction to one crux, and the case of eight runners.
+
+## Statement of significance
+
+Tao's 2017 blog post describes the inequality `ML >= 1/(m+1)` for speeds in `[1,1.2m]` (proved in the accompanying preprint arXiv:1701.02048, as described in the post) and names the range `[1,2m]` as an interesting sub-problem. To our knowledge no paper proves it for all sets of `m` distinct speeds in `[1,2m]`, either in general or for an infinite family of `m`; Theorem 3 below does this for all `m` with `2m+1` prime, and the table of the dense-window manuscript with the case `m = 94` for all `m <= 126`. Basis: a search of 9 November 2026 (web search and arXiv abstract pages; full text read for Sungkawichai-Trakulthongchai arXiv:2604.23906 and Beck-Everett arXiv:2609.06259; Tao's blog post read in part; the statements on `[1,1.2m]` and `[1,2m]` are taken from it and were not checked in the preprint) covering Tao, the survey of Perarnau and Serra (arXiv:2409.20160), Bedert (arXiv:2511.16636), Sungkawichai-Trakulthongchai (including their Proposition 1.4, which prescribes residues modulo a large prime and not the size of the speeds), Zhang (arXiv:2608.13599), Beck-Everett, Rosenfeld (arXiv:2509.14111) and Blanco-Criado-Santos (arXiv:2603.24784). The papers of Bohman and Peng, Pomerance and Pandey were not re-read in that search and have not been re-checked against this theorem. The result is a special case of the lonely runner conjecture, by a single author, and has not been refereed. A search that finds nothing is not a proof of novelty.
+
+## Provenance
+
+The results were obtained with the assistance of an AI system (Claude, Anthropic). The questions and research directions came from Vico Bonfioli. The written proofs, programs, certificate searches and Lean sources were produced by the AI system; the Lean theorems are checked by the Lean kernel, and written arguments, Lean statements and computations were read or re-run by further sessions of the same system. The manuscripts have not been peer reviewed. The author is responsible for all claims.
+
+## What is not claimed
+
+No proof of the lonely runner conjecture. The dense-window statement is not claimed for any `m >= 127` with `2m+1` composite, and the question for all `m` is open. The manuscripts are not refereed. No Lean build was run for this release: all builds and axiom prints are those of the author's development repository, carried over as stored files, and the Lean sources are provided as is (the tree in `lean/` was not built as a whole; a module importing all range modules needs more than 20 GB of memory, and the modules are built one at a time). The eight-runner theorem without extra axioms is compiled with raw `lean` outside the lake build against 27 kernel proofs kept as object files (about 2.6 GB, not in this archive); those 27 proofs were not rebuilt for this release and no whole-lake rebuild was run. The exhaustive computation for `m = 94` (hitting sets of the 3,724 minimal bad sets) is reported in the manuscript from run reports; its programs and logs are not archived. Counts without an archived generator remain marked in `CLAIMS.tsv`.
+
+## Changes since version 1.0.4
+
+* Dense-window manuscript (`paper/dense-window`), rewritten from the working version of 3 November 2026 and extended: **(a)** the statement is now Lean-verified for every `2 <= m <= 126`, including `m = 94`; the former exceptions `{94, 97, 103, 109, 115, 122}` are closed. **(b)** `m = 97, 103, 109, 115, 122`: five new cover-capacity modules `Delta2CoverRangeS<M>` (split style, built 2026-11-03, print in `data/dense/results.tsv`). **(c)** The 16 rows that were marked L (`m = 24, ..., 55`) now have an archived print (`data/dense/results_L16.tsv`, builds of 2026-11-03); all 72 rows of Tables 1 and 2 are marked S. **(d)** `m = 94`: new Section 8 with a pinned form of the cover-capacity theorem (`floor_of_pinned_cover`, module `Delta2PinnedCover`), a three-way case split on whether 67 and 75 are speeds (`pinned_tree_three`) and three leaf modules `Delta2CoverRangeS94s416A/B/C`; final theorem `dense_floor_m94` in `Delta2CoverRangeS94` (built 2026-11-08; axioms `propext`, `Classical.choice`, `Quot.sound`; a fresh review found no defect and did not recompile). It concerns 94 distinct speeds. The exhaustive hitting-set computation for `m = 94` (11,086,881 nodes, no transversal of size 94; independent solvers and a replay checker agree) is described as corroboration and is COMPUTED. **(e)** New statement of significance and provenance paragraph; prior-art paragraph for the search of 2026-11-09; references added (Beck-Everett, Blanco-Criado-Santos; two bibliographic entries have incomplete fields, marked in `refs.bib`). **(f)** New Section 2 (outline of the proof) and Section 5 (worked examples: the prime case at `m = 5`, fractional blocking at `m = 4`, cover capacity at `m = 10`; numbers recomputed by `code/dense/src/examples/ex.rs`, output `data/dense/examples.out`).
+* New files: `lean/LRSpectrumFull/Delta2PinnedCover.lean`, `Delta2CoverRangeS94.lean`, `Delta2CoverRangeS94s416{A,B,C}.lean`, `Delta2CoverRangeS{97,103,109,115,122}.lean` (sources; comments rewritten as for the other modules; the 196 modules of 1.0.4 are code-identical to the development files, checked by a comment-stripped comparison); `code/dense/src/gen94` (generator of the leaf modules; regenerates them byte for byte, `data/dense/m94_lean/regen_check.out`); `data/dense/m94_lean/` (certificates, axiom prints); `data/dense/results_L16.tsv`; five rows added to `data/dense/results.tsv`. `code/dense/check_rows.py` now expects the exception list `{94}` and `check_rows.out`, `regen_lean.out` were regenerated (68 rows, 0 failures, 39 modules identical).
+* Eight runners: `paper/eight` now states the re-observation of 2026-11-01 of `eight_runners_unconditional_real` (raw `lean`, outside the lake build; 50 s; standard axioms only; negative control; hashes of the regenerated certificates match; the 27 kernel proofs not rebuilt); raw outputs in `data/eight/recheck_2026_11_01`; provenance paragraph added. No other mathematical content changed. We are not aware of another formal proof of the case of eight runners; this was not checked against the `formal-conjectures` repository.
+* `lean/LRSpectrumFull.lean` imports the seven new named modules. `build.sh` builds `gen94`. The other manuscripts (covering, obstructions, perturbation, reduction, leave-one-out) are unchanged.
 
 ## Changes since version 1.0.3
 
@@ -61,7 +80,7 @@ a measure argument for single and multiple modifications of `[1,n-1]`, the reduc
   `code/reduction/mdr` and `code/reduction/levelfit`, and `code/obstructions/mlcheck.rs` recomputes `ML` independently (details in
   `code/reduction/README.md`). All other values of `ML` quoted in the manuscripts were recomputed by `mlcheck` and agree.
 * Dense-window paper: for `m` in `{97, 103, 109, 115, 122}` a certificate accepted by the independent Rust checker exists but no Lean module was
-  built; for `m = 94` a three-hour search ended UNRESOLVED (exact phases stopped at node caps). The dense-window statement is not claimed for these six `m`.
+  built; for `m = 94` a three-hour search ended UNRESOLVED (exact phases stopped at node caps). The dense-window statement is not claimed for these six `m`. Superseded in version 1.1.0: all six values are now Lean-verified (see Changes since version 1.0.4).
 * Covering paper: "all computations are reproduced by committed programs" was replaced by a pointer to `code/covering`, `code/dense` and this README.
 * Perturbation paper: the localization step is cited to Zhang, arXiv:2608.13599v2, Section 2 (Lemmas 2.1, 2.2, proof of Lemma 2.4; Lemma 2.5 for `2r > n-1`).
 * Counts and tables without an archived generator are marked in the manuscripts and in `CLAIMS.tsv` ("generator not archived"; label HEURISTIC).
@@ -79,16 +98,19 @@ The effective label is the weakest label in the dependency chain.
 
 ### `paper/dense-window` (Lean-verified instances for integer speeds in `[1,2m]`)
 
-* Theorem 3, Lean declaration VERIFIED (carried over from the development repository, not rebuilt for this archive); the written proof in the paper is PROVED. If `m >= 2`, `2m+1` is prime and `v_1,...,v_m` are integers in `[1,2m]`, then `ML(v) >= 1/(m+1)`. A short consequence of known ingredients (Tao Lemma 5.1(i), the Bohman-Peng witness device, one forcing step); it gives the window `[1,2m]` for all `m` with `2m+1` prime and does not settle Problem 6 of the Perarnau-Serra survey. The case `m <= 13` is contained in published computer-assisted proofs of LRC for at most 13 speeds, and `m = 14` in an unrefereed preprint (arXiv:2609.02604 v2).
+* Theorem 3, Lean declaration VERIFIED (carried over from the development repository, not rebuilt for this archive); the written proof in the paper is PROVED. If `m >= 2`, `2m+1` is prime and `v_1,...,v_m` are integers in `[1,2m]`, then `ML(v) >= 1/(m+1)`. A short consequence of known ingredients (Tao Lemma 5.1(i), the Bohman-Peng witness device, one forcing step); it gives the window `[1,2m]` for all `m` with `2m+1` prime and does not settle Problem 6 of the Perarnau-Serra survey. The case `m <= 12` is contained in computer-assisted proofs of LRC for at most 12 speeds (13 runners; the cases of 11 to 13 runners are preprints) and `m = 13, 14` in an unrefereed preprint (arXiv:2609.02604 v2). Version 1.0.4 of this README and of the manuscript was one off in this statement; corrected here with the convention `m` speeds = `m+1` runners.
 * Conceptual abstract of Theorem 3: speeds avoiding 1 are beaten by the time `1/(2m+2)`; if 1 is a speed and no time `1/q` wins, every integer in `[2,m+1]` divides a speed, which forces `m+1` and one of `m`, `2m`, hence two speeds summing to the prime `N = 2m+1`; at times `c/N` a speed spoils the time only if it lies in the class `{s,N-s}` of `s = c^{-1}`; the `m` classes partition `[1,2m]` and the pair lies in one class, so a class is missed and its inverse is a good multiplier. A search over real times becomes a count of classes.
 * Exact checks for Theorem 3 (COMPUTED, `code/dense/src/thmd`, `data/dense/thmd`): every subset of `[1,2m]` of size at most `m` has a witness time for `m <= 12` (13,015,070 sets, 12 independent values of `m`, 8 with `2m+1` prime and 4 composite; RESOLVED-TRUE; HEURISTIC beyond `m = 12`); the class form of Lemma 4 holds for the primes `2m+1` with `m <= 9` (6 independent values, 0 exceptions). For composite `2m+1` the proof of Lemma 4 fails (smallest case `m = 7`, `V = {1,2,4,5,6,7,8}`, `ML = 2/13`, no time `c/15`); the statement for composite `2m+1` is covered only by the rows of Tables 1 and 2.
 * Proposition (fractional blocking), VERIFIED. If weights `y_j` on times `p_j/q_j` give every `x in [1,2m]` load at most `D` and `sum y_j > mD`,
   then every `v` with `0 < v_i <= 2m` satisfies `ML(v) >= 1/(m+1)`. Instances `m = 4, 7, 12, 13`, regenerated by `code/dense/src/fb`.
 * Theorem (cover capacity), VERIFIED. If parts `U_i` cover `[1,2m]` and every `T` in `U_i` with `|T| > c_i` contains a bad set and `sum c_i < m`, then
   `ML(v) >= 1/(m+1)` for every injective `v` with values in `[1,2m]`.
-* Theorem (table), VERIFIED per row. For the 67 composite values `m` of Table 1 (`m = 4, 7, 12, 13`) and Table 2 (63 rows, `m <= 126`) the inequality holds for every `m` distinct integers in `[1,2m]`.
-  Rows marked S have raw build and axiom output archived; 16 rows marked L (`m = 24, 25, 27, 28, 31, 32, 34, 37, 38, 40, 42, 43, 45, 46, 47, 55`) rest on records in `LEAN_MAP.md` without archived raw output.
-  Consequently the statement is Lean-verified for all `2 <= m <= 126` except `m` in `{94, 97, 103, 109, 115, 122}`.
+* Theorem (table), VERIFIED per row. For the 72 composite values `m` of Table 1 (`m = 4, 7, 12, 13`) and Table 2 (68 rows, `m <= 126`) the inequality holds for every `m` distinct integers in `[1,2m]`.
+  All 72 rows are marked S: the raw axiom print is archived (`data/dense/results.tsv`, `results_L16.tsv`, `dev_logs/`); for 21 rows (`m = 24, 25, 27, 28, 31, 32, 34, 37, 38, 40, 42, 43, 45, 46, 47, 55, 97, 103, 109, 115, 122`) it is a line of a results file of a guarded development build of 2026-11-03 with one local path rewritten. Builds are carried over, not repeated for this archive.
+* Proposition (pinned cover capacity), VERIFIED (`floor_of_pinned_cover`). Let `I, O` be subsets of `[1,2m]` with no element of `I` a speed and every element of `O` a speed; if parts cover `[1,2m]` minus `I u O`, every subset `T` of `U_i` with more than `c_i` elements contains `bad_j \ I` for some `j`, and `sum c_i + |I| < m`, then `ML(v) >= 1/(m+1)` for every injective `v` with values in `[1,2m]`.
+* Theorem (`m = 94`), VERIFIED (`dense_floor_m94`, module `Delta2CoverRangeS94`). Every 94 distinct positive integers bounded by 188 satisfy `ML >= 1/95`. Proof: split on whether 67 and 75 are speeds; three pinned certificates with `sum c_i + |I| = 93 < 94` (28, 33 and 34 parts). Fresh review (no defect found; modules not recompiled by the reviewer). The form for a multiset of 94 speeds follows on paper by padding and two repository lemmas and is not formalized.
+  Consequently the statement is Lean-verified for all `2 <= m <= 126`.
+* Exhaustive computation at `m = 94`, COMPUTED (corroboration, not used by the Lean proof): no set of at most 94 speeds in `[1,188]` meets all 3,724 minimal bad sets of the window at threshold `1/95` in the sense that `ML < 1/95`; exhausted search tree of 11,086,881 nodes with a separate replay checker, two further solvers (including cadical, UNSAT in 781 s; no proof certificate at `m = 94`). Programs and logs not archived.
 * Statement 8, PROVED (not formalized). Call a block `(T,L)` (`T` in `Y`, `L` in `{2,...,m}`) valid if `tau(T u L) >= |L|`, kept if valid, no larger `L` and no smaller `T` is valid. Every valid block is dominated (`T` smaller or equal, `L` larger or equal) by a kept block. Proof: extremal block (largest `L`, then smallest `T`) among the valid blocks dominating it. Finite check: `code/dense/src/st89`, `2 <= m <= 17`.
 * Statement 9, PROVED (not formalized). Let `F_k` be the kept blocks with `|T| <= k` and `R_k` those that are not reducible (`T` and `L` split into two nonempty parts, both parts valid). Then `R_k` has a cover iff `F_k` has a cover (cover: pairwise disjoint `T` parts, `L` parts with union `{2,...,m}`). Proof: a cover of least `sum |T|^2` has no reducible block, by Statement 8. Finite check: `code/dense/src/st89`, `2 <= m <= 17`.
 * Conceptual abstract of Statements 8 and 9: replace a block by the extremal block it dominates; replace a reducible block by two kept blocks of smaller `T`, which lowers the squared weight of the cover.
@@ -149,7 +171,7 @@ The effective label is the weakest label in the dependency chain.
 
 ### `paper/eight`
 
-* Theorem (eight runners), VERIFIED modulo 27 certificate axioms in the default build: for every `v : Fin 7 -> Z` with `v_i > 0`, `ML(v) >= 1/8`. A second module outside the default build proves the same statement from the standard axioms alone by importing 27 kernel proofs kept as object files; that module was not rebuilt here.
+* Theorem (eight runners), VERIFIED modulo 27 certificate axioms (module `EightRunners`; note that the root file `lean/LRSpectrumFull.lean` also imports `EightRunnersReal`, which needs generated modules not in this archive, so the default target does not build as archived; build single modules): for every `v : Fin 7 -> Z` with `v_i > 0`, `ML(v) >= 1/8`. A second module outside any lake build (`EightRunnersReal`, theorem `eight_runners_unconditional_real`) proves the same statement from the standard axioms alone by importing 27 kernel proofs kept as object files. Verification record: `eight_runners_unconditional_real` depends only on `propext`, `Classical.choice`, `Quot.sound`; re-observed on 2026-11-01 by raw `lean` assembly outside `lake build` (50 s, memory footprint 1.08 GB) with a negative control; hashes of the regenerated certificates match the records; the 27 kernel proofs were not rebuilt (`data/eight/recheck_2026_11_01`). No whole-lake rebuild was run for this release; the sources are provided as is. This is a formalization of a theorem of Rosenfeld; no new mathematics is claimed. We are not aware of another formal proof of the case of eight runners (not checked against `formal-conjectures`).
 * Theorem (seven runners, Barajas and Serra), VERIFIED.
 
 ### Heading for HEURISTIC and CONJECTURE material
@@ -160,16 +182,16 @@ All HEURISTIC and CONJECTURE statements are those marked as such above and in `C
 
 | Path | Content |
 |---|---|
-| `paper/dense-window/` | `main.tex`, `rows.tex`, `rows_ext.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
+| `paper/dense-window/` | `main.tex`, `rows.tex`, `rows_ext.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` (25 pages) |
 | `paper/lrc_covering/` | `lrc_covering.tex`, `lrc_covering.pdf` |
 | `paper/obstructions/` | `main.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
 | `paper/goddyn-wong-loo/` | `main.tex`, `refs.bib`, `main.bbl`, `LEAN_MAP.md`, `main.pdf` |
 | `paper/perturbation/` | `perturbation.tex`, `perturbation.pdf` |
 | `paper/reduction/` | `main.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
 | `paper/eight/` | `main.tex`, `refs.bib`, `LEAN_MAP.md`, `main.pdf` |
-| `lean/` | Lean sources (196 modules), `lakefile.toml`, `lean-toolchain`, `lake-manifest.json`, `README.md` (modules containing `sorry` or `axiom`) |
+| `lean/` | Lean sources (206 modules), `lakefile.toml`, `lean-toolchain`, `lake-manifest.json`, `README.md` (modules containing `sorry` or `axiom`) |
 | `code/reproduce.sh` | entry point regenerating the finite computations that have a program here |
-| `code/dense/` | `thmd` (exact checks for Theorem 3: `dense_check.rs`, `cross_check.py`, `class_check.rs`, `case_recount.rs`), `v1` (independent certificate checker), `g1`, `lg`, `cg`, `xc`, `pool` (searches), `fb` (fractional blocking checker), `yind` (Y-independence), `st89` (brute-force check of Statements 8, 9), `m94` (search driver), `build.sh`, `check_rows.py`, `regen_lean.sh`, `run_glp.sh` |
+| `code/dense/` | `thmd` (exact checks for Theorem 3: `dense_check.rs`, `cross_check.py`, `class_check.rs`, `case_recount.rs`), `v1` (independent certificate checker), `g1`, `lg`, `cg`, `xc`, `pool` (searches), `gen94` (generator of the three leaf modules for `m = 94`), `examples` (`ex.rs`, the numbers of the worked examples), `fb` (fractional blocking checker), `yind` (Y-independence), `st89` (brute-force check of Statements 8, 9), `m94` (search driver), `build.sh`, `check_rows.py`, `regen_lean.sh`, `run_glp.sh` |
 | `code/obstructions/` | `repro_O4.sh`, `mlcheck.rs` (exact `ML`), `shift_grid.py` (exact rational scan of the shifted gap), `mlexact.py`, `gwcheck.py`, `tightscan.py`, `t2box.py`, `chainparity.py`, `cornercheck.py` (check of the tight-corner proposition), `descent_check.py` (exact checks for the descent and topology section, with the standard `ML` routine and its controls), `README.md` |
 | `code/goddyn-wong-loo/` | `mlcore.rs` (exact `ML`), `loo_tables.rs`, `fixchk/`, `chkL.rs`, `chkC.rs`, `review/`, `example_check.py`, `enum_coprime_case.py`, `README.md` |
 | `code/perturbation/` | 33 Rust programs and `README.md` (commands and observed outputs) |
@@ -177,7 +199,8 @@ All HEURISTIC and CONJECTURE statements are those marked as such above and in `C
 | `code/covering/` | Rust programs for the covering paper and `README.md` |
 | `code/eight/` | generator, per-prime records, checkers, scripts |
 | `code/lean_build/` | sequential single-module Lean build script |
-| `data/dense/` | `thmd/` (outputs of the Theorem 3 checks: `window_2m.out`, `window_higher.out`, `steps.out`, `cross_check.out`, `class_check.out`, `case_recount.out`), certificates `certs/`, `results.tsv`, `check_rows.out`, `regen_lean.out`, `fb_check.out`, `yind_2_62.out`, `st89_check.out`, `dev_logs/` (raw development logs), `m94/` |
+| `data/dense/` | `thmd/` (outputs of the Theorem 3 checks: `window_2m.out`, `window_higher.out`, `steps.out`, `cross_check.out`, `class_check.out`, `case_recount.out`), certificates `certs/`, `results.tsv` (38 rows), `results_L16.tsv`, `examples.out`, `check_rows.out`, `regen_lean.out`, `fb_check.out`, `yind_2_62.out`, `st89_check.out`, `dev_logs/` (raw development logs), `m94/` (the unresolved three-hour search), `m94_lean/` (certificates, axiom prints and regeneration record of the pinned tree) |
+| `data/eight/` | `recheck_2026_11_01/`: raw outputs of the re-observation of `eight_runners_unconditional_real` |
 | `data/obstructions/` | `seeds/` and `census/` input lists, outputs of the reruns, `cornercheck.out`, `chainparity.out`, `descent_gw_loo.tsv` (input table), `descent_controls.out`, `descent_d0.out`, `descent_instances.out`, `descent_gw.out`, `descent_table.out`, `descent_strict.out` |
 | `data/goddyn-wong-loo/` | outputs of the programs of `code/goddyn-wong-loo/` and a `README.md` |
 | `data/repro_logs/` | outputs of reproduction runs |
@@ -196,7 +219,7 @@ Individual steps (run from the archive root; outputs of the runs made for this s
 
 | Step | Command | Expected output |
 |---|---|---|
-| dense rows | `bash code/dense/build.sh build/dense; python3 -I code/dense/check_rows.py build/dense/v1` | 63 rows, 0 failures; composite lists and exceptions `{94,97,103,109,115,122}` |
+| dense rows | `bash code/dense/build.sh build/dense; python3 -I code/dense/check_rows.py build/dense/v1` | 68 rows, 0 failures; composite lists and exceptions `{94}`; `regen_lean.sh`: 39 modules identical |
 | fractional blocking | `build/dense/fb check lean/LRSpectrumFull/Delta2FracBlocking.lean`; `fb selftest` | 4 certificates ACCEPT (`5/1`, `15/2`, `25/2`, `145/11`); selftest failures 0 |
 | Theorem 3 checks | `cd code/dense/src/thmd; rustc -O dense_check.rs; ./dense_check controls; ./dense_check window M 2M` for `M = 1..12`; `./dense_check steps M` for `M = 2..12`; `rustc -O class_check.rs && ./class_check`; `rustc -O case_recount.rs && ./case_recount`; `python3 -I cross_check.py` (not in `reproduce.sh`; seconds) | `failures=0` for each `M`; case counts of the unnumbered table in Section 2 of the paper (`5811 3830 266 32` at `M = 7`); `class_check`: 0 exceptions for the six primes, controls OK; `cross_check`: no set without witness for `M = 2..8`. Outputs `data/dense/thmd/` |
 | Statements 8, 9 | `build/dense/st89 control`; `st89 run M 4` for `M = 2..17` (`M = 16, 17` take 3 and 8 minutes); `st89 s0 M` | 0 undominated valid blocks, covers of `F_4` and `R_4` agree, negative control fires; singleton bad sets `{1}`, `{m+1}` only; full output `data/dense/st89_check.out` |
@@ -208,6 +231,7 @@ Individual steps (run from the archive root; outputs of the runs made for this s
 | perturbation | see `code/perturbation/README.md` (`perturb_coverk 2 5 100` is not in `reproduce.sh`; about 2 hours) | e.g. `perturb_degen`: 65504 / 43849 / 62816; `perturb_cfire 2000 10`: 331291 at `k = 1`, 0 for `k = 2..10` |
 | covering | see `code/covering/README.md` | e.g. `identchk 4 90`: 11528 instances, control fires 3280 times; `tmpl63 19`: 969154513 nodes, template does not exist |
 | eight hashes | `bash code/eight/stage/build_generator.sh; bash code/eight/stage/repro_all.sh` | `P<p> REPRODUCED <sha256>` for 27 primes |
+| `m = 94` leaves | `build/dense/gen94 gen data/dense/m94_lean/certs/leafA_state416.cert S94s416A out.lean 4` (likewise `leaf_s416B67.cert S94s416B ... 2`, `leaf_s416C67.cert S94s416C ... 4`); `gen94 verify <module>` | regenerated modules identical to `lean/LRSpectrumFull/Delta2CoverRangeS94s416{A,B,C}.lean`; output `data/dense/m94_lean/regen_check.out` |
 | Lean | `cd lean && bash ../code/lean_build/gbound_build.sh Delta2CoverRangeS66` | not run for this snapshot; needs network for Mathlib and about 10 GB per worker; never a bare `lake build` |
 
 Manuscripts: `cd paper/<name> && latexmk -pdf main.tex` (`lrc_covering.tex`, `perturbation.tex` for the two papers not named `main.tex`).
@@ -223,7 +247,8 @@ The complete tables (paper item, label, Lean declaration, module) are `paper/den
 | dense, Theorem 3 | `dense_floor_of_prime` (`Delta2DenseWindow`); case 2 `floor_of_not_dvd_le` (`Delta2DigitGreedy`); pair lemma `floor_of_pairsum_prime` (`Delta2Pigeonhole`); class form `floor_of_missed_class` (`Delta2DenseWindow`) | Lean declaration VERIFIED, carried over, not rebuilt; axiom print recorded, raw output in `data/dense/dev_logs`; written proof PROVED |
 | dense, fractional blocking | `floor_of_frac_blocking` (`Delta2FracBlocking`), `dense_floor_m4,7,12,13` | VERIFIED; prints in `dev_logs` |
 | dense, cover capacity | `floor_of_cover_capacity` (`Delta2CoverCapacity`) | VERIFIED |
-| dense, rows | `dense_floor_m<m>`, `dense_floor_m<m>_split` (`Delta2CoverRange*`) | VERIFIED; 47 rows with archived prints, 16 rows (L) with records only |
+| dense, rows | `dense_floor_m<m>`, `dense_floor_m<m>_split` (`Delta2CoverRange*`) | VERIFIED; all 72 rows with archived prints (21 from development results files of 2026-11-03) |
+| dense, pinned cover capacity, `m = 94` | `floor_of_pinned_cover`, `pinned_tree_three` (`Delta2PinnedCover`); `dense_floor_m94` (`Delta2CoverRangeS94`; leaves `Delta2CoverRangeS94s416A/B/C`) | VERIFIED; print in `data/dense/m94_lean`; fresh review, not recompiled by the reviewer |
 | covering, equivalence | `floor_of_no_hitting_set`, `not_floor_of_hitting_set` | VERIFIED |
 | covering, surplus | `floor_of_surplus` | VERIFIED |
 | obstructions, barrier | `goodSet_countable`, `goodSet_null`, `integral_le_sum_badSet`, `lt_ML_of_integral_unionBound` (`RoomA4Barrier`) | VERIFIED |
@@ -235,9 +260,10 @@ The complete tables (paper item, label, Lean declaration, module) are `paper/den
 | perturbation | `exists_interval_uncovered`, `exists_lonely_time`, `lonely_of_criterion_c'`, `exists_deleted_fraction` | VERIFIED (declaration list in the paper) |
 | reduction | `universalFloor_of_four_atoms_U` (`RoomA4Compress`), `floorCruxU_iff_universalFloor` (`RoomFCUErdos`) | VERIFIED |
 | eight | `eight_runners_unconditional` (`EightRunners`) | VERIFIED modulo 27 axioms `lemma7Check_seven_p<p>_verified` (`EightCert27`) |
+| eight, standard axioms only | `eight_runners_unconditional_real` (`EightRunnersReal`) | VERIFIED by raw `lean` outside `lake build`; re-observed 2026-11-01; the 27 kernel proofs not rebuilt; imports modules `E8Stage.P<p>.Asm` that are not in this archive |
 
 Modules with `sorry` bodies or `axiom` declarations are listed in `lean/README.md`. Nothing was built when this archive was assembled; whether the
-tree builds as archived (comments rewritten, 196 of the development modules) is untested.
+tree builds as archived (comments rewritten, 206 of the development modules) is untested. The root file `lean/LRSpectrumFull.lean` imports `EightRunnersReal`, which imports modules that are not in the archive, so the default target does not build as it stands; single modules are built with `code/lean_build/gbound_build.sh`.
 
 ## Data provenance
 

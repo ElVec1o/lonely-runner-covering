@@ -47,20 +47,25 @@ m	module	parts	max	times	sum_cap	v1	status
 91	CoverRangeS91	36	8	149	90	ACCEPT	OK
 92	CoverRangeS92	37	9	151	91	ACCEPT	OK
 93	CoverRangeS93	31	9	160	92	ACCEPT	OK
+97	CoverRangeS97	33	11	175	96	ACCEPT	OK
 100	CoverRangeS100	39	9	171	99	ACCEPT	OK
 101	CoverRangeS101	37	9	169	100	ACCEPT	OK
 102	CoverRangeS102	38	9	173	101	ACCEPT	OK
+103	CoverRangeS103	38	10	174	102	ACCEPT	OK
 104	CoverRangeS104	39	9	174	103	ACCEPT	OK
 106	CoverRangeS106	38	8	179	105	ACCEPT	OK
 107	CoverRangeS107	37	9	183	106	ACCEPT	OK
 108	CoverRangeS108	36	9	183	107	ACCEPT	OK
+109	CoverRangeS109	42	9	182	108	ACCEPT	OK
 110	CoverRangeS110	38	9	187	109	ACCEPT	OK
 112	CoverRangeS112	42	9	186	111	ACCEPT	OK
+115	CoverRangeS115	46	9	187	114	ACCEPT	OK
 117	CoverRangeS117	43	9	196	116	ACCEPT	OK
 118	CoverRangeS118	43	9	199	117	ACCEPT	OK
 121	CoverRangeS121	47	9	203	120	ACCEPT	OK
+122	CoverRangeS122	47	9	202	121	ACCEPT	OK
 123	CoverRangeS123	40	9	214	122	ACCEPT	OK
 124	CoverRangeS124	48	9	204	123	ACCEPT	OK
 126	CoverRangeS126	41	9	216	125	ACCEPT	OK
-composite m in [2,62]: 33, covered by rows+Table1: True; composite in [63,126]: 40, exceptions [94, 97, 103, 109, 115, 122]: True
-rows 63, failures 0
+composite m in [2,62]: 33, covered by rows+Table1: True; composite in [63,126]: 40, exceptions [94]: True
+rows 68, failures 0

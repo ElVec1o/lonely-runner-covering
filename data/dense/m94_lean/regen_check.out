@@ -1,0 +1,21 @@
+gen A rc=0
+header: I=[] O=[67, 75] BUDGET=93 parts=28 sum_cap=93 sum_cap+|I|=93
+SELF-CHECK OK (from emitted text)
+gen94: N(witness times)=167 t(parts)=28 maxpart=10 cap-subsets-checked=6210 sum_c=93 pins=2 bytes=29423
+leaf A IDENTICAL
+VERIFY OK lean/LRSpectrumFull/Delta2CoverRangeS94s416A.lean
+gen94: N(witness times)=167 t(parts)=28 maxpart=10 cap-subsets-checked=6210 sum_c=93 pins=2 bytes=29423
+gen B rc=0
+header: I=[67] O=[] BUDGET=92 parts=33 sum_cap=92 sum_cap+|I|=93
+SELF-CHECK OK (from emitted text)
+gen94: N(witness times)=162 t(parts)=33 maxpart=10 cap-subsets-checked=3659 sum_c=92 pins=1 bytes=43506
+leaf B IDENTICAL
+VERIFY OK lean/LRSpectrumFull/Delta2CoverRangeS94s416B.lean
+gen94: N(witness times)=162 t(parts)=33 maxpart=10 cap-subsets-checked=3659 sum_c=92 pins=1 bytes=43506
+gen C rc=0
+header: I=[75] O=[67] BUDGET=92 parts=34 sum_cap=92 sum_cap+|I|=93
+SELF-CHECK OK (from emitted text)
+gen94: N(witness times)=160 t(parts)=34 maxpart=10 cap-subsets-checked=4042 sum_c=92 pins=2 bytes=30576
+leaf C IDENTICAL
+VERIFY OK lean/LRSpectrumFull/Delta2CoverRangeS94s416C.lean
+gen94: N(witness times)=160 t(parts)=34 maxpart=10 cap-subsets-checked=4042 sum_c=92 pins=2 bytes=30576
