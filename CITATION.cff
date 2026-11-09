@@ -5,7 +5,7 @@ abstract: >-
   Seven manuscripts on the lonely runner conjecture (dense velocity windows, obstructions to certificate-based
   proofs, perturbations of the tight instance, a reduction to a single crux, a covering framework, eight
   runners, and leave-one-out values of tight Goddyn-Wong vectors), with the Lean 4 sources they cite, and the programs and certificates that regenerate their finite
-  computations. Version 1.1.0 extends the dense-window manuscript: the inequality for m distinct speeds in
+  computations. Versions 1.1.0 and 1.1.1 extend the dense-window manuscript: the inequality for m distinct speeds in
   [1,2m] is Lean-verified for every m with 2 <= m <= 126 (including m = 94, by a tree of three pinned
   cover-capacity certificates), and the eight-runner manuscript records a Lean theorem with the standard
   axioms only, compiled outside the lake build. Statements carry the labels given in each manuscript;
@@ -16,8 +16,10 @@ authors:
     given-names: Vico
     email: vicobonfioli@gmail.com
 license: CC-BY-4.0
-version: 1.1.0
-doi: 10.5281/zenodo.24088074
+version: 1.1.1
+# The version DOI of 1.1.1 is pending; it is recorded here in a follow-up commit after deposit.
+# Until then the field doi carries the concept DOI (all versions).
+doi: 10.5281/zenodo.23435304
 identifiers:
   - type: doi
     value: 10.5281/zenodo.24088074
@@ -41,7 +43,7 @@ identifiers:
     value: 10.5281/zenodo.23435304
     description: All versions (concept DOI)
 type: software
-date-released: 2026-11-09
+date-released: 2026-11-10
 keywords:
   - lonely runner conjecture
   - Lean 4
