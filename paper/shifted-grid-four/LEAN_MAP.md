@@ -1,0 +1,67 @@
+# LEAN_MAP: paper/shifted-grid-four/NOTE.md
+
+Lean project: `lean/` (Lean 4.30.0, Mathlib as pinned in `lean/lake-manifest.json`).
+Modules are `LRSpectrumFull.<Module>` in `lean/LRSpectrumFull/<Module>.lean`. Names below omit the prefix `LRSpectrumFull.`.
+None of the modules below is imported by the root file `lean/LRSpectrumFull.lean`; build single modules, for example
+`cd lean && bash ../code/lean_build/gbound_build.sh TPFourFinal`. No Lean build was run for this archive. The builds and
+axiom prints are those of the development repository; the observations of 2026-11-12 were made by a fresh review session.
+
+## Main theorem
+
+`TPp_four : TPp 4` in `TPFourFinal.lean` (imports `TPFourCase3`). Definitions (`TPSmall.lean`):
+
+    noncomputable def tpDist (x : R) : R := |x - round x|
+    def TPp (m : N) : Prop :=
+      forall (v : Fin m -> N), (forall i, 0 < v i) -> Function.Injective v -> forall s : Fin m -> Z,
+        exists t : R, forall i, 1 / ((m : R) + 1) <= tpDist ((v i : R) * t + (s i : R) / ((m : R) + 1))
+
+At `m = 4` the phases are `s_i/5` with `s_i` an integer (the grid (1/5)Z) and the threshold is `1/5`; the speeds are positive
+and pairwise distinct (`Function.Injective v`); the inequality is non-strict.
+
+Axioms, observed by a fresh review session on 2026-11-12 (`#print axioms`, text of the session):
+
+    'LRSpectrumFull.TPp_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+    'LRSpectrumFull.five_runners' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Review verdict: SOUND-WITH-CAVEATS (the caveats concern wording, scope and novelty; see `NOTE.md`). The same session
+re-elaborated the 15 `TPFour*` sources against the built object files (exit 0 for each; linter warnings only in `TPFourCase3`).
+
+## Import closure of `TPFourFinal` inside the project (25 modules)
+
+Listed in dependency-free order by group. "In 1.1.1" means the file was already in the archive (byte-identical to the
+development file, checked for this release); "added in 1.2.0" means it is new in this release.
+
+| Module | Role | State in this archive |
+|---|---|---|
+| `NearestInteger`, `MaxLoneliness` | base definitions (`nearestIntDist`, `gap`, `ML`) | in 1.1.1 |
+| `Delta2FiveRunners`, `Delta2PFLMaster`, `Delta2PFLDigits`, `Delta2PFLAssembly`, `Delta2GridBridge` | `five_runners`: unshifted four-speed statement, `1/5 <= nearestIntDist (d i * t)` (Barajas-Serra prime filtering at p = 5) | in 1.1.1 |
+| `TPSmall` | `tpDist`, `TPp`, `TPp_one`, `TPp_two` | added in 1.2.0 |
+| `TPThreeR` | `caseR` (three speeds `a, b, a+b`, phases `s/4`) | added in 1.2.0 |
+| `TPPrime` | `TP_prime_free` (pigeonhole at `t = j/p`), Lemma 2 of the note | added in 1.2.0 |
+| `TPFourBridge`, `TPFourLocal`, `TPFourReduce`, `TPFourFive`, `TPFourArcs`, `TPFourCoset`, `TPFourCoincide`, `TPFourCase21`, `TPFourGlue`, `TPFourWindow`, `TPFourTight`, `TPFourLemma7`, `TPFourHub`, `TPFourCase3`, `TPFourFinal` | the 15 modules of the proof of `TPp_four` | added in 1.2.0 |
+
+Outside the project the closure imports only `Mathlib` and Mathlib sub-modules. A text search of the 25 modules finds no
+`sorry`, `native_decide`, `ofReduceBool`, `implemented_by`, `extern`, `macro`, `elab` or `axiom` declaration; the only
+declaration-level hit of the review is `instance fact_prime_five_tp4 : Fact (Nat.Prime 5)` in `TPFourLocal`. The `set_option`
+lines of the closure are `maxHeartbeats`, `maxRecDepth` (`Delta2PFLDigits`) and `linter.unusedSimpArgs false` (`TPSmall`, `TPThreeR`).
+The finite checks in the closure are kernel `decide`; those of the 15 `TPFour*` modules are over `ZMod 5` and small `Fin` types.
+
+## Smaller cases of the same family (context)
+
+`TPp m` for `m = 1, 2, 3` is the same statement with phases `s/(m+1)` and threshold `1/(m+1)`. These modules were built on
+2026-11-03 in the development repository; the axiom print of each was recorded then and is quoted from the development
+record, not re-observed for this archive (except `TPp_one`, `TPp_two`, observed by the review session of 2026-11-12).
+
+| Statement | Declaration (module) | Recorded print |
+|---|---|---|
+| `TPp 1`, `TPp 2` | `TPp_one`, `TPp_two` (`TPSmall`) | `[propext, Classical.choice, Quot.sound]`; re-observed 2026-11-12 |
+| `TPp 3` | `TPp_three` (`TPThreeA`, imports `TPThreeRed`) | `[propext, Classical.choice, Quot.sound]` (development record of 2026-11-03) |
+| reduction of `TPp 3` to `CaseA` | `TPp_three_of_caseA` (`TPThreeRed`) | same |
+| `caseF`: sorted primitive triples `c <= 15`, any phases | `caseF` (`TPFMain`, `TPFCheck`, `TPFData`) | same; the 26 chunk lemmas of `TPFData` are axiom-free |
+| `caseR` | `caseR` (`TPThreeR`) | same |
+| `TP_prime_free` | `TPPrime` | same |
+
+`TPp 3` is a formalization of a case known from the literature on the shifted lonely runner conjecture (three moving runners;
+Cslovjecsek, Malikiosis, Naszodi and Schymura, as noted in the development record; not re-read for this release). `TPFData.lean`
+is generated by a C program of the development repository that is not archived (header: "do not edit"); it is a table checked by
+`decide +kernel` and is not regenerated here. `TPThreeRed` through `TPFData` are redundant for `TPp_four`: they are not in its import closure.

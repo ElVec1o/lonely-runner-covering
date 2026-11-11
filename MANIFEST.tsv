@@ -1,11 +1,11 @@
 file	role	sha256	needed_by
 .gitignore	archive metadata	874cbba6bfcf26cc82c83adc2ff2bdbcc80b19143b07897afec77ac5be657f57	all
-.zenodo.json	archive metadata	92441797a62376116502689618d4cb76c2121ae896aff45a1ed1e95ac406b1cd	all
-CITATION.cff	archive metadata	c0698a8dc08eafca65786cb1039bfd4e4e9f32a371ae69ffb2e352879c10f2c9	all
-CLAIMS.tsv	archive metadata	7731529c11d1b05e71ec13b56273cedd486135b0ab6c1ea2ca21e6e99d8bf048	all
+.zenodo.json	archive metadata	3c67f8b7fc905aa9b900daba3f776e07f2d6d65167c041832ee11ee1657cc39f	all
+CITATION.cff	archive metadata	b22e9507abc8c847aec7a55f05ae9d3521a56cfc261185f77d808697060a82db	all
+CLAIMS.tsv	archive metadata	5a15f91cb5f222e8468c71a8e857ab99e49d74fe219ce66a9e80146b566ec940	all
 LICENSE.md	archive metadata	580f3e12d5eb0e2bced0d37849ab7e5feb300d61ace4602438ed8348eea1e809	all
-README.md	archive metadata	1f60356f4f6f9eae362cef6ccfb0bedd956e76f84833e620c50ce7a85a34df18	all
-RELEASE_CHECK.md	archive metadata	88d686cf09c6738ebee3a34d444688481a237585e0272a3049aa0e82cb01a03e	all
+README.md	archive metadata	c0e618f964ee5731c5b2ad85904e5f2023bda486fc80d08db36e66729ae0fc8c	all
+RELEASE_CHECK.md	archive metadata	db7ec1ee2f48da68801865bedc2c4d21723f5dbd5cdc950bf7cd50a55f626c78	all
 code/covering/README.md	covering-paper program	e94aabe38ff994e82df30aa02ed308fd7e5fd31fbfba2c6f6b286ef446ff2bab	lrc_covering
 code/covering/alphaex.rs	covering-paper program	0c146b10567d57f007c73035cf5f795ddbad7a30561db8a51b6809c79d202cd7	lrc_covering
 code/covering/bad_triple_classify.rs	covering-paper program	f46ec0b46c092d67ed47e099e867017c896025e47c2d622eb82cdd4064143ca2	lrc_covering
@@ -729,11 +729,34 @@ lean/LRSpectrumFull/Subtorus.lean	Lean module (import dependency)	91efb537e9b955
 lean/LRSpectrumFull/SubtorusMono.lean	Lean module (import dependency)	0d8aaa693a4d10be277ed6214b5c7943bfc062eb8eed5ce7eaaff9f638ecc43f	dense-window,reduction,eight
 lean/LRSpectrumFull/Sweep.lean	Lean module (import dependency)	64744f661387b10561779e51fa4728753d1ef44c0248d26e3ff1cda116f3730b	dense-window,reduction,eight
 lean/LRSpectrumFull/T2Sub.lean	Lean module cited by reduction	20329c0ce3249719bac88718d0d2112f8d2318236ddcf4e0e368bd4c3326020f	reduction
+lean/LRSpectrumFull/TPFCheck.lean	Lean module cited by shifted-grid-four (added 1.2.0)	be99caf45840fb39d256141e19c4f1fdc3f1ede8f0f689dd568edc0f6aeadfad	shifted-grid-four
+lean/LRSpectrumFull/TPFData.lean	Lean module cited by shifted-grid-four (added 1.2.0)	0c7f1a03ae4efcb1c82b51731a91d45eedb062a062dc94ee6dfe82a4733716d9	shifted-grid-four
+lean/LRSpectrumFull/TPFMain.lean	Lean module cited by shifted-grid-four (added 1.2.0)	8ecec7e15fe5248f4bdaa114ea36dd017b1dcc2e07a5a6f5515fea2ce3e8449f	shifted-grid-four
+lean/LRSpectrumFull/TPFourArcs.lean	Lean module cited by shifted-grid-four (added 1.2.0)	0d985a5e4023a28bd71cc87aa2d3c277b7115b7f9e36603a849891a075ee80ff	shifted-grid-four
+lean/LRSpectrumFull/TPFourBridge.lean	Lean module cited by shifted-grid-four (added 1.2.0)	2481604b8976dafd14f6774c4b78eba3a85b5d954a858c31d642b7549bd6a507	shifted-grid-four
+lean/LRSpectrumFull/TPFourCase21.lean	Lean module cited by shifted-grid-four (added 1.2.0)	29573af0551dfe031507485612de50a19c1b6938b432252620b2c85eba0ec61f	shifted-grid-four
+lean/LRSpectrumFull/TPFourCase3.lean	Lean module cited by shifted-grid-four (added 1.2.0)	740c0d650d7233676a1d73b0fd094662ee6c27a7af648d418a15fe12bd9cd111	shifted-grid-four
+lean/LRSpectrumFull/TPFourCoincide.lean	Lean module cited by shifted-grid-four (added 1.2.0)	c10ec2ac3427defc0d517c924f52155a997690412bd89fdd97a9641c289a11dc	shifted-grid-four
+lean/LRSpectrumFull/TPFourCoset.lean	Lean module cited by shifted-grid-four (added 1.2.0)	c108349cdd47401e6240e50d3979481eeda10b43c7c94d18db8cfea4013397e9	shifted-grid-four
+lean/LRSpectrumFull/TPFourFinal.lean	Lean module cited by shifted-grid-four (added 1.2.0)	380381d69d5f213d12eb8a107950349688b497eb3b3c8c2be469f14362df7a41	shifted-grid-four
+lean/LRSpectrumFull/TPFourFive.lean	Lean module cited by shifted-grid-four (added 1.2.0)	09c6fef4e2ccbf629fe8ed6493dcf47b9266cacfdeaaa33c5c292c6e41e2be95	shifted-grid-four
+lean/LRSpectrumFull/TPFourGlue.lean	Lean module cited by shifted-grid-four (added 1.2.0)	cb1b147f5c5467327dcf1f0a001869bcba3df89e403c5879999ca8cc326a94df	shifted-grid-four
+lean/LRSpectrumFull/TPFourHub.lean	Lean module cited by shifted-grid-four (added 1.2.0)	6b230d079ceb0c6eccb53b3fe2ed889f26d5af31872396ce6a08b76b831bf9f2	shifted-grid-four
+lean/LRSpectrumFull/TPFourLemma7.lean	Lean module cited by shifted-grid-four (added 1.2.0)	d353c277dbdc80576f93c36053b95dcdad40cf2215fc26c3353b14e894f2bdcc	shifted-grid-four
+lean/LRSpectrumFull/TPFourLocal.lean	Lean module cited by shifted-grid-four (added 1.2.0)	5737c9faab606a4cebe1adfcc635a986f4315bc4cde3aab5d53b4f8035b59acb	shifted-grid-four
+lean/LRSpectrumFull/TPFourReduce.lean	Lean module cited by shifted-grid-four (added 1.2.0)	b53f3bb5e8a31305f047890b3c64c526e40b52bfeed24a561e7238f70d5c1d01	shifted-grid-four
+lean/LRSpectrumFull/TPFourTight.lean	Lean module cited by shifted-grid-four (added 1.2.0)	f146482e9973d0b1af98d95268ba1cfba43f2034de12e73a7f7b135c12bccac8	shifted-grid-four
+lean/LRSpectrumFull/TPFourWindow.lean	Lean module cited by shifted-grid-four (added 1.2.0)	1e0c351d3c6b260a6970155e21712b5044f207f883b83ebf3c0c8c77eda5b19f	shifted-grid-four
+lean/LRSpectrumFull/TPPrime.lean	Lean module cited by shifted-grid-four (added 1.2.0)	55382b2a3d059ac25780d5b70d53adaffd4e4653f5afb7037e938459fa1ced15	shifted-grid-four
+lean/LRSpectrumFull/TPSmall.lean	Lean module cited by shifted-grid-four (added 1.2.0)	f843d6df1cf6844f5449d9cc0a4080c890dccce56f260cd8857d64728f649d6b	shifted-grid-four
+lean/LRSpectrumFull/TPThreeA.lean	Lean module cited by shifted-grid-four (added 1.2.0)	4688e62daebf92b43d10863446c0713d6bcd1514cbbc147f8b5963c7f2460333	shifted-grid-four
+lean/LRSpectrumFull/TPThreeR.lean	Lean module cited by shifted-grid-four (added 1.2.0)	122fbe2b8d3aee912da80e05eb163a22da79f2d86590c4efcbd9a5183d987314	shifted-grid-four
+lean/LRSpectrumFull/TPThreeRed.lean	Lean module cited by shifted-grid-four (added 1.2.0)	f6f759a5278c7f3303dd860dccdae0acf92b65ec7f11629cce46e83286f4a77c	shifted-grid-four
 lean/LRSpectrumFull/TripleNormalize.lean	Lean module (import dependency)	8861b436c558ec63292a0e756afa08cc100f06c73f382522692c25242d1299dc	dense-window,reduction,eight
 lean/LRSpectrumFull/TwoRunnerBound.lean	Lean module (import dependency)	76752af53c13086f94f1ffd0dfb26cb0d6e7c83c2a0f4a8378bcef4cb5302318	dense-window,reduction,eight
 lean/LRSpectrumFull/WeylNormalize.lean	Lean module (import dependency)	f88d0f07734a4c51cc0daedad0ab6f3ede1c47a47570d9b723f5d2487a085661	dense-window,reduction,eight
 lean/LRSpectrumFull/WitnessInt.lean	Lean module (import dependency)	ed635ddfd1b8479014a722bb7d876cc89e0104709558a1f09c2d3140748a8654	dense-window,reduction,eight
-lean/README.md	Lean project file	2c857d59a1049a91b4b09f2c11ea309d5a3ba0b5da45607db08890359fc9b8ce	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
+lean/README.md	Lean project file	bf7e8eec5f3c3cebcd92035876a6330153008e43d58e0eba7fd45357355573fd	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lake-manifest.json	Lean project file	32759ebe905d55a24671e475ec98fca39dca76211b52255dc1059894b27d6b6a	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lakefile.toml	Lean project file	a5b3287075881d955e1f327a6fdbe9994f386c4a2d0272d144f29c22921cf834	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lean-toolchain	Lean project file	54727eec5cba149c18842e6deb5c41b369d66455c93ce135d7d5347c782b2325	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
@@ -765,3 +788,5 @@ paper/reduction/LEAN_MAP.md	Lean map (label to declaration)	de853e885e88188c447c
 paper/reduction/main.pdf	manuscript PDF	c83eed8b768e46d4e16dcc78976d3c906ddc93d960ebdfedf3f096965c881383	reduction
 paper/reduction/main.tex	manuscript source	9e82d3d85269fb4ebacc9ddbe3ea2ed1d556d7f294e45d8355c07a9559648f80	reduction
 paper/reduction/refs.bib	bibliography	e9ef0b4fff9bfeba4c5e307ac32038af2e46f3392cc285c8352216902f340b68	reduction
+paper/shifted-grid-four/LEAN_MAP.md	Lean map (label to declaration)	0cb5eed04b2c5ec91a95e59c3e8703d5ac49f8f1f899bdb6f4265e2fdf632808	shifted-grid-four
+paper/shifted-grid-four/NOTE.md	note (Markdown, added 1.2.0)	a4b3d4b14b8c8207853a2983d7f2c8294f4e6da38769b27b9ceaaffaca1277c8	shifted-grid-four

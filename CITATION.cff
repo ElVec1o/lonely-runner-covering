@@ -8,7 +8,10 @@ abstract: >-
   computations. Versions 1.1.0 and 1.1.1 extend the dense-window manuscript: the inequality for m distinct speeds in
   [1,2m] is Lean-verified for every m with 2 <= m <= 126 (including m = 94, by a tree of three pinned
   cover-capacity certificates), and the eight-runner manuscript records a Lean theorem with the standard
-  axioms only, compiled outside the lake build. Statements carry the labels given in each manuscript;
+  axioms only, compiled outside the lake build. Version 1.2.0 adds a Markdown note with a hand proof and a
+  Lean proof of a special case of a known theorem (four moving runners, phases restricted to (1/5)Z; the
+  shifted conjecture for four moving runners, with arbitrary real phases, was proved with computer assistance
+  by Alcantara, Criado and Santos, arXiv:2506.13379). Statements carry the labels given in each manuscript;
   several results are finite computations that are not formalized. No proof of the lonely runner conjecture
   is claimed. The manuscripts have not been peer reviewed.
 authors:
@@ -16,9 +19,10 @@ authors:
     given-names: Vico
     email: vicobonfioli@gmail.com
 license: CC-BY-4.0
-version: 1.1.1
+version: 1.2.0
+# The version DOI of 1.2.0 is pending; it is recorded here in a follow-up commit after deposit.
 # Until then the field doi carries the concept DOI (all versions).
-doi: 10.5281/zenodo.24089698
+doi: 10.5281/zenodo.23435304
 identifiers:
   - type: doi
     value: 10.5281/zenodo.24089698
@@ -45,7 +49,7 @@ identifiers:
     value: 10.5281/zenodo.23435304
     description: All versions (concept DOI)
 type: software
-date-released: 2026-11-10
+date-released: 2026-11-12
 keywords:
   - lonely runner conjecture
   - Lean 4
