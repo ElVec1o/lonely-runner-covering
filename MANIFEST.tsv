@@ -1,11 +1,11 @@
 file	role	sha256	needed_by
 .gitignore	archive metadata	874cbba6bfcf26cc82c83adc2ff2bdbcc80b19143b07897afec77ac5be657f57	all
-.zenodo.json	archive metadata	bbc71c1a628236fc76ea66bb6bedf6da57ee9032d7bc2d2e9b44eb39d5726645	all
-CITATION.cff	archive metadata	5ca8ee913d6edb0209842114f2febbbf29f16c73469624ca4e778402d4983720	all
-CLAIMS.tsv	archive metadata	e2723ab45dfddc5a427438576858d8e15b4aaf134ca96fecf37a349ca64e408f	all
+.zenodo.json	archive metadata	a12c9af5249ee5d1d057d39cb0324cf80a97db8d243338171688228e32f7242c	all
+CITATION.cff	archive metadata	45d4047c0dded82c07540aa9d8a67fdb653c687e967df9cef992567fbc6c7c63	all
+CLAIMS.tsv	archive metadata	f38126298f1d5f8e298dcf80f39deba23515b6c7ec4d33d5d1cda34c7e50e5e3	all
 LICENSE.md	archive metadata	580f3e12d5eb0e2bced0d37849ab7e5feb300d61ace4602438ed8348eea1e809	all
-README.md	archive metadata	5837256fd5c4a9e157a6ffe231dbd7f3e3a1423387857a6f22ec711ee8feb550	all
-RELEASE_CHECK.md	archive metadata	50a16c5af6e98a301b8ddc6607158aa618a5f9466bdc7e9327182eb9c0026962	all
+README.md	archive metadata	0e9b9f9713cfcde17e9267da133b830340226a3bc54c456c1d2b1f5271db9992	all
+RELEASE_CHECK.md	archive metadata	e79c27d449f1a96f6c9101293f6c406e8f8113963d622a75f24aec64129dc129	all
 code/covering/README.md	covering-paper program	e94aabe38ff994e82df30aa02ed308fd7e5fd31fbfba2c6f6b286ef446ff2bab	lrc_covering
 code/covering/alphaex.rs	covering-paper program	0c146b10567d57f007c73035cf5f795ddbad7a30561db8a51b6809c79d202cd7	lrc_covering
 code/covering/bad_triple_classify.rs	covering-paper program	f46ec0b46c092d67ed47e099e867017c896025e47c2d622eb82cdd4064143ca2	lrc_covering
@@ -250,6 +250,11 @@ code/reduction/t2sweep/Cargo.toml	reduction program	5360c87da9a244a2ff5906efd7ca
 code/reduction/t2sweep/src/main.rs	reduction program	4a79484fdb5ff72531a779f9da23d130af573b230fad691179b41fc14fac3893	reduction,obstructions
 code/reduction/t2sweep/uncovered.txt	reduction program	0ccc41d4a344285fee14c8b10a38ca134e8a9c6378b8982f01e5fb56eefa884d	reduction,obstructions
 code/reproduce.sh	reproduction entry point	761dc26836971bf86529951aed1f577212edfc8990327114d70ec4927736a4fc	all
+code/rq-census/Cargo.lock	census program or script (added 1.4.0)	4f8c343efa72aacab549fe962283eab44e9fa91e24d1353e4d9b0d95bdad0c5f	shifted-real-four-classes
+code/rq-census/Cargo.toml	census program or script (added 1.4.0)	216569853f793b57059b1bd5f2d83ffc9305b376a099f7e92822b6ff881e27dc	shifted-real-four-classes
+code/rq-census/README.md	census program or script (added 1.4.0)	69c56e78d00ab0a8a10fabd1f09b934117ebd75b8e4d129d1674e02d9778de39	shifted-real-four-classes
+code/rq-census/check60.py	census program or script (added 1.4.0)	b18d37dfb6ef2f176d9a5344a1ecf0fb542d3370b4b413c3d143b135c5f89e30	shifted-real-four-classes
+code/rq-census/src/main.rs	census program or script (added 1.4.0)	d525ff6a9e522d46c516b894dfd619a8d7b4178dff744a322bd55eddea65b421	shifted-real-four-classes
 data/dense/certs/m100.g1.sol	dense-window certificate	25c69a025e456858f9d94990c152999c3ba5a3ed24998b49d4aabead584085fe	dense-window,lrc_covering
 data/dense/certs/m101.g1.sol	dense-window certificate	7f96c7008a46fe6502a3fb9b94526ce09e66687951947fe911374c2550f38bdb	dense-window,lrc_covering
 data/dense/certs/m102.g1.sol	dense-window certificate	52a75b52f2a6369a5c4db6eec8629acceeb4a345a87018eb6496135e26ff2501	dense-window,lrc_covering
@@ -526,6 +531,11 @@ data/repro_logs/tmpl63_m10.txt	output of a reproduction run made at assembly	c4c
 data/repro_logs/tmpl63_m13.txt	output of a reproduction run made at assembly	87ac74c53d944bcd12a575c1d0416ee5c6c9e86a8d19f1dc858b60e36ce2830f	all
 data/repro_logs/tmpl63_m16.txt	output of a reproduction run made at assembly	e6dcf5530d31e9a6367aefc35276c42a992d332a5128d25e88b191bf4d96113d	all
 data/repro_logs/tmpl63_m19.txt	output of a reproduction run made at assembly	60905fde9a26aff3846a3bf302382a91a42275ebd18b957f7dd917c4aa1b96e4	all
+data/rq-census/main195.out	census output (added 1.4.0)	9f9f59738baafe4144a90f362304fb58521cde2502ad1a2acd74302fece25168	shifted-real-four-classes
+data/rq-census/nogcd195.out	census output (added 1.4.0)	2721ecaf9ab3a65256b6f155bb7caeec3feed4fb1b203b6b0eb4a7ac9f4388ba	shifted-real-four-classes
+data/rq-census/py60.out	census output (added 1.4.0)	2b95d9ab732c7b8bce061d8536c4f0d094d24d1d0c82add5160044224a7cb0b9	shifted-real-four-classes
+data/rq-census/rust60.out	census output (added 1.4.0)	4988dfc2a570b37525c468ea88620ba0f868a8c66f633becc15e8253c6322d86	shifted-real-four-classes
+data/rq-census/tq5_195.out	census output (added 1.4.0)	2e3ab1c5b3f8d47ed12cd7bbac7827134e5054db4f7bd11749d259f1a41ba359	shifted-real-four-classes
 lean/LRSpectrumFull.lean	Lean project file	66ea22f2510cc3106785549142dbd9fa41a4a867451a2b472329b9acbec875d5	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/LRSpectrumFull/BarajasSerra.lean	Lean module cited by eight	c002f29232a1ea87fa504ecd1921bf38116c049d1d1f4171c759751e99e7a43c	eight
 lean/LRSpectrumFull/BarajasSerraCard4.lean	Lean module cited by eight	717cc0ce8c4ffa742a8e140c12c81890795af8f02770e281121e50164298ce09	eight
@@ -710,6 +720,14 @@ lean/LRSpectrumFull/RFiveCor.lean	Lean module cited by shifted-real-four (added 
 lean/LRSpectrumFull/RFiveFinal.lean	Lean module cited by shifted-real-four (added 1.3.0)	6961e71e7f21e86b1ae65c6f821b367f4c09e3951f35dad9654bffb3551cd710	shifted-real-four
 lean/LRSpectrumFull/RFiveLemS.lean	Lean module cited by shifted-real-four (added 1.3.0)	839588e873565226e3e33a347ae62230f2623f5b522e7ddbca708fbeb4c5a42d	shifted-real-four
 lean/LRSpectrumFull/RFiveWindow.lean	Lean module cited by shifted-real-four (added 1.3.0)	6185fd2bf47a14ed2541d72d0262d00d4486d26e96154ec63ba94bfcffe36dab	shifted-real-four
+lean/LRSpectrumFull/RQFour.lean	Lean module cited by shifted-real-four-classes (added 1.4.0)	cde24cd4e01e51f65993b40b18aefca6f715fde3e9237481723abe6536a926f7	shifted-real-four-classes
+lean/LRSpectrumFull/RQG24.lean	Lean module cited by shifted-real-four-classes (added 1.4.0)	8cb1ec3ee6528ed8411a489088e78f4df767d35db17ea8ce471ccbb5013f4488	shifted-real-four-classes
+lean/LRSpectrumFull/RQGen.lean	Lean module cited by shifted-real-four-classes (added 1.4.0)	896423825717b0960deee8235afd9bfce00568ab396b9797b80be5e2ce92df36	shifted-real-four-classes
+lean/LRSpectrumFull/RQLemmaC.lean	Lean module cited by shifted-real-four-classes (added 1.4.0)	222f5e06180affa3b722bb1c45c1f8936571a63e646763a2d30e2bafdee1c58e	shifted-real-four-classes
+lean/LRSpectrumFull/RQPigeon.lean	Lean module cited by shifted-real-four-classes (added 1.4.0)	e780135645b8f05180321736b84d0a450237ee16c9dd5ed0c9cf0afae641eeb5	shifted-real-four-classes
+lean/LRSpectrumFull/RQT.lean	Lean module cited by shifted-real-four-classes (added 1.4.0)	a35b926f696385febf7493878a1d33b61150d5fd6bd25f0dbf5c56e88b326cf3	shifted-real-four-classes
+lean/LRSpectrumFull/RQThree.lean	Lean module cited by shifted-real-four-classes (added 1.4.0)	91d3d2ad1594697df72b38eeb801de7de178a817f7701d48cfe28f6935feea64	shifted-real-four-classes
+lean/LRSpectrumFull/RQWindow.lean	Lean module cited by shifted-real-four-classes (added 1.4.0)	8e2b6061379bcc45eb03ff22fa8960cf3ce3d5cb9cbbcc2eadc8fe15eb6ecd6e	shifted-real-four-classes
 lean/LRSpectrumFull/RationalCert.lean	Lean module (import dependency)	99afb93647c789b4b2f5c2a6461562d6ce586f6553bb8e92e6308808a5c58489	dense-window,reduction,eight
 lean/LRSpectrumFull/RoomA4_barrier.lean	Lean module cited by reduction	bcd771a48b09bf82b4a103238f7615ecd3eb845423a009562ca099cde83c0923	reduction
 lean/LRSpectrumFull/RoomA4_compress.lean	Lean module cited by reduction	bfdfc0cdc09b8778341f4810a78be64d6c564b36755491c8eb35d1d6a28ad895	reduction
@@ -763,7 +781,7 @@ lean/LRSpectrumFull/TripleNormalize.lean	Lean module (import dependency)	8861b43
 lean/LRSpectrumFull/TwoRunnerBound.lean	Lean module (import dependency)	76752af53c13086f94f1ffd0dfb26cb0d6e7c83c2a0f4a8378bcef4cb5302318	dense-window,reduction,eight
 lean/LRSpectrumFull/WeylNormalize.lean	Lean module (import dependency)	f88d0f07734a4c51cc0daedad0ab6f3ede1c47a47570d9b723f5d2487a085661	dense-window,reduction,eight
 lean/LRSpectrumFull/WitnessInt.lean	Lean module (import dependency)	ed635ddfd1b8479014a722bb7d876cc89e0104709558a1f09c2d3140748a8654	dense-window,reduction,eight
-lean/README.md	Lean project file	14c3d9e2df2fe22b0f428fd4dd7d23105543aeafe76022340385e0b688489cc2	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
+lean/README.md	Lean project file	ae38edec8ab98f81aadeab7ff986cc42584d674be3589cdbd603959c7701e107	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lake-manifest.json	Lean project file	32759ebe905d55a24671e475ec98fca39dca76211b52255dc1059894b27d6b6a	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lakefile.toml	Lean project file	a5b3287075881d955e1f327a6fdbe9994f386c4a2d0272d144f29c22921cf834	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lean-toolchain	Lean project file	54727eec5cba149c18842e6deb5c41b369d66455c93ce135d7d5347c782b2325	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
@@ -797,5 +815,7 @@ paper/reduction/main.tex	manuscript source	9e82d3d85269fb4ebacc9ddbe3ea2ed1d556d
 paper/reduction/refs.bib	bibliography	e9ef0b4fff9bfeba4c5e307ac32038af2e46f3392cc285c8352216902f340b68	reduction
 paper/shifted-grid-four/LEAN_MAP.md	Lean map (label to declaration)	c7e60a8f42372e3c54c8e1eb14abed7fe42f66295f0f484ce203d378785c18aa	shifted-grid-four
 paper/shifted-grid-four/NOTE.md	note (Markdown, added 1.2.0)	a4b3d4b14b8c8207853a2983d7f2c8294f4e6da38769b27b9ceaaffaca1277c8	shifted-grid-four
+paper/shifted-real-four-classes/LEAN_MAP.md	Lean map (label to declaration)	d550efd6b9e908e1ab221a089647653b3cbe8f555335ab08340ef45672e79c83	shifted-real-four-classes
+paper/shifted-real-four-classes/NOTE.md	note (Markdown, added 1.4.0)	7794c50515b8376e7cae87c1d4dced1d5faf102fc8838b9731649a3f8cd1de6a	shifted-real-four-classes
 paper/shifted-real-four/LEAN_MAP.md	Lean map (label to declaration)	6df2776e5041c46426c88bca1299abbe303d3aac7ea66dc8e1bb3ccdd346939d	shifted-real-four
 paper/shifted-real-four/NOTE.md	note (Markdown, added 1.3.0)	fb6e44914e31dba22ff2c8ff331a9e738928df01260de5b88c0223c29faee63d	shifted-real-four
