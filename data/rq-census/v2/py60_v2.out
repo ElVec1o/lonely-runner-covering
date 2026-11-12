@@ -1,0 +1,11 @@
+TOTAL 15576
+CLASS R5 8675 only_among_7_lean 1910
+CLASS P3 4657 only_among_7_lean 954
+CLASS QGEN 1988 only_among_7_lean 181
+CLASS T 1905 only_among_7_lean 279
+CLASS G24 3230 only_among_7_lean 527
+CLASS R7 3787 only_among_7_lean 577
+CLASS Q3 3930 only_among_7_lean 416
+LEAN 13214 MSS 7227 LEAN2 14398 RESIDUAL2 1178
+R7_ADDED 768 Q3_ADDED 607 R7_OR_Q3_ADDED 1184
+RESID2 split (resonant,evens): [((False, 0), 105), ((False, 1), 422), ((False, 2), 135), ((True, 0), 12), ((True, 1), 281), ((True, 2), 223)]

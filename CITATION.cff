@@ -22,10 +22,14 @@ abstract: >-
   note, with written proofs that follow Lean proofs of five classes of speed vectors of the same known theorem
   (four moving runners, arbitrary real phases, four distinct positive speeds; classes defined by divisibility
   of the speeds), and a program with its outputs for a census of the classes. None of the five is a new
-  theorem. Of the 2,133,561 primitive speed vectors with speed sum at most 195, 1,867,559 lie in a class with
-  a Lean proof in this archive and 266,002 lie in no class, including (1,2,3,4), (1,3,4,6) and (1,3,4,7);
-  vectors with speed sum at least 196 are not treated here, so the archive does not contain a proof of the
-  shifted theorem for four moving runners. Statements carry the labels given in each manuscript;
+  theorem. Version 1.5.0 adds two further classes to that note, with Lean proofs and written proofs: exactly
+  one speed divisible by 7, with the other three speeds in one of two patterns modulo 7, and exactly two
+  speeds divisible by 3 with a non-resonance condition. None of the seven classes is a new theorem. Of the
+  2,133,561 primitive speed vectors with speed sum at most 195, 2,002,342 lie in a class with a Lean proof in
+  this archive and 131,219 lie in no class, including (1,2,3,4), (1,3,4,6) and (1,3,4,7) (version 1.4.0:
+  1,867,559 and 266,002, superseded); vectors with speed sum at least 196 are not treated here, so the
+  archive does not contain a proof of the shifted theorem for four moving runners. Statements carry the
+  labels given in each manuscript;
   several results are finite computations that are not formalized. No proof of the lonely runner conjecture
   is claimed. The manuscripts have not been peer reviewed.
 authors:
@@ -33,8 +37,10 @@ authors:
     given-names: Vico
     email: vicobonfioli@gmail.com
 license: CC-BY-4.0
-version: 1.4.0
-doi: 10.5281/zenodo.24159896
+version: 1.5.0
+# The version DOI of 1.5.0 is pending; it is recorded here in a follow-up commit after deposit.
+# Until then the field doi carries the concept DOI (all versions).
+doi: 10.5281/zenodo.23435304
 identifiers:
   - type: doi
     value: 10.5281/zenodo.24159896
