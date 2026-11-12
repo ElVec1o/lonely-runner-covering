@@ -5,6 +5,11 @@ Modules are `LRSpectrumFull.<Module>` in `lean/LRSpectrumFull/<Module>.lean`. Na
 None of the modules below is imported by the root file `lean/LRSpectrumFull.lean`; build single modules, for example
 `cd lean && bash ../code/lean_build/gbound_build.sh TPFourFinal`. No Lean build was run for this archive. The builds and
 axiom prints are those of the development repository; the observations of 2026-11-12 were made by a fresh review session.
+Warning: from a fresh checkout, the command above builds the whole 25-module closure of `TPFourFinal` in one call (several Lean workers
+may run at once, and one worker can need several GB). Build the closure modules one at a time, in dependency order, by giving them to the same
+script as arguments in this order (it builds its arguments one after the other): `NearestInteger`, `MaxLoneliness`, `Delta2GridBridge`, `Delta2PFLDigits`, `Delta2PFLAssembly`, `Delta2PFLMaster`, `Delta2FiveRunners`,
+`TPSmall`, `TPThreeR`, `TPPrime`, `TPFourBridge`, `TPFourFive`, `TPFourLocal`, `TPFourArcs`, `TPFourCoset`, `TPFourCase21`, `TPFourReduce`,
+`TPFourGlue`, `TPFourCoincide`, `TPFourWindow`, `TPFourTight`, `TPFourLemma7`, `TPFourHub`, `TPFourCase3`, `TPFourFinal`.
 
 ## Main theorem
 
