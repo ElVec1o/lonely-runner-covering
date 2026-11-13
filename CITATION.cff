@@ -47,10 +47,11 @@ authors:
     email: vicobonfioli@gmail.com
 license: CC-BY-4.0
 version: 1.6.0
-# The version DOI of 1.6.0 is pending; it is recorded here in a follow-up commit after deposit.
-# Until then the field doi carries the concept DOI (all versions).
-doi: 10.5281/zenodo.23435304
+doi: 10.5281/zenodo.24189338
 identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24189338
+    description: Version 1.6.0
   - type: doi
     value: 10.5281/zenodo.24163304
     description: Version 1.5.0
