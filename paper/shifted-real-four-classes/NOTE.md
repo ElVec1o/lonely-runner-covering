@@ -4,6 +4,8 @@ Version 1.5.0 (12 November 2026). Version 1.4.0 of this note (12 November 2026) 
 
 Vico Bonfioli. Version of 12 November 2026 (release 1.5.0 of this archive). Preprint note, not peer reviewed.
 
+Pointer added in release 1.6.0 (13 November 2026; the rest of this note is unchanged): the seven class theorems of this note are used in the Lean proof of the statement for speed sum at most 195 described in `paper/shifted-four-sum195/NOTE.md`, which covers the 131,219 vectors counted below as not covered by a class, by kernel-checked certificates. That statement is the case of speed sum at most 195 of the known theorem of Alcantara, Criado and Santos; speed sum at least 196 is still not treated in this archive.
+
 ## Status
 
 * **Setting of every statement.** Four pairwise distinct positive integer speeds v_1, ..., v_4, arbitrary real phases phi_1, ..., phi_4, and the conclusion: some real t has ||v_i t + phi_i|| >= 1/5 for i = 1, ..., 4 (non-strict inequality), where ||y|| = |y - round(y)| is the distance from y to the nearest integer. In Lean the speeds are `v : Fin 4 -> N` with `forall i, 0 < v i` and `Function.Injective v`, the phases are `phi : Fin 4 -> R`, and the conclusion is `exists t, forall i, GoodR (v i) (phi i) t`.

@@ -1,11 +1,11 @@
 file	role	sha256	needed_by
 .gitignore	archive metadata	874cbba6bfcf26cc82c83adc2ff2bdbcc80b19143b07897afec77ac5be657f57	all
-.zenodo.json	archive metadata	537936e4d480913954b06df30c75a30a9c3f5cfbc536ab8f8421af94b235a58e	all
-CITATION.cff	archive metadata	c811ae601ad3f2a69a65666eced69166a1c31b423db3935a3a39174d63afc2fd	all
-CLAIMS.tsv	archive metadata	bdebf3b3629e5b42486628afaa680312e87e054d3193e7f8c56aee0d9913bc94	all
+.zenodo.json	archive metadata	9494a5a238bde71811727d8ffff4c1ed875959ab17b264ca49f07fcd6f6894a0	all
+CITATION.cff	archive metadata	4ae7d36bd6d11d1202ad3a40581536732152f38ef364979710d5ab6ff5e5c338	all
+CLAIMS.tsv	archive metadata	bb01533e576fd51f584fcfb892fc5220be29a835442b54c7bf4d19798a3bcb30	all
 LICENSE.md	archive metadata	580f3e12d5eb0e2bced0d37849ab7e5feb300d61ace4602438ed8348eea1e809	all
-README.md	archive metadata	f600d1668adf1d6d59842ddc31406e16b47a3493218806625e95e0ceb6738bca	all
-RELEASE_CHECK.md	archive metadata	37627a2f85df391053d3c124793125b384555532d18a20d802780f0957bad7ce	all
+README.md	archive metadata	e7d96908dcf66129b53fb109870b816c6ed0f02c63521a05924e111f4f444299	all
+RELEASE_CHECK.md	archive metadata	29a1745f402b15466942563f6e7d90fcbebc3275369951ba91a20716a585dc40	all
 code/covering/README.md	covering-paper program	e94aabe38ff994e82df30aa02ed308fd7e5fd31fbfba2c6f6b286ef446ff2bab	lrc_covering
 code/covering/alphaex.rs	covering-paper program	0c146b10567d57f007c73035cf5f795ddbad7a30561db8a51b6809c79d202cd7	lrc_covering
 code/covering/bad_triple_classify.rs	covering-paper program	f46ec0b46c092d67ed47e099e867017c896025e47c2d622eb82cdd4064143ca2	lrc_covering
@@ -259,6 +259,23 @@ code/rq-census/v2/Cargo.lock	census program or script (added 1.5.0)	4f8c343efa72
 code/rq-census/v2/Cargo.toml	census program or script (added 1.5.0)	216569853f793b57059b1bd5f2d83ffc9305b376a099f7e92822b6ff881e27dc	shifted-real-four-classes
 code/rq-census/v2/check60_v2.py	census program or script (added 1.5.0)	8ba6ab2d2ad9573419c8dafbb670a91cc8e6b30ea2c5171d198b896d1f14450e	shifted-real-four-classes
 code/rq-census/v2/src/main.rs	census program or script (added 1.5.0)	8f45b1927ca773413ddcb6130d4e367649c86cce1d7bf77b3d851701ce7eb45d	shifted-real-four-classes
+code/s4-range/README.md	data generator, cover search or build helper (added 1.6.0)	39d3cefcaa808c148d55f941cfce0e4995ef2b57a3d47d1972465ad90d069af7	shifted-four-sum195
+code/s4-range/build_modules.sh	data generator, cover search or build helper (added 1.6.0)	853236079b543c4c9e0682cd83959a24e68d18ae4d67ddcfbf84376b2133a52a	shifted-four-sum195
+code/s4-range/check_layers.py	data generator, cover search or build helper (added 1.6.0)	a5fb4c13456af7cbf5ed403edb0bc1f3b646f93b20d0c59ba92b7f9c2cecabe2	shifted-four-sum195
+code/s4-range/data/certs305_a.txt	generator input (added 1.6.0)	4129a16066361515a07a507397854dfcdbdb2e2f412a84f462412682257ca688	shifted-four-sum195
+code/s4-range/data/v305.txt	generator input (added 1.6.0)	8343dd4d3c735e5aae23429911257f6669509c730356dc7e662a3c6c0908b8f2	shifted-four-sum195
+code/s4-range/gen/Cargo.lock	data generator, cover search or build helper (added 1.6.0)	5c8edf50f35b4f5a5967d0fe87e1c235b7521e4de0b45abc9ca50a508eae6ffc	shifted-four-sum195
+code/s4-range/gen/Cargo.toml	data generator, cover search or build helper (added 1.6.0)	40e8b0ecce70905f8df1a7d42d7418246fdcb48946ffc67c1a32c036d21bcfcc	shifted-four-sum195
+code/s4-range/gen/src/blk.rs	data generator, cover search or build helper (added 1.6.0)	166e36209b37b27f3af837988bfe01bbe3752c2f880f1c2309800acfc8908bfa	shifted-four-sum195
+code/s4-range/gen/src/blk2.rs	data generator, cover search or build helper (added 1.6.0)	32ed04a241c195641de4feafaa12f5d14bdb405177559221da4dcbc95307e7e5	shifted-four-sum195
+code/s4-range/gen/src/block2.rs	data generator, cover search or build helper (added 1.6.0)	b1a1b928407c173a4ccdeda58867277ecef86382d359326edc7649c28ec2c63b	shifted-four-sum195
+code/s4-range/gen/src/main.rs	data generator, cover search or build helper (added 1.6.0)	22cf0998871e270656b4facaac181c3bd29f1fde4ee43cb0416bf2f2a707529b	shifted-four-sum195
+code/s4-range/gen/src/zono.rs	data generator, cover search or build helper (added 1.6.0)	5f0b06fe1fc7788f1a07d5666aebefb8942fb88bbc30faafea10d445573bf977	shifted-four-sum195
+code/s4-range/launch_watchdog.sh	data generator, cover search or build helper (added 1.6.0)	4d0746d9fde815c9e8c7f58f22380b1b6a00cf5c9d21ae75b37de15911515295	shifted-four-sum195
+code/s4-range/layers.py	data generator, cover search or build helper (added 1.6.0)	4508e0ec0625a51482d1d9eacf52181a558aae5d111bd3b44ffc4779d72556c7	shifted-four-sum195
+code/s4-range/tc-cover/Cargo.lock	data generator, cover search or build helper (added 1.6.0)	778be6a08e844981d25355082e6ed7b94fd5d0bf615ccb120861aa643c08458b	shifted-four-sum195
+code/s4-range/tc-cover/Cargo.toml	data generator, cover search or build helper (added 1.6.0)	d50eba19c4f3395a9b45803b28a405b7f458a5584d24ee34ee177f06030489c0	shifted-four-sum195
+code/s4-range/tc-cover/src/main.rs	data generator, cover search or build helper (added 1.6.0)	14d0fe366cbc47c03656941510a17e88529c9188a47c02bf7445d1047fcd9f59	shifted-four-sum195
 data/dense/certs/m100.g1.sol	dense-window certificate	25c69a025e456858f9d94990c152999c3ba5a3ed24998b49d4aabead584085fe	dense-window,lrc_covering
 data/dense/certs/m101.g1.sol	dense-window certificate	7f96c7008a46fe6502a3fb9b94526ce09e66687951947fe911374c2550f38bdb	dense-window,lrc_covering
 data/dense/certs/m102.g1.sol	dense-window certificate	52a75b52f2a6369a5c4db6eec8629acceeb4a345a87018eb6496135e26ff2501	dense-window,lrc_covering
@@ -578,6 +595,11 @@ lean/LRSpectrumFull/Confinement.lean	Lean module (import dependency)	d8adde5e80e
 lean/LRSpectrumFull/CoordConstruction.lean	Lean module (import dependency)	31278c301b83300758eee549420ce9dfe7ded57b113af6bb28356868e88706bf	dense-window,reduction,eight
 lean/LRSpectrumFull/CoordSumBound.lean	Lean module (import dependency)	753ebe7ceb15c88a0f1a859e493084ad7b171277ceb708275e9a700e9f1a3de8	dense-window,reduction,eight
 lean/LRSpectrumFull/CoveringWitness.lean	Lean module (import dependency)	ded5af5608fc2e849e22d9baa9e3838f412463c40578f1970b790e8dfd34c9bf	dense-window,reduction,eight
+lean/LRSpectrumFull/D0Bridge.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0254f9c3f7e9acf028090e2f21d35f4389b7dc433e43ff493010179b1f374e51	shifted-four-sum195
+lean/LRSpectrumFull/D0Chunk.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	2322697eecc8979a0db251bbf7b02cf96f29739a36d217df38bf333761aab62d	shifted-four-sum195
+lean/LRSpectrumFull/D0Core.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	5aea59154bdc87e0e6b72dcda88b9e4e97425ce2bd358422a5313638270f5f13	shifted-four-sum195
+lean/LRSpectrumFull/D0Fast.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	fad2c69d570bec4412d9b6f0f3a23e3b6b202de38f7959c62e0c2cc307b47045	shifted-four-sum195
+lean/LRSpectrumFull/D0Sound.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	fda09d5584d52b52389110f6922543c16b51d46f0073361def3ec5b61ae04377	shifted-four-sum195
 lean/LRSpectrumFull/D3Classify.lean	Lean module (import dependency)	995473ea2a9f711e376ad3facdc071d8c5f4491f2825b17f295dd8f7200e29b6	dense-window,reduction,eight
 lean/LRSpectrumFull/DSignFlip.lean	Lean module (import dependency)	7b7e52bb96810bacac408c6e4a578e07bc46ca97d265b40060220f99ebc66592	dense-window,reduction,eight
 lean/LRSpectrumFull/DValue.lean	Lean module (import dependency)	c1cdc5ab7dc973a9ed7115a921b7e30d81287099f7f338c546c780dc1360cdb3	dense-window,reduction,eight
@@ -761,6 +783,240 @@ lean/LRSpectrumFull/RoomFCU_ramanujan.lean	Lean module cited by reduction	1f67c8
 lean/LRSpectrumFull/RoomFCU_tao.lean	Lean module (import dependency)	964c2b246a8058a09066f71c65e4757b4623c7859adc4a4a04765a2221df79b4	reduction
 lean/LRSpectrumFull/RoomO6.lean	Lean module cited by obstructions	988915bacc0ce09dc6e56b23f17a6f6cf0821d04881d93c760ae13a12343c32d	obstructions
 lean/LRSpectrumFull/RoomT2.lean	Lean module cited by obstructions	bfa92e5573cc27d27b50045730293301afae5c063d87622f41bc5abcd157cae4	obstructions
+lean/LRSpectrumFull/S4A_01.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	2da2bcc6384423e301fbe5f54c4dcbc918aa38afa45a9239f1d4eaf6db97a50d	shifted-four-sum195
+lean/LRSpectrumFull/S4A_02.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4fdfdd0e46335895391f73b876eedc2840a2b0399e6b3307554253336800b629	shifted-four-sum195
+lean/LRSpectrumFull/S4A_03.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	bfb4210867c1e023e55163844a3a67702201a93cb1faa579907cb084b83ae8f7	shifted-four-sum195
+lean/LRSpectrumFull/S4A_04.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	576196d0b08d043b56e38120d4d00a05476be7c061a7a4353edd08dc3c671220	shifted-four-sum195
+lean/LRSpectrumFull/S4A_05.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4d228e87efd8ffb76f8fe9e512aae85a92c9bd0ec04d1244b40740c990b44e7a	shifted-four-sum195
+lean/LRSpectrumFull/S4A_06.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0fbcf138362d33363ffc558a7792004df67ef824995aba276fb9798c14c783d5	shifted-four-sum195
+lean/LRSpectrumFull/S4A_07.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	7875500f199d882b553a9b2218a19eb87bb93e86aee2db0cbbf7f785e15dcc0e	shifted-four-sum195
+lean/LRSpectrumFull/S4A_08.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b79e632a856c008b9a12855f07b831e84d02a2939921191ab5a1d6f207d51f1a	shifted-four-sum195
+lean/LRSpectrumFull/S4A_09.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b92178c5887ccc5a71c8d23a4b0b90f7ecd6488b6e96167c877e7c4f0ee8e0b3	shifted-four-sum195
+lean/LRSpectrumFull/S4A_10.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	5b6e2236c7aab5ef737c9a8fbc9695b78e4f1b8e751e91756fffb2f88c7aaa82	shifted-four-sum195
+lean/LRSpectrumFull/S4A_11.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	9bce135378e2d194a8125a635033cedb0127dbedf47dc2a05d4156643833c13d	shifted-four-sum195
+lean/LRSpectrumFull/S4A_12.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	912c0121539d628cb4c0819d8fb4e3cc323868bad80389247fc0886f429d4957	shifted-four-sum195
+lean/LRSpectrumFull/S4A_13.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1189b63eb0eeed25eedc108ed7d785e33b2a35bbedcb526165c9d64be2f938a0	shifted-four-sum195
+lean/LRSpectrumFull/S4A_14.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	f52fe1325aca4bbe784c243adc5f1cf2bbebdf5f5254f26107c470a9f77664f7	shifted-four-sum195
+lean/LRSpectrumFull/S4A_15.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c26a6d90de4e0423b126d8f34eacfdb5f8fc97e4cf719dce80785894dd4bad44	shifted-four-sum195
+lean/LRSpectrumFull/S4A_16.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1879b4242a81549e2d71301e78dc88058c6f38bb68f9bfa27e05de20bf62120a	shifted-four-sum195
+lean/LRSpectrumFull/S4A_17.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	63659f4976a5b83f2ade7cb7a20373aa1bf279e83d809ab1e3e898e1024ae55c	shifted-four-sum195
+lean/LRSpectrumFull/S4A_18.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	19470b9cb531084c3bac2f4767337084da77682ae2d2c2949a5a6f9fb45b6a6c	shifted-four-sum195
+lean/LRSpectrumFull/S4A_19.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	996117f508f614017e1316875b036df12cdeffcedd192918d39276cb77f5bce7	shifted-four-sum195
+lean/LRSpectrumFull/S4A_20.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	59ed40cb2745bf6e81854b95b8919ff36c6cef3fe6fb8a7dfdbb8e7bdb043e13	shifted-four-sum195
+lean/LRSpectrumFull/S4A_21.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	978b46690227d745159c7c47ee41873edc9aa090e73278cb9a5b6d6e68ea3101	shifted-four-sum195
+lean/LRSpectrumFull/S4A_22.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a8a1378a4bf8b6fb31766a4c6a0070a4ce167e2f6260981f2f653c5d042232cb	shifted-four-sum195
+lean/LRSpectrumFull/S4A_23.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4e210c6ad3fe046054edebd52e63c637c3a3716e92c85b5dec7cfbdd54c06821	shifted-four-sum195
+lean/LRSpectrumFull/S4A_24.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	219bd63503c0a4157b58c7a7ee2d2db8f81bd0c73147fbd00ef374791b375911	shifted-four-sum195
+lean/LRSpectrumFull/S4A_25.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4e51654d5dae0714073eee8e950f2d818ec115621a940ccbee7d5d96a2764c72	shifted-four-sum195
+lean/LRSpectrumFull/S4A_26.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	3fd9121cfd4f6ffedcfa3155162e960c90256ffcb81303a2e1d63f5961353b6c	shifted-four-sum195
+lean/LRSpectrumFull/S4A_27.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a67169d89e1f057edb30540d16935f322c2ae9ece479d908011f9cda9dbc6aa1	shifted-four-sum195
+lean/LRSpectrumFull/S4A_28.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	065cd56c668d2d977a6b95b2a0a8a5d2d1ddd18eddf2528f22ecdbb73255740d	shifted-four-sum195
+lean/LRSpectrumFull/S4A_29.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	611847f78b6c56afa93311f3303cf85a5c3005f31019bd36e46141a477c9a4df	shifted-four-sum195
+lean/LRSpectrumFull/S4A_30.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	f748626b631c33707703329d8cb680a6d79355b45e98dc79820ca9a88bcea8f4	shifted-four-sum195
+lean/LRSpectrumFull/S4A_31.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	9e7d02357caff49337c4b4313d2af92f068c567b579fee82aed885abe0d451f2	shifted-four-sum195
+lean/LRSpectrumFull/S4A_32.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1c47e9ca500db6e9678f679a78706110f064d6e49921189d9e76de324ce27426	shifted-four-sum195
+lean/LRSpectrumFull/S4A_33.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	e7c8241bf359858247db8d5bc28d998a657187ba9d18434fcab8bc81ef5229dc	shifted-four-sum195
+lean/LRSpectrumFull/S4A_34.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	9cb8afca4571ad67445339c2cedfbd4a65b1a2270a1d77e2dcdd728ce01198a8	shifted-four-sum195
+lean/LRSpectrumFull/S4A_35.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	783662f246b048c3417a9bc365cbc80056f6010c76218e03f98af71187395dfe	shifted-four-sum195
+lean/LRSpectrumFull/S4A_36.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	490a1033e8861c87a93400766a455455bc0b60dfe71759d9a4139d2a7705ec54	shifted-four-sum195
+lean/LRSpectrumFull/S4A_37.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	800bc71fcb2a26cea33621672e5ed4bc0704a7215a5f52e4281e91ed0d0797eb	shifted-four-sum195
+lean/LRSpectrumFull/S4A_38.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	bee74543009082fd170f2b84c74bf390a9edb695ca592362559e9a1ccff67129	shifted-four-sum195
+lean/LRSpectrumFull/S4A_39.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	f22e43aaf2c01d4b9d75db9258374e6da5583072e5270b35742feaf87a9e3926	shifted-four-sum195
+lean/LRSpectrumFull/S4A_40.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c41a2e1c5dc2fe5b32a42c76cf5534b8818ad7fc2d2811b648654e46875b5203	shifted-four-sum195
+lean/LRSpectrumFull/S4A_41.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a4a2de809290bc31c4247ce44c69e71a934834307e8d086c0ca2f5e56d275760	shifted-four-sum195
+lean/LRSpectrumFull/S4A_42.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	87d0a19e569f36e2257db0373ddb3ee1ebd6d5f52d941fcc276f3b6486675d9f	shifted-four-sum195
+lean/LRSpectrumFull/S4A_43.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	797beb40cc459f907751d2d53caed16675fa1716af0eba0b359497d278a0a371	shifted-four-sum195
+lean/LRSpectrumFull/S4A_44.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	26c94c33afe784df34c4573907474183c80cae45c677873a827c7ff8ac175650	shifted-four-sum195
+lean/LRSpectrumFull/S4A_45.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b245be8028ea3578e5755dc3fa293e06c109b0a53a2809d200a4221eb879a436	shifted-four-sum195
+lean/LRSpectrumFull/S4A_46.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ad1e803276aee1e3403ab38c404704c00de301c2659d36e06141a462265af828	shifted-four-sum195
+lean/LRSpectrumFull/S4A_47.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4c53ea7b451ad04c2aaed6fa2668a28dde120b2f959ed6d824d991289e0789ea	shifted-four-sum195
+lean/LRSpectrumFull/S4All_1.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	fb4c61a5a388d9532be0da1ae332548a338e8cb03eb2b59425b5232963e5f62f	shifted-four-sum195
+lean/LRSpectrumFull/S4All_2.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	46211e73eaf2d250a2cdcabbf6c74a21cedf04e193b9b7e43468761753b1e834	shifted-four-sum195
+lean/LRSpectrumFull/S4All_3.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4d0e28a24690e17054e2c73ee341c9ce03d94d2e69be8f33bb7ed3fcd6c86bb9	shifted-four-sum195
+lean/LRSpectrumFull/S4All_4.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	2233f016918449942ec85e1fce7296e887c5fe24333e9770c3637b7a2eb2b9ca	shifted-four-sum195
+lean/LRSpectrumFull/S4All_5.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b5d8cd8c0a4dff582c02f17c23522ea43c730ac2d4f7399f1910c0ac245b1a06	shifted-four-sum195
+lean/LRSpectrumFull/S4B_01_002_002.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ae7cc745eb298591129da0cbf6baada0c7f4ec1843970e579cfe739b1067d5ba	shifted-four-sum195
+lean/LRSpectrumFull/S4B_01_003_003.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	92a67b51c196f6d3726cdbb069971afc6ca2c491897d8cf1bb9ce129683c5720	shifted-four-sum195
+lean/LRSpectrumFull/S4B_01_004_004.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	fd2d2e4aab3c74f60b114f7232d78f59219625b3b40d83e79b30d56a436d9172	shifted-four-sum195
+lean/LRSpectrumFull/S4B_01_006_007.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	8c91efee9e6e84a4ad91a24201c4f44a480df1afea30d8baa867175e20303b93	shifted-four-sum195
+lean/LRSpectrumFull/S4B_01_008_008.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	675bc4be34f4f9d798bea7f6cbcb76b3a630ebe277199abf0ba55b62261bbaf0	shifted-four-sum195
+lean/LRSpectrumFull/S4B_01_009_009.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0abe87e08cee5d0e0e0508ed7881489b49ff10a35fa2c1457a0e18a7218aaa97	shifted-four-sum195
+lean/LRSpectrumFull/S4B_01_011_011.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	5ab48cf1734fb8c22cca56a74b6640cca13db8638770137e16860c590ceb8cae	shifted-four-sum195
+lean/LRSpectrumFull/S4B_01_012_012.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	5bdb13fad3503cd2016368e8871b1444aecb7dfc189c5e9c89d404947f79d0a5	shifted-four-sum195
+lean/LRSpectrumFull/S4B_02_003_003.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	32dff857a7fe40bcb671b1e4e3c62826ab5c46136d8e02bc10985f948f551577	shifted-four-sum195
+lean/LRSpectrumFull/S4B_02_007_007.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a1f11ffd6685c5c73eee5df6f20320c7d8a950c6182e3c734e7127f7ded291ea	shifted-four-sum195
+lean/LRSpectrumFull/S4B_03_004_004.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ee6e925f95f2a5d61c0746ff65d6da4f8bd44598db0776524c70c30dbf8c9ea2	shifted-four-sum195
+lean/LRSpectrumFull/S4B_03_006_006.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0ac4f98fdd9d02b89637a3e053f5ae360352f58c1bc2820c41e671b5389f3979	shifted-four-sum195
+lean/LRSpectrumFull/S4B_03_008_008.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b475527d922c8a0013cb6c8bf55950a6fd259c7ef9a403fba6b0df7b172d6e61	shifted-four-sum195
+lean/LRSpectrumFull/S4B_04_007_008.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	06bf9ce653a12de36927b1e2ce1e71e503224f9bbbef56adca004d1b28695efe	shifted-four-sum195
+lean/LRSpectrumFull/S4Class.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	04a5a9b6c76290df3185cb3b8c82668c7bf7c16c81f31eb2aa2fac9a6c7cc016	shifted-four-sum195
+lean/LRSpectrumFull/S4Cor.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	d8059e569c386beb9147cc64a5ef8dfaca0b475123697e87548a45f67388b20e	shifted-four-sum195
+lean/LRSpectrumFull/S4Final.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	d946ff51e89c2ce34fee5427ce336fbc5142ee99f8638fc04e3727016d7dc548	shifted-four-sum195
+lean/LRSpectrumFull/S4Loop.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	f62b7278000def7dc7c7765a939f6e2e2698e9991b85c893965e71254bcadc20	shifted-four-sum195
+lean/LRSpectrumFull/S4Loop2.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	18ddc584cba3950a4da981571c5ca5e0a59b104efac2593e1931c2dfca354d9f	shifted-four-sum195
+lean/LRSpectrumFull/S4Perm.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b5b77784d9bb22e705af132933aa9bc7a46b127ce04b689b9d3ef4aa72430e02	shifted-four-sum195
+lean/LRSpectrumFull/S4PreApp.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	efe6ca1d7cd55eacbe851fa146dbdad52f4eea9f4ff5e9b31f4f0b62f4ea3b2d	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_005_005.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	aac5adf660c9dd6feb5f97c7d2928b29a3cecd1459a91300226906a6cc7d37e0	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_010_010.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b39952295db1d0b8bd583286b07fe331265e9a3fe75b563fec3a6825bbeceda9	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_013_013.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	3488f0937606c375cbaa370249e7a8b0b098f612105305ed1ea0c935c02e4b07	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_014_016.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	14ea21f23ccfe13f56c65a58e6aef7132a029ff9c7b7aae75b352835f586f5a7	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_017_017.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	00745f318e9f1e0536dc2da7baec2b9a76fb5bceb49f96c1860f132f9f6e2335	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_018_018.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	97d94e3a4e6faffd8a1bb25a290422648ef9921224b8a8cada4b72b2c697182a	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_019_021.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	17d6bd0f473b3a2c1b1e8d2e461749a40f1a0569994124fd84e1b3447da6eda1	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_022_022.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	3c828a15a633141f142ad5012df92debc378ae6eabd7691f451b231c639b1f13	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_023_025.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b3f033453b803579a2e0d284f5f32a57a022a393478cb019d1db8ebda57101b9	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_026_028.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ce257d95b93715a86ff83b3d86602c40db70af2fbeb96f917c0be3653988dabe	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_029_031.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	7725dde8d0e78ff139dff4bbf95d44e95865121e63ec3bfee549950719914b07	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_032_036.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1ac7886bd20f308ebb58894f36a92e8a062ae2311f7e3f75ee61b54506c107bb	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_037_042.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	50492cbb8deef2ebe4ebb8130786bee36b2c69d356d8a987574bb11225cace5b	shifted-four-sum195
+lean/LRSpectrumFull/S4R_01_043_063.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	7d405e356bce9c218d52a472bb4f7169896897478afc17d22b3dc6bfeb0fb637	shifted-four-sum195
+lean/LRSpectrumFull/S4R_02_004_006.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	eb3d29fa8478b29f72b745d68674a49b6f006dbec5b12ed777149303c4f2ab6e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_02_008_010.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	00ff0d01563095a02daed22a150e1006aa518e7b09dce9dde63e0e15563bb173	shifted-four-sum195
+lean/LRSpectrumFull/S4R_02_011_012.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	82c42b7a3a9c117bff4b5824c878654eac8b65c7fb0556981b55620af3a89f34	shifted-four-sum195
+lean/LRSpectrumFull/S4R_02_013_016.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	988292fff4aa64c32efb88c15c57277cc4ade8ebb4ed52a5e655fe1fd0f6774f	shifted-four-sum195
+lean/LRSpectrumFull/S4R_02_017_018.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	6b5fcd24791c9c1275f6127705ac39103ae4b5c97c9ca5318235adae77f93c80	shifted-four-sum195
+lean/LRSpectrumFull/S4R_02_019_022.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	5c13dc00776a8e0e936039bc4a80a1dcd1a58b308d28062ed09ef2322d1fa861	shifted-four-sum195
+lean/LRSpectrumFull/S4R_02_023_028.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	f8bee01278d21dacc53efb5ed619d71acf2ed101761c2d14a64d06d6b8cb0642	shifted-four-sum195
+lean/LRSpectrumFull/S4R_02_029_036.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	7b735c4ea5d9efe4735e524fb34614b21d768e5d0428562dbfcec1ffb9825f83	shifted-four-sum195
+lean/LRSpectrumFull/S4R_02_037_063.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a8dce232efe1a58a40210b33f9a509b5a47bd90e603e1f3e48cd1c7922f61a09	shifted-four-sum195
+lean/LRSpectrumFull/S4R_03_005_005.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a34279d01420f3ff5e3db2f2b42d2d5e0cc13e80875230860ef1c1a0dd828c2e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_03_007_007.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	f4275e05d7af008850addafe33f13499cfd219e72f84660cd2f9307fb836db8c	shifted-four-sum195
+lean/LRSpectrumFull/S4R_03_009_012.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	2841600fc1c7ea01beb4e0937f954c70b53fbf18e65528d36e0141fb82ed50f7	shifted-four-sum195
+lean/LRSpectrumFull/S4R_03_013_016.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	316f51247978f363b4a5173b92f19279ea77650d48dfd9209569c7550f50e9a7	shifted-four-sum195
+lean/LRSpectrumFull/S4R_03_017_021.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	5f5c3297b01e3dda568809314b73ca66b34e07347f4ec57a59b6b9256149ad20	shifted-four-sum195
+lean/LRSpectrumFull/S4R_03_022_028.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	cee9268c3e618cbb1a5903bfc4f5841cd75159dab77fa293a5630fc2ce0447ca	shifted-four-sum195
+lean/LRSpectrumFull/S4R_03_029_038.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	df7c8f2292c1b8884a124a4c25c05a1d5be325239d10eacf5a05f341609780f7	shifted-four-sum195
+lean/LRSpectrumFull/S4R_03_039_063.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	860f62b1ed42e01edb86cc2c321ff8c1cec280d2accbc4130a1e68d95fa6ee91	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_005_006.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	62877d84a4f3fed0c805a98a0a87cab1588d3cd04667640aec00727518b96d67	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_009_009.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	63b7110f17f70a237cded345c4ba274d727d71a4cbaf5086bb82138b037eb843	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_010_010.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	9534abef3190f249a7f44a337ca1516597530a4a959f77481d8cdbf2bd0df1ee	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_011_011.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4bfc6a624da2cf7acaf03d84aa1a7cafc62d3d5b5444186be5633810298014e4	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_012_012.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	124cfc158d11c1f38cbee23620924d10f1c167524e6b6cb5c42aaf0c6d972d99	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_013_013.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0a03ef58c143f5dd2bac8913e32ae6fb26cc4576e5d5ef3fe58563425741405e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_014_015.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4c26a98117a5ae020ca325522dce56ed144620b9bc0148d0a757b7d4c58ce7f1	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_016_016.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	605aedf6950e2301f2573e8818bfad09cf430bbd585f619d2bbe8dc6fe62c91d	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_017_018.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	f19c334ba66974685116314235c5e5d874e0ba9b06ab53f05b958a7e3df9a7a3	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_019_020.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	2a84eed7c3492ad5717ef827546cbf14d4e469c15ad70264bf3cc8e3a541c6fa	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_021_023.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	569edb2ed7681eed63900d058c2c6cb6e27614f216d8cef37bd106f61de47a29	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_024_026.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	424ca48d2ee4cb01e42247b9ce5de054fc217fb0b0ccd8e3821935901015c77b	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_027_030.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	107812e254c3192d7faabb824592ae45a98aa26d4966104c6208c4c58ea7ac10	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_031_036.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a73b7f9fa1f81a10fdf3d32e148dd6e838c4a684e350f9bf6f3772c1f6347b8e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_037_046.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	42ba3f03697aa2116376d82dfe7e229348f50b41b01e0432aefbc1c46455e5c1	shifted-four-sum195
+lean/LRSpectrumFull/S4R_04_047_062.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ee9fd059935865912ed5dc35d1609e6e4e964f6502d3cc7eabd7b6e422d02eb9	shifted-four-sum195
+lean/LRSpectrumFull/S4R_06_007_008.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	6fb1b03b9245b0cb63a4bf5db7a7beea13695366484700e7b59702333c1d83dd	shifted-four-sum195
+lean/LRSpectrumFull/S4R_06_009_010.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4aa03e0c3c95c5486ac680e5006f00b31daa7f27d8df226bebb7738b98187c05	shifted-four-sum195
+lean/LRSpectrumFull/S4R_06_011_011.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	54997bd9ed637613a27ca3ca629dd95dafa68a487d8483a35336c61793dca063	shifted-four-sum195
+lean/LRSpectrumFull/S4R_06_012_012.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b0fea0cb708bba8d21485ff8d667bf8ac1fdc44460d4b13e16be02eb3388870c	shifted-four-sum195
+lean/LRSpectrumFull/S4R_06_013_013.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	90b385aebfb9d591881f21005f2fd4744d2f8a8c3f0f0d9985a6d94a6c7f96bd	shifted-four-sum195
+lean/LRSpectrumFull/S4R_06_014_014.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	e1290fbcffc27bc25d556fc19ce819e743eee1bd86286d486e6cb1b4c6327575	shifted-four-sum195
+lean/LRSpectrumFull/S4R_06_015_025.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0a5585791ce650e9a770d3d48c68b341d834a3ef70c379b20d61501e8fb1f226	shifted-four-sum195
+lean/LRSpectrumFull/S4R_06_026_062.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	666bdf7aae4366708631fb7422b9e6a1167d2d1ef4bb5021e6ad598bb95afd17	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_008_008.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	8f3dd5fd9ad79f441a9c61dcc337ebf49c74888403416cbca3e3b7feb89d18e8	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_009_010.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	bd001bb2d58a56708eec1b26fa789f10889e8b409241594e208f5c9a480e35b5	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_011_012.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	98738cf16c8c08bfa30e9114552e6afe961b407ab00427c5e380251381d844a2	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_013_014.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	78cd3c6ec8f56811dd626f2884b40288dc12d0d169a75aa12d909322d82a98d7	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_015_015.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	78b4b910e8efd624a5e6fe573b7ed15792041e3495181715ae02eac2f1a0479d	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_016_017.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	cdd214773914c3ca7a486cdb5e96b42d4aea0b2435e1833f635a36afe44070f9	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_018_019.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	91f7e21c15049021d83e746a390adcdf0ac45b57addb7ad5c02dfa48e0763e65	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_020_022.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c0371cd09bca393a64deb519a8bed66ab86e16d11d351122a4551e2129e7b734	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_023_025.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	87826410d7a78d18dc17dcea0a9d817db17993f5a13da21518a6ab5f58f1b759	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_026_028.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	45cda30ef3350ebd75f3b2d44e2776e4b054262c1c616732533a58da86f4568e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_07_029_061.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ed5bfd9f226dfd160a4c16b03ec32f7fdbc922b4784e137ca7d30cda326c451e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_08_009_016.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	159d2392f81f80a05d3f06b8485fc82cabc5127a78d98476bec2979a4d3fac1e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_08_017_028.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	992d94a44697f48b422be32f3d13458bb334a4bf4e37a4c1ef1e0f0d7faa8927	shifted-four-sum195
+lean/LRSpectrumFull/S4R_08_029_061.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1af46e35e98e7a5f1778acca21878d8d0dd89c87b9e9227447af52223c23aa65	shifted-four-sum195
+lean/LRSpectrumFull/S4R_09_010_012.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4eda46fd1a5e5d03a6a745e54fb77c32f47039ea16d9271b3fe8abae654fa847	shifted-four-sum195
+lean/LRSpectrumFull/S4R_09_013_016.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	d75ddb87614c90ba9752f2aaf24d6d9ca7583556bd6f202242847ceba8edc927	shifted-four-sum195
+lean/LRSpectrumFull/S4R_09_017_021.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	dbadddea120f637158636c728aebf78f06d155b75652affef29d9a8809bf1ddc	shifted-four-sum195
+lean/LRSpectrumFull/S4R_09_022_028.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4dcc11c997b817b24a1513b8f37a9192689ee02c48f059d25cc859f55d10ee98	shifted-four-sum195
+lean/LRSpectrumFull/S4R_09_029_042.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	cd53c6af8299234170dd80ff09094c556172d7c63fc08be383e8ec7773081a19	shifted-four-sum195
+lean/LRSpectrumFull/S4R_09_043_061.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	703e0b87cb8c8525853c550eed1d23cf9b3d5eaad6eb63f3e2cceec0f4b47125	shifted-four-sum195
+lean/LRSpectrumFull/S4R_10_011_012.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	168c88491e807160d1cda26398b08fe115b692c30898e88b7bb8aa9877946a5f	shifted-four-sum195
+lean/LRSpectrumFull/S4R_10_013_015.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	64da71c7f2ea014aa5cd410713ebd38854e98f73ec10c48eb7fad2d0d75d9327	shifted-four-sum195
+lean/LRSpectrumFull/S4R_10_016_018.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	76cdfb789b12d656dbfee9f2e9935ef5ea341429c34f6736e06f45b67f412418	shifted-four-sum195
+lean/LRSpectrumFull/S4R_10_019_022.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	878255146446affe6a2cb07ed538768c9ef09e41249a4954b6e45fd4f3a6373d	shifted-four-sum195
+lean/LRSpectrumFull/S4R_10_023_027.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	384995e8450806986f46c0ea58a545927a32ff6573e6aa5209bf46a04c308de8	shifted-four-sum195
+lean/LRSpectrumFull/S4R_10_028_034.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	32072eee3e4a3f15d376b09257fded37efb1449590ad28f63458ff7d614e7a43	shifted-four-sum195
+lean/LRSpectrumFull/S4R_10_035_060.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	96881876c36321e5198f69c9a323b3c6244d70767818f10b9f6c06eb7b633085	shifted-four-sum195
+lean/LRSpectrumFull/S4R_11_015_017.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	bda163548ea7d6d925cf69ead9fc172f85d8f4b2c4dc35dcd1c7f069be40ca21	shifted-four-sum195
+lean/LRSpectrumFull/S4R_11_018_022.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	51d440804ab14e68c4df5825925876656a27ba32b8e027c69be525e4ef5155fc	shifted-four-sum195
+lean/LRSpectrumFull/S4R_11_023_026.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1473f668a72d1c4a4ec7cfed82212d748317f37d4ac7343adf12393c59cd6570	shifted-four-sum195
+lean/LRSpectrumFull/S4R_11_027_031.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	561867258ef64274c89f08d052e1e809561c024cd7549d45e36f54cfc8a5525b	shifted-four-sum195
+lean/LRSpectrumFull/S4R_11_032_042.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	d06b6ad40d1ff9a910667cb1a12c210bd9e16b859462f35237c2a602cd8d2414	shifted-four-sum195
+lean/LRSpectrumFull/S4R_11_043_060.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	5a5c698f833eb42e66725575246c3433472a5b057403b2b9472c2794b1b97d2d	shifted-four-sum195
+lean/LRSpectrumFull/S4R_12_013_014.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	683b31ba565e4efe05444c29ffb018e043cb92eb49234879bce0e265ec0667ab	shifted-four-sum195
+lean/LRSpectrumFull/S4R_12_015_016.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	bbcf635906aff1518552ad12b0e15b17694202f1a17bdefa3720dac2bae4fc7c	shifted-four-sum195
+lean/LRSpectrumFull/S4R_12_017_018.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	3a06b31fe6ce8026cf4ecb472cf4ec995c6caae2bc6fad559112a2f2c8be260c	shifted-four-sum195
+lean/LRSpectrumFull/S4R_12_019_021.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ebe42f585f7875a0c581014cd1be4bb974c0b3139b190c0465c45d96b45657ac	shifted-four-sum195
+lean/LRSpectrumFull/S4R_12_022_024.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c296a77abf0e598c8c3c592dd34f91ff6c8a72224fb4036af1aab0160eb9063d	shifted-four-sum195
+lean/LRSpectrumFull/S4R_12_025_060.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	f175a279073ae62e16fd84cabbc0bb39186a41e496ab32e4643d0f0f8bd88548	shifted-four-sum195
+lean/LRSpectrumFull/S4R_13_014_016.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0f05f1bd0ddda13143961ea5dab70b644b592b7882125fe348999027e35dc9f1	shifted-four-sum195
+lean/LRSpectrumFull/S4R_13_017_018.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	29b7bb4da6c473ef91fe919cf9e2ac25540ff1a985cb4bbf01de5d224b594ac5	shifted-four-sum195
+lean/LRSpectrumFull/S4R_13_019_022.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	124256ee92e1054d2b280145d2cc36326455c83717f0172f91215ce0f82c6b1a	shifted-four-sum195
+lean/LRSpectrumFull/S4R_13_023_028.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	80998eeff11bfb6806cfb6479e88ebcbdfbf3806335c897dcfc789f063513383	shifted-four-sum195
+lean/LRSpectrumFull/S4R_13_029_033.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	36e292a1707ece75a6a8c451d1ecc258d18938332a92c198823e06e2fd14714a	shifted-four-sum195
+lean/LRSpectrumFull/S4R_13_034_052.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0427ed00f17f2b34fc91bbca815f293b53acf2fd19a486a680f979d8a49c89ff	shifted-four-sum195
+lean/LRSpectrumFull/S4R_13_053_059.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	87bc0e61976dd4940edddebac226af0b3ae2ae7ef9be70867ecde3396b3b5b99	shifted-four-sum195
+lean/LRSpectrumFull/S4R_14_015_017.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	8151d40b846a9c185f50bfb386c220ac9c17909e0201847c93e221a70bd8757e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_14_018_020.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	d108b42c66bce2e31bf52a4b654c83e8e5d0aa8984b2dfbbab15f98061985382	shifted-four-sum195
+lean/LRSpectrumFull/S4R_14_021_024.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	aa37a04387fd56cc97ab2e8e3085dd0bafcd5a171f1252ec9d6cd7e011370ac8	shifted-four-sum195
+lean/LRSpectrumFull/S4R_14_025_029.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ff46d910a68fbbff4594dadf140290dcc7775c8a266e4cc9955be53fd9b487b8	shifted-four-sum195
+lean/LRSpectrumFull/S4R_14_030_059.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	03f29c5603a6ba7fea466328de516b28981d229f23972fce90c8aa0906857e4a	shifted-four-sum195
+lean/LRSpectrumFull/S4R_15_016_018.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0bde087cea55690844628d9b625857c088c06531fbbb1357963deca1b4747355	shifted-four-sum195
+lean/LRSpectrumFull/S4R_15_019_022.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4c226cea70ae97e0ab8eae5f265c64d4dd02e0b3bda61ff79e9dd5f5414294f8	shifted-four-sum195
+lean/LRSpectrumFull/S4R_15_023_027.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	42162bc12a4b49e71f59e5ee0a638dbeac4024a8b9877cf6a2955dfdb2a549b3	shifted-four-sum195
+lean/LRSpectrumFull/S4R_15_028_035.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	9a258a526c7075c13ac81c5a0d0bfeb0c2a5a60df3b32c261e099ba1da00ebec	shifted-four-sum195
+lean/LRSpectrumFull/S4R_15_036_059.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1d4150826e58688c21759cfe8c25bb44bc13e466411c21f3fc138997dce5284f	shifted-four-sum195
+lean/LRSpectrumFull/S4R_16_017_030.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	25852a71cdee52dd1705759d412b276d12ddda1be5b591b63f9063eecc460d5b	shifted-four-sum195
+lean/LRSpectrumFull/S4R_16_031_058.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1fd2919757a079e80ddc90a2d3bc95a5c361e64b8659642531ab98f21b0009c6	shifted-four-sum195
+lean/LRSpectrumFull/S4R_17_018_021.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	372423ef7d6a10c0672c1c9f4de5ac55710d8f2ca9cad2eebdee9e546be9c6e8	shifted-four-sum195
+lean/LRSpectrumFull/S4R_17_022_025.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c5df6656ebcdb37fbd90e3cca3f028ab214468882a482cd2a61d043d4cdb47b0	shifted-four-sum195
+lean/LRSpectrumFull/S4R_17_026_030.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	99285ac4a19c2a22fbfe9ea2f89886b10537268a56e92e97f26c3f4d8cbfecd5	shifted-four-sum195
+lean/LRSpectrumFull/S4R_17_031_040.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	84cd8cd7929d5879d9b65c98ae24fc75be0b877beaaa525352dbf35fb066b922	shifted-four-sum195
+lean/LRSpectrumFull/S4R_17_041_058.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c0cd2a8cc15a8c1fcb2987095776ddf19c7883f2c37c5fa9343272e832c07fa9	shifted-four-sum195
+lean/LRSpectrumFull/S4R_18_019_021.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0cc55a418eb52973ea40a5859c933de6495b45be2c00b89c90400a159fb3960d	shifted-four-sum195
+lean/LRSpectrumFull/S4R_18_022_025.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	44bc34176b5f7a9aec7728ca0b28d3f07b71c299ba6bd5cb5ca0c8fd69fb1a92	shifted-four-sum195
+lean/LRSpectrumFull/S4R_18_026_030.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	d1917b0a9e52a6128ca0e716181003a78c7411cc2758c18217a1b36518ca89e1	shifted-four-sum195
+lean/LRSpectrumFull/S4R_18_031_040.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	aba616c192c3349c9e078e79758fe37efb3e6d2937e505016e40cb07b253d341	shifted-four-sum195
+lean/LRSpectrumFull/S4R_18_041_042.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	d29f0005922f8e93f545512d03ee7c279bb4266d0cde8de89022604a9e72da04	shifted-four-sum195
+lean/LRSpectrumFull/S4R_18_043_058.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	08e25bb39cf1e4c7d97d555e755ba11bd1418b703e49a97b686495355bdd3820	shifted-four-sum195
+lean/LRSpectrumFull/S4R_19_020_025.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ce2a565428ebea886ae1922dfeefe86170ddf3bb67727234f0f25a68c003743e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_19_026_030.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	81dfbde4b9e6f80be20ea8265bac6a1f2fb42af7fc2cb98c61e42fcd6956c7e5	shifted-four-sum195
+lean/LRSpectrumFull/S4R_19_031_040.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	ad02ba72e75204b45480a88e16166e5c0192bdb39ad7d1fd71387bf1100ae3d0	shifted-four-sum195
+lean/LRSpectrumFull/S4R_19_041_057.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	d7899ce8a5466a9da9c9022e97189e753877cf5d765efc2bafea8acb8c9380b5	shifted-four-sum195
+lean/LRSpectrumFull/S4R_20_021_057.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a6862430599a0ee082306aeeb2ac84475d31cfa3138741dc3235d014ebbbac91	shifted-four-sum195
+lean/LRSpectrumFull/S4R_21_022_057.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	e5ec34d66fc9f0b47e0260055a329b648d80ded2eb7a3aedf47ada19b6b9a971	shifted-four-sum195
+lean/LRSpectrumFull/S4R_23_024_030.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	39ff0379edfe3baf93a54c0130f20cf6ea22f0f21d8ea18de472fe54c724e12f	shifted-four-sum195
+lean/LRSpectrumFull/S4R_23_031_040.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a0ee011000616743d757de90c7c297a4bae99df792cb4cf0ec7a53cfdc516f90	shifted-four-sum195
+lean/LRSpectrumFull/S4R_23_041_056.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c5944c4f80d1fcc68a0072ae5e134a85417a7fc7578800b03f0a29b84c93c891	shifted-four-sum195
+lean/LRSpectrumFull/S4R_24_025_056.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1982ae371b7a3327008283183dd84fa05b2fd81186721eb00cc6d229a792de87	shifted-four-sum195
+lean/LRSpectrumFull/S4R_25_026_055.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	bb6510130fc7111540641e4194652cbf24ce923d5796221e944e3b00bfc1e2ad	shifted-four-sum195
+lean/LRSpectrumFull/S4R_26_027_055.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	699ef0ca6007df2b42d5792703c3ab06ed5fea47ec39aae9020f4f07f2e57287	shifted-four-sum195
+lean/LRSpectrumFull/S4R_27_028_055.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	086c77c9e54342aa48e3fb6ca9166dce600ae3b3627afcdece5b2fd3d56ce64e	shifted-four-sum195
+lean/LRSpectrumFull/S4R_29_030_048.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	dadbca813219261f498e01ca5eb980d69bff91a4221f619cccbebb11950c685d	shifted-four-sum195
+lean/LRSpectrumFull/S4R_29_049_054.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c272bc32fef97aabe15dc3fd5a12f6a22be75cdfe32af618dbfd6b522eb9f6cf	shifted-four-sum195
+lean/LRSpectrumFull/S4R_30_031_054.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	f99581eebbe13d0e5c011b56585e0ed1421d565e69e51db0ba805202ee6768ee	shifted-four-sum195
+lean/LRSpectrumFull/S4R_31_032_053.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	3683b56ae3c9e75b0dc15936d35802dd009e7fe5e03f7a1389d4fdf41b5b7b89	shifted-four-sum195
+lean/LRSpectrumFull/S4R_32_033_053.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	dc20e1a371640e014ef6d79a558ab5ff984908855dcb3bf4dc35fd728f95d522	shifted-four-sum195
+lean/LRSpectrumFull/S4R_33_034_053.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	7e2930980d8228dd63262d1369fd64ad0c77531ab8f9593371e3d08f73613aae	shifted-four-sum195
+lean/LRSpectrumFull/S4R_34_035_052.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1490e88d68c563fba508de5f56cc34796f30d4371430e86e83fa52bd5aaa4b05	shifted-four-sum195
+lean/LRSpectrumFull/S4R_35_036_052.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	1adbfe9a3ab616767c6bb715a0a822ce5b5a3f3e99b729a58854fc4542af8c39	shifted-four-sum195
+lean/LRSpectrumFull/S4R_36_037_052.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	cde61f9411764b10e0804a9fc9c0f78499295e00752b88a95c79204fc8cfc97f	shifted-four-sum195
+lean/LRSpectrumFull/S4R_37_038_051.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	cfcc8eaca1095092915c4d56b661392126e9f3119f389b91aae2fbf28f354930	shifted-four-sum195
+lean/LRSpectrumFull/S4R_38_039_051.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	24129b3a776450fe899e433027ee89a64fefc76b7c76c119b394479890a3c7a7	shifted-four-sum195
+lean/LRSpectrumFull/S4R_39_040_051.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a63669815b359c7a6b84610b848f5495e0b42d8830929e474fcbf5732fd50473	shifted-four-sum195
+lean/LRSpectrumFull/S4R_40_041_050.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b823fbfa2ad1771d893d168fb1109bbfd465af4feedf1c46746badcb53ccf28d	shifted-four-sum195
+lean/LRSpectrumFull/S4R_42_043_050.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	75e96825e8b69c345e3094d9a7253c28875d2e93c55844106d8ff6b8e61fd9ec	shifted-four-sum195
+lean/LRSpectrumFull/S4R_43_044_049.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	01be13eea7e7d9f6ed823d5733ba00b2eb7bb46a724e9383600bda085c803249	shifted-four-sum195
+lean/LRSpectrumFull/S4R_44_045_049.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c03eb5d01206908f5582fe176901e6adc27a660dc87e7c33de43f3212b1555f5	shifted-four-sum195
+lean/LRSpectrumFull/S4R_45_046_049.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	be51c30773d7acacda4960bf841ea85bb24610139ffe14cf9da68431d94ae80c	shifted-four-sum195
+lean/LRSpectrumFull/S4R_46_047_048.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	52a1a6dd88e174aa2357b8ad59bfcf30a6d258425d83ff571c0d7c852b0ca3a1	shifted-four-sum195
+lean/LRSpectrumFull/S4R_47_048_048.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	b124ed79a658d2af89769d6437648fa382d13a7f356b61f0aaa6bf04e9759db5	shifted-four-sum195
+lean/LRSpectrumFull/S4Range11b12n3.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	dc9a0a42a4308d46f016ade7d3fa61caf423d9947321a0bbedd4277821f22a21	shifted-four-sum195
+lean/LRSpectrumFull/S4Range22.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	6a6149af3126a7ed314e82b69b8530c0f78f7a65bdf61c84cb5cc7da3d8b05ae	shifted-four-sum195
+lean/LRSpectrumFull/S4Range28.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	113a60e6a686ecf621abf50257f00f06f964ee55d88e10c2f01edbcf6d5ea621	shifted-four-sum195
+lean/LRSpectrumFull/S4Range41.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	59a5dd5da4ffd15d73ac831a825a0ea15935568c3c68df799d875ded7e059d2c	shifted-four-sum195
+lean/LRSpectrumFull/S4Range5.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	33f734af2da256406dde112dd3efe20363a68b3b1926f12bab803e323fad3777	shifted-four-sum195
 lean/LRSpectrumFull/Saturation.lean	Lean module (import dependency)	cd94352290753c102125674abe5b515e10fd36f16fa4b8b392f80b2c31a91448	dense-window,reduction,eight
 lean/LRSpectrumFull/Spectrum3.lean	Lean module (import dependency)	31fb61ece40796398b40cbc4da19da03d377ab4aebadbb70e1716d2339158898	dense-window,reduction,eight
 lean/LRSpectrumFull/Spectrum3Converse.lean	Lean module (import dependency)	cd237e24143e4fbff41838a8b5da927e0c74f8ebe407ac5bbc752013e027aa23	dense-window,reduction,eight
@@ -770,6 +1026,20 @@ lean/LRSpectrumFull/Subtorus.lean	Lean module (import dependency)	91efb537e9b955
 lean/LRSpectrumFull/SubtorusMono.lean	Lean module (import dependency)	0d8aaa693a4d10be277ed6214b5c7943bfc062eb8eed5ce7eaaff9f638ecc43f	dense-window,reduction,eight
 lean/LRSpectrumFull/Sweep.lean	Lean module (import dependency)	64744f661387b10561779e51fa4728753d1ef44c0248d26e3ff1cda116f3730b	dense-window,reduction,eight
 lean/LRSpectrumFull/T2Sub.lean	Lean module cited by reduction	20329c0ce3249719bac88718d0d2112f8d2318236ddcf4e0e368bd4c3326020f	reduction
+lean/LRSpectrumFull/TCArc.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	9a25291aa2336f7ca3bc9393e81b04c0a80f9445b0bc118c2c0c9e5ee0ab1265	shifted-four-sum195
+lean/LRSpectrumFull/TCCover.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	3f2dab9cfbdc2d975c18a411b65dc0c93efc0d01705bb2b4f7c84bd6ac619d75	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_002_002_1.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	99ac45a394a23f641c6b2e7df6aa6576581abee6b85f6bb171a148709c5d6b22	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_002_002_2.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	678a78a53d16c8c364f45f6280b3783ceeec546da9b8de192c3113cfc22a5be2	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_002_002_3.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	09285ec9244910883a319c1fddad5de816492f1ec3794a6863a1c91a5c563a2a	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_002_002_4.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	a875c18451ae0c204f1b445895e7ab14cc3c1a5153b340ab98779b2315aaad24	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_002_002_5.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	4f55d1e2d5d72f6c3524e1a70ba5b77b09ecec3f353ec9b5f64b1a839896fbd4	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_002_002_6.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	47af0b46a71ff5ef1d5a986f1a70629baf94917dc960b609790ab1fb300de5f0	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_002_002_7.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	852cf93659231fbe29bda37c5748581280302da20a647711fcf2279300295cf8	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_002_002_8.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	fc53be3def9e1c8cbc36ef579052212100a5f5ece514a94990a02df6f529cca7	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_003_003_1.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	d40ff9552dccef13a5df4ca971ba96ca91a98bf5a29292bb75f645dde17865f2	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_003_003_2.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	c42761c3e7826f0e56cd5fbe601b78a837e1145ecd88ea2e82beaf3c63a167f6	shifted-four-sum195
+lean/LRSpectrumFull/TCP_01_003_003_3.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	0e61ff99f31bf447905e7c39549b782358538e0aa0cec1693439a2234d85e0e2	shifted-four-sum195
+lean/LRSpectrumFull/TCSound.lean	Lean module cited by shifted-four-sum195 (added 1.6.0)	7e68de935f46d135b92f829b663b04809be75b83c0ae2567ee57ecccf980503f	shifted-four-sum195
 lean/LRSpectrumFull/TPFCheck.lean	Lean module cited by shifted-grid-four (added 1.2.0)	be99caf45840fb39d256141e19c4f1fdc3f1ede8f0f689dd568edc0f6aeadfad	shifted-grid-four
 lean/LRSpectrumFull/TPFData.lean	Lean module cited by shifted-grid-four (added 1.2.0)	0c7f1a03ae4efcb1c82b51731a91d45eedb062a062dc94ee6dfe82a4733716d9	shifted-grid-four
 lean/LRSpectrumFull/TPFMain.lean	Lean module cited by shifted-grid-four (added 1.2.0)	8ecec7e15fe5248f4bdaa114ea36dd017b1dcc2e07a5a6f5515fea2ce3e8449f	shifted-grid-four
@@ -797,7 +1067,8 @@ lean/LRSpectrumFull/TripleNormalize.lean	Lean module (import dependency)	8861b43
 lean/LRSpectrumFull/TwoRunnerBound.lean	Lean module (import dependency)	76752af53c13086f94f1ffd0dfb26cb0d6e7c83c2a0f4a8378bcef4cb5302318	dense-window,reduction,eight
 lean/LRSpectrumFull/WeylNormalize.lean	Lean module (import dependency)	f88d0f07734a4c51cc0daedad0ab6f3ede1c47a47570d9b723f5d2487a085661	dense-window,reduction,eight
 lean/LRSpectrumFull/WitnessInt.lean	Lean module (import dependency)	ed635ddfd1b8479014a722bb7d876cc89e0104709558a1f09c2d3140748a8654	dense-window,reduction,eight
-lean/README.md	Lean project file	aabd7da0c82f4a19877a258123d5ef15517b38366de093c36368a4c944c2bc6c	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
+lean/README.md	Lean project file	b3bf8e22e77aca3fe347ab7e2973f2c1bf51271816a64d6aebfdc55412564a30	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
+lean/S4_BUILD_ORDER.txt	Lean build order (added 1.6.0)	c0f39fd62b9683b0426259f7562f8f20924d793d80d3ba002424967b1646d0ba	shifted-four-sum195
 lean/lake-manifest.json	Lean project file	32759ebe905d55a24671e475ec98fca39dca76211b52255dc1059894b27d6b6a	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lakefile.toml	Lean project file	a5b3287075881d955e1f327a6fdbe9994f386c4a2d0272d144f29c22921cf834	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
 lean/lean-toolchain	Lean project file	54727eec5cba149c18842e6deb5c41b369d66455c93ce135d7d5347c782b2325	dense-window,obstructions,perturbation,reduction,lrc_covering,eight
@@ -829,9 +1100,11 @@ paper/reduction/LEAN_MAP.md	Lean map (label to declaration)	de853e885e88188c447c
 paper/reduction/main.pdf	manuscript PDF	c83eed8b768e46d4e16dcc78976d3c906ddc93d960ebdfedf3f096965c881383	reduction
 paper/reduction/main.tex	manuscript source	9e82d3d85269fb4ebacc9ddbe3ea2ed1d556d7f294e45d8355c07a9559648f80	reduction
 paper/reduction/refs.bib	bibliography	e9ef0b4fff9bfeba4c5e307ac32038af2e46f3392cc285c8352216902f340b68	reduction
+paper/shifted-four-sum195/LEAN_MAP.md	Lean map (label to declaration)	68e70698a4f5f153191348fe5043a155f9be4f9d3c86fb5d3bec8724b0c4b1f6	shifted-four-sum195
+paper/shifted-four-sum195/NOTE.md	note (Markdown, added 1.6.0)	88d5df0d531ceef186669bc8c67d6216ef3ce57dd809d56ed0b6c1ee0a0f1144	shifted-four-sum195
 paper/shifted-grid-four/LEAN_MAP.md	Lean map (label to declaration)	c7e60a8f42372e3c54c8e1eb14abed7fe42f66295f0f484ce203d378785c18aa	shifted-grid-four
 paper/shifted-grid-four/NOTE.md	note (Markdown, added 1.2.0)	a4b3d4b14b8c8207853a2983d7f2c8294f4e6da38769b27b9ceaaffaca1277c8	shifted-grid-four
-paper/shifted-real-four-classes/LEAN_MAP.md	Lean map (label to declaration)	91da7b7ad579e2408e257713caf2a85396a68601415a8af2c6532c4bec3b64fe	shifted-real-four-classes
-paper/shifted-real-four-classes/NOTE.md	note (Markdown, added 1.4.0)	dfe1a282327e1682bf2e5649de6089525ff19d3f15cd38a4653316edcf6ccdf6	shifted-real-four-classes
+paper/shifted-real-four-classes/LEAN_MAP.md	Lean map (label to declaration)	78e0fe99662d9135ed37d342819969aa9787f1a9c493ce487a7cfead33b425d8	shifted-real-four-classes
+paper/shifted-real-four-classes/NOTE.md	note (Markdown, added 1.4.0)	6a6c15acc1290b615fa031b756586f9a8c46b20a9bc725b969dc961156e83adc	shifted-real-four-classes
 paper/shifted-real-four/LEAN_MAP.md	Lean map (label to declaration)	6df2776e5041c46426c88bca1299abbe303d3aac7ea66dc8e1bb3ccdd346939d	shifted-real-four
 paper/shifted-real-four/NOTE.md	note (Markdown, added 1.3.0)	fb6e44914e31dba22ff2c8ff331a9e738928df01260de5b88c0223c29faee63d	shifted-real-four

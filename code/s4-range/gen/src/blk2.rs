@@ -1,0 +1,292 @@
+// Assembly block: blocked-interval modules with time covers in SEPARATE theorem modules (TCP_*), and their mirror.
+// asmgen A BLO BHI TCFILE LEANDIR MAXINLINE MAXTC MAXOPS     -> writes S4B_<aa>_<blo>_<bhi>.lean (+ TCP_..._<k>.lean)
+// asmverify MAIN.lean [TCP.lean ...]                         -> mirror of S4Loop2.rangeB2 on the TEXT of the files
+use super::*;
+use std::collections::{HashMap, HashSet};
+
+type Tc = (u64, Vec<u64>, u64);
+
+fn load_tc(path: &str) -> HashMap<(u32, u32, u32, u32), Tc> {
+    let mut m = HashMap::new();
+    let txt = fs::read_to_string(path).unwrap();
+    for line in txt.lines() {
+        let w: Vec<&str> = line.split_whitespace().collect();
+        if w.len() < 6 || w[4] == "NONE" { continue; }
+        let v: Vec<u32> = w[0..4].iter().map(|x| x.parse().unwrap()).collect();
+        let (mut q, mut ops) = (0u64, 0u64); let mut times: Vec<u64> = vec![];
+        for tok in &w[4..] {
+            if let Some(r) = tok.strip_prefix("q=") { q = r.parse().unwrap(); }
+            if let Some(r) = tok.strip_prefix("ops=") { ops = r.parse().unwrap(); }
+            if let Some(r) = tok.strip_prefix("times=") { times = r.split(',').filter(|s| !s.is_empty()).map(|s| s.parse().unwrap()).collect(); }
+        }
+        m.insert((v[0], v[1], v[2], v[3]), (q, times, ops));
+    }
+    m
+}
+
+fn join(t: &[u64]) -> String { t.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(", ") }
+
+fn tc_block(pres: &[(V4, u64, Vec<u64>, u64)], pid: &str) -> String {
+    let mut s = String::new();
+    for (v, q, t, _) in pres {
+        let nm = format!("{}_{}_{}_{}", v[0], v[1], v[2], v[3]);
+        s.push_str(&format!("theorem tcv_{nm} : TC.tcOK {} {} {} {} {} [{}] = true := by decide +kernel\n", v[0], v[1], v[2], v[3], q, join(t), nm = nm));
+        s.push_str(&format!("theorem tcs_{nm} : S4 ![{}, {}, {}, {}] := TC.tc_sound {} {} {} {} {} _ tcv_{nm}\n", v[0], v[1], v[2], v[3], v[0], v[1], v[2], v[3], q, nm = nm));
+    }
+    s.push_str(&format!("\ndef preL_{pid} : List (ℕ × ℕ × ℕ × ℕ) := [{}]\n\n", pres.iter().map(|(v, _, _, _)| format!("({}, {}, {}, {})", v[0], v[1], v[2], v[3])).collect::<Vec<_>>().join(", "), pid = pid));
+    if pres.is_empty() {
+        s.push_str(&format!("theorem preOK_{pid} : PreOK preL_{pid} := by\n  intro x hx\n  simp [preL_{pid}] at hx\n\n", pid = pid));
+    } else {
+        let pat = vec!["rfl"; pres.len()].join(" | ");
+        let ex = pres.iter().map(|(v, _, _, _)| format!("tcs_{}_{}_{}_{}", v[0], v[1], v[2], v[3])).collect::<Vec<_>>().join(", ");
+        s.push_str(&format!("theorem preOK_{pid} : PreOK preL_{pid} := by\n  intro x hx\n  simp only [preL_{pid}, List.mem_cons, List.not_mem_nil, or_false] at hx\n  rcases hx with {pat}\n  exacts [{ex}]\n\n", pid = pid, pat = pat, ex = ex));
+    }
+    s
+}
+
+pub fn asmgen(a: &[String]) {
+    let aa: u32 = a[0].parse().unwrap(); let blo: u32 = a[1].parse().unwrap(); let bhi: u32 = a[2].parse().unwrap();
+    let tcm = load_tc(&a[3]); let dir = a[4].clone();
+    let max_inline: usize = a[5].parse().unwrap(); let max_tc: usize = a[6].parse().unwrap(); let max_ops: u64 = a[7].parse().unwrap();
+    let n = bhi - blo + 1;
+    let mut recs: Vec<String> = vec![];
+    let (mut en, mut pr, mut cl, mut nd0) = (0u64, 0u64, 0u64, 0u64);
+    let mut missing: Vec<[u32; 4]> = vec![];
+    let mut pres: Vec<(V4, u64, Vec<u64>, u64)> = vec![];
+    for_range(aa, blo, n, &mut |a0, b, c, d| {
+        en += 1;
+        if gcd(gcd(a0, b), gcd(c, d)) != 1 { return; }
+        pr += 1;
+        if class_b([a0, b, c, d]) { cl += 1; return; }
+        let vv: V4 = [a0 as i64, b as i64, c as i64, d as i64];
+        match find_cert(&vv) {
+            Some(k) => { recs.push(lean_lit(&vv, &k)); nd0 += 1; }
+            None => match tcm.get(&(a0, b, c, d)) {
+                Some((q, t, ops)) => { recs.push(format!(".pre {} {} {}", b, c, d)); pres.push((vv, *q, t.clone(), *ops)); }
+                None => missing.push([a0, b, c, d]),
+            },
+        }
+    });
+    if !missing.is_empty() { eprintln!("REFUSED: {} vectors without any certificate, e.g. {:?}", missing.len(), &missing[..missing.len().min(5)]); std::process::exit(2); }
+    let id = format!("{}_{}_{}", aa, blo, bhi);
+    let stem = format!("{:02}_{:03}_{:03}", aa, blo, bhi);
+    let split = pres.len() > max_inline;
+    let mut chunks: Vec<Vec<(V4, u64, Vec<u64>, u64)>> = vec![];
+    if split {
+        let mut cur: Vec<(V4, u64, Vec<u64>, u64)> = vec![]; let mut cur_ops = 0u64;
+        for p in pres.iter() {
+            if !cur.is_empty() && (cur.len() >= max_tc || cur_ops + p.3 > max_ops) { chunks.push(std::mem::take(&mut cur)); cur_ops = 0; }
+            cur_ops += p.3; cur.push(p.clone());
+        }
+        if !cur.is_empty() { chunks.push(cur); }
+        for (k, ch) in chunks.iter().enumerate() {
+            let pid = format!("{}_{}", id, k + 1);
+            let ops: u64 = ch.iter().map(|p| p.3).sum();
+            let mut s = format!("/-\n# generated by s4asm (s4_asm/gen): time-cover theorems for the blocked range a={} b in [{}, {}], part {} of {} ({} covers, {} mirror units)\n-/\nimport LRSpectrumFull.S4Loop2\n\nnamespace LRSpectrumFull\nnamespace D0\n\n", aa, blo, bhi, k + 1, chunks.len(), ch.len(), ops);
+            s.push_str(&tc_block(ch, &pid));
+            s.push_str(&format!("#print axioms preOK_{}\n\nend D0\nend LRSpectrumFull\n", pid));
+            let f = format!("{}/TCP_{}_{}.lean", dir, stem, k + 1);
+            fs::write(&f, s).unwrap();
+            println!("FILE {} covers {} units {}", f, ch.len(), ops);
+        }
+    }
+    let mut s = String::new();
+    s.push_str(&format!("/-\n# generated by s4asm (s4_asm/gen): BLOCKED range a={} b in [{}, {}], {} depth-0 records + {} time-cover records ({})\n-/\n", aa, blo, bhi, nd0, pres.len(), if split { format!("time covers in {} separate TCP modules", chunks.len()) } else { "time covers inline".to_string() }));
+    if split {
+        s.push_str("import LRSpectrumFull.S4PreApp\n");
+        for k in 0..chunks.len() { s.push_str(&format!("import LRSpectrumFull.TCP_{}_{}\n", stem, k + 1)); }
+    } else { s.push_str("import LRSpectrumFull.S4Loop2\n"); }
+    s.push_str("\nnamespace LRSpectrumFull\nnamespace D0\n\n");
+    if split {
+        let names: Vec<String> = (0..chunks.len()).map(|k| format!("preL_{}_{}", id, k + 1)).collect();
+        s.push_str(&format!("def preL_{id} : List (ℕ × ℕ × ℕ × ℕ) := {}\n\n", { let mut e = names[names.len()-1].clone(); for k in (0..names.len()-1).rev() { e = format!("{} ++ ({})", names[k], e); } e }, id = id));
+        // right-nested appends
+        let mut pf = format!("preOK_{}_{}", id, chunks.len());
+        for k in (0..chunks.len() - 1).rev() { pf = format!("preOK_append preOK_{}_{} ({})", id, k + 1, pf); }
+        s.push_str(&format!("theorem preOK_{id} : PreOK preL_{id} := {pf}\n\n", id = id, pf = pf));
+    } else {
+        s.push_str(&tc_block(&pres, &id));
+    }
+    s.push_str(&format!("set_option maxRecDepth 1000000 in\ndef certs_{} : List Cert2 := [\n", id));
+    for (i, r) in recs.iter().enumerate() { s.push_str("  "); s.push_str(r); if i + 1 < recs.len() { s.push_str(",\n"); } else { s.push('\n'); } }
+    s.push_str("]\n\n");
+    s.push_str(&format!("theorem rng_{id} : rangeB2 preL_{id} {a} {blo} {n} certs_{id} = true := by decide +kernel\n\n", id = id, a = aa, blo = blo, n = n));
+    s.push_str(&format!("theorem s4_blk_{id} : ∀ b c d : ℕ, {blo} ≤ b → b < {blo} + {n} → b < c → c < d → {a} + b + c + d ≤ 195 →\n    Nat.gcd (Nat.gcd {a} b) (Nat.gcd c d) = 1 → S4 ![{a}, b, c, d] :=\n  rangeOK2_sound preOK_{id} (by norm_num) (by norm_num) rng_{id}\n\n", id = id, a = aa, blo = blo, n = n));
+    s.push_str(&format!("#print axioms s4_blk_{}\n\nend D0\nend LRSpectrumFull\n", id));
+    let f = format!("{}/S4B_{}.lean", dir, stem);
+    fs::write(&f, s).unwrap();
+    println!("FILE {} records {}", f, recs.len());
+    println!("ASMGEN {} enumerated {} primitive {} classB {} d0 {} tc {} split {} chunks {}", id, en, pr, cl, nd0, pres.len(), split, chunks.len());
+}
+
+fn tuples_in(line: &str) -> Vec<(u32, u32, u32, u32)> {
+    // all "(a, b, c, d)" in a def preL_ line
+    let mut out = vec![];
+    let body = match line.find(":=") { Some(p) => &line[p + 2..], None => return out };
+    for part in body.split('(').skip(1) {
+        if let Some(e) = part.find(')') {
+            let w: Vec<&str> = part[..e].split(',').map(|s| s.trim()).collect();
+            if w.len() == 4 { if let (Ok(a), Ok(b), Ok(c), Ok(d)) = (w[0].parse(), w[1].parse(), w[2].parse(), w[3].parse()) { out.push((a, b, c, d)); } }
+        }
+    }
+    out
+}
+
+pub fn asmverify(files: &[String]) {
+    // files[0] = main module, rest = TCP modules it imports
+    let mut main_txt = String::new(); let mut all_txt = String::new();
+    for (i, f) in files.iter().enumerate() {
+        let t = fs::read_to_string(f).unwrap_or_else(|e| { println!("ASMVERIFY\t{}\tMIRROR_FALSE\tread: {}", f, e); std::process::exit(1) });
+        for bad in ["sorry", "native_decide", "ofReduceBool", "axiom ", "unsafe", "implemented_by", "admit"] {
+            if t.contains(bad) { println!("ASMVERIFY\t{}\tMIRROR_FALSE\tforbidden token {}", f, bad); std::process::exit(1); }
+        }
+        if i == 0 { main_txt = t.clone(); }
+        all_txt.push_str(&t); all_txt.push('\n');
+    }
+    // imports of main must name exactly the TCP files given
+    let want: HashSet<String> = files[1..].iter().map(|f| { let b = std::path::Path::new(f).file_stem().unwrap().to_string_lossy().to_string(); format!("import LRSpectrumFull.{}", b) }).collect();
+    let got: HashSet<String> = main_txt.lines().filter(|l| l.starts_with("import LRSpectrumFull.TCP_")).map(|l| l.trim().to_string()).collect();
+    if want != got { println!("ASMVERIFY\t{}\tMIRROR_FALSE\tTCP imports differ from files given", files[0]); std::process::exit(1); }
+    let mut hdr: Option<(u32, u32, u32)> = None; let mut recs: Vec<(char, u32, u32, u32, Option<K3>)> = vec![];
+    let mut preset: HashSet<(u32, u32, u32, u32)> = HashSet::new(); let mut prel: HashSet<(u32, u32, u32, u32)> = HashSet::new();
+    for line in all_txt.lines() {
+        let t = line.trim().trim_end_matches(',');
+        if t.starts_with("theorem rng_") {
+            let p = t.find("rangeB2 ").unwrap() + 8;
+            let w: Vec<&str> = t[p..].split_whitespace().skip(1).take(3).collect();
+            hdr = Some((w[0].parse().unwrap(), w[1].parse().unwrap(), w[2].parse().unwrap()));
+        }
+        if t.starts_with("def preL_") { for x in tuples_in(t) { prel.insert(x); } }
+        if t.starts_with(".d0 ") {
+            let cleaned: String = t.chars().filter(|&c| c != '(' && c != ')').collect();
+            let w: Vec<&str> = cleaned.split_whitespace().collect();
+            if w.len() != 16 { println!("ASMVERIFY\t{}\tMIRROR_FALSE\tbad d0 record", files[0]); std::process::exit(1); }
+            let mut k = [[0i64; 4]; 3];
+            for l in 0..3 { for r in 0..4 { k[l][r] = w[4 + 4 * l + r].parse().unwrap(); } }
+            recs.push(('d', w[1].parse().unwrap(), w[2].parse().unwrap(), w[3].parse().unwrap(), Some(k)));
+        }
+        if t.starts_with("theorem tcv_") {
+            let p = t.find("TC.tcOK ").unwrap() + 8;
+            let lb = t.find('[').unwrap(); let rb = t.find(']').unwrap();
+            let h: Vec<u64> = t[p..lb].split_whitespace().map(|x| x.parse().unwrap()).collect();
+            let times: Vec<u64> = t[lb + 1..rb].split(',').map(|s| s.trim()).filter(|s| !s.is_empty()).map(|s| s.parse().unwrap()).collect();
+            if h.len() == 5 && blk::tc_ok(&[h[0], h[1], h[2], h[3]], h[4], &times) { preset.insert((h[0] as u32, h[1] as u32, h[2] as u32, h[3] as u32)); }
+        }
+        if t.starts_with(".pre ") {
+            let w: Vec<&str> = t.split_whitespace().collect();
+            recs.push(('p', w[1].parse().unwrap(), w[2].parse().unwrap(), w[3].parse().unwrap(), None));
+        }
+        if t.starts_with(".tc ") { println!("ASMVERIFY\t{}\tMIRROR_FALSE\tinline .tc record not allowed here", files[0]); std::process::exit(1); }
+    }
+    let (aa, blo, n) = hdr.expect("no rng theorem");
+    // preL must be exactly the set of verified tcv vectors
+    if !prel.iter().all(|x| preset.contains(x)) { println!("ASMVERIFY\t{}\tMIRROR_FALSE\tpreL entry without a verified tcv theorem", files[0]); std::process::exit(1); }
+    let mut i = 0usize; let mut err: Option<String> = None; let (mut nd, mut nt) = (0usize, 0usize);
+    for_range(aa, blo, n, &mut |a0, b, c, d| {
+        if err.is_some() { return; }
+        if gcd(gcd(a0, b), gcd(c, d)) != 1 { return; }
+        if i < recs.len() {
+            let r = &recs[i];
+            if r.1 == b && r.2 == c && r.3 == d {
+                if r.0 == 'd' && lean_ok(&[a0 as i64, b as i64, c as i64, d as i64], r.4.as_ref().unwrap()) { i += 1; nd += 1; return; }
+                if r.0 == 'p' && prel.contains(&(a0, b, c, d)) && preset.contains(&(a0, b, c, d)) { i += 1; nt += 1; return; }
+            }
+        }
+        if class_b([a0, b, c, d]) { return; }
+        err = Some(format!("vector ({},{},{},{}) neither certified by next record (index {}) nor classB", a0, b, c, d, i));
+    });
+    if let Some(e) = err { println!("ASMVERIFY\t{}\tMIRROR_FALSE\t{}", files[0], e); std::process::exit(1); }
+    if i != recs.len() { println!("ASMVERIFY\t{}\tMIRROR_FALSE\t{} records unconsumed", files[0], recs.len() - i); std::process::exit(1); }
+    println!("ASMVERIFY\t{}\ta={} blo={} n={} records={} (d0 {} pre {}) tcp_files={} tcv_verified={} preL={}\tMIRROR_TRUE", files[0], aa, blo, n, recs.len(), nd, nt, files.len() - 1, preset.len(), prel.len());
+}
+
+/// asmcheck FILES... : each file must contain exactly one range theorem of the exact shape
+///   theorem NAME : ∀ b c d : ℕ, LO ≤ b → b < LO + N → b < c → c < d → A + b + c + d ≤ 195 →
+///       Nat.gcd (Nat.gcd A b) (Nat.gcd c d) = 1 → S4 ![A, b, c, d] :=
+/// Then every (a,b) with a < b and a + 3b + 3 <= 195 (iff the pair has a primitive vector (a,b,b+1,b+2)) must lie in
+/// exactly one range; counts primitive vectors per pair from first principles and compares the totals.
+pub fn asmcheck(files0: &[String]) {
+    // optional first argument --layers=DIR:G writes S4A_<aa>.lean and S4All_<k>.lean (groups of G values of a) into DIR
+    let (layers, files): (Option<String>, &[String]) = if files0[0].starts_with("--layers=") { (Some(files0[0][9..].to_string()), &files0[1..]) } else { (None, files0) };
+    let mut ranges: Vec<(String, String, u32, u32, u32)> = vec![]; // file, theorem, a, lo, n
+    let mut bad = 0;
+    for f in files {
+        let t = fs::read_to_string(f).unwrap();
+        let mut found: Vec<(String, u32, u32, u32)> = vec![];
+        for (pos, _) in t.match_indices("theorem ") {
+            let rest = &t[pos + 8..];
+            let nm: String = rest.chars().take_while(|c| !c.is_whitespace()).collect();
+            let after = &rest[nm.len()..];
+            if !after.trim_start().starts_with(": ∀ b c d : ℕ,") { continue; }
+            // parse "LO ≤ b → b < LO + N → b < c → c < d → A + b + c + d ≤ 195 →"
+            let w: Vec<&str> = after.split_whitespace().collect();
+            // tokens: : ∀ b c d : ℕ, LO ≤ b → b < LO + N → ...
+            let i0 = w.iter().position(|x| *x == "ℕ,").unwrap();
+            let lo: u32 = w[i0 + 1].parse().unwrap();
+            let lo2: u32 = w[i0 + 7].parse().unwrap();
+            let n: u32 = w[i0 + 9].parse().unwrap();
+            let a: u32 = w[i0 + 19].parse().unwrap();
+            let shape = format!(": ∀ b c d : ℕ, {lo} ≤ b → b < {lo} + {n} → b < c → c < d → {a} + b + c + d ≤ 195 →\n    Nat.gcd (Nat.gcd {a} b) (Nat.gcd c d) = 1 → S4 ![{a}, b, c, d] :=", lo = lo, n = n, a = a);
+            if lo2 != lo || !after.trim_start().starts_with(&shape) { println!("SHAPE_MISMATCH\t{}\t{}", f, nm); bad += 1; continue; }
+            found.push((nm, a, lo, n));
+        }
+        if found.len() != 1 { println!("NOT_EXACTLY_ONE_RANGE_THEOREM\t{}\t{}", f, found.len()); bad += 1; continue; }
+        let (nm, a, lo, n) = found.pop().unwrap();
+        println!("RANGE\t{}\t{}\ta={}\tb in [{}, {})\tn={}", std::path::Path::new(f).file_stem().unwrap().to_string_lossy(), nm, a, lo, lo + n, n);
+        ranges.push((f.clone(), nm, a, lo, n));
+    }
+    // coverage over the universe
+    let (mut pairs, mut gaps, mut overlaps, mut excess) = (0u64, 0u64, 0u64, 0u64);
+    let mut cover: HashMap<(u32, u32), u32> = HashMap::new();
+    for (_, _, a, lo, n) in &ranges { for b in *lo..*lo + *n { *cover.entry((*a, b)).or_insert(0) += 1; } }
+    for a in 1..200u32 { for b in a + 1..200u32 {
+        if a + 3 * b + 3 > 195 { continue; }
+        pairs += 1;
+        match cover.get(&(a, b)) { None => { gaps += 1; if gaps <= 10 { println!("GAP\t({},{})", a, b); } }, Some(1) => {}, Some(k) => { overlaps += 1; println!("OVERLAP\t({},{}) x{}", a, b, k); } }
+    } }
+    for (&(a, b), _) in cover.iter() { if a + 3 * b + 3 > 195 { excess += 1; } }
+    // primitive vectors per pair, universe total vs sum over ranges (each pair once)
+    let mut universe = 0u64; let mut in_ranges = 0u64;
+    for a in 1..200u32 { for b in a + 1..200u32 { for c in b + 1..200u32 { if a + b + 2 * c + 1 > 195 { break; } for d in c + 1..200u32 {
+        if a + b + c + d > 195 { break; }
+        if gcd(gcd(a, b), gcd(c, d)) != 1 { continue; }
+        universe += 1;
+        if cover.get(&(a, b)).copied() == Some(1) { in_ranges += 1; }
+    } } } }
+    println!("ASMCHECK ranges {} shape_or_count_problems {} pairs {} gaps {} overlaps {} excess_pairs_outside_universe {} primitive_vectors_universe {} covered_by_exactly_one_range {}", ranges.len(), bad, pairs, gaps, overlaps, excess, universe, in_ranges);
+    println!("ASMCHECK RESULT {}", if bad == 0 && gaps == 0 && overlaps == 0 && universe == in_ranges { "EXACT" } else { "NOT_EXACT" });
+    if let Some(spec) = layers {
+        if !(bad == 0 && gaps == 0 && overlaps == 0 && universe == in_ranges) { println!("LAYERS refused: not exact"); return; }
+        let (dir, g) = { let p: Vec<&str> = spec.rsplitn(2, ':').collect(); (p[1].to_string(), p[0].parse::<u32>().unwrap()) };
+        let maxa = ranges.iter().map(|r| r.2).max().unwrap();
+        for a in 1..=maxa {
+            let mut rs: Vec<&(String, String, u32, u32, u32)> = ranges.iter().filter(|r| r.2 == a).collect();
+            rs.sort_by_key(|r| r.3);
+            let mut s = format!("/-\n# generated by s4asm asmcheck --layers: all b for a = {a} (modules: {})\n-/\n", rs.iter().map(|r| std::path::Path::new(&r.0).file_stem().unwrap().to_string_lossy().to_string()).collect::<Vec<_>>().join(", "), a = a);
+            for r in &rs { s.push_str(&format!("import LRSpectrumFull.{}\n", std::path::Path::new(&r.0).file_stem().unwrap().to_string_lossy())); }
+            s.push_str("\nnamespace LRSpectrumFull\nnamespace D0\n\n");
+            s.push_str(&format!("theorem S4A_{a} : ∀ b c d : ℕ, {a} < b → b < c → c < d → {a} + b + c + d ≤ 195 →\n    Nat.gcd (Nat.gcd {a} b) (Nat.gcd c d) = 1 → S4 ![{a}, b, c, d] := by\n  intro b c d hb hbc hcd hs hg\n", a = a));
+            let disj: Vec<String> = rs.iter().map(|r| format!("({} ≤ b ∧ b < {} + {})", r.3, r.3, r.4)).collect();
+            s.push_str(&format!("  have hcase : {} := by omega\n  rcases hcase with {}\n", disj.join(" ∨ "), vec!["h"; rs.len()].join(" | ")));
+            for r in &rs { s.push_str(&format!("  · exact {} b c d h.1 h.2 hbc hcd hs hg\n", r.1)); }
+            s.push_str(&format!("\n#print axioms S4A_{}\n\nend D0\nend LRSpectrumFull\n", a));
+            fs::write(format!("{}/S4A_{:02}.lean", dir, a), s).unwrap();
+        }
+        let mut k = 1; let mut lo = 1;
+        while lo <= maxa {
+            let hi = (lo + g - 1).min(maxa);
+            let mut s = format!("/-\n# generated by s4asm asmcheck --layers: all b, a in [{lo}, {hi}]\n-/\n", lo = lo, hi = hi);
+            for a in lo..=hi { s.push_str(&format!("import LRSpectrumFull.S4A_{:02}\n", a)); }
+            s.push_str("\nnamespace LRSpectrumFull\nnamespace D0\n\n");
+            s.push_str(&format!("theorem S4All_{k} : ∀ a b c d : ℕ, {lo} ≤ a → a ≤ {hi} → a < b → b < c → c < d → a + b + c + d ≤ 195 →\n    Nat.gcd (Nat.gcd a b) (Nat.gcd c d) = 1 → S4 ![a, b, c, d] := by\n  intro a b c d h1 h2 hb hbc hcd hs hg\n", k = k, lo = lo, hi = hi));
+            let disj: Vec<String> = (lo..=hi).map(|a| format!("a = {}", a)).collect();
+            s.push_str(&format!("  have hcase : {} := by omega\n  rcases hcase with {}\n", disj.join(" ∨ "), vec!["rfl"; (hi - lo + 1) as usize].join(" | ")));
+            for a in lo..=hi { s.push_str(&format!("  · exact S4A_{} b c d hb hbc hcd hs hg\n", a)); }
+            s.push_str(&format!("\n#print axioms S4All_{}\n\nend D0\nend LRSpectrumFull\n", k));
+            fs::write(format!("{}/S4All_{}.lean", dir, k), s).unwrap();
+            println!("LAYER S4All_{} a in [{}, {}]", k, lo, hi);
+            k += 1; lo = hi + 1;
+        }
+        println!("LAYERS written for a = 1..{} in {}", maxa, dir);
+    }
+}

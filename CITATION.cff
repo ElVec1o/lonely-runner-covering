@@ -28,7 +28,16 @@ abstract: >-
   2,133,561 primitive speed vectors with speed sum at most 195, 2,002,342 lie in a class with a Lean proof in
   this archive and 131,219 lie in no class, including (1,2,3,4), (1,3,4,6) and (1,3,4,7) (version 1.4.0:
   1,867,559 and 266,002, superseded); vectors with speed sum at least 196 are not treated here, so the
-  archive does not contain a proof of the shifted theorem for four moving runners. Statements carry the
+  archive does not contain a proof of the shifted theorem for four moving runners for all speeds. Version
+  1.6.0 adds a fourth Markdown note with a Lean proof of the shifted statement for four moving runners,
+  arbitrary real phases and speed sum at most 195 (the 2,002,342 vectors in a class from the seven class
+  theorems and the other 131,219 by data certificates checked by the Lean kernel: 130,914 depth-0
+  certificates and 305 exact time covers; the data are not trusted, only the soundness theorems, the class
+  test and the loop lemmas). That statement is the case of speed sum at most 195 of a known theorem (Alcantara,
+  Criado and Santos with computer assistance, after the reduction of Malikiosis, Santos and Schymura); it is
+  not a new theorem and not the full four-runner theorem, because the case of speed sum at least 196 is not
+  formalised here, and no priority claim is made for the formalisation. A rebuild needs about 4.5 hours and
+  must be done one module at a time (see lean/README.md). Statements carry the
   labels given in each manuscript;
   several results are finite computations that are not formalized. No proof of the lonely runner conjecture
   is claimed. The manuscripts have not been peer reviewed.
@@ -37,8 +46,10 @@ authors:
     given-names: Vico
     email: vicobonfioli@gmail.com
 license: CC-BY-4.0
-version: 1.5.0
-doi: 10.5281/zenodo.24163304
+version: 1.6.0
+# The version DOI of 1.6.0 is pending; it is recorded here in a follow-up commit after deposit.
+# Until then the field doi carries the concept DOI (all versions).
+doi: 10.5281/zenodo.23435304
 identifiers:
   - type: doi
     value: 10.5281/zenodo.24163304
@@ -80,7 +91,7 @@ identifiers:
     value: 10.5281/zenodo.23435304
     description: All versions (concept DOI)
 type: software
-date-released: 2026-11-12
+date-released: 2026-11-13
 keywords:
   - lonely runner conjecture
   - Lean 4
